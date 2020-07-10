@@ -1,4 +1,4 @@
-# Bucketeer SDK for iOS
+# Bucketeer SDK for iOS 2
 
 [![Build Status](https://app.bitrise.io/app/b2a26a787a314dad/status.svg?token=dbGgTCEurcQ8NoD64CekLA&branch=master)](https://app.bitrise.io/app/b2a26a787a314dad)
 
