@@ -1,5 +1,8 @@
 # Bucketeer SDK for iOS
 
-[![Build Status](https://app.bitrise.io/app/1d5f77501ab67719/status.svg?token=WXo5MzwB7ZtURjdv64R2Wg&branch=master)](https://app.bitrise.io/app/1d5f77501ab67719)
+[![Build Status](https://app.bitrise.io/app/b2a26a787a314dad/status.svg?token=dbGgTCEurcQ8NoD64CekLA&branch=master)](https://app.bitrise.io/app/b2a26a787a314dad)
 
-Please see [here](https://bucketeer.io/docs/#/sdk-tutorial-ios-setup) for the SDK Integration
+Please see the docs below.
+
+- [Tutorial](https://bucketeer.io/docs/#/sdk-tutorial-ios)
+- [Integration](https://bucketeer.io/docs/#/sdk-reference-guides-ios)
