@@ -50,11 +50,11 @@ settings:
 	$(SHOW_BUILD_SETTINGS)
 
 .PHONY: build
-build:
+build: copy-protos
 	$(BUILD)
 
 .PHONY: build-for-testing
-build-for-testing:
+build-for-testing: copy-protos
 	$(BUILD_FOR_TESTING)
 
 .PHONY: test-without-building
