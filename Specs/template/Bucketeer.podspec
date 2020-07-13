@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
     "Bucketeer team" => "bucketeer@cyberagent.co.jp"
   }
 
-  s.source_files = "sdk/ios/Bucketeer/Sources/**/*.{swift,h,m}"
+  s.source_files = "Bucketeer/Sources/**/*.{swift,h,m}"
   s.source = {
       :git => "https://github.com/ca-dp/bucketeer-ios-sdk.git",
       :tag => "v#{s.version}",
