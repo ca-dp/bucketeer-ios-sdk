@@ -128,6 +128,11 @@ struct Bucketeer_Notification_Sender_DomainEventNotification {
     set {_uniqueStorage()._type = newValue}
   }
 
+  var environmentID: String {
+    get {return _storage._environmentID}
+    set {_uniqueStorage()._environmentID = newValue}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -143,6 +148,8 @@ struct Bucketeer_Notification_Sender_FeatureStaleNotification {
   var environmentNamespace: String = String()
 
   var features: [Bucketeer_Feature_Feature] = []
+
+  var environmentID: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -245,6 +252,7 @@ extension Bucketeer_Notification_Sender_DomainEventNotification: SwiftProtobuf.M
     3: .standard(proto: "entity_type"),
     4: .standard(proto: "entity_id"),
     5: .same(proto: "type"),
+    6: .standard(proto: "environment_id"),
   ]
 
   fileprivate class _StorageClass {
@@ -253,6 +261,7 @@ extension Bucketeer_Notification_Sender_DomainEventNotification: SwiftProtobuf.M
     var _entityType: Bucketeer_Event_Domain_Event.EntityType = .feature
     var _entityID: String = String()
     var _type: Bucketeer_Event_Domain_Event.TypeEnum = .unknown
+    var _environmentID: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -264,6 +273,7 @@ extension Bucketeer_Notification_Sender_DomainEventNotification: SwiftProtobuf.M
       _entityType = source._entityType
       _entityID = source._entityID
       _type = source._type
+      _environmentID = source._environmentID
     }
   }
 
@@ -284,6 +294,7 @@ extension Bucketeer_Notification_Sender_DomainEventNotification: SwiftProtobuf.M
         case 3: try decoder.decodeSingularEnumField(value: &_storage._entityType)
         case 4: try decoder.decodeSingularStringField(value: &_storage._entityID)
         case 5: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._environmentID)
         default: break
         }
       }
@@ -307,6 +318,9 @@ extension Bucketeer_Notification_Sender_DomainEventNotification: SwiftProtobuf.M
       if _storage._type != .unknown {
         try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 5)
       }
+      if !_storage._environmentID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._environmentID, fieldNumber: 6)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -321,6 +335,7 @@ extension Bucketeer_Notification_Sender_DomainEventNotification: SwiftProtobuf.M
         if _storage._entityType != rhs_storage._entityType {return false}
         if _storage._entityID != rhs_storage._entityID {return false}
         if _storage._type != rhs_storage._type {return false}
+        if _storage._environmentID != rhs_storage._environmentID {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -335,6 +350,7 @@ extension Bucketeer_Notification_Sender_FeatureStaleNotification: SwiftProtobuf.
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "environment_namespace"),
     2: .same(proto: "features"),
+    3: .standard(proto: "environment_id"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -342,6 +358,7 @@ extension Bucketeer_Notification_Sender_FeatureStaleNotification: SwiftProtobuf.
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
       case 2: try decoder.decodeRepeatedMessageField(value: &self.features)
+      case 3: try decoder.decodeSingularStringField(value: &self.environmentID)
       default: break
       }
     }
@@ -354,12 +371,16 @@ extension Bucketeer_Notification_Sender_FeatureStaleNotification: SwiftProtobuf.
     if !self.features.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.features, fieldNumber: 2)
     }
+    if !self.environmentID.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentID, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Bucketeer_Notification_Sender_FeatureStaleNotification, rhs: Bucketeer_Notification_Sender_FeatureStaleNotification) -> Bool {
     if lhs.environmentNamespace != rhs.environmentNamespace {return false}
     if lhs.features != rhs.features {return false}
+    if lhs.environmentID != rhs.environmentID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
