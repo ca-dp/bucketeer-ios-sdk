@@ -20,170 +20,98 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_Auditlog_AuditLogServiceListAuditLogsCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_Auditlog_AuditLogServiceListAuditLogsCallBase: ClientCallUnaryBase<Bucketeer_Auditlog_ListAuditLogsRequest, Bucketeer_Auditlog_ListAuditLogsResponse>, Bucketeer_Auditlog_AuditLogServiceListAuditLogsCall {
-  override class var method: String { return "/bucketeer.auditlog.AuditLogService/ListAuditLogs" }
-}
+/// Usage: instantiate Bucketeer_Auditlog_AuditLogServiceClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_Auditlog_AuditLogServiceClientProtocol: GRPCClient {
+  func listAuditLogs(
+    _ request: Bucketeer_Auditlog_ListAuditLogsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Auditlog_ListAuditLogsRequest, Bucketeer_Auditlog_ListAuditLogsResponse>
 
-internal protocol Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsCall: ClientCallUnary {}
+  func listAdminAuditLogs(
+    _ request: Bucketeer_Auditlog_ListAdminAuditLogsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Auditlog_ListAdminAuditLogsRequest, Bucketeer_Auditlog_ListAdminAuditLogsResponse>
 
-fileprivate final class Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsCallBase: ClientCallUnaryBase<Bucketeer_Auditlog_ListAdminAuditLogsRequest, Bucketeer_Auditlog_ListAdminAuditLogsResponse>, Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsCall {
-  override class var method: String { return "/bucketeer.auditlog.AuditLogService/ListAdminAuditLogs" }
-}
-
-internal protocol Bucketeer_Auditlog_AuditLogServiceListFeatureHistoryCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Auditlog_AuditLogServiceListFeatureHistoryCallBase: ClientCallUnaryBase<Bucketeer_Auditlog_ListFeatureHistoryRequest, Bucketeer_Auditlog_ListFeatureHistoryResponse>, Bucketeer_Auditlog_AuditLogServiceListFeatureHistoryCall {
-  override class var method: String { return "/bucketeer.auditlog.AuditLogService/ListFeatureHistory" }
-}
-
-
-/// Instantiate Bucketeer_Auditlog_AuditLogServiceServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_Auditlog_AuditLogServiceService: ServiceClient {
-  /// Synchronous. Unary.
-  func listAuditLogs(_ request: Bucketeer_Auditlog_ListAuditLogsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auditlog_ListAuditLogsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAuditLogs(_ request: Bucketeer_Auditlog_ListAuditLogsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auditlog_ListAuditLogsResponse?, CallResult) -> Void) throws -> Bucketeer_Auditlog_AuditLogServiceListAuditLogsCall
-
-  /// Synchronous. Unary.
-  func listAdminAuditLogs(_ request: Bucketeer_Auditlog_ListAdminAuditLogsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auditlog_ListAdminAuditLogsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAdminAuditLogs(_ request: Bucketeer_Auditlog_ListAdminAuditLogsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auditlog_ListAdminAuditLogsResponse?, CallResult) -> Void) throws -> Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsCall
-
-  /// Synchronous. Unary.
-  func listFeatureHistory(_ request: Bucketeer_Auditlog_ListFeatureHistoryRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auditlog_ListFeatureHistoryResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listFeatureHistory(_ request: Bucketeer_Auditlog_ListFeatureHistoryRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auditlog_ListFeatureHistoryResponse?, CallResult) -> Void) throws -> Bucketeer_Auditlog_AuditLogServiceListFeatureHistoryCall
+  func listFeatureHistory(
+    _ request: Bucketeer_Auditlog_ListFeatureHistoryRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Auditlog_ListFeatureHistoryRequest, Bucketeer_Auditlog_ListFeatureHistoryResponse>
 
 }
 
-internal extension Bucketeer_Auditlog_AuditLogServiceService {
-  /// Synchronous. Unary.
-  func listAuditLogs(_ request: Bucketeer_Auditlog_ListAuditLogsRequest) throws -> Bucketeer_Auditlog_ListAuditLogsResponse {
-    return try self.listAuditLogs(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAuditLogs(_ request: Bucketeer_Auditlog_ListAuditLogsRequest, completion: @escaping (Bucketeer_Auditlog_ListAuditLogsResponse?, CallResult) -> Void) throws -> Bucketeer_Auditlog_AuditLogServiceListAuditLogsCall {
-    return try self.listAuditLogs(request, metadata: self.metadata, completion: completion)
+extension Bucketeer_Auditlog_AuditLogServiceClientProtocol {
+
+  /// Unary call to ListAuditLogs
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListAuditLogs.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listAuditLogs(
+    _ request: Bucketeer_Auditlog_ListAuditLogsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Auditlog_ListAuditLogsRequest, Bucketeer_Auditlog_ListAuditLogsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.auditlog.AuditLogService/ListAuditLogs",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func listAdminAuditLogs(_ request: Bucketeer_Auditlog_ListAdminAuditLogsRequest) throws -> Bucketeer_Auditlog_ListAdminAuditLogsResponse {
-    return try self.listAdminAuditLogs(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAdminAuditLogs(_ request: Bucketeer_Auditlog_ListAdminAuditLogsRequest, completion: @escaping (Bucketeer_Auditlog_ListAdminAuditLogsResponse?, CallResult) -> Void) throws -> Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsCall {
-    return try self.listAdminAuditLogs(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func listFeatureHistory(_ request: Bucketeer_Auditlog_ListFeatureHistoryRequest) throws -> Bucketeer_Auditlog_ListFeatureHistoryResponse {
-    return try self.listFeatureHistory(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listFeatureHistory(_ request: Bucketeer_Auditlog_ListFeatureHistoryRequest, completion: @escaping (Bucketeer_Auditlog_ListFeatureHistoryResponse?, CallResult) -> Void) throws -> Bucketeer_Auditlog_AuditLogServiceListFeatureHistoryCall {
-    return try self.listFeatureHistory(request, metadata: self.metadata, completion: completion)
+  /// Unary call to ListAdminAuditLogs
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListAdminAuditLogs.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listAdminAuditLogs(
+    _ request: Bucketeer_Auditlog_ListAdminAuditLogsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Auditlog_ListAdminAuditLogsRequest, Bucketeer_Auditlog_ListAdminAuditLogsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.auditlog.AuditLogService/ListAdminAuditLogs",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-}
-
-internal final class Bucketeer_Auditlog_AuditLogServiceServiceClient: ServiceClientBase, Bucketeer_Auditlog_AuditLogServiceService {
-  /// Synchronous. Unary.
-  internal func listAuditLogs(_ request: Bucketeer_Auditlog_ListAuditLogsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auditlog_ListAuditLogsResponse {
-    return try Bucketeer_Auditlog_AuditLogServiceListAuditLogsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listAuditLogs(_ request: Bucketeer_Auditlog_ListAuditLogsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auditlog_ListAuditLogsResponse?, CallResult) -> Void) throws -> Bucketeer_Auditlog_AuditLogServiceListAuditLogsCall {
-    return try Bucketeer_Auditlog_AuditLogServiceListAuditLogsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func listAdminAuditLogs(_ request: Bucketeer_Auditlog_ListAdminAuditLogsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auditlog_ListAdminAuditLogsResponse {
-    return try Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listAdminAuditLogs(_ request: Bucketeer_Auditlog_ListAdminAuditLogsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auditlog_ListAdminAuditLogsResponse?, CallResult) -> Void) throws -> Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsCall {
-    return try Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func listFeatureHistory(_ request: Bucketeer_Auditlog_ListFeatureHistoryRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auditlog_ListFeatureHistoryResponse {
-    return try Bucketeer_Auditlog_AuditLogServiceListFeatureHistoryCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listFeatureHistory(_ request: Bucketeer_Auditlog_ListFeatureHistoryRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auditlog_ListFeatureHistoryResponse?, CallResult) -> Void) throws -> Bucketeer_Auditlog_AuditLogServiceListFeatureHistoryCall {
-    return try Bucketeer_Auditlog_AuditLogServiceListFeatureHistoryCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_Auditlog_AuditLogServiceProvider: ServiceProvider {
-  func listAuditLogs(request: Bucketeer_Auditlog_ListAuditLogsRequest, session: Bucketeer_Auditlog_AuditLogServiceListAuditLogsSession) throws -> Bucketeer_Auditlog_ListAuditLogsResponse
-  func listAdminAuditLogs(request: Bucketeer_Auditlog_ListAdminAuditLogsRequest, session: Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsSession) throws -> Bucketeer_Auditlog_ListAdminAuditLogsResponse
-  func listFeatureHistory(request: Bucketeer_Auditlog_ListFeatureHistoryRequest, session: Bucketeer_Auditlog_AuditLogServiceListFeatureHistorySession) throws -> Bucketeer_Auditlog_ListFeatureHistoryResponse
-}
-
-extension Bucketeer_Auditlog_AuditLogServiceProvider {
-  internal var serviceName: String { return "bucketeer.auditlog.AuditLogService" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.auditlog.AuditLogService/ListAuditLogs":
-      return try Bucketeer_Auditlog_AuditLogServiceListAuditLogsSessionBase(
-        handler: handler,
-        providerBlock: { try self.listAuditLogs(request: $0, session: $1 as! Bucketeer_Auditlog_AuditLogServiceListAuditLogsSessionBase) })
-          .run()
-    case "/bucketeer.auditlog.AuditLogService/ListAdminAuditLogs":
-      return try Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsSessionBase(
-        handler: handler,
-        providerBlock: { try self.listAdminAuditLogs(request: $0, session: $1 as! Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsSessionBase) })
-          .run()
-    case "/bucketeer.auditlog.AuditLogService/ListFeatureHistory":
-      return try Bucketeer_Auditlog_AuditLogServiceListFeatureHistorySessionBase(
-        handler: handler,
-        providerBlock: { try self.listFeatureHistory(request: $0, session: $1 as! Bucketeer_Auditlog_AuditLogServiceListFeatureHistorySessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to ListFeatureHistory
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListFeatureHistory.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listFeatureHistory(
+    _ request: Bucketeer_Auditlog_ListFeatureHistoryRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Auditlog_ListFeatureHistoryRequest, Bucketeer_Auditlog_ListFeatureHistoryResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.auditlog.AuditLogService/ListFeatureHistory",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_Auditlog_AuditLogServiceListAuditLogsSession: ServerSessionUnary {}
+internal final class Bucketeer_Auditlog_AuditLogServiceClient: Bucketeer_Auditlog_AuditLogServiceClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_Auditlog_AuditLogServiceListAuditLogsSessionBase: ServerSessionUnaryBase<Bucketeer_Auditlog_ListAuditLogsRequest, Bucketeer_Auditlog_ListAuditLogsResponse>, Bucketeer_Auditlog_AuditLogServiceListAuditLogsSession {}
-
-internal protocol Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsSessionBase: ServerSessionUnaryBase<Bucketeer_Auditlog_ListAdminAuditLogsRequest, Bucketeer_Auditlog_ListAdminAuditLogsResponse>, Bucketeer_Auditlog_AuditLogServiceListAdminAuditLogsSession {}
-
-internal protocol Bucketeer_Auditlog_AuditLogServiceListFeatureHistorySession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Auditlog_AuditLogServiceListFeatureHistorySessionBase: ServerSessionUnaryBase<Bucketeer_Auditlog_ListFeatureHistoryRequest, Bucketeer_Auditlog_ListFeatureHistoryResponse>, Bucketeer_Auditlog_AuditLogServiceListFeatureHistorySession {}
+  /// Creates a client for the bucketeer.auditlog.AuditLogService service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 

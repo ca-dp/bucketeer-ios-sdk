@@ -20,962 +20,494 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_Account_AccountServiceGetMeCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_Account_AccountServiceGetMeCallBase: ClientCallUnaryBase<Bucketeer_Account_GetMeRequest, Bucketeer_Account_GetMeResponse>, Bucketeer_Account_AccountServiceGetMeCall {
-  override class var method: String { return "/bucketeer.account.AccountService/GetMe" }
-}
+/// Usage: instantiate Bucketeer_Account_AccountServiceClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_Account_AccountServiceClientProtocol: GRPCClient {
+  func getMe(
+    _ request: Bucketeer_Account_GetMeRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_GetMeRequest, Bucketeer_Account_GetMeResponse>
 
-internal protocol Bucketeer_Account_AccountServiceGetMeByEmailCall: ClientCallUnary {}
+  func getMeByEmail(
+    _ request: Bucketeer_Account_GetMeByEmailRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_GetMeByEmailRequest, Bucketeer_Account_GetMeResponse>
 
-fileprivate final class Bucketeer_Account_AccountServiceGetMeByEmailCallBase: ClientCallUnaryBase<Bucketeer_Account_GetMeByEmailRequest, Bucketeer_Account_GetMeResponse>, Bucketeer_Account_AccountServiceGetMeByEmailCall {
-  override class var method: String { return "/bucketeer.account.AccountService/GetMeByEmail" }
-}
+  func createAdminAccount(
+    _ request: Bucketeer_Account_CreateAdminAccountRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_CreateAdminAccountRequest, Bucketeer_Account_CreateAdminAccountResponse>
 
-internal protocol Bucketeer_Account_AccountServiceCreateAdminAccountCall: ClientCallUnary {}
+  func enableAdminAccount(
+    _ request: Bucketeer_Account_EnableAdminAccountRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_EnableAdminAccountRequest, Bucketeer_Account_EnableAdminAccountResponse>
 
-fileprivate final class Bucketeer_Account_AccountServiceCreateAdminAccountCallBase: ClientCallUnaryBase<Bucketeer_Account_CreateAdminAccountRequest, Bucketeer_Account_CreateAdminAccountResponse>, Bucketeer_Account_AccountServiceCreateAdminAccountCall {
-  override class var method: String { return "/bucketeer.account.AccountService/CreateAdminAccount" }
-}
+  func disableAdminAccount(
+    _ request: Bucketeer_Account_DisableAdminAccountRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_DisableAdminAccountRequest, Bucketeer_Account_DisableAdminAccountResponse>
 
-internal protocol Bucketeer_Account_AccountServiceEnableAdminAccountCall: ClientCallUnary {}
+  func getAdminAccount(
+    _ request: Bucketeer_Account_GetAdminAccountRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_GetAdminAccountRequest, Bucketeer_Account_GetAdminAccountResponse>
 
-fileprivate final class Bucketeer_Account_AccountServiceEnableAdminAccountCallBase: ClientCallUnaryBase<Bucketeer_Account_EnableAdminAccountRequest, Bucketeer_Account_EnableAdminAccountResponse>, Bucketeer_Account_AccountServiceEnableAdminAccountCall {
-  override class var method: String { return "/bucketeer.account.AccountService/EnableAdminAccount" }
-}
+  func listAdminAccounts(
+    _ request: Bucketeer_Account_ListAdminAccountsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_ListAdminAccountsRequest, Bucketeer_Account_ListAdminAccountsResponse>
 
-internal protocol Bucketeer_Account_AccountServiceDisableAdminAccountCall: ClientCallUnary {}
+  func convertAccount(
+    _ request: Bucketeer_Account_ConvertAccountRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_ConvertAccountRequest, Bucketeer_Account_ConvertAccountResponse>
 
-fileprivate final class Bucketeer_Account_AccountServiceDisableAdminAccountCallBase: ClientCallUnaryBase<Bucketeer_Account_DisableAdminAccountRequest, Bucketeer_Account_DisableAdminAccountResponse>, Bucketeer_Account_AccountServiceDisableAdminAccountCall {
-  override class var method: String { return "/bucketeer.account.AccountService/DisableAdminAccount" }
-}
+  func createAccount(
+    _ request: Bucketeer_Account_CreateAccountRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_CreateAccountRequest, Bucketeer_Account_CreateAccountResponse>
 
-internal protocol Bucketeer_Account_AccountServiceGetAdminAccountCall: ClientCallUnary {}
+  func enableAccount(
+    _ request: Bucketeer_Account_EnableAccountRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_EnableAccountRequest, Bucketeer_Account_EnableAccountResponse>
 
-fileprivate final class Bucketeer_Account_AccountServiceGetAdminAccountCallBase: ClientCallUnaryBase<Bucketeer_Account_GetAdminAccountRequest, Bucketeer_Account_GetAdminAccountResponse>, Bucketeer_Account_AccountServiceGetAdminAccountCall {
-  override class var method: String { return "/bucketeer.account.AccountService/GetAdminAccount" }
-}
+  func disableAccount(
+    _ request: Bucketeer_Account_DisableAccountRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_DisableAccountRequest, Bucketeer_Account_DisableAccountResponse>
 
-internal protocol Bucketeer_Account_AccountServiceListAdminAccountsCall: ClientCallUnary {}
+  func changeAccountRole(
+    _ request: Bucketeer_Account_ChangeAccountRoleRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_ChangeAccountRoleRequest, Bucketeer_Account_ChangeAccountRoleResponse>
 
-fileprivate final class Bucketeer_Account_AccountServiceListAdminAccountsCallBase: ClientCallUnaryBase<Bucketeer_Account_ListAdminAccountsRequest, Bucketeer_Account_ListAdminAccountsResponse>, Bucketeer_Account_AccountServiceListAdminAccountsCall {
-  override class var method: String { return "/bucketeer.account.AccountService/ListAdminAccounts" }
-}
+  func getAccount(
+    _ request: Bucketeer_Account_GetAccountRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_GetAccountRequest, Bucketeer_Account_GetAccountResponse>
 
-internal protocol Bucketeer_Account_AccountServiceConvertAccountCall: ClientCallUnary {}
+  func listAccounts(
+    _ request: Bucketeer_Account_ListAccountsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_ListAccountsRequest, Bucketeer_Account_ListAccountsResponse>
 
-fileprivate final class Bucketeer_Account_AccountServiceConvertAccountCallBase: ClientCallUnaryBase<Bucketeer_Account_ConvertAccountRequest, Bucketeer_Account_ConvertAccountResponse>, Bucketeer_Account_AccountServiceConvertAccountCall {
-  override class var method: String { return "/bucketeer.account.AccountService/ConvertAccount" }
-}
+  func createAPIKey(
+    _ request: Bucketeer_Account_CreateAPIKeyRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_CreateAPIKeyRequest, Bucketeer_Account_CreateAPIKeyResponse>
 
-internal protocol Bucketeer_Account_AccountServiceCreateAccountCall: ClientCallUnary {}
+  func changeAPIKeyName(
+    _ request: Bucketeer_Account_ChangeAPIKeyNameRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_ChangeAPIKeyNameRequest, Bucketeer_Account_ChangeAPIKeyNameResponse>
 
-fileprivate final class Bucketeer_Account_AccountServiceCreateAccountCallBase: ClientCallUnaryBase<Bucketeer_Account_CreateAccountRequest, Bucketeer_Account_CreateAccountResponse>, Bucketeer_Account_AccountServiceCreateAccountCall {
-  override class var method: String { return "/bucketeer.account.AccountService/CreateAccount" }
-}
+  func enableAPIKey(
+    _ request: Bucketeer_Account_EnableAPIKeyRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_EnableAPIKeyRequest, Bucketeer_Account_EnableAPIKeyResponse>
 
-internal protocol Bucketeer_Account_AccountServiceEnableAccountCall: ClientCallUnary {}
+  func disableAPIKey(
+    _ request: Bucketeer_Account_DisableAPIKeyRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_DisableAPIKeyRequest, Bucketeer_Account_DisableAPIKeyResponse>
 
-fileprivate final class Bucketeer_Account_AccountServiceEnableAccountCallBase: ClientCallUnaryBase<Bucketeer_Account_EnableAccountRequest, Bucketeer_Account_EnableAccountResponse>, Bucketeer_Account_AccountServiceEnableAccountCall {
-  override class var method: String { return "/bucketeer.account.AccountService/EnableAccount" }
-}
+  func getAPIKey(
+    _ request: Bucketeer_Account_GetAPIKeyRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_GetAPIKeyRequest, Bucketeer_Account_GetAPIKeyResponse>
 
-internal protocol Bucketeer_Account_AccountServiceDisableAccountCall: ClientCallUnary {}
+  func listAPIKeys(
+    _ request: Bucketeer_Account_ListAPIKeysRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_ListAPIKeysRequest, Bucketeer_Account_ListAPIKeysResponse>
 
-fileprivate final class Bucketeer_Account_AccountServiceDisableAccountCallBase: ClientCallUnaryBase<Bucketeer_Account_DisableAccountRequest, Bucketeer_Account_DisableAccountResponse>, Bucketeer_Account_AccountServiceDisableAccountCall {
-  override class var method: String { return "/bucketeer.account.AccountService/DisableAccount" }
-}
-
-internal protocol Bucketeer_Account_AccountServiceChangeAccountRoleCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceChangeAccountRoleCallBase: ClientCallUnaryBase<Bucketeer_Account_ChangeAccountRoleRequest, Bucketeer_Account_ChangeAccountRoleResponse>, Bucketeer_Account_AccountServiceChangeAccountRoleCall {
-  override class var method: String { return "/bucketeer.account.AccountService/ChangeAccountRole" }
-}
-
-internal protocol Bucketeer_Account_AccountServiceGetAccountCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceGetAccountCallBase: ClientCallUnaryBase<Bucketeer_Account_GetAccountRequest, Bucketeer_Account_GetAccountResponse>, Bucketeer_Account_AccountServiceGetAccountCall {
-  override class var method: String { return "/bucketeer.account.AccountService/GetAccount" }
-}
-
-internal protocol Bucketeer_Account_AccountServiceListAccountsCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceListAccountsCallBase: ClientCallUnaryBase<Bucketeer_Account_ListAccountsRequest, Bucketeer_Account_ListAccountsResponse>, Bucketeer_Account_AccountServiceListAccountsCall {
-  override class var method: String { return "/bucketeer.account.AccountService/ListAccounts" }
-}
-
-internal protocol Bucketeer_Account_AccountServiceCreateAPIKeyCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceCreateAPIKeyCallBase: ClientCallUnaryBase<Bucketeer_Account_CreateAPIKeyRequest, Bucketeer_Account_CreateAPIKeyResponse>, Bucketeer_Account_AccountServiceCreateAPIKeyCall {
-  override class var method: String { return "/bucketeer.account.AccountService/CreateAPIKey" }
-}
-
-internal protocol Bucketeer_Account_AccountServiceChangeAPIKeyNameCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceChangeAPIKeyNameCallBase: ClientCallUnaryBase<Bucketeer_Account_ChangeAPIKeyNameRequest, Bucketeer_Account_ChangeAPIKeyNameResponse>, Bucketeer_Account_AccountServiceChangeAPIKeyNameCall {
-  override class var method: String { return "/bucketeer.account.AccountService/ChangeAPIKeyName" }
-}
-
-internal protocol Bucketeer_Account_AccountServiceEnableAPIKeyCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceEnableAPIKeyCallBase: ClientCallUnaryBase<Bucketeer_Account_EnableAPIKeyRequest, Bucketeer_Account_EnableAPIKeyResponse>, Bucketeer_Account_AccountServiceEnableAPIKeyCall {
-  override class var method: String { return "/bucketeer.account.AccountService/EnableAPIKey" }
-}
-
-internal protocol Bucketeer_Account_AccountServiceDisableAPIKeyCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceDisableAPIKeyCallBase: ClientCallUnaryBase<Bucketeer_Account_DisableAPIKeyRequest, Bucketeer_Account_DisableAPIKeyResponse>, Bucketeer_Account_AccountServiceDisableAPIKeyCall {
-  override class var method: String { return "/bucketeer.account.AccountService/DisableAPIKey" }
-}
-
-internal protocol Bucketeer_Account_AccountServiceGetAPIKeyCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceGetAPIKeyCallBase: ClientCallUnaryBase<Bucketeer_Account_GetAPIKeyRequest, Bucketeer_Account_GetAPIKeyResponse>, Bucketeer_Account_AccountServiceGetAPIKeyCall {
-  override class var method: String { return "/bucketeer.account.AccountService/GetAPIKey" }
-}
-
-internal protocol Bucketeer_Account_AccountServiceListAPIKeysCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceListAPIKeysCallBase: ClientCallUnaryBase<Bucketeer_Account_ListAPIKeysRequest, Bucketeer_Account_ListAPIKeysResponse>, Bucketeer_Account_AccountServiceListAPIKeysCall {
-  override class var method: String { return "/bucketeer.account.AccountService/ListAPIKeys" }
-}
-
-internal protocol Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsCallBase: ClientCallUnaryBase<Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest, Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse>, Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsCall {
-  override class var method: String { return "/bucketeer.account.AccountService/GetAPIKeyBySearchingAllEnvironments" }
-}
-
-
-/// Instantiate Bucketeer_Account_AccountServiceServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_Account_AccountServiceService: ServiceClient {
-  /// Synchronous. Unary.
-  func getMe(_ request: Bucketeer_Account_GetMeRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetMeResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getMe(_ request: Bucketeer_Account_GetMeRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetMeResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetMeCall
-
-  /// Synchronous. Unary.
-  func getMeByEmail(_ request: Bucketeer_Account_GetMeByEmailRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetMeResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getMeByEmail(_ request: Bucketeer_Account_GetMeByEmailRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetMeResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetMeByEmailCall
-
-  /// Synchronous. Unary.
-  func createAdminAccount(_ request: Bucketeer_Account_CreateAdminAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_CreateAdminAccountResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createAdminAccount(_ request: Bucketeer_Account_CreateAdminAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_CreateAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceCreateAdminAccountCall
-
-  /// Synchronous. Unary.
-  func enableAdminAccount(_ request: Bucketeer_Account_EnableAdminAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_EnableAdminAccountResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableAdminAccount(_ request: Bucketeer_Account_EnableAdminAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_EnableAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceEnableAdminAccountCall
-
-  /// Synchronous. Unary.
-  func disableAdminAccount(_ request: Bucketeer_Account_DisableAdminAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_DisableAdminAccountResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableAdminAccount(_ request: Bucketeer_Account_DisableAdminAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_DisableAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceDisableAdminAccountCall
-
-  /// Synchronous. Unary.
-  func getAdminAccount(_ request: Bucketeer_Account_GetAdminAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetAdminAccountResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAdminAccount(_ request: Bucketeer_Account_GetAdminAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAdminAccountCall
-
-  /// Synchronous. Unary.
-  func listAdminAccounts(_ request: Bucketeer_Account_ListAdminAccountsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ListAdminAccountsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAdminAccounts(_ request: Bucketeer_Account_ListAdminAccountsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ListAdminAccountsResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceListAdminAccountsCall
-
-  /// Synchronous. Unary.
-  func convertAccount(_ request: Bucketeer_Account_ConvertAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ConvertAccountResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func convertAccount(_ request: Bucketeer_Account_ConvertAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ConvertAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceConvertAccountCall
-
-  /// Synchronous. Unary.
-  func createAccount(_ request: Bucketeer_Account_CreateAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_CreateAccountResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createAccount(_ request: Bucketeer_Account_CreateAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_CreateAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceCreateAccountCall
-
-  /// Synchronous. Unary.
-  func enableAccount(_ request: Bucketeer_Account_EnableAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_EnableAccountResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableAccount(_ request: Bucketeer_Account_EnableAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_EnableAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceEnableAccountCall
-
-  /// Synchronous. Unary.
-  func disableAccount(_ request: Bucketeer_Account_DisableAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_DisableAccountResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableAccount(_ request: Bucketeer_Account_DisableAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_DisableAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceDisableAccountCall
-
-  /// Synchronous. Unary.
-  func changeAccountRole(_ request: Bucketeer_Account_ChangeAccountRoleRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ChangeAccountRoleResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func changeAccountRole(_ request: Bucketeer_Account_ChangeAccountRoleRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ChangeAccountRoleResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceChangeAccountRoleCall
-
-  /// Synchronous. Unary.
-  func getAccount(_ request: Bucketeer_Account_GetAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetAccountResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAccount(_ request: Bucketeer_Account_GetAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAccountCall
-
-  /// Synchronous. Unary.
-  func listAccounts(_ request: Bucketeer_Account_ListAccountsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ListAccountsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAccounts(_ request: Bucketeer_Account_ListAccountsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ListAccountsResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceListAccountsCall
-
-  /// Synchronous. Unary.
-  func createAPIKey(_ request: Bucketeer_Account_CreateAPIKeyRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_CreateAPIKeyResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createAPIKey(_ request: Bucketeer_Account_CreateAPIKeyRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_CreateAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceCreateAPIKeyCall
-
-  /// Synchronous. Unary.
-  func changeAPIKeyName(_ request: Bucketeer_Account_ChangeAPIKeyNameRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ChangeAPIKeyNameResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func changeAPIKeyName(_ request: Bucketeer_Account_ChangeAPIKeyNameRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ChangeAPIKeyNameResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceChangeAPIKeyNameCall
-
-  /// Synchronous. Unary.
-  func enableAPIKey(_ request: Bucketeer_Account_EnableAPIKeyRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_EnableAPIKeyResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableAPIKey(_ request: Bucketeer_Account_EnableAPIKeyRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_EnableAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceEnableAPIKeyCall
-
-  /// Synchronous. Unary.
-  func disableAPIKey(_ request: Bucketeer_Account_DisableAPIKeyRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_DisableAPIKeyResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableAPIKey(_ request: Bucketeer_Account_DisableAPIKeyRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_DisableAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceDisableAPIKeyCall
-
-  /// Synchronous. Unary.
-  func getAPIKey(_ request: Bucketeer_Account_GetAPIKeyRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetAPIKeyResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAPIKey(_ request: Bucketeer_Account_GetAPIKeyRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAPIKeyCall
-
-  /// Synchronous. Unary.
-  func listAPIKeys(_ request: Bucketeer_Account_ListAPIKeysRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ListAPIKeysResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAPIKeys(_ request: Bucketeer_Account_ListAPIKeysRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ListAPIKeysResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceListAPIKeysCall
-
-  /// Synchronous. Unary.
-  func getAPIKeyBySearchingAllEnvironments(_ request: Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAPIKeyBySearchingAllEnvironments(_ request: Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsCall
+  func getAPIKeyBySearchingAllEnvironments(
+    _ request: Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest, Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse>
 
 }
 
-internal extension Bucketeer_Account_AccountServiceService {
-  /// Synchronous. Unary.
-  func getMe(_ request: Bucketeer_Account_GetMeRequest) throws -> Bucketeer_Account_GetMeResponse {
-    return try self.getMe(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getMe(_ request: Bucketeer_Account_GetMeRequest, completion: @escaping (Bucketeer_Account_GetMeResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetMeCall {
-    return try self.getMe(request, metadata: self.metadata, completion: completion)
+extension Bucketeer_Account_AccountServiceClientProtocol {
+
+  /// Unary call to GetMe
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetMe.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getMe(
+    _ request: Bucketeer_Account_GetMeRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_GetMeRequest, Bucketeer_Account_GetMeResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/GetMe",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func getMeByEmail(_ request: Bucketeer_Account_GetMeByEmailRequest) throws -> Bucketeer_Account_GetMeResponse {
-    return try self.getMeByEmail(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getMeByEmail(_ request: Bucketeer_Account_GetMeByEmailRequest, completion: @escaping (Bucketeer_Account_GetMeResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetMeByEmailCall {
-    return try self.getMeByEmail(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func createAdminAccount(_ request: Bucketeer_Account_CreateAdminAccountRequest) throws -> Bucketeer_Account_CreateAdminAccountResponse {
-    return try self.createAdminAccount(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createAdminAccount(_ request: Bucketeer_Account_CreateAdminAccountRequest, completion: @escaping (Bucketeer_Account_CreateAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceCreateAdminAccountCall {
-    return try self.createAdminAccount(request, metadata: self.metadata, completion: completion)
+  /// Unary call to GetMeByEmail
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetMeByEmail.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getMeByEmail(
+    _ request: Bucketeer_Account_GetMeByEmailRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_GetMeByEmailRequest, Bucketeer_Account_GetMeResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/GetMeByEmail",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func enableAdminAccount(_ request: Bucketeer_Account_EnableAdminAccountRequest) throws -> Bucketeer_Account_EnableAdminAccountResponse {
-    return try self.enableAdminAccount(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableAdminAccount(_ request: Bucketeer_Account_EnableAdminAccountRequest, completion: @escaping (Bucketeer_Account_EnableAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceEnableAdminAccountCall {
-    return try self.enableAdminAccount(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func disableAdminAccount(_ request: Bucketeer_Account_DisableAdminAccountRequest) throws -> Bucketeer_Account_DisableAdminAccountResponse {
-    return try self.disableAdminAccount(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableAdminAccount(_ request: Bucketeer_Account_DisableAdminAccountRequest, completion: @escaping (Bucketeer_Account_DisableAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceDisableAdminAccountCall {
-    return try self.disableAdminAccount(request, metadata: self.metadata, completion: completion)
+  /// Unary call to CreateAdminAccount
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreateAdminAccount.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func createAdminAccount(
+    _ request: Bucketeer_Account_CreateAdminAccountRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_CreateAdminAccountRequest, Bucketeer_Account_CreateAdminAccountResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/CreateAdminAccount",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func getAdminAccount(_ request: Bucketeer_Account_GetAdminAccountRequest) throws -> Bucketeer_Account_GetAdminAccountResponse {
-    return try self.getAdminAccount(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAdminAccount(_ request: Bucketeer_Account_GetAdminAccountRequest, completion: @escaping (Bucketeer_Account_GetAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAdminAccountCall {
-    return try self.getAdminAccount(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func listAdminAccounts(_ request: Bucketeer_Account_ListAdminAccountsRequest) throws -> Bucketeer_Account_ListAdminAccountsResponse {
-    return try self.listAdminAccounts(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAdminAccounts(_ request: Bucketeer_Account_ListAdminAccountsRequest, completion: @escaping (Bucketeer_Account_ListAdminAccountsResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceListAdminAccountsCall {
-    return try self.listAdminAccounts(request, metadata: self.metadata, completion: completion)
+  /// Unary call to EnableAdminAccount
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to EnableAdminAccount.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func enableAdminAccount(
+    _ request: Bucketeer_Account_EnableAdminAccountRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_EnableAdminAccountRequest, Bucketeer_Account_EnableAdminAccountResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/EnableAdminAccount",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func convertAccount(_ request: Bucketeer_Account_ConvertAccountRequest) throws -> Bucketeer_Account_ConvertAccountResponse {
-    return try self.convertAccount(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func convertAccount(_ request: Bucketeer_Account_ConvertAccountRequest, completion: @escaping (Bucketeer_Account_ConvertAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceConvertAccountCall {
-    return try self.convertAccount(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func createAccount(_ request: Bucketeer_Account_CreateAccountRequest) throws -> Bucketeer_Account_CreateAccountResponse {
-    return try self.createAccount(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createAccount(_ request: Bucketeer_Account_CreateAccountRequest, completion: @escaping (Bucketeer_Account_CreateAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceCreateAccountCall {
-    return try self.createAccount(request, metadata: self.metadata, completion: completion)
+  /// Unary call to DisableAdminAccount
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DisableAdminAccount.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func disableAdminAccount(
+    _ request: Bucketeer_Account_DisableAdminAccountRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_DisableAdminAccountRequest, Bucketeer_Account_DisableAdminAccountResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/DisableAdminAccount",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func enableAccount(_ request: Bucketeer_Account_EnableAccountRequest) throws -> Bucketeer_Account_EnableAccountResponse {
-    return try self.enableAccount(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableAccount(_ request: Bucketeer_Account_EnableAccountRequest, completion: @escaping (Bucketeer_Account_EnableAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceEnableAccountCall {
-    return try self.enableAccount(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func disableAccount(_ request: Bucketeer_Account_DisableAccountRequest) throws -> Bucketeer_Account_DisableAccountResponse {
-    return try self.disableAccount(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableAccount(_ request: Bucketeer_Account_DisableAccountRequest, completion: @escaping (Bucketeer_Account_DisableAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceDisableAccountCall {
-    return try self.disableAccount(request, metadata: self.metadata, completion: completion)
+  /// Unary call to GetAdminAccount
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAdminAccount.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAdminAccount(
+    _ request: Bucketeer_Account_GetAdminAccountRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_GetAdminAccountRequest, Bucketeer_Account_GetAdminAccountResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/GetAdminAccount",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func changeAccountRole(_ request: Bucketeer_Account_ChangeAccountRoleRequest) throws -> Bucketeer_Account_ChangeAccountRoleResponse {
-    return try self.changeAccountRole(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func changeAccountRole(_ request: Bucketeer_Account_ChangeAccountRoleRequest, completion: @escaping (Bucketeer_Account_ChangeAccountRoleResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceChangeAccountRoleCall {
-    return try self.changeAccountRole(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func getAccount(_ request: Bucketeer_Account_GetAccountRequest) throws -> Bucketeer_Account_GetAccountResponse {
-    return try self.getAccount(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAccount(_ request: Bucketeer_Account_GetAccountRequest, completion: @escaping (Bucketeer_Account_GetAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAccountCall {
-    return try self.getAccount(request, metadata: self.metadata, completion: completion)
+  /// Unary call to ListAdminAccounts
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListAdminAccounts.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listAdminAccounts(
+    _ request: Bucketeer_Account_ListAdminAccountsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_ListAdminAccountsRequest, Bucketeer_Account_ListAdminAccountsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/ListAdminAccounts",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func listAccounts(_ request: Bucketeer_Account_ListAccountsRequest) throws -> Bucketeer_Account_ListAccountsResponse {
-    return try self.listAccounts(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAccounts(_ request: Bucketeer_Account_ListAccountsRequest, completion: @escaping (Bucketeer_Account_ListAccountsResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceListAccountsCall {
-    return try self.listAccounts(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func createAPIKey(_ request: Bucketeer_Account_CreateAPIKeyRequest) throws -> Bucketeer_Account_CreateAPIKeyResponse {
-    return try self.createAPIKey(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createAPIKey(_ request: Bucketeer_Account_CreateAPIKeyRequest, completion: @escaping (Bucketeer_Account_CreateAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceCreateAPIKeyCall {
-    return try self.createAPIKey(request, metadata: self.metadata, completion: completion)
+  /// Unary call to ConvertAccount
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ConvertAccount.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func convertAccount(
+    _ request: Bucketeer_Account_ConvertAccountRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_ConvertAccountRequest, Bucketeer_Account_ConvertAccountResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/ConvertAccount",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func changeAPIKeyName(_ request: Bucketeer_Account_ChangeAPIKeyNameRequest) throws -> Bucketeer_Account_ChangeAPIKeyNameResponse {
-    return try self.changeAPIKeyName(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func changeAPIKeyName(_ request: Bucketeer_Account_ChangeAPIKeyNameRequest, completion: @escaping (Bucketeer_Account_ChangeAPIKeyNameResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceChangeAPIKeyNameCall {
-    return try self.changeAPIKeyName(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func enableAPIKey(_ request: Bucketeer_Account_EnableAPIKeyRequest) throws -> Bucketeer_Account_EnableAPIKeyResponse {
-    return try self.enableAPIKey(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableAPIKey(_ request: Bucketeer_Account_EnableAPIKeyRequest, completion: @escaping (Bucketeer_Account_EnableAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceEnableAPIKeyCall {
-    return try self.enableAPIKey(request, metadata: self.metadata, completion: completion)
+  /// Unary call to CreateAccount
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreateAccount.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func createAccount(
+    _ request: Bucketeer_Account_CreateAccountRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_CreateAccountRequest, Bucketeer_Account_CreateAccountResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/CreateAccount",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func disableAPIKey(_ request: Bucketeer_Account_DisableAPIKeyRequest) throws -> Bucketeer_Account_DisableAPIKeyResponse {
-    return try self.disableAPIKey(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableAPIKey(_ request: Bucketeer_Account_DisableAPIKeyRequest, completion: @escaping (Bucketeer_Account_DisableAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceDisableAPIKeyCall {
-    return try self.disableAPIKey(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func getAPIKey(_ request: Bucketeer_Account_GetAPIKeyRequest) throws -> Bucketeer_Account_GetAPIKeyResponse {
-    return try self.getAPIKey(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAPIKey(_ request: Bucketeer_Account_GetAPIKeyRequest, completion: @escaping (Bucketeer_Account_GetAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAPIKeyCall {
-    return try self.getAPIKey(request, metadata: self.metadata, completion: completion)
+  /// Unary call to EnableAccount
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to EnableAccount.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func enableAccount(
+    _ request: Bucketeer_Account_EnableAccountRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_EnableAccountRequest, Bucketeer_Account_EnableAccountResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/EnableAccount",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func listAPIKeys(_ request: Bucketeer_Account_ListAPIKeysRequest) throws -> Bucketeer_Account_ListAPIKeysResponse {
-    return try self.listAPIKeys(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAPIKeys(_ request: Bucketeer_Account_ListAPIKeysRequest, completion: @escaping (Bucketeer_Account_ListAPIKeysResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceListAPIKeysCall {
-    return try self.listAPIKeys(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func getAPIKeyBySearchingAllEnvironments(_ request: Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest) throws -> Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse {
-    return try self.getAPIKeyBySearchingAllEnvironments(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAPIKeyBySearchingAllEnvironments(_ request: Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest, completion: @escaping (Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsCall {
-    return try self.getAPIKeyBySearchingAllEnvironments(request, metadata: self.metadata, completion: completion)
+  /// Unary call to DisableAccount
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DisableAccount.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func disableAccount(
+    _ request: Bucketeer_Account_DisableAccountRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_DisableAccountRequest, Bucketeer_Account_DisableAccountResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/DisableAccount",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-}
-
-internal final class Bucketeer_Account_AccountServiceServiceClient: ServiceClientBase, Bucketeer_Account_AccountServiceService {
-  /// Synchronous. Unary.
-  internal func getMe(_ request: Bucketeer_Account_GetMeRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetMeResponse {
-    return try Bucketeer_Account_AccountServiceGetMeCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getMe(_ request: Bucketeer_Account_GetMeRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetMeResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetMeCall {
-    return try Bucketeer_Account_AccountServiceGetMeCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getMeByEmail(_ request: Bucketeer_Account_GetMeByEmailRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetMeResponse {
-    return try Bucketeer_Account_AccountServiceGetMeByEmailCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getMeByEmail(_ request: Bucketeer_Account_GetMeByEmailRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetMeResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetMeByEmailCall {
-    return try Bucketeer_Account_AccountServiceGetMeByEmailCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to ChangeAccountRole
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ChangeAccountRole.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func changeAccountRole(
+    _ request: Bucketeer_Account_ChangeAccountRoleRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_ChangeAccountRoleRequest, Bucketeer_Account_ChangeAccountRoleResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/ChangeAccountRole",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func createAdminAccount(_ request: Bucketeer_Account_CreateAdminAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_CreateAdminAccountResponse {
-    return try Bucketeer_Account_AccountServiceCreateAdminAccountCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func createAdminAccount(_ request: Bucketeer_Account_CreateAdminAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_CreateAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceCreateAdminAccountCall {
-    return try Bucketeer_Account_AccountServiceCreateAdminAccountCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func enableAdminAccount(_ request: Bucketeer_Account_EnableAdminAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_EnableAdminAccountResponse {
-    return try Bucketeer_Account_AccountServiceEnableAdminAccountCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func enableAdminAccount(_ request: Bucketeer_Account_EnableAdminAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_EnableAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceEnableAdminAccountCall {
-    return try Bucketeer_Account_AccountServiceEnableAdminAccountCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to GetAccount
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAccount.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAccount(
+    _ request: Bucketeer_Account_GetAccountRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_GetAccountRequest, Bucketeer_Account_GetAccountResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/GetAccount",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func disableAdminAccount(_ request: Bucketeer_Account_DisableAdminAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_DisableAdminAccountResponse {
-    return try Bucketeer_Account_AccountServiceDisableAdminAccountCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func disableAdminAccount(_ request: Bucketeer_Account_DisableAdminAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_DisableAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceDisableAdminAccountCall {
-    return try Bucketeer_Account_AccountServiceDisableAdminAccountCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getAdminAccount(_ request: Bucketeer_Account_GetAdminAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetAdminAccountResponse {
-    return try Bucketeer_Account_AccountServiceGetAdminAccountCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getAdminAccount(_ request: Bucketeer_Account_GetAdminAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetAdminAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAdminAccountCall {
-    return try Bucketeer_Account_AccountServiceGetAdminAccountCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to ListAccounts
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListAccounts.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listAccounts(
+    _ request: Bucketeer_Account_ListAccountsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_ListAccountsRequest, Bucketeer_Account_ListAccountsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/ListAccounts",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func listAdminAccounts(_ request: Bucketeer_Account_ListAdminAccountsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ListAdminAccountsResponse {
-    return try Bucketeer_Account_AccountServiceListAdminAccountsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listAdminAccounts(_ request: Bucketeer_Account_ListAdminAccountsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ListAdminAccountsResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceListAdminAccountsCall {
-    return try Bucketeer_Account_AccountServiceListAdminAccountsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func convertAccount(_ request: Bucketeer_Account_ConvertAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ConvertAccountResponse {
-    return try Bucketeer_Account_AccountServiceConvertAccountCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func convertAccount(_ request: Bucketeer_Account_ConvertAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ConvertAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceConvertAccountCall {
-    return try Bucketeer_Account_AccountServiceConvertAccountCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to CreateAPIKey
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreateAPIKey.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func createAPIKey(
+    _ request: Bucketeer_Account_CreateAPIKeyRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_CreateAPIKeyRequest, Bucketeer_Account_CreateAPIKeyResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/CreateAPIKey",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func createAccount(_ request: Bucketeer_Account_CreateAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_CreateAccountResponse {
-    return try Bucketeer_Account_AccountServiceCreateAccountCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func createAccount(_ request: Bucketeer_Account_CreateAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_CreateAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceCreateAccountCall {
-    return try Bucketeer_Account_AccountServiceCreateAccountCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func enableAccount(_ request: Bucketeer_Account_EnableAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_EnableAccountResponse {
-    return try Bucketeer_Account_AccountServiceEnableAccountCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func enableAccount(_ request: Bucketeer_Account_EnableAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_EnableAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceEnableAccountCall {
-    return try Bucketeer_Account_AccountServiceEnableAccountCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to ChangeAPIKeyName
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ChangeAPIKeyName.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func changeAPIKeyName(
+    _ request: Bucketeer_Account_ChangeAPIKeyNameRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_ChangeAPIKeyNameRequest, Bucketeer_Account_ChangeAPIKeyNameResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/ChangeAPIKeyName",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func disableAccount(_ request: Bucketeer_Account_DisableAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_DisableAccountResponse {
-    return try Bucketeer_Account_AccountServiceDisableAccountCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func disableAccount(_ request: Bucketeer_Account_DisableAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_DisableAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceDisableAccountCall {
-    return try Bucketeer_Account_AccountServiceDisableAccountCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func changeAccountRole(_ request: Bucketeer_Account_ChangeAccountRoleRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ChangeAccountRoleResponse {
-    return try Bucketeer_Account_AccountServiceChangeAccountRoleCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func changeAccountRole(_ request: Bucketeer_Account_ChangeAccountRoleRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ChangeAccountRoleResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceChangeAccountRoleCall {
-    return try Bucketeer_Account_AccountServiceChangeAccountRoleCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to EnableAPIKey
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to EnableAPIKey.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func enableAPIKey(
+    _ request: Bucketeer_Account_EnableAPIKeyRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_EnableAPIKeyRequest, Bucketeer_Account_EnableAPIKeyResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/EnableAPIKey",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func getAccount(_ request: Bucketeer_Account_GetAccountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetAccountResponse {
-    return try Bucketeer_Account_AccountServiceGetAccountCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getAccount(_ request: Bucketeer_Account_GetAccountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetAccountResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAccountCall {
-    return try Bucketeer_Account_AccountServiceGetAccountCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func listAccounts(_ request: Bucketeer_Account_ListAccountsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ListAccountsResponse {
-    return try Bucketeer_Account_AccountServiceListAccountsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listAccounts(_ request: Bucketeer_Account_ListAccountsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ListAccountsResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceListAccountsCall {
-    return try Bucketeer_Account_AccountServiceListAccountsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to DisableAPIKey
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DisableAPIKey.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func disableAPIKey(
+    _ request: Bucketeer_Account_DisableAPIKeyRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_DisableAPIKeyRequest, Bucketeer_Account_DisableAPIKeyResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/DisableAPIKey",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func createAPIKey(_ request: Bucketeer_Account_CreateAPIKeyRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_CreateAPIKeyResponse {
-    return try Bucketeer_Account_AccountServiceCreateAPIKeyCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func createAPIKey(_ request: Bucketeer_Account_CreateAPIKeyRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_CreateAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceCreateAPIKeyCall {
-    return try Bucketeer_Account_AccountServiceCreateAPIKeyCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func changeAPIKeyName(_ request: Bucketeer_Account_ChangeAPIKeyNameRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ChangeAPIKeyNameResponse {
-    return try Bucketeer_Account_AccountServiceChangeAPIKeyNameCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func changeAPIKeyName(_ request: Bucketeer_Account_ChangeAPIKeyNameRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ChangeAPIKeyNameResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceChangeAPIKeyNameCall {
-    return try Bucketeer_Account_AccountServiceChangeAPIKeyNameCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to GetAPIKey
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAPIKey.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAPIKey(
+    _ request: Bucketeer_Account_GetAPIKeyRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_GetAPIKeyRequest, Bucketeer_Account_GetAPIKeyResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/GetAPIKey",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func enableAPIKey(_ request: Bucketeer_Account_EnableAPIKeyRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_EnableAPIKeyResponse {
-    return try Bucketeer_Account_AccountServiceEnableAPIKeyCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func enableAPIKey(_ request: Bucketeer_Account_EnableAPIKeyRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_EnableAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceEnableAPIKeyCall {
-    return try Bucketeer_Account_AccountServiceEnableAPIKeyCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func disableAPIKey(_ request: Bucketeer_Account_DisableAPIKeyRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_DisableAPIKeyResponse {
-    return try Bucketeer_Account_AccountServiceDisableAPIKeyCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func disableAPIKey(_ request: Bucketeer_Account_DisableAPIKeyRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_DisableAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceDisableAPIKeyCall {
-    return try Bucketeer_Account_AccountServiceDisableAPIKeyCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to ListAPIKeys
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListAPIKeys.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listAPIKeys(
+    _ request: Bucketeer_Account_ListAPIKeysRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_ListAPIKeysRequest, Bucketeer_Account_ListAPIKeysResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/ListAPIKeys",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func getAPIKey(_ request: Bucketeer_Account_GetAPIKeyRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetAPIKeyResponse {
-    return try Bucketeer_Account_AccountServiceGetAPIKeyCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getAPIKey(_ request: Bucketeer_Account_GetAPIKeyRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetAPIKeyResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAPIKeyCall {
-    return try Bucketeer_Account_AccountServiceGetAPIKeyCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func listAPIKeys(_ request: Bucketeer_Account_ListAPIKeysRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_ListAPIKeysResponse {
-    return try Bucketeer_Account_AccountServiceListAPIKeysCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listAPIKeys(_ request: Bucketeer_Account_ListAPIKeysRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_ListAPIKeysResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceListAPIKeysCall {
-    return try Bucketeer_Account_AccountServiceListAPIKeysCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getAPIKeyBySearchingAllEnvironments(_ request: Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse {
-    return try Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getAPIKeyBySearchingAllEnvironments(_ request: Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse?, CallResult) -> Void) throws -> Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsCall {
-    return try Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_Account_AccountServiceProvider: ServiceProvider {
-  func getMe(request: Bucketeer_Account_GetMeRequest, session: Bucketeer_Account_AccountServiceGetMeSession) throws -> Bucketeer_Account_GetMeResponse
-  func getMeByEmail(request: Bucketeer_Account_GetMeByEmailRequest, session: Bucketeer_Account_AccountServiceGetMeByEmailSession) throws -> Bucketeer_Account_GetMeResponse
-  func createAdminAccount(request: Bucketeer_Account_CreateAdminAccountRequest, session: Bucketeer_Account_AccountServiceCreateAdminAccountSession) throws -> Bucketeer_Account_CreateAdminAccountResponse
-  func enableAdminAccount(request: Bucketeer_Account_EnableAdminAccountRequest, session: Bucketeer_Account_AccountServiceEnableAdminAccountSession) throws -> Bucketeer_Account_EnableAdminAccountResponse
-  func disableAdminAccount(request: Bucketeer_Account_DisableAdminAccountRequest, session: Bucketeer_Account_AccountServiceDisableAdminAccountSession) throws -> Bucketeer_Account_DisableAdminAccountResponse
-  func getAdminAccount(request: Bucketeer_Account_GetAdminAccountRequest, session: Bucketeer_Account_AccountServiceGetAdminAccountSession) throws -> Bucketeer_Account_GetAdminAccountResponse
-  func listAdminAccounts(request: Bucketeer_Account_ListAdminAccountsRequest, session: Bucketeer_Account_AccountServiceListAdminAccountsSession) throws -> Bucketeer_Account_ListAdminAccountsResponse
-  func convertAccount(request: Bucketeer_Account_ConvertAccountRequest, session: Bucketeer_Account_AccountServiceConvertAccountSession) throws -> Bucketeer_Account_ConvertAccountResponse
-  func createAccount(request: Bucketeer_Account_CreateAccountRequest, session: Bucketeer_Account_AccountServiceCreateAccountSession) throws -> Bucketeer_Account_CreateAccountResponse
-  func enableAccount(request: Bucketeer_Account_EnableAccountRequest, session: Bucketeer_Account_AccountServiceEnableAccountSession) throws -> Bucketeer_Account_EnableAccountResponse
-  func disableAccount(request: Bucketeer_Account_DisableAccountRequest, session: Bucketeer_Account_AccountServiceDisableAccountSession) throws -> Bucketeer_Account_DisableAccountResponse
-  func changeAccountRole(request: Bucketeer_Account_ChangeAccountRoleRequest, session: Bucketeer_Account_AccountServiceChangeAccountRoleSession) throws -> Bucketeer_Account_ChangeAccountRoleResponse
-  func getAccount(request: Bucketeer_Account_GetAccountRequest, session: Bucketeer_Account_AccountServiceGetAccountSession) throws -> Bucketeer_Account_GetAccountResponse
-  func listAccounts(request: Bucketeer_Account_ListAccountsRequest, session: Bucketeer_Account_AccountServiceListAccountsSession) throws -> Bucketeer_Account_ListAccountsResponse
-  func createAPIKey(request: Bucketeer_Account_CreateAPIKeyRequest, session: Bucketeer_Account_AccountServiceCreateAPIKeySession) throws -> Bucketeer_Account_CreateAPIKeyResponse
-  func changeAPIKeyName(request: Bucketeer_Account_ChangeAPIKeyNameRequest, session: Bucketeer_Account_AccountServiceChangeAPIKeyNameSession) throws -> Bucketeer_Account_ChangeAPIKeyNameResponse
-  func enableAPIKey(request: Bucketeer_Account_EnableAPIKeyRequest, session: Bucketeer_Account_AccountServiceEnableAPIKeySession) throws -> Bucketeer_Account_EnableAPIKeyResponse
-  func disableAPIKey(request: Bucketeer_Account_DisableAPIKeyRequest, session: Bucketeer_Account_AccountServiceDisableAPIKeySession) throws -> Bucketeer_Account_DisableAPIKeyResponse
-  func getAPIKey(request: Bucketeer_Account_GetAPIKeyRequest, session: Bucketeer_Account_AccountServiceGetAPIKeySession) throws -> Bucketeer_Account_GetAPIKeyResponse
-  func listAPIKeys(request: Bucketeer_Account_ListAPIKeysRequest, session: Bucketeer_Account_AccountServiceListAPIKeysSession) throws -> Bucketeer_Account_ListAPIKeysResponse
-  func getAPIKeyBySearchingAllEnvironments(request: Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest, session: Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsSession) throws -> Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse
-}
-
-extension Bucketeer_Account_AccountServiceProvider {
-  internal var serviceName: String { return "bucketeer.account.AccountService" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.account.AccountService/GetMe":
-      return try Bucketeer_Account_AccountServiceGetMeSessionBase(
-        handler: handler,
-        providerBlock: { try self.getMe(request: $0, session: $1 as! Bucketeer_Account_AccountServiceGetMeSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/GetMeByEmail":
-      return try Bucketeer_Account_AccountServiceGetMeByEmailSessionBase(
-        handler: handler,
-        providerBlock: { try self.getMeByEmail(request: $0, session: $1 as! Bucketeer_Account_AccountServiceGetMeByEmailSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/CreateAdminAccount":
-      return try Bucketeer_Account_AccountServiceCreateAdminAccountSessionBase(
-        handler: handler,
-        providerBlock: { try self.createAdminAccount(request: $0, session: $1 as! Bucketeer_Account_AccountServiceCreateAdminAccountSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/EnableAdminAccount":
-      return try Bucketeer_Account_AccountServiceEnableAdminAccountSessionBase(
-        handler: handler,
-        providerBlock: { try self.enableAdminAccount(request: $0, session: $1 as! Bucketeer_Account_AccountServiceEnableAdminAccountSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/DisableAdminAccount":
-      return try Bucketeer_Account_AccountServiceDisableAdminAccountSessionBase(
-        handler: handler,
-        providerBlock: { try self.disableAdminAccount(request: $0, session: $1 as! Bucketeer_Account_AccountServiceDisableAdminAccountSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/GetAdminAccount":
-      return try Bucketeer_Account_AccountServiceGetAdminAccountSessionBase(
-        handler: handler,
-        providerBlock: { try self.getAdminAccount(request: $0, session: $1 as! Bucketeer_Account_AccountServiceGetAdminAccountSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/ListAdminAccounts":
-      return try Bucketeer_Account_AccountServiceListAdminAccountsSessionBase(
-        handler: handler,
-        providerBlock: { try self.listAdminAccounts(request: $0, session: $1 as! Bucketeer_Account_AccountServiceListAdminAccountsSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/ConvertAccount":
-      return try Bucketeer_Account_AccountServiceConvertAccountSessionBase(
-        handler: handler,
-        providerBlock: { try self.convertAccount(request: $0, session: $1 as! Bucketeer_Account_AccountServiceConvertAccountSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/CreateAccount":
-      return try Bucketeer_Account_AccountServiceCreateAccountSessionBase(
-        handler: handler,
-        providerBlock: { try self.createAccount(request: $0, session: $1 as! Bucketeer_Account_AccountServiceCreateAccountSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/EnableAccount":
-      return try Bucketeer_Account_AccountServiceEnableAccountSessionBase(
-        handler: handler,
-        providerBlock: { try self.enableAccount(request: $0, session: $1 as! Bucketeer_Account_AccountServiceEnableAccountSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/DisableAccount":
-      return try Bucketeer_Account_AccountServiceDisableAccountSessionBase(
-        handler: handler,
-        providerBlock: { try self.disableAccount(request: $0, session: $1 as! Bucketeer_Account_AccountServiceDisableAccountSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/ChangeAccountRole":
-      return try Bucketeer_Account_AccountServiceChangeAccountRoleSessionBase(
-        handler: handler,
-        providerBlock: { try self.changeAccountRole(request: $0, session: $1 as! Bucketeer_Account_AccountServiceChangeAccountRoleSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/GetAccount":
-      return try Bucketeer_Account_AccountServiceGetAccountSessionBase(
-        handler: handler,
-        providerBlock: { try self.getAccount(request: $0, session: $1 as! Bucketeer_Account_AccountServiceGetAccountSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/ListAccounts":
-      return try Bucketeer_Account_AccountServiceListAccountsSessionBase(
-        handler: handler,
-        providerBlock: { try self.listAccounts(request: $0, session: $1 as! Bucketeer_Account_AccountServiceListAccountsSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/CreateAPIKey":
-      return try Bucketeer_Account_AccountServiceCreateAPIKeySessionBase(
-        handler: handler,
-        providerBlock: { try self.createAPIKey(request: $0, session: $1 as! Bucketeer_Account_AccountServiceCreateAPIKeySessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/ChangeAPIKeyName":
-      return try Bucketeer_Account_AccountServiceChangeAPIKeyNameSessionBase(
-        handler: handler,
-        providerBlock: { try self.changeAPIKeyName(request: $0, session: $1 as! Bucketeer_Account_AccountServiceChangeAPIKeyNameSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/EnableAPIKey":
-      return try Bucketeer_Account_AccountServiceEnableAPIKeySessionBase(
-        handler: handler,
-        providerBlock: { try self.enableAPIKey(request: $0, session: $1 as! Bucketeer_Account_AccountServiceEnableAPIKeySessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/DisableAPIKey":
-      return try Bucketeer_Account_AccountServiceDisableAPIKeySessionBase(
-        handler: handler,
-        providerBlock: { try self.disableAPIKey(request: $0, session: $1 as! Bucketeer_Account_AccountServiceDisableAPIKeySessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/GetAPIKey":
-      return try Bucketeer_Account_AccountServiceGetAPIKeySessionBase(
-        handler: handler,
-        providerBlock: { try self.getAPIKey(request: $0, session: $1 as! Bucketeer_Account_AccountServiceGetAPIKeySessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/ListAPIKeys":
-      return try Bucketeer_Account_AccountServiceListAPIKeysSessionBase(
-        handler: handler,
-        providerBlock: { try self.listAPIKeys(request: $0, session: $1 as! Bucketeer_Account_AccountServiceListAPIKeysSessionBase) })
-          .run()
-    case "/bucketeer.account.AccountService/GetAPIKeyBySearchingAllEnvironments":
-      return try Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsSessionBase(
-        handler: handler,
-        providerBlock: { try self.getAPIKeyBySearchingAllEnvironments(request: $0, session: $1 as! Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to GetAPIKeyBySearchingAllEnvironments
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAPIKeyBySearchingAllEnvironments.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAPIKeyBySearchingAllEnvironments(
+    _ request: Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest, Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.account.AccountService/GetAPIKeyBySearchingAllEnvironments",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_Account_AccountServiceGetMeSession: ServerSessionUnary {}
+internal final class Bucketeer_Account_AccountServiceClient: Bucketeer_Account_AccountServiceClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_Account_AccountServiceGetMeSessionBase: ServerSessionUnaryBase<Bucketeer_Account_GetMeRequest, Bucketeer_Account_GetMeResponse>, Bucketeer_Account_AccountServiceGetMeSession {}
-
-internal protocol Bucketeer_Account_AccountServiceGetMeByEmailSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceGetMeByEmailSessionBase: ServerSessionUnaryBase<Bucketeer_Account_GetMeByEmailRequest, Bucketeer_Account_GetMeResponse>, Bucketeer_Account_AccountServiceGetMeByEmailSession {}
-
-internal protocol Bucketeer_Account_AccountServiceCreateAdminAccountSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceCreateAdminAccountSessionBase: ServerSessionUnaryBase<Bucketeer_Account_CreateAdminAccountRequest, Bucketeer_Account_CreateAdminAccountResponse>, Bucketeer_Account_AccountServiceCreateAdminAccountSession {}
-
-internal protocol Bucketeer_Account_AccountServiceEnableAdminAccountSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceEnableAdminAccountSessionBase: ServerSessionUnaryBase<Bucketeer_Account_EnableAdminAccountRequest, Bucketeer_Account_EnableAdminAccountResponse>, Bucketeer_Account_AccountServiceEnableAdminAccountSession {}
-
-internal protocol Bucketeer_Account_AccountServiceDisableAdminAccountSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceDisableAdminAccountSessionBase: ServerSessionUnaryBase<Bucketeer_Account_DisableAdminAccountRequest, Bucketeer_Account_DisableAdminAccountResponse>, Bucketeer_Account_AccountServiceDisableAdminAccountSession {}
-
-internal protocol Bucketeer_Account_AccountServiceGetAdminAccountSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceGetAdminAccountSessionBase: ServerSessionUnaryBase<Bucketeer_Account_GetAdminAccountRequest, Bucketeer_Account_GetAdminAccountResponse>, Bucketeer_Account_AccountServiceGetAdminAccountSession {}
-
-internal protocol Bucketeer_Account_AccountServiceListAdminAccountsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceListAdminAccountsSessionBase: ServerSessionUnaryBase<Bucketeer_Account_ListAdminAccountsRequest, Bucketeer_Account_ListAdminAccountsResponse>, Bucketeer_Account_AccountServiceListAdminAccountsSession {}
-
-internal protocol Bucketeer_Account_AccountServiceConvertAccountSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceConvertAccountSessionBase: ServerSessionUnaryBase<Bucketeer_Account_ConvertAccountRequest, Bucketeer_Account_ConvertAccountResponse>, Bucketeer_Account_AccountServiceConvertAccountSession {}
-
-internal protocol Bucketeer_Account_AccountServiceCreateAccountSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceCreateAccountSessionBase: ServerSessionUnaryBase<Bucketeer_Account_CreateAccountRequest, Bucketeer_Account_CreateAccountResponse>, Bucketeer_Account_AccountServiceCreateAccountSession {}
-
-internal protocol Bucketeer_Account_AccountServiceEnableAccountSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceEnableAccountSessionBase: ServerSessionUnaryBase<Bucketeer_Account_EnableAccountRequest, Bucketeer_Account_EnableAccountResponse>, Bucketeer_Account_AccountServiceEnableAccountSession {}
-
-internal protocol Bucketeer_Account_AccountServiceDisableAccountSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceDisableAccountSessionBase: ServerSessionUnaryBase<Bucketeer_Account_DisableAccountRequest, Bucketeer_Account_DisableAccountResponse>, Bucketeer_Account_AccountServiceDisableAccountSession {}
-
-internal protocol Bucketeer_Account_AccountServiceChangeAccountRoleSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceChangeAccountRoleSessionBase: ServerSessionUnaryBase<Bucketeer_Account_ChangeAccountRoleRequest, Bucketeer_Account_ChangeAccountRoleResponse>, Bucketeer_Account_AccountServiceChangeAccountRoleSession {}
-
-internal protocol Bucketeer_Account_AccountServiceGetAccountSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceGetAccountSessionBase: ServerSessionUnaryBase<Bucketeer_Account_GetAccountRequest, Bucketeer_Account_GetAccountResponse>, Bucketeer_Account_AccountServiceGetAccountSession {}
-
-internal protocol Bucketeer_Account_AccountServiceListAccountsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceListAccountsSessionBase: ServerSessionUnaryBase<Bucketeer_Account_ListAccountsRequest, Bucketeer_Account_ListAccountsResponse>, Bucketeer_Account_AccountServiceListAccountsSession {}
-
-internal protocol Bucketeer_Account_AccountServiceCreateAPIKeySession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceCreateAPIKeySessionBase: ServerSessionUnaryBase<Bucketeer_Account_CreateAPIKeyRequest, Bucketeer_Account_CreateAPIKeyResponse>, Bucketeer_Account_AccountServiceCreateAPIKeySession {}
-
-internal protocol Bucketeer_Account_AccountServiceChangeAPIKeyNameSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceChangeAPIKeyNameSessionBase: ServerSessionUnaryBase<Bucketeer_Account_ChangeAPIKeyNameRequest, Bucketeer_Account_ChangeAPIKeyNameResponse>, Bucketeer_Account_AccountServiceChangeAPIKeyNameSession {}
-
-internal protocol Bucketeer_Account_AccountServiceEnableAPIKeySession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceEnableAPIKeySessionBase: ServerSessionUnaryBase<Bucketeer_Account_EnableAPIKeyRequest, Bucketeer_Account_EnableAPIKeyResponse>, Bucketeer_Account_AccountServiceEnableAPIKeySession {}
-
-internal protocol Bucketeer_Account_AccountServiceDisableAPIKeySession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceDisableAPIKeySessionBase: ServerSessionUnaryBase<Bucketeer_Account_DisableAPIKeyRequest, Bucketeer_Account_DisableAPIKeyResponse>, Bucketeer_Account_AccountServiceDisableAPIKeySession {}
-
-internal protocol Bucketeer_Account_AccountServiceGetAPIKeySession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceGetAPIKeySessionBase: ServerSessionUnaryBase<Bucketeer_Account_GetAPIKeyRequest, Bucketeer_Account_GetAPIKeyResponse>, Bucketeer_Account_AccountServiceGetAPIKeySession {}
-
-internal protocol Bucketeer_Account_AccountServiceListAPIKeysSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceListAPIKeysSessionBase: ServerSessionUnaryBase<Bucketeer_Account_ListAPIKeysRequest, Bucketeer_Account_ListAPIKeysResponse>, Bucketeer_Account_AccountServiceListAPIKeysSession {}
-
-internal protocol Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsSessionBase: ServerSessionUnaryBase<Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsRequest, Bucketeer_Account_GetAPIKeyBySearchingAllEnvironmentsResponse>, Bucketeer_Account_AccountServiceGetAPIKeyBySearchingAllEnvironmentsSession {}
+  /// Creates a client for the bucketeer.account.AccountService service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 

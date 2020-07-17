@@ -20,214 +20,120 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_Push_PushServiceListPushesCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_Push_PushServiceListPushesCallBase: ClientCallUnaryBase<Bucketeer_Push_ListPushesRequest, Bucketeer_Push_ListPushesResponse>, Bucketeer_Push_PushServiceListPushesCall {
-  override class var method: String { return "/bucketeer.push.PushService/ListPushes" }
-}
+/// Usage: instantiate Bucketeer_Push_PushServiceClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_Push_PushServiceClientProtocol: GRPCClient {
+  func listPushes(
+    _ request: Bucketeer_Push_ListPushesRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Push_ListPushesRequest, Bucketeer_Push_ListPushesResponse>
 
-internal protocol Bucketeer_Push_PushServiceCreatePushCall: ClientCallUnary {}
+  func createPush(
+    _ request: Bucketeer_Push_CreatePushRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Push_CreatePushRequest, Bucketeer_Push_CreatePushResponse>
 
-fileprivate final class Bucketeer_Push_PushServiceCreatePushCallBase: ClientCallUnaryBase<Bucketeer_Push_CreatePushRequest, Bucketeer_Push_CreatePushResponse>, Bucketeer_Push_PushServiceCreatePushCall {
-  override class var method: String { return "/bucketeer.push.PushService/CreatePush" }
-}
+  func deletePush(
+    _ request: Bucketeer_Push_DeletePushRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Push_DeletePushRequest, Bucketeer_Push_DeletePushResponse>
 
-internal protocol Bucketeer_Push_PushServiceDeletePushCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Push_PushServiceDeletePushCallBase: ClientCallUnaryBase<Bucketeer_Push_DeletePushRequest, Bucketeer_Push_DeletePushResponse>, Bucketeer_Push_PushServiceDeletePushCall {
-  override class var method: String { return "/bucketeer.push.PushService/DeletePush" }
-}
-
-internal protocol Bucketeer_Push_PushServiceUpdatePushCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Push_PushServiceUpdatePushCallBase: ClientCallUnaryBase<Bucketeer_Push_UpdatePushRequest, Bucketeer_Push_UpdatePushResponse>, Bucketeer_Push_PushServiceUpdatePushCall {
-  override class var method: String { return "/bucketeer.push.PushService/UpdatePush" }
-}
-
-
-/// Instantiate Bucketeer_Push_PushServiceServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_Push_PushServiceService: ServiceClient {
-  /// Synchronous. Unary.
-  func listPushes(_ request: Bucketeer_Push_ListPushesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Push_ListPushesResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listPushes(_ request: Bucketeer_Push_ListPushesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Push_ListPushesResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceListPushesCall
-
-  /// Synchronous. Unary.
-  func createPush(_ request: Bucketeer_Push_CreatePushRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Push_CreatePushResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createPush(_ request: Bucketeer_Push_CreatePushRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Push_CreatePushResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceCreatePushCall
-
-  /// Synchronous. Unary.
-  func deletePush(_ request: Bucketeer_Push_DeletePushRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Push_DeletePushResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deletePush(_ request: Bucketeer_Push_DeletePushRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Push_DeletePushResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceDeletePushCall
-
-  /// Synchronous. Unary.
-  func updatePush(_ request: Bucketeer_Push_UpdatePushRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Push_UpdatePushResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updatePush(_ request: Bucketeer_Push_UpdatePushRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Push_UpdatePushResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceUpdatePushCall
+  func updatePush(
+    _ request: Bucketeer_Push_UpdatePushRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Push_UpdatePushRequest, Bucketeer_Push_UpdatePushResponse>
 
 }
 
-internal extension Bucketeer_Push_PushServiceService {
-  /// Synchronous. Unary.
-  func listPushes(_ request: Bucketeer_Push_ListPushesRequest) throws -> Bucketeer_Push_ListPushesResponse {
-    return try self.listPushes(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listPushes(_ request: Bucketeer_Push_ListPushesRequest, completion: @escaping (Bucketeer_Push_ListPushesResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceListPushesCall {
-    return try self.listPushes(request, metadata: self.metadata, completion: completion)
+extension Bucketeer_Push_PushServiceClientProtocol {
+
+  /// Unary call to ListPushes
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListPushes.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listPushes(
+    _ request: Bucketeer_Push_ListPushesRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Push_ListPushesRequest, Bucketeer_Push_ListPushesResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.push.PushService/ListPushes",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func createPush(_ request: Bucketeer_Push_CreatePushRequest) throws -> Bucketeer_Push_CreatePushResponse {
-    return try self.createPush(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createPush(_ request: Bucketeer_Push_CreatePushRequest, completion: @escaping (Bucketeer_Push_CreatePushResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceCreatePushCall {
-    return try self.createPush(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func deletePush(_ request: Bucketeer_Push_DeletePushRequest) throws -> Bucketeer_Push_DeletePushResponse {
-    return try self.deletePush(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deletePush(_ request: Bucketeer_Push_DeletePushRequest, completion: @escaping (Bucketeer_Push_DeletePushResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceDeletePushCall {
-    return try self.deletePush(request, metadata: self.metadata, completion: completion)
+  /// Unary call to CreatePush
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreatePush.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func createPush(
+    _ request: Bucketeer_Push_CreatePushRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Push_CreatePushRequest, Bucketeer_Push_CreatePushResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.push.PushService/CreatePush",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func updatePush(_ request: Bucketeer_Push_UpdatePushRequest) throws -> Bucketeer_Push_UpdatePushResponse {
-    return try self.updatePush(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updatePush(_ request: Bucketeer_Push_UpdatePushRequest, completion: @escaping (Bucketeer_Push_UpdatePushResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceUpdatePushCall {
-    return try self.updatePush(request, metadata: self.metadata, completion: completion)
-  }
-
-}
-
-internal final class Bucketeer_Push_PushServiceServiceClient: ServiceClientBase, Bucketeer_Push_PushServiceService {
-  /// Synchronous. Unary.
-  internal func listPushes(_ request: Bucketeer_Push_ListPushesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Push_ListPushesResponse {
-    return try Bucketeer_Push_PushServiceListPushesCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listPushes(_ request: Bucketeer_Push_ListPushesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Push_ListPushesResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceListPushesCall {
-    return try Bucketeer_Push_PushServiceListPushesCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to DeletePush
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DeletePush.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func deletePush(
+    _ request: Bucketeer_Push_DeletePushRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Push_DeletePushRequest, Bucketeer_Push_DeletePushResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.push.PushService/DeletePush",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func createPush(_ request: Bucketeer_Push_CreatePushRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Push_CreatePushResponse {
-    return try Bucketeer_Push_PushServiceCreatePushCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func createPush(_ request: Bucketeer_Push_CreatePushRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Push_CreatePushResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceCreatePushCall {
-    return try Bucketeer_Push_PushServiceCreatePushCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func deletePush(_ request: Bucketeer_Push_DeletePushRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Push_DeletePushResponse {
-    return try Bucketeer_Push_PushServiceDeletePushCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func deletePush(_ request: Bucketeer_Push_DeletePushRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Push_DeletePushResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceDeletePushCall {
-    return try Bucketeer_Push_PushServiceDeletePushCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func updatePush(_ request: Bucketeer_Push_UpdatePushRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Push_UpdatePushResponse {
-    return try Bucketeer_Push_PushServiceUpdatePushCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func updatePush(_ request: Bucketeer_Push_UpdatePushRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Push_UpdatePushResponse?, CallResult) -> Void) throws -> Bucketeer_Push_PushServiceUpdatePushCall {
-    return try Bucketeer_Push_PushServiceUpdatePushCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_Push_PushServiceProvider: ServiceProvider {
-  func listPushes(request: Bucketeer_Push_ListPushesRequest, session: Bucketeer_Push_PushServiceListPushesSession) throws -> Bucketeer_Push_ListPushesResponse
-  func createPush(request: Bucketeer_Push_CreatePushRequest, session: Bucketeer_Push_PushServiceCreatePushSession) throws -> Bucketeer_Push_CreatePushResponse
-  func deletePush(request: Bucketeer_Push_DeletePushRequest, session: Bucketeer_Push_PushServiceDeletePushSession) throws -> Bucketeer_Push_DeletePushResponse
-  func updatePush(request: Bucketeer_Push_UpdatePushRequest, session: Bucketeer_Push_PushServiceUpdatePushSession) throws -> Bucketeer_Push_UpdatePushResponse
-}
-
-extension Bucketeer_Push_PushServiceProvider {
-  internal var serviceName: String { return "bucketeer.push.PushService" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.push.PushService/ListPushes":
-      return try Bucketeer_Push_PushServiceListPushesSessionBase(
-        handler: handler,
-        providerBlock: { try self.listPushes(request: $0, session: $1 as! Bucketeer_Push_PushServiceListPushesSessionBase) })
-          .run()
-    case "/bucketeer.push.PushService/CreatePush":
-      return try Bucketeer_Push_PushServiceCreatePushSessionBase(
-        handler: handler,
-        providerBlock: { try self.createPush(request: $0, session: $1 as! Bucketeer_Push_PushServiceCreatePushSessionBase) })
-          .run()
-    case "/bucketeer.push.PushService/DeletePush":
-      return try Bucketeer_Push_PushServiceDeletePushSessionBase(
-        handler: handler,
-        providerBlock: { try self.deletePush(request: $0, session: $1 as! Bucketeer_Push_PushServiceDeletePushSessionBase) })
-          .run()
-    case "/bucketeer.push.PushService/UpdatePush":
-      return try Bucketeer_Push_PushServiceUpdatePushSessionBase(
-        handler: handler,
-        providerBlock: { try self.updatePush(request: $0, session: $1 as! Bucketeer_Push_PushServiceUpdatePushSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to UpdatePush
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpdatePush.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func updatePush(
+    _ request: Bucketeer_Push_UpdatePushRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Push_UpdatePushRequest, Bucketeer_Push_UpdatePushResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.push.PushService/UpdatePush",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_Push_PushServiceListPushesSession: ServerSessionUnary {}
+internal final class Bucketeer_Push_PushServiceClient: Bucketeer_Push_PushServiceClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_Push_PushServiceListPushesSessionBase: ServerSessionUnaryBase<Bucketeer_Push_ListPushesRequest, Bucketeer_Push_ListPushesResponse>, Bucketeer_Push_PushServiceListPushesSession {}
-
-internal protocol Bucketeer_Push_PushServiceCreatePushSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Push_PushServiceCreatePushSessionBase: ServerSessionUnaryBase<Bucketeer_Push_CreatePushRequest, Bucketeer_Push_CreatePushResponse>, Bucketeer_Push_PushServiceCreatePushSession {}
-
-internal protocol Bucketeer_Push_PushServiceDeletePushSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Push_PushServiceDeletePushSessionBase: ServerSessionUnaryBase<Bucketeer_Push_DeletePushRequest, Bucketeer_Push_DeletePushResponse>, Bucketeer_Push_PushServiceDeletePushSession {}
-
-internal protocol Bucketeer_Push_PushServiceUpdatePushSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Push_PushServiceUpdatePushSessionBase: ServerSessionUnaryBase<Bucketeer_Push_UpdatePushRequest, Bucketeer_Push_UpdatePushResponse>, Bucketeer_Push_PushServiceUpdatePushSession {}
+  /// Creates a client for the bucketeer.push.PushService service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 
