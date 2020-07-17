@@ -1,5 +1,5 @@
 import Foundation
-import SwiftGRPC
+import GRPC
 import SwiftProtobuf
 
 class EvaluationSynchronizer {
@@ -7,19 +7,19 @@ class EvaluationSynchronizer {
     private let latestEvaluationStore: LatestEvaluationStore
     private let currentEvaluationStore: CurrentEvaluationStore
     internal var currentUserEvaluationsId: String
-
+    
     init(apiClient: APIClientProtocol, latestEvaluationStore: LatestEvaluationStore, currentEvaluationStore: CurrentEvaluationStore) {
         self.apiClient = apiClient
         self.latestEvaluationStore = latestEvaluationStore
         self.currentEvaluationStore = currentEvaluationStore
         self.currentUserEvaluationsId = UserDefaults.standard.string(forKey: USER_EVALUATIONS_ID) ?? ""
     }
-
+    
     func syncEvaluations(userEntity: UserEntity, completion: @escaping (Result<Bucketeer_Gateway_GetEvaluationsResponse, BucketeerError>) -> Void) {
         let currentUserEvaluationsId = self.currentUserEvaluationsId
         apiClient.getEvaluations(userEntity: userEntity, userEvaluationsId: currentUserEvaluationsId) { [userEntity, latestEvaluationStore, currentEvaluationStore] result in
             switch result {
-            case .success(let response, let callResult):
+            case .success((let response, let callResult)):
                 guard let response = response, !callResult.isFailed else {
                     let message = "(\(Version.number)) Failed to getEvaluations: callResult: \(callResult)"
                     Logger.shared.errorLog(message)
@@ -75,7 +75,7 @@ class EvaluationSynchronizer {
             }
         }
     }
-
+    
     internal func updateUserEvaluationsId(userEvaluationsId: String) {
         self.currentUserEvaluationsId = userEvaluationsId
         UserDefaults.standard.set(userEvaluationsId, forKey: USER_EVALUATIONS_ID)

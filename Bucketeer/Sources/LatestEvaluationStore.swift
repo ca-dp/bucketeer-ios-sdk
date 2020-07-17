@@ -130,8 +130,8 @@ class LatestEvaluationStore {
     }
 }
 
-#if TEST
 extension LatestEvaluationStore {
+    // for test
     func deleteAll(completion: (() -> Void)? = nil) {
         evaluationEntities.removeAll() // update in-memory data
         db.run { [weak self] in
@@ -150,4 +150,3 @@ extension LatestEvaluationStore {
         }
     }
 }
-#endif
