@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
       :tag => "v#{s.version}",
   }
 
-  s.dependency "SwiftGRPC", "~> 0.10.0"
+  s.dependency "gRPC-Swift", "1.0.0-alpha.17"
 
   s.license = {
     :type => "Apache License, Version 2.0",
