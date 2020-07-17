@@ -20,170 +20,98 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_Gateway_GatewayPingCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_Gateway_GatewayPingCallBase: ClientCallUnaryBase<Bucketeer_Gateway_PingRequest, Bucketeer_Gateway_PingResponse>, Bucketeer_Gateway_GatewayPingCall {
-  override class var method: String { return "/bucketeer.gateway.Gateway/Ping" }
-}
+/// Usage: instantiate Bucketeer_Gateway_GatewayClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_Gateway_GatewayClientProtocol: GRPCClient {
+  func ping(
+    _ request: Bucketeer_Gateway_PingRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Gateway_PingRequest, Bucketeer_Gateway_PingResponse>
 
-internal protocol Bucketeer_Gateway_GatewayGetEvaluationsCall: ClientCallUnary {}
+  func getEvaluations(
+    _ request: Bucketeer_Gateway_GetEvaluationsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Gateway_GetEvaluationsRequest, Bucketeer_Gateway_GetEvaluationsResponse>
 
-fileprivate final class Bucketeer_Gateway_GatewayGetEvaluationsCallBase: ClientCallUnaryBase<Bucketeer_Gateway_GetEvaluationsRequest, Bucketeer_Gateway_GetEvaluationsResponse>, Bucketeer_Gateway_GatewayGetEvaluationsCall {
-  override class var method: String { return "/bucketeer.gateway.Gateway/GetEvaluations" }
-}
-
-internal protocol Bucketeer_Gateway_GatewayRegisterEventsCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Gateway_GatewayRegisterEventsCallBase: ClientCallUnaryBase<Bucketeer_Gateway_RegisterEventsRequest, Bucketeer_Gateway_RegisterEventsResponse>, Bucketeer_Gateway_GatewayRegisterEventsCall {
-  override class var method: String { return "/bucketeer.gateway.Gateway/RegisterEvents" }
-}
-
-
-/// Instantiate Bucketeer_Gateway_GatewayServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_Gateway_GatewayService: ServiceClient {
-  /// Synchronous. Unary.
-  func ping(_ request: Bucketeer_Gateway_PingRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Gateway_PingResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func ping(_ request: Bucketeer_Gateway_PingRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Gateway_PingResponse?, CallResult) -> Void) throws -> Bucketeer_Gateway_GatewayPingCall
-
-  /// Synchronous. Unary.
-  func getEvaluations(_ request: Bucketeer_Gateway_GetEvaluationsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Gateway_GetEvaluationsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getEvaluations(_ request: Bucketeer_Gateway_GetEvaluationsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Gateway_GetEvaluationsResponse?, CallResult) -> Void) throws -> Bucketeer_Gateway_GatewayGetEvaluationsCall
-
-  /// Synchronous. Unary.
-  func registerEvents(_ request: Bucketeer_Gateway_RegisterEventsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Gateway_RegisterEventsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func registerEvents(_ request: Bucketeer_Gateway_RegisterEventsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Gateway_RegisterEventsResponse?, CallResult) -> Void) throws -> Bucketeer_Gateway_GatewayRegisterEventsCall
+  func registerEvents(
+    _ request: Bucketeer_Gateway_RegisterEventsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Gateway_RegisterEventsRequest, Bucketeer_Gateway_RegisterEventsResponse>
 
 }
 
-internal extension Bucketeer_Gateway_GatewayService {
-  /// Synchronous. Unary.
-  func ping(_ request: Bucketeer_Gateway_PingRequest) throws -> Bucketeer_Gateway_PingResponse {
-    return try self.ping(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func ping(_ request: Bucketeer_Gateway_PingRequest, completion: @escaping (Bucketeer_Gateway_PingResponse?, CallResult) -> Void) throws -> Bucketeer_Gateway_GatewayPingCall {
-    return try self.ping(request, metadata: self.metadata, completion: completion)
+extension Bucketeer_Gateway_GatewayClientProtocol {
+
+  /// Unary call to Ping
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to Ping.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func ping(
+    _ request: Bucketeer_Gateway_PingRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Gateway_PingRequest, Bucketeer_Gateway_PingResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.gateway.Gateway/Ping",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func getEvaluations(_ request: Bucketeer_Gateway_GetEvaluationsRequest) throws -> Bucketeer_Gateway_GetEvaluationsResponse {
-    return try self.getEvaluations(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getEvaluations(_ request: Bucketeer_Gateway_GetEvaluationsRequest, completion: @escaping (Bucketeer_Gateway_GetEvaluationsResponse?, CallResult) -> Void) throws -> Bucketeer_Gateway_GatewayGetEvaluationsCall {
-    return try self.getEvaluations(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func registerEvents(_ request: Bucketeer_Gateway_RegisterEventsRequest) throws -> Bucketeer_Gateway_RegisterEventsResponse {
-    return try self.registerEvents(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func registerEvents(_ request: Bucketeer_Gateway_RegisterEventsRequest, completion: @escaping (Bucketeer_Gateway_RegisterEventsResponse?, CallResult) -> Void) throws -> Bucketeer_Gateway_GatewayRegisterEventsCall {
-    return try self.registerEvents(request, metadata: self.metadata, completion: completion)
+  /// Unary call to GetEvaluations
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetEvaluations.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getEvaluations(
+    _ request: Bucketeer_Gateway_GetEvaluationsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Gateway_GetEvaluationsRequest, Bucketeer_Gateway_GetEvaluationsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.gateway.Gateway/GetEvaluations",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-}
-
-internal final class Bucketeer_Gateway_GatewayServiceClient: ServiceClientBase, Bucketeer_Gateway_GatewayService {
-  /// Synchronous. Unary.
-  internal func ping(_ request: Bucketeer_Gateway_PingRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Gateway_PingResponse {
-    return try Bucketeer_Gateway_GatewayPingCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func ping(_ request: Bucketeer_Gateway_PingRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Gateway_PingResponse?, CallResult) -> Void) throws -> Bucketeer_Gateway_GatewayPingCall {
-    return try Bucketeer_Gateway_GatewayPingCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getEvaluations(_ request: Bucketeer_Gateway_GetEvaluationsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Gateway_GetEvaluationsResponse {
-    return try Bucketeer_Gateway_GatewayGetEvaluationsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getEvaluations(_ request: Bucketeer_Gateway_GetEvaluationsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Gateway_GetEvaluationsResponse?, CallResult) -> Void) throws -> Bucketeer_Gateway_GatewayGetEvaluationsCall {
-    return try Bucketeer_Gateway_GatewayGetEvaluationsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func registerEvents(_ request: Bucketeer_Gateway_RegisterEventsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Gateway_RegisterEventsResponse {
-    return try Bucketeer_Gateway_GatewayRegisterEventsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func registerEvents(_ request: Bucketeer_Gateway_RegisterEventsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Gateway_RegisterEventsResponse?, CallResult) -> Void) throws -> Bucketeer_Gateway_GatewayRegisterEventsCall {
-    return try Bucketeer_Gateway_GatewayRegisterEventsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_Gateway_GatewayProvider: ServiceProvider {
-  func ping(request: Bucketeer_Gateway_PingRequest, session: Bucketeer_Gateway_GatewayPingSession) throws -> Bucketeer_Gateway_PingResponse
-  func getEvaluations(request: Bucketeer_Gateway_GetEvaluationsRequest, session: Bucketeer_Gateway_GatewayGetEvaluationsSession) throws -> Bucketeer_Gateway_GetEvaluationsResponse
-  func registerEvents(request: Bucketeer_Gateway_RegisterEventsRequest, session: Bucketeer_Gateway_GatewayRegisterEventsSession) throws -> Bucketeer_Gateway_RegisterEventsResponse
-}
-
-extension Bucketeer_Gateway_GatewayProvider {
-  internal var serviceName: String { return "bucketeer.gateway.Gateway" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.gateway.Gateway/Ping":
-      return try Bucketeer_Gateway_GatewayPingSessionBase(
-        handler: handler,
-        providerBlock: { try self.ping(request: $0, session: $1 as! Bucketeer_Gateway_GatewayPingSessionBase) })
-          .run()
-    case "/bucketeer.gateway.Gateway/GetEvaluations":
-      return try Bucketeer_Gateway_GatewayGetEvaluationsSessionBase(
-        handler: handler,
-        providerBlock: { try self.getEvaluations(request: $0, session: $1 as! Bucketeer_Gateway_GatewayGetEvaluationsSessionBase) })
-          .run()
-    case "/bucketeer.gateway.Gateway/RegisterEvents":
-      return try Bucketeer_Gateway_GatewayRegisterEventsSessionBase(
-        handler: handler,
-        providerBlock: { try self.registerEvents(request: $0, session: $1 as! Bucketeer_Gateway_GatewayRegisterEventsSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to RegisterEvents
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to RegisterEvents.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func registerEvents(
+    _ request: Bucketeer_Gateway_RegisterEventsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Gateway_RegisterEventsRequest, Bucketeer_Gateway_RegisterEventsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.gateway.Gateway/RegisterEvents",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_Gateway_GatewayPingSession: ServerSessionUnary {}
+internal final class Bucketeer_Gateway_GatewayClient: Bucketeer_Gateway_GatewayClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_Gateway_GatewayPingSessionBase: ServerSessionUnaryBase<Bucketeer_Gateway_PingRequest, Bucketeer_Gateway_PingResponse>, Bucketeer_Gateway_GatewayPingSession {}
-
-internal protocol Bucketeer_Gateway_GatewayGetEvaluationsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Gateway_GatewayGetEvaluationsSessionBase: ServerSessionUnaryBase<Bucketeer_Gateway_GetEvaluationsRequest, Bucketeer_Gateway_GetEvaluationsResponse>, Bucketeer_Gateway_GatewayGetEvaluationsSession {}
-
-internal protocol Bucketeer_Gateway_GatewayRegisterEventsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Gateway_GatewayRegisterEventsSessionBase: ServerSessionUnaryBase<Bucketeer_Gateway_RegisterEventsRequest, Bucketeer_Gateway_RegisterEventsResponse>, Bucketeer_Gateway_GatewayRegisterEventsSession {}
+  /// Creates a client for the bucketeer.gateway.Gateway service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 

@@ -20,214 +20,120 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountCallBase: ClientCallUnaryBase<Bucketeer_Eventcounter_GetEvaluationCountRequest, Bucketeer_Eventcounter_GetEvaluationCountResponse>, Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountCall {
-  override class var method: String { return "/bucketeer.eventcounter.EventCounterService/GetEvaluationCount" }
-}
+/// Usage: instantiate Bucketeer_Eventcounter_EventCounterServiceClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_Eventcounter_EventCounterServiceClientProtocol: GRPCClient {
+  func getEvaluationCount(
+    _ request: Bucketeer_Eventcounter_GetEvaluationCountRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Eventcounter_GetEvaluationCountRequest, Bucketeer_Eventcounter_GetEvaluationCountResponse>
 
-internal protocol Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsCall: ClientCallUnary {}
+  func listExperimentCounts(
+    _ request: Bucketeer_Eventcounter_ListExperimentCountsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Eventcounter_ListExperimentCountsRequest, Bucketeer_Eventcounter_ListExperimentCountsResponse>
 
-fileprivate final class Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsCallBase: ClientCallUnaryBase<Bucketeer_Eventcounter_ListExperimentCountsRequest, Bucketeer_Eventcounter_ListExperimentCountsResponse>, Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsCall {
-  override class var method: String { return "/bucketeer.eventcounter.EventCounterService/ListExperimentCounts" }
-}
+  func getExperimentResult(
+    _ request: Bucketeer_Eventcounter_GetExperimentResultRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Eventcounter_GetExperimentResultRequest, Bucketeer_Eventcounter_GetExperimentResultResponse>
 
-internal protocol Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultCallBase: ClientCallUnaryBase<Bucketeer_Eventcounter_GetExperimentResultRequest, Bucketeer_Eventcounter_GetExperimentResultResponse>, Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultCall {
-  override class var method: String { return "/bucketeer.eventcounter.EventCounterService/GetExperimentResult" }
-}
-
-internal protocol Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsCallBase: ClientCallUnaryBase<Bucketeer_Eventcounter_ListExperimentResultsRequest, Bucketeer_Eventcounter_ListExperimentResultsResponse>, Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsCall {
-  override class var method: String { return "/bucketeer.eventcounter.EventCounterService/ListExperimentResults" }
-}
-
-
-/// Instantiate Bucketeer_Eventcounter_EventCounterServiceServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_Eventcounter_EventCounterServiceService: ServiceClient {
-  /// Synchronous. Unary.
-  func getEvaluationCount(_ request: Bucketeer_Eventcounter_GetEvaluationCountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Eventcounter_GetEvaluationCountResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getEvaluationCount(_ request: Bucketeer_Eventcounter_GetEvaluationCountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Eventcounter_GetEvaluationCountResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountCall
-
-  /// Synchronous. Unary.
-  func listExperimentCounts(_ request: Bucketeer_Eventcounter_ListExperimentCountsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Eventcounter_ListExperimentCountsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listExperimentCounts(_ request: Bucketeer_Eventcounter_ListExperimentCountsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Eventcounter_ListExperimentCountsResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsCall
-
-  /// Synchronous. Unary.
-  func getExperimentResult(_ request: Bucketeer_Eventcounter_GetExperimentResultRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Eventcounter_GetExperimentResultResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getExperimentResult(_ request: Bucketeer_Eventcounter_GetExperimentResultRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Eventcounter_GetExperimentResultResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultCall
-
-  /// Synchronous. Unary.
-  func listExperimentResults(_ request: Bucketeer_Eventcounter_ListExperimentResultsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Eventcounter_ListExperimentResultsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listExperimentResults(_ request: Bucketeer_Eventcounter_ListExperimentResultsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Eventcounter_ListExperimentResultsResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsCall
+  func listExperimentResults(
+    _ request: Bucketeer_Eventcounter_ListExperimentResultsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Eventcounter_ListExperimentResultsRequest, Bucketeer_Eventcounter_ListExperimentResultsResponse>
 
 }
 
-internal extension Bucketeer_Eventcounter_EventCounterServiceService {
-  /// Synchronous. Unary.
-  func getEvaluationCount(_ request: Bucketeer_Eventcounter_GetEvaluationCountRequest) throws -> Bucketeer_Eventcounter_GetEvaluationCountResponse {
-    return try self.getEvaluationCount(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getEvaluationCount(_ request: Bucketeer_Eventcounter_GetEvaluationCountRequest, completion: @escaping (Bucketeer_Eventcounter_GetEvaluationCountResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountCall {
-    return try self.getEvaluationCount(request, metadata: self.metadata, completion: completion)
+extension Bucketeer_Eventcounter_EventCounterServiceClientProtocol {
+
+  /// Unary call to GetEvaluationCount
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetEvaluationCount.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getEvaluationCount(
+    _ request: Bucketeer_Eventcounter_GetEvaluationCountRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Eventcounter_GetEvaluationCountRequest, Bucketeer_Eventcounter_GetEvaluationCountResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.eventcounter.EventCounterService/GetEvaluationCount",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func listExperimentCounts(_ request: Bucketeer_Eventcounter_ListExperimentCountsRequest) throws -> Bucketeer_Eventcounter_ListExperimentCountsResponse {
-    return try self.listExperimentCounts(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listExperimentCounts(_ request: Bucketeer_Eventcounter_ListExperimentCountsRequest, completion: @escaping (Bucketeer_Eventcounter_ListExperimentCountsResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsCall {
-    return try self.listExperimentCounts(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func getExperimentResult(_ request: Bucketeer_Eventcounter_GetExperimentResultRequest) throws -> Bucketeer_Eventcounter_GetExperimentResultResponse {
-    return try self.getExperimentResult(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getExperimentResult(_ request: Bucketeer_Eventcounter_GetExperimentResultRequest, completion: @escaping (Bucketeer_Eventcounter_GetExperimentResultResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultCall {
-    return try self.getExperimentResult(request, metadata: self.metadata, completion: completion)
+  /// Unary call to ListExperimentCounts
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListExperimentCounts.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listExperimentCounts(
+    _ request: Bucketeer_Eventcounter_ListExperimentCountsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Eventcounter_ListExperimentCountsRequest, Bucketeer_Eventcounter_ListExperimentCountsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.eventcounter.EventCounterService/ListExperimentCounts",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func listExperimentResults(_ request: Bucketeer_Eventcounter_ListExperimentResultsRequest) throws -> Bucketeer_Eventcounter_ListExperimentResultsResponse {
-    return try self.listExperimentResults(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listExperimentResults(_ request: Bucketeer_Eventcounter_ListExperimentResultsRequest, completion: @escaping (Bucketeer_Eventcounter_ListExperimentResultsResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsCall {
-    return try self.listExperimentResults(request, metadata: self.metadata, completion: completion)
-  }
-
-}
-
-internal final class Bucketeer_Eventcounter_EventCounterServiceServiceClient: ServiceClientBase, Bucketeer_Eventcounter_EventCounterServiceService {
-  /// Synchronous. Unary.
-  internal func getEvaluationCount(_ request: Bucketeer_Eventcounter_GetEvaluationCountRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Eventcounter_GetEvaluationCountResponse {
-    return try Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getEvaluationCount(_ request: Bucketeer_Eventcounter_GetEvaluationCountRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Eventcounter_GetEvaluationCountResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountCall {
-    return try Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to GetExperimentResult
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetExperimentResult.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getExperimentResult(
+    _ request: Bucketeer_Eventcounter_GetExperimentResultRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Eventcounter_GetExperimentResultRequest, Bucketeer_Eventcounter_GetExperimentResultResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.eventcounter.EventCounterService/GetExperimentResult",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func listExperimentCounts(_ request: Bucketeer_Eventcounter_ListExperimentCountsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Eventcounter_ListExperimentCountsResponse {
-    return try Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listExperimentCounts(_ request: Bucketeer_Eventcounter_ListExperimentCountsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Eventcounter_ListExperimentCountsResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsCall {
-    return try Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getExperimentResult(_ request: Bucketeer_Eventcounter_GetExperimentResultRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Eventcounter_GetExperimentResultResponse {
-    return try Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getExperimentResult(_ request: Bucketeer_Eventcounter_GetExperimentResultRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Eventcounter_GetExperimentResultResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultCall {
-    return try Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func listExperimentResults(_ request: Bucketeer_Eventcounter_ListExperimentResultsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Eventcounter_ListExperimentResultsResponse {
-    return try Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listExperimentResults(_ request: Bucketeer_Eventcounter_ListExperimentResultsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Eventcounter_ListExperimentResultsResponse?, CallResult) -> Void) throws -> Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsCall {
-    return try Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_Eventcounter_EventCounterServiceProvider: ServiceProvider {
-  func getEvaluationCount(request: Bucketeer_Eventcounter_GetEvaluationCountRequest, session: Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountSession) throws -> Bucketeer_Eventcounter_GetEvaluationCountResponse
-  func listExperimentCounts(request: Bucketeer_Eventcounter_ListExperimentCountsRequest, session: Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsSession) throws -> Bucketeer_Eventcounter_ListExperimentCountsResponse
-  func getExperimentResult(request: Bucketeer_Eventcounter_GetExperimentResultRequest, session: Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultSession) throws -> Bucketeer_Eventcounter_GetExperimentResultResponse
-  func listExperimentResults(request: Bucketeer_Eventcounter_ListExperimentResultsRequest, session: Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsSession) throws -> Bucketeer_Eventcounter_ListExperimentResultsResponse
-}
-
-extension Bucketeer_Eventcounter_EventCounterServiceProvider {
-  internal var serviceName: String { return "bucketeer.eventcounter.EventCounterService" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.eventcounter.EventCounterService/GetEvaluationCount":
-      return try Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountSessionBase(
-        handler: handler,
-        providerBlock: { try self.getEvaluationCount(request: $0, session: $1 as! Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountSessionBase) })
-          .run()
-    case "/bucketeer.eventcounter.EventCounterService/ListExperimentCounts":
-      return try Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsSessionBase(
-        handler: handler,
-        providerBlock: { try self.listExperimentCounts(request: $0, session: $1 as! Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsSessionBase) })
-          .run()
-    case "/bucketeer.eventcounter.EventCounterService/GetExperimentResult":
-      return try Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultSessionBase(
-        handler: handler,
-        providerBlock: { try self.getExperimentResult(request: $0, session: $1 as! Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultSessionBase) })
-          .run()
-    case "/bucketeer.eventcounter.EventCounterService/ListExperimentResults":
-      return try Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsSessionBase(
-        handler: handler,
-        providerBlock: { try self.listExperimentResults(request: $0, session: $1 as! Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to ListExperimentResults
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListExperimentResults.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listExperimentResults(
+    _ request: Bucketeer_Eventcounter_ListExperimentResultsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Eventcounter_ListExperimentResultsRequest, Bucketeer_Eventcounter_ListExperimentResultsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.eventcounter.EventCounterService/ListExperimentResults",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountSession: ServerSessionUnary {}
+internal final class Bucketeer_Eventcounter_EventCounterServiceClient: Bucketeer_Eventcounter_EventCounterServiceClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountSessionBase: ServerSessionUnaryBase<Bucketeer_Eventcounter_GetEvaluationCountRequest, Bucketeer_Eventcounter_GetEvaluationCountResponse>, Bucketeer_Eventcounter_EventCounterServiceGetEvaluationCountSession {}
-
-internal protocol Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsSessionBase: ServerSessionUnaryBase<Bucketeer_Eventcounter_ListExperimentCountsRequest, Bucketeer_Eventcounter_ListExperimentCountsResponse>, Bucketeer_Eventcounter_EventCounterServiceListExperimentCountsSession {}
-
-internal protocol Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultSessionBase: ServerSessionUnaryBase<Bucketeer_Eventcounter_GetExperimentResultRequest, Bucketeer_Eventcounter_GetExperimentResultResponse>, Bucketeer_Eventcounter_EventCounterServiceGetExperimentResultSession {}
-
-internal protocol Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsSessionBase: ServerSessionUnaryBase<Bucketeer_Eventcounter_ListExperimentResultsRequest, Bucketeer_Eventcounter_ListExperimentResultsResponse>, Bucketeer_Eventcounter_EventCounterServiceListExperimentResultsSession {}
+  /// Creates a client for the bucketeer.eventcounter.EventCounterService service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 

@@ -20,1094 +20,560 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_Feature_FeatureServiceSearchFeaturesCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_Feature_FeatureServiceSearchFeaturesCallBase: ClientCallUnaryBase<Bucketeer_Feature_SearchFeaturesRequest, Bucketeer_Feature_SearchFeaturesResponse>, Bucketeer_Feature_FeatureServiceSearchFeaturesCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/SearchFeatures" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceGetFeatureCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceGetFeatureCallBase: ClientCallUnaryBase<Bucketeer_Feature_GetFeatureRequest, Bucketeer_Feature_GetFeatureResponse>, Bucketeer_Feature_FeatureServiceGetFeatureCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/GetFeature" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceGetFeaturesCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceGetFeaturesCallBase: ClientCallUnaryBase<Bucketeer_Feature_GetFeaturesRequest, Bucketeer_Feature_GetFeaturesResponse>, Bucketeer_Feature_FeatureServiceGetFeaturesCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/GetFeatures" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceListFeaturesCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceListFeaturesCallBase: ClientCallUnaryBase<Bucketeer_Feature_ListFeaturesRequest, Bucketeer_Feature_ListFeaturesResponse>, Bucketeer_Feature_FeatureServiceListFeaturesCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/ListFeatures" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceListEnabledFeaturesCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceListEnabledFeaturesCallBase: ClientCallUnaryBase<Bucketeer_Feature_ListEnabledFeaturesRequest, Bucketeer_Feature_ListEnabledFeaturesResponse>, Bucketeer_Feature_FeatureServiceListEnabledFeaturesCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/ListEnabledFeatures" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceCreateFeatureCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceCreateFeatureCallBase: ClientCallUnaryBase<Bucketeer_Feature_CreateFeatureRequest, Bucketeer_Feature_CreateFeatureResponse>, Bucketeer_Feature_FeatureServiceCreateFeatureCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/CreateFeature" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceEnableFeatureCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceEnableFeatureCallBase: ClientCallUnaryBase<Bucketeer_Feature_EnableFeatureRequest, Bucketeer_Feature_EnableFeatureResponse>, Bucketeer_Feature_FeatureServiceEnableFeatureCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/EnableFeature" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceDisableFeatureCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceDisableFeatureCallBase: ClientCallUnaryBase<Bucketeer_Feature_DisableFeatureRequest, Bucketeer_Feature_DisableFeatureResponse>, Bucketeer_Feature_FeatureServiceDisableFeatureCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/DisableFeature" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceDeleteFeatureCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceDeleteFeatureCallBase: ClientCallUnaryBase<Bucketeer_Feature_DeleteFeatureRequest, Bucketeer_Feature_DeleteFeatureResponse>, Bucketeer_Feature_FeatureServiceDeleteFeatureCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/DeleteFeature" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsCallBase: ClientCallUnaryBase<Bucketeer_Feature_UpdateFeatureDetailsRequest, Bucketeer_Feature_UpdateFeatureDetailsResponse>, Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/UpdateFeatureDetails" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsCallBase: ClientCallUnaryBase<Bucketeer_Feature_UpdateFeatureVariationsRequest, Bucketeer_Feature_UpdateFeatureVariationsResponse>, Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/UpdateFeatureVariations" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingCallBase: ClientCallUnaryBase<Bucketeer_Feature_UpdateFeatureTargetingRequest, Bucketeer_Feature_UpdateFeatureTargetingResponse>, Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/UpdateFeatureTargeting" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceCreateSegmentCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceCreateSegmentCallBase: ClientCallUnaryBase<Bucketeer_Feature_CreateSegmentRequest, Bucketeer_Feature_CreateSegmentResponse>, Bucketeer_Feature_FeatureServiceCreateSegmentCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/CreateSegment" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceGetSegmentCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceGetSegmentCallBase: ClientCallUnaryBase<Bucketeer_Feature_GetSegmentRequest, Bucketeer_Feature_GetSegmentResponse>, Bucketeer_Feature_FeatureServiceGetSegmentCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/GetSegment" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceListSegmentsCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceListSegmentsCallBase: ClientCallUnaryBase<Bucketeer_Feature_ListSegmentsRequest, Bucketeer_Feature_ListSegmentsResponse>, Bucketeer_Feature_FeatureServiceListSegmentsCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/ListSegments" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceDeleteSegmentCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceDeleteSegmentCallBase: ClientCallUnaryBase<Bucketeer_Feature_DeleteSegmentRequest, Bucketeer_Feature_DeleteSegmentResponse>, Bucketeer_Feature_FeatureServiceDeleteSegmentCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/DeleteSegment" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceUpdateSegmentCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceUpdateSegmentCallBase: ClientCallUnaryBase<Bucketeer_Feature_UpdateSegmentRequest, Bucketeer_Feature_UpdateSegmentResponse>, Bucketeer_Feature_FeatureServiceUpdateSegmentCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/UpdateSegment" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceAddSegmentUserCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceAddSegmentUserCallBase: ClientCallUnaryBase<Bucketeer_Feature_AddSegmentUserRequest, Bucketeer_Feature_AddSegmentUserResponse>, Bucketeer_Feature_FeatureServiceAddSegmentUserCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/AddSegmentUser" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceDeleteSegmentUserCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceDeleteSegmentUserCallBase: ClientCallUnaryBase<Bucketeer_Feature_DeleteSegmentUserRequest, Bucketeer_Feature_DeleteSegmentUserResponse>, Bucketeer_Feature_FeatureServiceDeleteSegmentUserCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/DeleteSegmentUser" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceGetSegmentUserCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceGetSegmentUserCallBase: ClientCallUnaryBase<Bucketeer_Feature_GetSegmentUserRequest, Bucketeer_Feature_GetSegmentUserResponse>, Bucketeer_Feature_FeatureServiceGetSegmentUserCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/GetSegmentUser" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceListSegmentUsersCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceListSegmentUsersCallBase: ClientCallUnaryBase<Bucketeer_Feature_ListSegmentUsersRequest, Bucketeer_Feature_ListSegmentUsersResponse>, Bucketeer_Feature_FeatureServiceListSegmentUsersCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/ListSegmentUsers" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersCallBase: ClientCallUnaryBase<Bucketeer_Feature_BulkUploadSegmentUsersRequest, Bucketeer_Feature_BulkUploadSegmentUsersResponse>, Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/BulkUploadSegmentUsers" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersCallBase: ClientCallUnaryBase<Bucketeer_Feature_BulkDownloadSegmentUsersRequest, Bucketeer_Feature_BulkDownloadSegmentUsersResponse>, Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/BulkDownloadSegmentUsers" }
-}
-
-internal protocol Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesCallBase: ClientCallUnaryBase<Bucketeer_Feature_EvaluateOnAllFeaturesRequest, Bucketeer_Feature_EvaluateOnAllFeaturesResponse>, Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesCall {
-  override class var method: String { return "/bucketeer.feature.FeatureService/EvaluateOnAllFeatures" }
-}
-
-
-/// Instantiate Bucketeer_Feature_FeatureServiceServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_Feature_FeatureServiceService: ServiceClient {
-  /// Synchronous. Unary.
-  func searchFeatures(_ request: Bucketeer_Feature_SearchFeaturesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_SearchFeaturesResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func searchFeatures(_ request: Bucketeer_Feature_SearchFeaturesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_SearchFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceSearchFeaturesCall
-
-  /// Synchronous. Unary.
-  func getFeature(_ request: Bucketeer_Feature_GetFeatureRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_GetFeatureResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getFeature(_ request: Bucketeer_Feature_GetFeatureRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_GetFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetFeatureCall
-
-  /// Synchronous. Unary.
-  func getFeatures(_ request: Bucketeer_Feature_GetFeaturesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_GetFeaturesResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getFeatures(_ request: Bucketeer_Feature_GetFeaturesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_GetFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetFeaturesCall
-
-  /// Synchronous. Unary.
-  func listFeatures(_ request: Bucketeer_Feature_ListFeaturesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_ListFeaturesResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listFeatures(_ request: Bucketeer_Feature_ListFeaturesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_ListFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListFeaturesCall
-
-  /// Synchronous. Unary.
-  func listEnabledFeatures(_ request: Bucketeer_Feature_ListEnabledFeaturesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_ListEnabledFeaturesResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listEnabledFeatures(_ request: Bucketeer_Feature_ListEnabledFeaturesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_ListEnabledFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListEnabledFeaturesCall
-
-  /// Synchronous. Unary.
-  func createFeature(_ request: Bucketeer_Feature_CreateFeatureRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_CreateFeatureResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createFeature(_ request: Bucketeer_Feature_CreateFeatureRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_CreateFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceCreateFeatureCall
-
-  /// Synchronous. Unary.
-  func enableFeature(_ request: Bucketeer_Feature_EnableFeatureRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_EnableFeatureResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableFeature(_ request: Bucketeer_Feature_EnableFeatureRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_EnableFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceEnableFeatureCall
-
-  /// Synchronous. Unary.
-  func disableFeature(_ request: Bucketeer_Feature_DisableFeatureRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_DisableFeatureResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableFeature(_ request: Bucketeer_Feature_DisableFeatureRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_DisableFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDisableFeatureCall
-
-  /// Synchronous. Unary.
-  func deleteFeature(_ request: Bucketeer_Feature_DeleteFeatureRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_DeleteFeatureResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteFeature(_ request: Bucketeer_Feature_DeleteFeatureRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_DeleteFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDeleteFeatureCall
-
-  /// Synchronous. Unary.
-  func updateFeatureDetails(_ request: Bucketeer_Feature_UpdateFeatureDetailsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_UpdateFeatureDetailsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateFeatureDetails(_ request: Bucketeer_Feature_UpdateFeatureDetailsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_UpdateFeatureDetailsResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsCall
-
-  /// Synchronous. Unary.
-  func updateFeatureVariations(_ request: Bucketeer_Feature_UpdateFeatureVariationsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_UpdateFeatureVariationsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateFeatureVariations(_ request: Bucketeer_Feature_UpdateFeatureVariationsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_UpdateFeatureVariationsResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsCall
-
-  /// Synchronous. Unary.
-  func updateFeatureTargeting(_ request: Bucketeer_Feature_UpdateFeatureTargetingRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_UpdateFeatureTargetingResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateFeatureTargeting(_ request: Bucketeer_Feature_UpdateFeatureTargetingRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_UpdateFeatureTargetingResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingCall
-
-  /// Synchronous. Unary.
-  func createSegment(_ request: Bucketeer_Feature_CreateSegmentRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_CreateSegmentResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createSegment(_ request: Bucketeer_Feature_CreateSegmentRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_CreateSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceCreateSegmentCall
-
-  /// Synchronous. Unary.
-  func getSegment(_ request: Bucketeer_Feature_GetSegmentRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_GetSegmentResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getSegment(_ request: Bucketeer_Feature_GetSegmentRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_GetSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetSegmentCall
-
-  /// Synchronous. Unary.
-  func listSegments(_ request: Bucketeer_Feature_ListSegmentsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_ListSegmentsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listSegments(_ request: Bucketeer_Feature_ListSegmentsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_ListSegmentsResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListSegmentsCall
-
-  /// Synchronous. Unary.
-  func deleteSegment(_ request: Bucketeer_Feature_DeleteSegmentRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_DeleteSegmentResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteSegment(_ request: Bucketeer_Feature_DeleteSegmentRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_DeleteSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDeleteSegmentCall
-
-  /// Synchronous. Unary.
-  func updateSegment(_ request: Bucketeer_Feature_UpdateSegmentRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_UpdateSegmentResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateSegment(_ request: Bucketeer_Feature_UpdateSegmentRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_UpdateSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateSegmentCall
-
-  /// Synchronous. Unary.
-  func addSegmentUser(_ request: Bucketeer_Feature_AddSegmentUserRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_AddSegmentUserResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func addSegmentUser(_ request: Bucketeer_Feature_AddSegmentUserRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_AddSegmentUserResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceAddSegmentUserCall
-
-  /// Synchronous. Unary.
-  func deleteSegmentUser(_ request: Bucketeer_Feature_DeleteSegmentUserRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_DeleteSegmentUserResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteSegmentUser(_ request: Bucketeer_Feature_DeleteSegmentUserRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_DeleteSegmentUserResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDeleteSegmentUserCall
-
-  /// Synchronous. Unary.
-  func getSegmentUser(_ request: Bucketeer_Feature_GetSegmentUserRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_GetSegmentUserResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getSegmentUser(_ request: Bucketeer_Feature_GetSegmentUserRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_GetSegmentUserResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetSegmentUserCall
-
-  /// Synchronous. Unary.
-  func listSegmentUsers(_ request: Bucketeer_Feature_ListSegmentUsersRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_ListSegmentUsersResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listSegmentUsers(_ request: Bucketeer_Feature_ListSegmentUsersRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_ListSegmentUsersResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListSegmentUsersCall
-
-  /// Synchronous. Unary.
-  func bulkUploadSegmentUsers(_ request: Bucketeer_Feature_BulkUploadSegmentUsersRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_BulkUploadSegmentUsersResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func bulkUploadSegmentUsers(_ request: Bucketeer_Feature_BulkUploadSegmentUsersRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_BulkUploadSegmentUsersResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersCall
-
-  /// Synchronous. Unary.
-  func bulkDownloadSegmentUsers(_ request: Bucketeer_Feature_BulkDownloadSegmentUsersRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_BulkDownloadSegmentUsersResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func bulkDownloadSegmentUsers(_ request: Bucketeer_Feature_BulkDownloadSegmentUsersRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_BulkDownloadSegmentUsersResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersCall
-
-  /// Synchronous. Unary.
-  func evaluateOnAllFeatures(_ request: Bucketeer_Feature_EvaluateOnAllFeaturesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_EvaluateOnAllFeaturesResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func evaluateOnAllFeatures(_ request: Bucketeer_Feature_EvaluateOnAllFeaturesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_EvaluateOnAllFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesCall
+/// Usage: instantiate Bucketeer_Feature_FeatureServiceClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_Feature_FeatureServiceClientProtocol: GRPCClient {
+  func searchFeatures(
+    _ request: Bucketeer_Feature_SearchFeaturesRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_SearchFeaturesRequest, Bucketeer_Feature_SearchFeaturesResponse>
+
+  func getFeature(
+    _ request: Bucketeer_Feature_GetFeatureRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_GetFeatureRequest, Bucketeer_Feature_GetFeatureResponse>
+
+  func getFeatures(
+    _ request: Bucketeer_Feature_GetFeaturesRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_GetFeaturesRequest, Bucketeer_Feature_GetFeaturesResponse>
+
+  func listFeatures(
+    _ request: Bucketeer_Feature_ListFeaturesRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_ListFeaturesRequest, Bucketeer_Feature_ListFeaturesResponse>
+
+  func listEnabledFeatures(
+    _ request: Bucketeer_Feature_ListEnabledFeaturesRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_ListEnabledFeaturesRequest, Bucketeer_Feature_ListEnabledFeaturesResponse>
+
+  func createFeature(
+    _ request: Bucketeer_Feature_CreateFeatureRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_CreateFeatureRequest, Bucketeer_Feature_CreateFeatureResponse>
+
+  func enableFeature(
+    _ request: Bucketeer_Feature_EnableFeatureRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_EnableFeatureRequest, Bucketeer_Feature_EnableFeatureResponse>
+
+  func disableFeature(
+    _ request: Bucketeer_Feature_DisableFeatureRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_DisableFeatureRequest, Bucketeer_Feature_DisableFeatureResponse>
+
+  func deleteFeature(
+    _ request: Bucketeer_Feature_DeleteFeatureRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_DeleteFeatureRequest, Bucketeer_Feature_DeleteFeatureResponse>
+
+  func updateFeatureDetails(
+    _ request: Bucketeer_Feature_UpdateFeatureDetailsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_UpdateFeatureDetailsRequest, Bucketeer_Feature_UpdateFeatureDetailsResponse>
+
+  func updateFeatureVariations(
+    _ request: Bucketeer_Feature_UpdateFeatureVariationsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_UpdateFeatureVariationsRequest, Bucketeer_Feature_UpdateFeatureVariationsResponse>
+
+  func updateFeatureTargeting(
+    _ request: Bucketeer_Feature_UpdateFeatureTargetingRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_UpdateFeatureTargetingRequest, Bucketeer_Feature_UpdateFeatureTargetingResponse>
+
+  func createSegment(
+    _ request: Bucketeer_Feature_CreateSegmentRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_CreateSegmentRequest, Bucketeer_Feature_CreateSegmentResponse>
+
+  func getSegment(
+    _ request: Bucketeer_Feature_GetSegmentRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_GetSegmentRequest, Bucketeer_Feature_GetSegmentResponse>
+
+  func listSegments(
+    _ request: Bucketeer_Feature_ListSegmentsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_ListSegmentsRequest, Bucketeer_Feature_ListSegmentsResponse>
+
+  func deleteSegment(
+    _ request: Bucketeer_Feature_DeleteSegmentRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_DeleteSegmentRequest, Bucketeer_Feature_DeleteSegmentResponse>
+
+  func updateSegment(
+    _ request: Bucketeer_Feature_UpdateSegmentRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_UpdateSegmentRequest, Bucketeer_Feature_UpdateSegmentResponse>
+
+  func addSegmentUser(
+    _ request: Bucketeer_Feature_AddSegmentUserRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_AddSegmentUserRequest, Bucketeer_Feature_AddSegmentUserResponse>
+
+  func deleteSegmentUser(
+    _ request: Bucketeer_Feature_DeleteSegmentUserRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_DeleteSegmentUserRequest, Bucketeer_Feature_DeleteSegmentUserResponse>
+
+  func getSegmentUser(
+    _ request: Bucketeer_Feature_GetSegmentUserRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_GetSegmentUserRequest, Bucketeer_Feature_GetSegmentUserResponse>
+
+  func listSegmentUsers(
+    _ request: Bucketeer_Feature_ListSegmentUsersRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_ListSegmentUsersRequest, Bucketeer_Feature_ListSegmentUsersResponse>
+
+  func bulkUploadSegmentUsers(
+    _ request: Bucketeer_Feature_BulkUploadSegmentUsersRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_BulkUploadSegmentUsersRequest, Bucketeer_Feature_BulkUploadSegmentUsersResponse>
+
+  func bulkDownloadSegmentUsers(
+    _ request: Bucketeer_Feature_BulkDownloadSegmentUsersRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_BulkDownloadSegmentUsersRequest, Bucketeer_Feature_BulkDownloadSegmentUsersResponse>
+
+  func evaluateOnAllFeatures(
+    _ request: Bucketeer_Feature_EvaluateOnAllFeaturesRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_EvaluateOnAllFeaturesRequest, Bucketeer_Feature_EvaluateOnAllFeaturesResponse>
 
 }
 
-internal extension Bucketeer_Feature_FeatureServiceService {
-  /// Synchronous. Unary.
-  func searchFeatures(_ request: Bucketeer_Feature_SearchFeaturesRequest) throws -> Bucketeer_Feature_SearchFeaturesResponse {
-    return try self.searchFeatures(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func searchFeatures(_ request: Bucketeer_Feature_SearchFeaturesRequest, completion: @escaping (Bucketeer_Feature_SearchFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceSearchFeaturesCall {
-    return try self.searchFeatures(request, metadata: self.metadata, completion: completion)
+extension Bucketeer_Feature_FeatureServiceClientProtocol {
+
+  /// Unary call to SearchFeatures
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SearchFeatures.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func searchFeatures(
+    _ request: Bucketeer_Feature_SearchFeaturesRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_SearchFeaturesRequest, Bucketeer_Feature_SearchFeaturesResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/SearchFeatures",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func getFeature(_ request: Bucketeer_Feature_GetFeatureRequest) throws -> Bucketeer_Feature_GetFeatureResponse {
-    return try self.getFeature(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getFeature(_ request: Bucketeer_Feature_GetFeatureRequest, completion: @escaping (Bucketeer_Feature_GetFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetFeatureCall {
-    return try self.getFeature(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func getFeatures(_ request: Bucketeer_Feature_GetFeaturesRequest) throws -> Bucketeer_Feature_GetFeaturesResponse {
-    return try self.getFeatures(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getFeatures(_ request: Bucketeer_Feature_GetFeaturesRequest, completion: @escaping (Bucketeer_Feature_GetFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetFeaturesCall {
-    return try self.getFeatures(request, metadata: self.metadata, completion: completion)
+  /// Unary call to GetFeature
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetFeature.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getFeature(
+    _ request: Bucketeer_Feature_GetFeatureRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_GetFeatureRequest, Bucketeer_Feature_GetFeatureResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/GetFeature",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func listFeatures(_ request: Bucketeer_Feature_ListFeaturesRequest) throws -> Bucketeer_Feature_ListFeaturesResponse {
-    return try self.listFeatures(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listFeatures(_ request: Bucketeer_Feature_ListFeaturesRequest, completion: @escaping (Bucketeer_Feature_ListFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListFeaturesCall {
-    return try self.listFeatures(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func listEnabledFeatures(_ request: Bucketeer_Feature_ListEnabledFeaturesRequest) throws -> Bucketeer_Feature_ListEnabledFeaturesResponse {
-    return try self.listEnabledFeatures(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listEnabledFeatures(_ request: Bucketeer_Feature_ListEnabledFeaturesRequest, completion: @escaping (Bucketeer_Feature_ListEnabledFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListEnabledFeaturesCall {
-    return try self.listEnabledFeatures(request, metadata: self.metadata, completion: completion)
+  /// Unary call to GetFeatures
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetFeatures.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getFeatures(
+    _ request: Bucketeer_Feature_GetFeaturesRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_GetFeaturesRequest, Bucketeer_Feature_GetFeaturesResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/GetFeatures",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func createFeature(_ request: Bucketeer_Feature_CreateFeatureRequest) throws -> Bucketeer_Feature_CreateFeatureResponse {
-    return try self.createFeature(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createFeature(_ request: Bucketeer_Feature_CreateFeatureRequest, completion: @escaping (Bucketeer_Feature_CreateFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceCreateFeatureCall {
-    return try self.createFeature(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func enableFeature(_ request: Bucketeer_Feature_EnableFeatureRequest) throws -> Bucketeer_Feature_EnableFeatureResponse {
-    return try self.enableFeature(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableFeature(_ request: Bucketeer_Feature_EnableFeatureRequest, completion: @escaping (Bucketeer_Feature_EnableFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceEnableFeatureCall {
-    return try self.enableFeature(request, metadata: self.metadata, completion: completion)
+  /// Unary call to ListFeatures
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListFeatures.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listFeatures(
+    _ request: Bucketeer_Feature_ListFeaturesRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_ListFeaturesRequest, Bucketeer_Feature_ListFeaturesResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/ListFeatures",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func disableFeature(_ request: Bucketeer_Feature_DisableFeatureRequest) throws -> Bucketeer_Feature_DisableFeatureResponse {
-    return try self.disableFeature(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableFeature(_ request: Bucketeer_Feature_DisableFeatureRequest, completion: @escaping (Bucketeer_Feature_DisableFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDisableFeatureCall {
-    return try self.disableFeature(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func deleteFeature(_ request: Bucketeer_Feature_DeleteFeatureRequest) throws -> Bucketeer_Feature_DeleteFeatureResponse {
-    return try self.deleteFeature(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteFeature(_ request: Bucketeer_Feature_DeleteFeatureRequest, completion: @escaping (Bucketeer_Feature_DeleteFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDeleteFeatureCall {
-    return try self.deleteFeature(request, metadata: self.metadata, completion: completion)
+  /// Unary call to ListEnabledFeatures
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListEnabledFeatures.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listEnabledFeatures(
+    _ request: Bucketeer_Feature_ListEnabledFeaturesRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_ListEnabledFeaturesRequest, Bucketeer_Feature_ListEnabledFeaturesResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/ListEnabledFeatures",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func updateFeatureDetails(_ request: Bucketeer_Feature_UpdateFeatureDetailsRequest) throws -> Bucketeer_Feature_UpdateFeatureDetailsResponse {
-    return try self.updateFeatureDetails(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateFeatureDetails(_ request: Bucketeer_Feature_UpdateFeatureDetailsRequest, completion: @escaping (Bucketeer_Feature_UpdateFeatureDetailsResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsCall {
-    return try self.updateFeatureDetails(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func updateFeatureVariations(_ request: Bucketeer_Feature_UpdateFeatureVariationsRequest) throws -> Bucketeer_Feature_UpdateFeatureVariationsResponse {
-    return try self.updateFeatureVariations(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateFeatureVariations(_ request: Bucketeer_Feature_UpdateFeatureVariationsRequest, completion: @escaping (Bucketeer_Feature_UpdateFeatureVariationsResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsCall {
-    return try self.updateFeatureVariations(request, metadata: self.metadata, completion: completion)
+  /// Unary call to CreateFeature
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreateFeature.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func createFeature(
+    _ request: Bucketeer_Feature_CreateFeatureRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_CreateFeatureRequest, Bucketeer_Feature_CreateFeatureResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/CreateFeature",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func updateFeatureTargeting(_ request: Bucketeer_Feature_UpdateFeatureTargetingRequest) throws -> Bucketeer_Feature_UpdateFeatureTargetingResponse {
-    return try self.updateFeatureTargeting(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateFeatureTargeting(_ request: Bucketeer_Feature_UpdateFeatureTargetingRequest, completion: @escaping (Bucketeer_Feature_UpdateFeatureTargetingResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingCall {
-    return try self.updateFeatureTargeting(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func createSegment(_ request: Bucketeer_Feature_CreateSegmentRequest) throws -> Bucketeer_Feature_CreateSegmentResponse {
-    return try self.createSegment(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createSegment(_ request: Bucketeer_Feature_CreateSegmentRequest, completion: @escaping (Bucketeer_Feature_CreateSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceCreateSegmentCall {
-    return try self.createSegment(request, metadata: self.metadata, completion: completion)
+  /// Unary call to EnableFeature
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to EnableFeature.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func enableFeature(
+    _ request: Bucketeer_Feature_EnableFeatureRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_EnableFeatureRequest, Bucketeer_Feature_EnableFeatureResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/EnableFeature",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func getSegment(_ request: Bucketeer_Feature_GetSegmentRequest) throws -> Bucketeer_Feature_GetSegmentResponse {
-    return try self.getSegment(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getSegment(_ request: Bucketeer_Feature_GetSegmentRequest, completion: @escaping (Bucketeer_Feature_GetSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetSegmentCall {
-    return try self.getSegment(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func listSegments(_ request: Bucketeer_Feature_ListSegmentsRequest) throws -> Bucketeer_Feature_ListSegmentsResponse {
-    return try self.listSegments(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listSegments(_ request: Bucketeer_Feature_ListSegmentsRequest, completion: @escaping (Bucketeer_Feature_ListSegmentsResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListSegmentsCall {
-    return try self.listSegments(request, metadata: self.metadata, completion: completion)
+  /// Unary call to DisableFeature
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DisableFeature.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func disableFeature(
+    _ request: Bucketeer_Feature_DisableFeatureRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_DisableFeatureRequest, Bucketeer_Feature_DisableFeatureResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/DisableFeature",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func deleteSegment(_ request: Bucketeer_Feature_DeleteSegmentRequest) throws -> Bucketeer_Feature_DeleteSegmentResponse {
-    return try self.deleteSegment(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteSegment(_ request: Bucketeer_Feature_DeleteSegmentRequest, completion: @escaping (Bucketeer_Feature_DeleteSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDeleteSegmentCall {
-    return try self.deleteSegment(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func updateSegment(_ request: Bucketeer_Feature_UpdateSegmentRequest) throws -> Bucketeer_Feature_UpdateSegmentResponse {
-    return try self.updateSegment(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateSegment(_ request: Bucketeer_Feature_UpdateSegmentRequest, completion: @escaping (Bucketeer_Feature_UpdateSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateSegmentCall {
-    return try self.updateSegment(request, metadata: self.metadata, completion: completion)
+  /// Unary call to DeleteFeature
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DeleteFeature.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func deleteFeature(
+    _ request: Bucketeer_Feature_DeleteFeatureRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_DeleteFeatureRequest, Bucketeer_Feature_DeleteFeatureResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/DeleteFeature",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func addSegmentUser(_ request: Bucketeer_Feature_AddSegmentUserRequest) throws -> Bucketeer_Feature_AddSegmentUserResponse {
-    return try self.addSegmentUser(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func addSegmentUser(_ request: Bucketeer_Feature_AddSegmentUserRequest, completion: @escaping (Bucketeer_Feature_AddSegmentUserResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceAddSegmentUserCall {
-    return try self.addSegmentUser(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func deleteSegmentUser(_ request: Bucketeer_Feature_DeleteSegmentUserRequest) throws -> Bucketeer_Feature_DeleteSegmentUserResponse {
-    return try self.deleteSegmentUser(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteSegmentUser(_ request: Bucketeer_Feature_DeleteSegmentUserRequest, completion: @escaping (Bucketeer_Feature_DeleteSegmentUserResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDeleteSegmentUserCall {
-    return try self.deleteSegmentUser(request, metadata: self.metadata, completion: completion)
+  /// Unary call to UpdateFeatureDetails
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpdateFeatureDetails.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func updateFeatureDetails(
+    _ request: Bucketeer_Feature_UpdateFeatureDetailsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_UpdateFeatureDetailsRequest, Bucketeer_Feature_UpdateFeatureDetailsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/UpdateFeatureDetails",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func getSegmentUser(_ request: Bucketeer_Feature_GetSegmentUserRequest) throws -> Bucketeer_Feature_GetSegmentUserResponse {
-    return try self.getSegmentUser(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getSegmentUser(_ request: Bucketeer_Feature_GetSegmentUserRequest, completion: @escaping (Bucketeer_Feature_GetSegmentUserResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetSegmentUserCall {
-    return try self.getSegmentUser(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func listSegmentUsers(_ request: Bucketeer_Feature_ListSegmentUsersRequest) throws -> Bucketeer_Feature_ListSegmentUsersResponse {
-    return try self.listSegmentUsers(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listSegmentUsers(_ request: Bucketeer_Feature_ListSegmentUsersRequest, completion: @escaping (Bucketeer_Feature_ListSegmentUsersResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListSegmentUsersCall {
-    return try self.listSegmentUsers(request, metadata: self.metadata, completion: completion)
+  /// Unary call to UpdateFeatureVariations
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpdateFeatureVariations.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func updateFeatureVariations(
+    _ request: Bucketeer_Feature_UpdateFeatureVariationsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_UpdateFeatureVariationsRequest, Bucketeer_Feature_UpdateFeatureVariationsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/UpdateFeatureVariations",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func bulkUploadSegmentUsers(_ request: Bucketeer_Feature_BulkUploadSegmentUsersRequest) throws -> Bucketeer_Feature_BulkUploadSegmentUsersResponse {
-    return try self.bulkUploadSegmentUsers(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func bulkUploadSegmentUsers(_ request: Bucketeer_Feature_BulkUploadSegmentUsersRequest, completion: @escaping (Bucketeer_Feature_BulkUploadSegmentUsersResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersCall {
-    return try self.bulkUploadSegmentUsers(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func bulkDownloadSegmentUsers(_ request: Bucketeer_Feature_BulkDownloadSegmentUsersRequest) throws -> Bucketeer_Feature_BulkDownloadSegmentUsersResponse {
-    return try self.bulkDownloadSegmentUsers(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func bulkDownloadSegmentUsers(_ request: Bucketeer_Feature_BulkDownloadSegmentUsersRequest, completion: @escaping (Bucketeer_Feature_BulkDownloadSegmentUsersResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersCall {
-    return try self.bulkDownloadSegmentUsers(request, metadata: self.metadata, completion: completion)
+  /// Unary call to UpdateFeatureTargeting
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpdateFeatureTargeting.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func updateFeatureTargeting(
+    _ request: Bucketeer_Feature_UpdateFeatureTargetingRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_UpdateFeatureTargetingRequest, Bucketeer_Feature_UpdateFeatureTargetingResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/UpdateFeatureTargeting",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func evaluateOnAllFeatures(_ request: Bucketeer_Feature_EvaluateOnAllFeaturesRequest) throws -> Bucketeer_Feature_EvaluateOnAllFeaturesResponse {
-    return try self.evaluateOnAllFeatures(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func evaluateOnAllFeatures(_ request: Bucketeer_Feature_EvaluateOnAllFeaturesRequest, completion: @escaping (Bucketeer_Feature_EvaluateOnAllFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesCall {
-    return try self.evaluateOnAllFeatures(request, metadata: self.metadata, completion: completion)
-  }
-
-}
-
-internal final class Bucketeer_Feature_FeatureServiceServiceClient: ServiceClientBase, Bucketeer_Feature_FeatureServiceService {
-  /// Synchronous. Unary.
-  internal func searchFeatures(_ request: Bucketeer_Feature_SearchFeaturesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_SearchFeaturesResponse {
-    return try Bucketeer_Feature_FeatureServiceSearchFeaturesCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func searchFeatures(_ request: Bucketeer_Feature_SearchFeaturesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_SearchFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceSearchFeaturesCall {
-    return try Bucketeer_Feature_FeatureServiceSearchFeaturesCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to CreateSegment
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreateSegment.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func createSegment(
+    _ request: Bucketeer_Feature_CreateSegmentRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_CreateSegmentRequest, Bucketeer_Feature_CreateSegmentResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/CreateSegment",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func getFeature(_ request: Bucketeer_Feature_GetFeatureRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_GetFeatureResponse {
-    return try Bucketeer_Feature_FeatureServiceGetFeatureCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getFeature(_ request: Bucketeer_Feature_GetFeatureRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_GetFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetFeatureCall {
-    return try Bucketeer_Feature_FeatureServiceGetFeatureCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getFeatures(_ request: Bucketeer_Feature_GetFeaturesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_GetFeaturesResponse {
-    return try Bucketeer_Feature_FeatureServiceGetFeaturesCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getFeatures(_ request: Bucketeer_Feature_GetFeaturesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_GetFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetFeaturesCall {
-    return try Bucketeer_Feature_FeatureServiceGetFeaturesCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to GetSegment
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetSegment.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getSegment(
+    _ request: Bucketeer_Feature_GetSegmentRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_GetSegmentRequest, Bucketeer_Feature_GetSegmentResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/GetSegment",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func listFeatures(_ request: Bucketeer_Feature_ListFeaturesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_ListFeaturesResponse {
-    return try Bucketeer_Feature_FeatureServiceListFeaturesCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listFeatures(_ request: Bucketeer_Feature_ListFeaturesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_ListFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListFeaturesCall {
-    return try Bucketeer_Feature_FeatureServiceListFeaturesCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func listEnabledFeatures(_ request: Bucketeer_Feature_ListEnabledFeaturesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_ListEnabledFeaturesResponse {
-    return try Bucketeer_Feature_FeatureServiceListEnabledFeaturesCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listEnabledFeatures(_ request: Bucketeer_Feature_ListEnabledFeaturesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_ListEnabledFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListEnabledFeaturesCall {
-    return try Bucketeer_Feature_FeatureServiceListEnabledFeaturesCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to ListSegments
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListSegments.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listSegments(
+    _ request: Bucketeer_Feature_ListSegmentsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_ListSegmentsRequest, Bucketeer_Feature_ListSegmentsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/ListSegments",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func createFeature(_ request: Bucketeer_Feature_CreateFeatureRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_CreateFeatureResponse {
-    return try Bucketeer_Feature_FeatureServiceCreateFeatureCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func createFeature(_ request: Bucketeer_Feature_CreateFeatureRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_CreateFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceCreateFeatureCall {
-    return try Bucketeer_Feature_FeatureServiceCreateFeatureCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func enableFeature(_ request: Bucketeer_Feature_EnableFeatureRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_EnableFeatureResponse {
-    return try Bucketeer_Feature_FeatureServiceEnableFeatureCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func enableFeature(_ request: Bucketeer_Feature_EnableFeatureRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_EnableFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceEnableFeatureCall {
-    return try Bucketeer_Feature_FeatureServiceEnableFeatureCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to DeleteSegment
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DeleteSegment.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func deleteSegment(
+    _ request: Bucketeer_Feature_DeleteSegmentRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_DeleteSegmentRequest, Bucketeer_Feature_DeleteSegmentResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/DeleteSegment",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func disableFeature(_ request: Bucketeer_Feature_DisableFeatureRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_DisableFeatureResponse {
-    return try Bucketeer_Feature_FeatureServiceDisableFeatureCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func disableFeature(_ request: Bucketeer_Feature_DisableFeatureRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_DisableFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDisableFeatureCall {
-    return try Bucketeer_Feature_FeatureServiceDisableFeatureCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func deleteFeature(_ request: Bucketeer_Feature_DeleteFeatureRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_DeleteFeatureResponse {
-    return try Bucketeer_Feature_FeatureServiceDeleteFeatureCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func deleteFeature(_ request: Bucketeer_Feature_DeleteFeatureRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_DeleteFeatureResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDeleteFeatureCall {
-    return try Bucketeer_Feature_FeatureServiceDeleteFeatureCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to UpdateSegment
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpdateSegment.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func updateSegment(
+    _ request: Bucketeer_Feature_UpdateSegmentRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_UpdateSegmentRequest, Bucketeer_Feature_UpdateSegmentResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/UpdateSegment",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func updateFeatureDetails(_ request: Bucketeer_Feature_UpdateFeatureDetailsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_UpdateFeatureDetailsResponse {
-    return try Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func updateFeatureDetails(_ request: Bucketeer_Feature_UpdateFeatureDetailsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_UpdateFeatureDetailsResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsCall {
-    return try Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func updateFeatureVariations(_ request: Bucketeer_Feature_UpdateFeatureVariationsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_UpdateFeatureVariationsResponse {
-    return try Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func updateFeatureVariations(_ request: Bucketeer_Feature_UpdateFeatureVariationsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_UpdateFeatureVariationsResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsCall {
-    return try Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to AddSegmentUser
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to AddSegmentUser.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func addSegmentUser(
+    _ request: Bucketeer_Feature_AddSegmentUserRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_AddSegmentUserRequest, Bucketeer_Feature_AddSegmentUserResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/AddSegmentUser",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func updateFeatureTargeting(_ request: Bucketeer_Feature_UpdateFeatureTargetingRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_UpdateFeatureTargetingResponse {
-    return try Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func updateFeatureTargeting(_ request: Bucketeer_Feature_UpdateFeatureTargetingRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_UpdateFeatureTargetingResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingCall {
-    return try Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func createSegment(_ request: Bucketeer_Feature_CreateSegmentRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_CreateSegmentResponse {
-    return try Bucketeer_Feature_FeatureServiceCreateSegmentCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func createSegment(_ request: Bucketeer_Feature_CreateSegmentRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_CreateSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceCreateSegmentCall {
-    return try Bucketeer_Feature_FeatureServiceCreateSegmentCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to DeleteSegmentUser
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DeleteSegmentUser.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func deleteSegmentUser(
+    _ request: Bucketeer_Feature_DeleteSegmentUserRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_DeleteSegmentUserRequest, Bucketeer_Feature_DeleteSegmentUserResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/DeleteSegmentUser",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func getSegment(_ request: Bucketeer_Feature_GetSegmentRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_GetSegmentResponse {
-    return try Bucketeer_Feature_FeatureServiceGetSegmentCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getSegment(_ request: Bucketeer_Feature_GetSegmentRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_GetSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetSegmentCall {
-    return try Bucketeer_Feature_FeatureServiceGetSegmentCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func listSegments(_ request: Bucketeer_Feature_ListSegmentsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_ListSegmentsResponse {
-    return try Bucketeer_Feature_FeatureServiceListSegmentsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listSegments(_ request: Bucketeer_Feature_ListSegmentsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_ListSegmentsResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListSegmentsCall {
-    return try Bucketeer_Feature_FeatureServiceListSegmentsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to GetSegmentUser
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetSegmentUser.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getSegmentUser(
+    _ request: Bucketeer_Feature_GetSegmentUserRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_GetSegmentUserRequest, Bucketeer_Feature_GetSegmentUserResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/GetSegmentUser",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func deleteSegment(_ request: Bucketeer_Feature_DeleteSegmentRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_DeleteSegmentResponse {
-    return try Bucketeer_Feature_FeatureServiceDeleteSegmentCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func deleteSegment(_ request: Bucketeer_Feature_DeleteSegmentRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_DeleteSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDeleteSegmentCall {
-    return try Bucketeer_Feature_FeatureServiceDeleteSegmentCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func updateSegment(_ request: Bucketeer_Feature_UpdateSegmentRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_UpdateSegmentResponse {
-    return try Bucketeer_Feature_FeatureServiceUpdateSegmentCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func updateSegment(_ request: Bucketeer_Feature_UpdateSegmentRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_UpdateSegmentResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceUpdateSegmentCall {
-    return try Bucketeer_Feature_FeatureServiceUpdateSegmentCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to ListSegmentUsers
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListSegmentUsers.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listSegmentUsers(
+    _ request: Bucketeer_Feature_ListSegmentUsersRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_ListSegmentUsersRequest, Bucketeer_Feature_ListSegmentUsersResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/ListSegmentUsers",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func addSegmentUser(_ request: Bucketeer_Feature_AddSegmentUserRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_AddSegmentUserResponse {
-    return try Bucketeer_Feature_FeatureServiceAddSegmentUserCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func addSegmentUser(_ request: Bucketeer_Feature_AddSegmentUserRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_AddSegmentUserResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceAddSegmentUserCall {
-    return try Bucketeer_Feature_FeatureServiceAddSegmentUserCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func deleteSegmentUser(_ request: Bucketeer_Feature_DeleteSegmentUserRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_DeleteSegmentUserResponse {
-    return try Bucketeer_Feature_FeatureServiceDeleteSegmentUserCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func deleteSegmentUser(_ request: Bucketeer_Feature_DeleteSegmentUserRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_DeleteSegmentUserResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceDeleteSegmentUserCall {
-    return try Bucketeer_Feature_FeatureServiceDeleteSegmentUserCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to BulkUploadSegmentUsers
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to BulkUploadSegmentUsers.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func bulkUploadSegmentUsers(
+    _ request: Bucketeer_Feature_BulkUploadSegmentUsersRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_BulkUploadSegmentUsersRequest, Bucketeer_Feature_BulkUploadSegmentUsersResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/BulkUploadSegmentUsers",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func getSegmentUser(_ request: Bucketeer_Feature_GetSegmentUserRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_GetSegmentUserResponse {
-    return try Bucketeer_Feature_FeatureServiceGetSegmentUserCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getSegmentUser(_ request: Bucketeer_Feature_GetSegmentUserRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_GetSegmentUserResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceGetSegmentUserCall {
-    return try Bucketeer_Feature_FeatureServiceGetSegmentUserCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func listSegmentUsers(_ request: Bucketeer_Feature_ListSegmentUsersRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_ListSegmentUsersResponse {
-    return try Bucketeer_Feature_FeatureServiceListSegmentUsersCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listSegmentUsers(_ request: Bucketeer_Feature_ListSegmentUsersRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_ListSegmentUsersResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceListSegmentUsersCall {
-    return try Bucketeer_Feature_FeatureServiceListSegmentUsersCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to BulkDownloadSegmentUsers
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to BulkDownloadSegmentUsers.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func bulkDownloadSegmentUsers(
+    _ request: Bucketeer_Feature_BulkDownloadSegmentUsersRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_BulkDownloadSegmentUsersRequest, Bucketeer_Feature_BulkDownloadSegmentUsersResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/BulkDownloadSegmentUsers",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func bulkUploadSegmentUsers(_ request: Bucketeer_Feature_BulkUploadSegmentUsersRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_BulkUploadSegmentUsersResponse {
-    return try Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func bulkUploadSegmentUsers(_ request: Bucketeer_Feature_BulkUploadSegmentUsersRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_BulkUploadSegmentUsersResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersCall {
-    return try Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func bulkDownloadSegmentUsers(_ request: Bucketeer_Feature_BulkDownloadSegmentUsersRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_BulkDownloadSegmentUsersResponse {
-    return try Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func bulkDownloadSegmentUsers(_ request: Bucketeer_Feature_BulkDownloadSegmentUsersRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_BulkDownloadSegmentUsersResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersCall {
-    return try Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func evaluateOnAllFeatures(_ request: Bucketeer_Feature_EvaluateOnAllFeaturesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Feature_EvaluateOnAllFeaturesResponse {
-    return try Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func evaluateOnAllFeatures(_ request: Bucketeer_Feature_EvaluateOnAllFeaturesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Feature_EvaluateOnAllFeaturesResponse?, CallResult) -> Void) throws -> Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesCall {
-    return try Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_Feature_FeatureServiceProvider: ServiceProvider {
-  func searchFeatures(request: Bucketeer_Feature_SearchFeaturesRequest, session: Bucketeer_Feature_FeatureServiceSearchFeaturesSession) throws -> Bucketeer_Feature_SearchFeaturesResponse
-  func getFeature(request: Bucketeer_Feature_GetFeatureRequest, session: Bucketeer_Feature_FeatureServiceGetFeatureSession) throws -> Bucketeer_Feature_GetFeatureResponse
-  func getFeatures(request: Bucketeer_Feature_GetFeaturesRequest, session: Bucketeer_Feature_FeatureServiceGetFeaturesSession) throws -> Bucketeer_Feature_GetFeaturesResponse
-  func listFeatures(request: Bucketeer_Feature_ListFeaturesRequest, session: Bucketeer_Feature_FeatureServiceListFeaturesSession) throws -> Bucketeer_Feature_ListFeaturesResponse
-  func listEnabledFeatures(request: Bucketeer_Feature_ListEnabledFeaturesRequest, session: Bucketeer_Feature_FeatureServiceListEnabledFeaturesSession) throws -> Bucketeer_Feature_ListEnabledFeaturesResponse
-  func createFeature(request: Bucketeer_Feature_CreateFeatureRequest, session: Bucketeer_Feature_FeatureServiceCreateFeatureSession) throws -> Bucketeer_Feature_CreateFeatureResponse
-  func enableFeature(request: Bucketeer_Feature_EnableFeatureRequest, session: Bucketeer_Feature_FeatureServiceEnableFeatureSession) throws -> Bucketeer_Feature_EnableFeatureResponse
-  func disableFeature(request: Bucketeer_Feature_DisableFeatureRequest, session: Bucketeer_Feature_FeatureServiceDisableFeatureSession) throws -> Bucketeer_Feature_DisableFeatureResponse
-  func deleteFeature(request: Bucketeer_Feature_DeleteFeatureRequest, session: Bucketeer_Feature_FeatureServiceDeleteFeatureSession) throws -> Bucketeer_Feature_DeleteFeatureResponse
-  func updateFeatureDetails(request: Bucketeer_Feature_UpdateFeatureDetailsRequest, session: Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsSession) throws -> Bucketeer_Feature_UpdateFeatureDetailsResponse
-  func updateFeatureVariations(request: Bucketeer_Feature_UpdateFeatureVariationsRequest, session: Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsSession) throws -> Bucketeer_Feature_UpdateFeatureVariationsResponse
-  func updateFeatureTargeting(request: Bucketeer_Feature_UpdateFeatureTargetingRequest, session: Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingSession) throws -> Bucketeer_Feature_UpdateFeatureTargetingResponse
-  func createSegment(request: Bucketeer_Feature_CreateSegmentRequest, session: Bucketeer_Feature_FeatureServiceCreateSegmentSession) throws -> Bucketeer_Feature_CreateSegmentResponse
-  func getSegment(request: Bucketeer_Feature_GetSegmentRequest, session: Bucketeer_Feature_FeatureServiceGetSegmentSession) throws -> Bucketeer_Feature_GetSegmentResponse
-  func listSegments(request: Bucketeer_Feature_ListSegmentsRequest, session: Bucketeer_Feature_FeatureServiceListSegmentsSession) throws -> Bucketeer_Feature_ListSegmentsResponse
-  func deleteSegment(request: Bucketeer_Feature_DeleteSegmentRequest, session: Bucketeer_Feature_FeatureServiceDeleteSegmentSession) throws -> Bucketeer_Feature_DeleteSegmentResponse
-  func updateSegment(request: Bucketeer_Feature_UpdateSegmentRequest, session: Bucketeer_Feature_FeatureServiceUpdateSegmentSession) throws -> Bucketeer_Feature_UpdateSegmentResponse
-  func addSegmentUser(request: Bucketeer_Feature_AddSegmentUserRequest, session: Bucketeer_Feature_FeatureServiceAddSegmentUserSession) throws -> Bucketeer_Feature_AddSegmentUserResponse
-  func deleteSegmentUser(request: Bucketeer_Feature_DeleteSegmentUserRequest, session: Bucketeer_Feature_FeatureServiceDeleteSegmentUserSession) throws -> Bucketeer_Feature_DeleteSegmentUserResponse
-  func getSegmentUser(request: Bucketeer_Feature_GetSegmentUserRequest, session: Bucketeer_Feature_FeatureServiceGetSegmentUserSession) throws -> Bucketeer_Feature_GetSegmentUserResponse
-  func listSegmentUsers(request: Bucketeer_Feature_ListSegmentUsersRequest, session: Bucketeer_Feature_FeatureServiceListSegmentUsersSession) throws -> Bucketeer_Feature_ListSegmentUsersResponse
-  func bulkUploadSegmentUsers(request: Bucketeer_Feature_BulkUploadSegmentUsersRequest, session: Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersSession) throws -> Bucketeer_Feature_BulkUploadSegmentUsersResponse
-  func bulkDownloadSegmentUsers(request: Bucketeer_Feature_BulkDownloadSegmentUsersRequest, session: Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersSession) throws -> Bucketeer_Feature_BulkDownloadSegmentUsersResponse
-  func evaluateOnAllFeatures(request: Bucketeer_Feature_EvaluateOnAllFeaturesRequest, session: Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesSession) throws -> Bucketeer_Feature_EvaluateOnAllFeaturesResponse
-}
-
-extension Bucketeer_Feature_FeatureServiceProvider {
-  internal var serviceName: String { return "bucketeer.feature.FeatureService" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.feature.FeatureService/SearchFeatures":
-      return try Bucketeer_Feature_FeatureServiceSearchFeaturesSessionBase(
-        handler: handler,
-        providerBlock: { try self.searchFeatures(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceSearchFeaturesSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/GetFeature":
-      return try Bucketeer_Feature_FeatureServiceGetFeatureSessionBase(
-        handler: handler,
-        providerBlock: { try self.getFeature(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceGetFeatureSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/GetFeatures":
-      return try Bucketeer_Feature_FeatureServiceGetFeaturesSessionBase(
-        handler: handler,
-        providerBlock: { try self.getFeatures(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceGetFeaturesSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/ListFeatures":
-      return try Bucketeer_Feature_FeatureServiceListFeaturesSessionBase(
-        handler: handler,
-        providerBlock: { try self.listFeatures(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceListFeaturesSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/ListEnabledFeatures":
-      return try Bucketeer_Feature_FeatureServiceListEnabledFeaturesSessionBase(
-        handler: handler,
-        providerBlock: { try self.listEnabledFeatures(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceListEnabledFeaturesSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/CreateFeature":
-      return try Bucketeer_Feature_FeatureServiceCreateFeatureSessionBase(
-        handler: handler,
-        providerBlock: { try self.createFeature(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceCreateFeatureSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/EnableFeature":
-      return try Bucketeer_Feature_FeatureServiceEnableFeatureSessionBase(
-        handler: handler,
-        providerBlock: { try self.enableFeature(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceEnableFeatureSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/DisableFeature":
-      return try Bucketeer_Feature_FeatureServiceDisableFeatureSessionBase(
-        handler: handler,
-        providerBlock: { try self.disableFeature(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceDisableFeatureSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/DeleteFeature":
-      return try Bucketeer_Feature_FeatureServiceDeleteFeatureSessionBase(
-        handler: handler,
-        providerBlock: { try self.deleteFeature(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceDeleteFeatureSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/UpdateFeatureDetails":
-      return try Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsSessionBase(
-        handler: handler,
-        providerBlock: { try self.updateFeatureDetails(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/UpdateFeatureVariations":
-      return try Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsSessionBase(
-        handler: handler,
-        providerBlock: { try self.updateFeatureVariations(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/UpdateFeatureTargeting":
-      return try Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingSessionBase(
-        handler: handler,
-        providerBlock: { try self.updateFeatureTargeting(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/CreateSegment":
-      return try Bucketeer_Feature_FeatureServiceCreateSegmentSessionBase(
-        handler: handler,
-        providerBlock: { try self.createSegment(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceCreateSegmentSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/GetSegment":
-      return try Bucketeer_Feature_FeatureServiceGetSegmentSessionBase(
-        handler: handler,
-        providerBlock: { try self.getSegment(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceGetSegmentSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/ListSegments":
-      return try Bucketeer_Feature_FeatureServiceListSegmentsSessionBase(
-        handler: handler,
-        providerBlock: { try self.listSegments(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceListSegmentsSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/DeleteSegment":
-      return try Bucketeer_Feature_FeatureServiceDeleteSegmentSessionBase(
-        handler: handler,
-        providerBlock: { try self.deleteSegment(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceDeleteSegmentSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/UpdateSegment":
-      return try Bucketeer_Feature_FeatureServiceUpdateSegmentSessionBase(
-        handler: handler,
-        providerBlock: { try self.updateSegment(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceUpdateSegmentSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/AddSegmentUser":
-      return try Bucketeer_Feature_FeatureServiceAddSegmentUserSessionBase(
-        handler: handler,
-        providerBlock: { try self.addSegmentUser(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceAddSegmentUserSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/DeleteSegmentUser":
-      return try Bucketeer_Feature_FeatureServiceDeleteSegmentUserSessionBase(
-        handler: handler,
-        providerBlock: { try self.deleteSegmentUser(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceDeleteSegmentUserSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/GetSegmentUser":
-      return try Bucketeer_Feature_FeatureServiceGetSegmentUserSessionBase(
-        handler: handler,
-        providerBlock: { try self.getSegmentUser(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceGetSegmentUserSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/ListSegmentUsers":
-      return try Bucketeer_Feature_FeatureServiceListSegmentUsersSessionBase(
-        handler: handler,
-        providerBlock: { try self.listSegmentUsers(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceListSegmentUsersSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/BulkUploadSegmentUsers":
-      return try Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersSessionBase(
-        handler: handler,
-        providerBlock: { try self.bulkUploadSegmentUsers(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/BulkDownloadSegmentUsers":
-      return try Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersSessionBase(
-        handler: handler,
-        providerBlock: { try self.bulkDownloadSegmentUsers(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersSessionBase) })
-          .run()
-    case "/bucketeer.feature.FeatureService/EvaluateOnAllFeatures":
-      return try Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesSessionBase(
-        handler: handler,
-        providerBlock: { try self.evaluateOnAllFeatures(request: $0, session: $1 as! Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to EvaluateOnAllFeatures
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to EvaluateOnAllFeatures.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func evaluateOnAllFeatures(
+    _ request: Bucketeer_Feature_EvaluateOnAllFeaturesRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_EvaluateOnAllFeaturesRequest, Bucketeer_Feature_EvaluateOnAllFeaturesResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/EvaluateOnAllFeatures",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_Feature_FeatureServiceSearchFeaturesSession: ServerSessionUnary {}
+internal final class Bucketeer_Feature_FeatureServiceClient: Bucketeer_Feature_FeatureServiceClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_Feature_FeatureServiceSearchFeaturesSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_SearchFeaturesRequest, Bucketeer_Feature_SearchFeaturesResponse>, Bucketeer_Feature_FeatureServiceSearchFeaturesSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceGetFeatureSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceGetFeatureSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_GetFeatureRequest, Bucketeer_Feature_GetFeatureResponse>, Bucketeer_Feature_FeatureServiceGetFeatureSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceGetFeaturesSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceGetFeaturesSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_GetFeaturesRequest, Bucketeer_Feature_GetFeaturesResponse>, Bucketeer_Feature_FeatureServiceGetFeaturesSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceListFeaturesSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceListFeaturesSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_ListFeaturesRequest, Bucketeer_Feature_ListFeaturesResponse>, Bucketeer_Feature_FeatureServiceListFeaturesSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceListEnabledFeaturesSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceListEnabledFeaturesSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_ListEnabledFeaturesRequest, Bucketeer_Feature_ListEnabledFeaturesResponse>, Bucketeer_Feature_FeatureServiceListEnabledFeaturesSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceCreateFeatureSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceCreateFeatureSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_CreateFeatureRequest, Bucketeer_Feature_CreateFeatureResponse>, Bucketeer_Feature_FeatureServiceCreateFeatureSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceEnableFeatureSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceEnableFeatureSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_EnableFeatureRequest, Bucketeer_Feature_EnableFeatureResponse>, Bucketeer_Feature_FeatureServiceEnableFeatureSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceDisableFeatureSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceDisableFeatureSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_DisableFeatureRequest, Bucketeer_Feature_DisableFeatureResponse>, Bucketeer_Feature_FeatureServiceDisableFeatureSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceDeleteFeatureSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceDeleteFeatureSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_DeleteFeatureRequest, Bucketeer_Feature_DeleteFeatureResponse>, Bucketeer_Feature_FeatureServiceDeleteFeatureSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_UpdateFeatureDetailsRequest, Bucketeer_Feature_UpdateFeatureDetailsResponse>, Bucketeer_Feature_FeatureServiceUpdateFeatureDetailsSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_UpdateFeatureVariationsRequest, Bucketeer_Feature_UpdateFeatureVariationsResponse>, Bucketeer_Feature_FeatureServiceUpdateFeatureVariationsSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_UpdateFeatureTargetingRequest, Bucketeer_Feature_UpdateFeatureTargetingResponse>, Bucketeer_Feature_FeatureServiceUpdateFeatureTargetingSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceCreateSegmentSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceCreateSegmentSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_CreateSegmentRequest, Bucketeer_Feature_CreateSegmentResponse>, Bucketeer_Feature_FeatureServiceCreateSegmentSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceGetSegmentSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceGetSegmentSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_GetSegmentRequest, Bucketeer_Feature_GetSegmentResponse>, Bucketeer_Feature_FeatureServiceGetSegmentSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceListSegmentsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceListSegmentsSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_ListSegmentsRequest, Bucketeer_Feature_ListSegmentsResponse>, Bucketeer_Feature_FeatureServiceListSegmentsSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceDeleteSegmentSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceDeleteSegmentSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_DeleteSegmentRequest, Bucketeer_Feature_DeleteSegmentResponse>, Bucketeer_Feature_FeatureServiceDeleteSegmentSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceUpdateSegmentSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceUpdateSegmentSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_UpdateSegmentRequest, Bucketeer_Feature_UpdateSegmentResponse>, Bucketeer_Feature_FeatureServiceUpdateSegmentSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceAddSegmentUserSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceAddSegmentUserSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_AddSegmentUserRequest, Bucketeer_Feature_AddSegmentUserResponse>, Bucketeer_Feature_FeatureServiceAddSegmentUserSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceDeleteSegmentUserSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceDeleteSegmentUserSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_DeleteSegmentUserRequest, Bucketeer_Feature_DeleteSegmentUserResponse>, Bucketeer_Feature_FeatureServiceDeleteSegmentUserSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceGetSegmentUserSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceGetSegmentUserSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_GetSegmentUserRequest, Bucketeer_Feature_GetSegmentUserResponse>, Bucketeer_Feature_FeatureServiceGetSegmentUserSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceListSegmentUsersSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceListSegmentUsersSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_ListSegmentUsersRequest, Bucketeer_Feature_ListSegmentUsersResponse>, Bucketeer_Feature_FeatureServiceListSegmentUsersSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_BulkUploadSegmentUsersRequest, Bucketeer_Feature_BulkUploadSegmentUsersResponse>, Bucketeer_Feature_FeatureServiceBulkUploadSegmentUsersSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_BulkDownloadSegmentUsersRequest, Bucketeer_Feature_BulkDownloadSegmentUsersResponse>, Bucketeer_Feature_FeatureServiceBulkDownloadSegmentUsersSession {}
-
-internal protocol Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesSessionBase: ServerSessionUnaryBase<Bucketeer_Feature_EvaluateOnAllFeaturesRequest, Bucketeer_Feature_EvaluateOnAllFeaturesResponse>, Bucketeer_Feature_FeatureServiceEvaluateOnAllFeaturesSession {}
+  /// Creates a client for the bucketeer.feature.FeatureService service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 

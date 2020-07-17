@@ -20,82 +20,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_Test_TestServiceTestCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_Test_TestServiceTestCallBase: ClientCallUnaryBase<Bucketeer_Test_TestRequest, Bucketeer_Test_TestResponse>, Bucketeer_Test_TestServiceTestCall {
-  override class var method: String { return "/bucketeer.test.TestService/Test" }
-}
-
-
-/// Instantiate Bucketeer_Test_TestServiceServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_Test_TestServiceService: ServiceClient {
-  /// Synchronous. Unary.
-  func test(_ request: Bucketeer_Test_TestRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Test_TestResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func test(_ request: Bucketeer_Test_TestRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Test_TestResponse?, CallResult) -> Void) throws -> Bucketeer_Test_TestServiceTestCall
+/// Usage: instantiate Bucketeer_Test_TestServiceClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_Test_TestServiceClientProtocol: GRPCClient {
+  func test(
+    _ request: Bucketeer_Test_TestRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Test_TestRequest, Bucketeer_Test_TestResponse>
 
 }
 
-internal extension Bucketeer_Test_TestServiceService {
-  /// Synchronous. Unary.
-  func test(_ request: Bucketeer_Test_TestRequest) throws -> Bucketeer_Test_TestResponse {
-    return try self.test(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func test(_ request: Bucketeer_Test_TestRequest, completion: @escaping (Bucketeer_Test_TestResponse?, CallResult) -> Void) throws -> Bucketeer_Test_TestServiceTestCall {
-    return try self.test(request, metadata: self.metadata, completion: completion)
-  }
+extension Bucketeer_Test_TestServiceClientProtocol {
 
-}
-
-internal final class Bucketeer_Test_TestServiceServiceClient: ServiceClientBase, Bucketeer_Test_TestServiceService {
-  /// Synchronous. Unary.
-  internal func test(_ request: Bucketeer_Test_TestRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Test_TestResponse {
-    return try Bucketeer_Test_TestServiceTestCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func test(_ request: Bucketeer_Test_TestRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Test_TestResponse?, CallResult) -> Void) throws -> Bucketeer_Test_TestServiceTestCall {
-    return try Bucketeer_Test_TestServiceTestCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_Test_TestServiceProvider: ServiceProvider {
-  func test(request: Bucketeer_Test_TestRequest, session: Bucketeer_Test_TestServiceTestSession) throws -> Bucketeer_Test_TestResponse
-}
-
-extension Bucketeer_Test_TestServiceProvider {
-  internal var serviceName: String { return "bucketeer.test.TestService" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.test.TestService/Test":
-      return try Bucketeer_Test_TestServiceTestSessionBase(
-        handler: handler,
-        providerBlock: { try self.test(request: $0, session: $1 as! Bucketeer_Test_TestServiceTestSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to Test
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to Test.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func test(
+    _ request: Bucketeer_Test_TestRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Test_TestRequest, Bucketeer_Test_TestResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.test.TestService/Test",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_Test_TestServiceTestSession: ServerSessionUnary {}
+internal final class Bucketeer_Test_TestServiceClient: Bucketeer_Test_TestServiceClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_Test_TestServiceTestSessionBase: ServerSessionUnaryBase<Bucketeer_Test_TestRequest, Bucketeer_Test_TestResponse>, Bucketeer_Test_TestServiceTestSession {}
+  /// Creates a client for the bucketeer.test.TestService service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 

@@ -20,170 +20,98 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_Auth_AuthServiceGetAuthCodeURLCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_Auth_AuthServiceGetAuthCodeURLCallBase: ClientCallUnaryBase<Bucketeer_Auth_GetAuthCodeURLRequest, Bucketeer_Auth_GetAuthCodeURLResponse>, Bucketeer_Auth_AuthServiceGetAuthCodeURLCall {
-  override class var method: String { return "/bucketeer.auth.AuthService/GetAuthCodeURL" }
-}
+/// Usage: instantiate Bucketeer_Auth_AuthServiceClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_Auth_AuthServiceClientProtocol: GRPCClient {
+  func getAuthCodeURL(
+    _ request: Bucketeer_Auth_GetAuthCodeURLRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Auth_GetAuthCodeURLRequest, Bucketeer_Auth_GetAuthCodeURLResponse>
 
-internal protocol Bucketeer_Auth_AuthServiceExchangeTokenCall: ClientCallUnary {}
+  func exchangeToken(
+    _ request: Bucketeer_Auth_ExchangeTokenRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Auth_ExchangeTokenRequest, Bucketeer_Auth_ExchangeTokenResponse>
 
-fileprivate final class Bucketeer_Auth_AuthServiceExchangeTokenCallBase: ClientCallUnaryBase<Bucketeer_Auth_ExchangeTokenRequest, Bucketeer_Auth_ExchangeTokenResponse>, Bucketeer_Auth_AuthServiceExchangeTokenCall {
-  override class var method: String { return "/bucketeer.auth.AuthService/ExchangeToken" }
-}
-
-internal protocol Bucketeer_Auth_AuthServiceRefreshTokenCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Auth_AuthServiceRefreshTokenCallBase: ClientCallUnaryBase<Bucketeer_Auth_RefreshTokenRequest, Bucketeer_Auth_RefreshTokenResponse>, Bucketeer_Auth_AuthServiceRefreshTokenCall {
-  override class var method: String { return "/bucketeer.auth.AuthService/RefreshToken" }
-}
-
-
-/// Instantiate Bucketeer_Auth_AuthServiceServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_Auth_AuthServiceService: ServiceClient {
-  /// Synchronous. Unary.
-  func getAuthCodeURL(_ request: Bucketeer_Auth_GetAuthCodeURLRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auth_GetAuthCodeURLResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAuthCodeURL(_ request: Bucketeer_Auth_GetAuthCodeURLRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auth_GetAuthCodeURLResponse?, CallResult) -> Void) throws -> Bucketeer_Auth_AuthServiceGetAuthCodeURLCall
-
-  /// Synchronous. Unary.
-  func exchangeToken(_ request: Bucketeer_Auth_ExchangeTokenRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auth_ExchangeTokenResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func exchangeToken(_ request: Bucketeer_Auth_ExchangeTokenRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auth_ExchangeTokenResponse?, CallResult) -> Void) throws -> Bucketeer_Auth_AuthServiceExchangeTokenCall
-
-  /// Synchronous. Unary.
-  func refreshToken(_ request: Bucketeer_Auth_RefreshTokenRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auth_RefreshTokenResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func refreshToken(_ request: Bucketeer_Auth_RefreshTokenRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auth_RefreshTokenResponse?, CallResult) -> Void) throws -> Bucketeer_Auth_AuthServiceRefreshTokenCall
+  func refreshToken(
+    _ request: Bucketeer_Auth_RefreshTokenRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Auth_RefreshTokenRequest, Bucketeer_Auth_RefreshTokenResponse>
 
 }
 
-internal extension Bucketeer_Auth_AuthServiceService {
-  /// Synchronous. Unary.
-  func getAuthCodeURL(_ request: Bucketeer_Auth_GetAuthCodeURLRequest) throws -> Bucketeer_Auth_GetAuthCodeURLResponse {
-    return try self.getAuthCodeURL(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAuthCodeURL(_ request: Bucketeer_Auth_GetAuthCodeURLRequest, completion: @escaping (Bucketeer_Auth_GetAuthCodeURLResponse?, CallResult) -> Void) throws -> Bucketeer_Auth_AuthServiceGetAuthCodeURLCall {
-    return try self.getAuthCodeURL(request, metadata: self.metadata, completion: completion)
+extension Bucketeer_Auth_AuthServiceClientProtocol {
+
+  /// Unary call to GetAuthCodeURL
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAuthCodeURL.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAuthCodeURL(
+    _ request: Bucketeer_Auth_GetAuthCodeURLRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Auth_GetAuthCodeURLRequest, Bucketeer_Auth_GetAuthCodeURLResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.auth.AuthService/GetAuthCodeURL",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func exchangeToken(_ request: Bucketeer_Auth_ExchangeTokenRequest) throws -> Bucketeer_Auth_ExchangeTokenResponse {
-    return try self.exchangeToken(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func exchangeToken(_ request: Bucketeer_Auth_ExchangeTokenRequest, completion: @escaping (Bucketeer_Auth_ExchangeTokenResponse?, CallResult) -> Void) throws -> Bucketeer_Auth_AuthServiceExchangeTokenCall {
-    return try self.exchangeToken(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func refreshToken(_ request: Bucketeer_Auth_RefreshTokenRequest) throws -> Bucketeer_Auth_RefreshTokenResponse {
-    return try self.refreshToken(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func refreshToken(_ request: Bucketeer_Auth_RefreshTokenRequest, completion: @escaping (Bucketeer_Auth_RefreshTokenResponse?, CallResult) -> Void) throws -> Bucketeer_Auth_AuthServiceRefreshTokenCall {
-    return try self.refreshToken(request, metadata: self.metadata, completion: completion)
+  /// Unary call to ExchangeToken
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ExchangeToken.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func exchangeToken(
+    _ request: Bucketeer_Auth_ExchangeTokenRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Auth_ExchangeTokenRequest, Bucketeer_Auth_ExchangeTokenResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.auth.AuthService/ExchangeToken",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-}
-
-internal final class Bucketeer_Auth_AuthServiceServiceClient: ServiceClientBase, Bucketeer_Auth_AuthServiceService {
-  /// Synchronous. Unary.
-  internal func getAuthCodeURL(_ request: Bucketeer_Auth_GetAuthCodeURLRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auth_GetAuthCodeURLResponse {
-    return try Bucketeer_Auth_AuthServiceGetAuthCodeURLCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getAuthCodeURL(_ request: Bucketeer_Auth_GetAuthCodeURLRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auth_GetAuthCodeURLResponse?, CallResult) -> Void) throws -> Bucketeer_Auth_AuthServiceGetAuthCodeURLCall {
-    return try Bucketeer_Auth_AuthServiceGetAuthCodeURLCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func exchangeToken(_ request: Bucketeer_Auth_ExchangeTokenRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auth_ExchangeTokenResponse {
-    return try Bucketeer_Auth_AuthServiceExchangeTokenCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func exchangeToken(_ request: Bucketeer_Auth_ExchangeTokenRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auth_ExchangeTokenResponse?, CallResult) -> Void) throws -> Bucketeer_Auth_AuthServiceExchangeTokenCall {
-    return try Bucketeer_Auth_AuthServiceExchangeTokenCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func refreshToken(_ request: Bucketeer_Auth_RefreshTokenRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Auth_RefreshTokenResponse {
-    return try Bucketeer_Auth_AuthServiceRefreshTokenCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func refreshToken(_ request: Bucketeer_Auth_RefreshTokenRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Auth_RefreshTokenResponse?, CallResult) -> Void) throws -> Bucketeer_Auth_AuthServiceRefreshTokenCall {
-    return try Bucketeer_Auth_AuthServiceRefreshTokenCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_Auth_AuthServiceProvider: ServiceProvider {
-  func getAuthCodeURL(request: Bucketeer_Auth_GetAuthCodeURLRequest, session: Bucketeer_Auth_AuthServiceGetAuthCodeURLSession) throws -> Bucketeer_Auth_GetAuthCodeURLResponse
-  func exchangeToken(request: Bucketeer_Auth_ExchangeTokenRequest, session: Bucketeer_Auth_AuthServiceExchangeTokenSession) throws -> Bucketeer_Auth_ExchangeTokenResponse
-  func refreshToken(request: Bucketeer_Auth_RefreshTokenRequest, session: Bucketeer_Auth_AuthServiceRefreshTokenSession) throws -> Bucketeer_Auth_RefreshTokenResponse
-}
-
-extension Bucketeer_Auth_AuthServiceProvider {
-  internal var serviceName: String { return "bucketeer.auth.AuthService" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.auth.AuthService/GetAuthCodeURL":
-      return try Bucketeer_Auth_AuthServiceGetAuthCodeURLSessionBase(
-        handler: handler,
-        providerBlock: { try self.getAuthCodeURL(request: $0, session: $1 as! Bucketeer_Auth_AuthServiceGetAuthCodeURLSessionBase) })
-          .run()
-    case "/bucketeer.auth.AuthService/ExchangeToken":
-      return try Bucketeer_Auth_AuthServiceExchangeTokenSessionBase(
-        handler: handler,
-        providerBlock: { try self.exchangeToken(request: $0, session: $1 as! Bucketeer_Auth_AuthServiceExchangeTokenSessionBase) })
-          .run()
-    case "/bucketeer.auth.AuthService/RefreshToken":
-      return try Bucketeer_Auth_AuthServiceRefreshTokenSessionBase(
-        handler: handler,
-        providerBlock: { try self.refreshToken(request: $0, session: $1 as! Bucketeer_Auth_AuthServiceRefreshTokenSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to RefreshToken
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to RefreshToken.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func refreshToken(
+    _ request: Bucketeer_Auth_RefreshTokenRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Auth_RefreshTokenRequest, Bucketeer_Auth_RefreshTokenResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.auth.AuthService/RefreshToken",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_Auth_AuthServiceGetAuthCodeURLSession: ServerSessionUnary {}
+internal final class Bucketeer_Auth_AuthServiceClient: Bucketeer_Auth_AuthServiceClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_Auth_AuthServiceGetAuthCodeURLSessionBase: ServerSessionUnaryBase<Bucketeer_Auth_GetAuthCodeURLRequest, Bucketeer_Auth_GetAuthCodeURLResponse>, Bucketeer_Auth_AuthServiceGetAuthCodeURLSession {}
-
-internal protocol Bucketeer_Auth_AuthServiceExchangeTokenSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Auth_AuthServiceExchangeTokenSessionBase: ServerSessionUnaryBase<Bucketeer_Auth_ExchangeTokenRequest, Bucketeer_Auth_ExchangeTokenResponse>, Bucketeer_Auth_AuthServiceExchangeTokenSession {}
-
-internal protocol Bucketeer_Auth_AuthServiceRefreshTokenSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Auth_AuthServiceRefreshTokenSessionBase: ServerSessionUnaryBase<Bucketeer_Auth_RefreshTokenRequest, Bucketeer_Auth_RefreshTokenResponse>, Bucketeer_Auth_AuthServiceRefreshTokenSession {}
+  /// Creates a client for the bucketeer.auth.AuthService service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 

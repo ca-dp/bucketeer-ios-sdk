@@ -20,654 +20,340 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_Notification_NotificationServiceGetAdminSubscriptionCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_Notification_NotificationServiceGetAdminSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_GetAdminSubscriptionRequest, Bucketeer_Notification_GetAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceGetAdminSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/GetAdminSubscription" }
-}
+/// Usage: instantiate Bucketeer_Notification_NotificationServiceClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_Notification_NotificationServiceClientProtocol: GRPCClient {
+  func getAdminSubscription(
+    _ request: Bucketeer_Notification_GetAdminSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_GetAdminSubscriptionRequest, Bucketeer_Notification_GetAdminSubscriptionResponse>
 
-internal protocol Bucketeer_Notification_NotificationServiceListAdminSubscriptionsCall: ClientCallUnary {}
+  func listAdminSubscriptions(
+    _ request: Bucketeer_Notification_ListAdminSubscriptionsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_ListAdminSubscriptionsRequest, Bucketeer_Notification_ListAdminSubscriptionsResponse>
 
-fileprivate final class Bucketeer_Notification_NotificationServiceListAdminSubscriptionsCallBase: ClientCallUnaryBase<Bucketeer_Notification_ListAdminSubscriptionsRequest, Bucketeer_Notification_ListAdminSubscriptionsResponse>, Bucketeer_Notification_NotificationServiceListAdminSubscriptionsCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/ListAdminSubscriptions" }
-}
+  func createAdminSubscription(
+    _ request: Bucketeer_Notification_CreateAdminSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_CreateAdminSubscriptionRequest, Bucketeer_Notification_CreateAdminSubscriptionResponse>
 
-internal protocol Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionCall: ClientCallUnary {}
+  func deleteAdminSubscription(
+    _ request: Bucketeer_Notification_DeleteAdminSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_DeleteAdminSubscriptionRequest, Bucketeer_Notification_DeleteAdminSubscriptionResponse>
 
-fileprivate final class Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_CreateAdminSubscriptionRequest, Bucketeer_Notification_CreateAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/CreateAdminSubscription" }
-}
+  func enableAdminSubscription(
+    _ request: Bucketeer_Notification_EnableAdminSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_EnableAdminSubscriptionRequest, Bucketeer_Notification_EnableAdminSubscriptionResponse>
 
-internal protocol Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionCall: ClientCallUnary {}
+  func disableAdminSubscription(
+    _ request: Bucketeer_Notification_DisableAdminSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_DisableAdminSubscriptionRequest, Bucketeer_Notification_DisableAdminSubscriptionResponse>
 
-fileprivate final class Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_DeleteAdminSubscriptionRequest, Bucketeer_Notification_DeleteAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/DeleteAdminSubscription" }
-}
+  func updateAdminSubscription(
+    _ request: Bucketeer_Notification_UpdateAdminSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_UpdateAdminSubscriptionRequest, Bucketeer_Notification_UpdateAdminSubscriptionResponse>
 
-internal protocol Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionCall: ClientCallUnary {}
+  func getSubscription(
+    _ request: Bucketeer_Notification_GetSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_GetSubscriptionRequest, Bucketeer_Notification_GetSubscriptionResponse>
 
-fileprivate final class Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_EnableAdminSubscriptionRequest, Bucketeer_Notification_EnableAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/EnableAdminSubscription" }
-}
+  func listSubscriptions(
+    _ request: Bucketeer_Notification_ListSubscriptionsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_ListSubscriptionsRequest, Bucketeer_Notification_ListSubscriptionsResponse>
 
-internal protocol Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionCall: ClientCallUnary {}
+  func createSubscription(
+    _ request: Bucketeer_Notification_CreateSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_CreateSubscriptionRequest, Bucketeer_Notification_CreateSubscriptionResponse>
 
-fileprivate final class Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_DisableAdminSubscriptionRequest, Bucketeer_Notification_DisableAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/DisableAdminSubscription" }
-}
+  func deleteSubscription(
+    _ request: Bucketeer_Notification_DeleteSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_DeleteSubscriptionRequest, Bucketeer_Notification_DeleteSubscriptionResponse>
 
-internal protocol Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionCall: ClientCallUnary {}
+  func enableSubscription(
+    _ request: Bucketeer_Notification_EnableSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_EnableSubscriptionRequest, Bucketeer_Notification_EnableSubscriptionResponse>
 
-fileprivate final class Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_UpdateAdminSubscriptionRequest, Bucketeer_Notification_UpdateAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/UpdateAdminSubscription" }
-}
+  func disableSubscription(
+    _ request: Bucketeer_Notification_DisableSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_DisableSubscriptionRequest, Bucketeer_Notification_DisableSubscriptionResponse>
 
-internal protocol Bucketeer_Notification_NotificationServiceGetSubscriptionCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceGetSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_GetSubscriptionRequest, Bucketeer_Notification_GetSubscriptionResponse>, Bucketeer_Notification_NotificationServiceGetSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/GetSubscription" }
-}
-
-internal protocol Bucketeer_Notification_NotificationServiceListSubscriptionsCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceListSubscriptionsCallBase: ClientCallUnaryBase<Bucketeer_Notification_ListSubscriptionsRequest, Bucketeer_Notification_ListSubscriptionsResponse>, Bucketeer_Notification_NotificationServiceListSubscriptionsCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/ListSubscriptions" }
-}
-
-internal protocol Bucketeer_Notification_NotificationServiceCreateSubscriptionCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceCreateSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_CreateSubscriptionRequest, Bucketeer_Notification_CreateSubscriptionResponse>, Bucketeer_Notification_NotificationServiceCreateSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/CreateSubscription" }
-}
-
-internal protocol Bucketeer_Notification_NotificationServiceDeleteSubscriptionCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceDeleteSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_DeleteSubscriptionRequest, Bucketeer_Notification_DeleteSubscriptionResponse>, Bucketeer_Notification_NotificationServiceDeleteSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/DeleteSubscription" }
-}
-
-internal protocol Bucketeer_Notification_NotificationServiceEnableSubscriptionCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceEnableSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_EnableSubscriptionRequest, Bucketeer_Notification_EnableSubscriptionResponse>, Bucketeer_Notification_NotificationServiceEnableSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/EnableSubscription" }
-}
-
-internal protocol Bucketeer_Notification_NotificationServiceDisableSubscriptionCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceDisableSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_DisableSubscriptionRequest, Bucketeer_Notification_DisableSubscriptionResponse>, Bucketeer_Notification_NotificationServiceDisableSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/DisableSubscription" }
-}
-
-internal protocol Bucketeer_Notification_NotificationServiceUpdateSubscriptionCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceUpdateSubscriptionCallBase: ClientCallUnaryBase<Bucketeer_Notification_UpdateSubscriptionRequest, Bucketeer_Notification_UpdateSubscriptionResponse>, Bucketeer_Notification_NotificationServiceUpdateSubscriptionCall {
-  override class var method: String { return "/bucketeer.notification.NotificationService/UpdateSubscription" }
-}
-
-
-/// Instantiate Bucketeer_Notification_NotificationServiceServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_Notification_NotificationServiceService: ServiceClient {
-  /// Synchronous. Unary.
-  func getAdminSubscription(_ request: Bucketeer_Notification_GetAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_GetAdminSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAdminSubscription(_ request: Bucketeer_Notification_GetAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_GetAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceGetAdminSubscriptionCall
-
-  /// Synchronous. Unary.
-  func listAdminSubscriptions(_ request: Bucketeer_Notification_ListAdminSubscriptionsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_ListAdminSubscriptionsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAdminSubscriptions(_ request: Bucketeer_Notification_ListAdminSubscriptionsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_ListAdminSubscriptionsResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceListAdminSubscriptionsCall
-
-  /// Synchronous. Unary.
-  func createAdminSubscription(_ request: Bucketeer_Notification_CreateAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_CreateAdminSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createAdminSubscription(_ request: Bucketeer_Notification_CreateAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_CreateAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionCall
-
-  /// Synchronous. Unary.
-  func deleteAdminSubscription(_ request: Bucketeer_Notification_DeleteAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_DeleteAdminSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteAdminSubscription(_ request: Bucketeer_Notification_DeleteAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_DeleteAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionCall
-
-  /// Synchronous. Unary.
-  func enableAdminSubscription(_ request: Bucketeer_Notification_EnableAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_EnableAdminSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableAdminSubscription(_ request: Bucketeer_Notification_EnableAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_EnableAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionCall
-
-  /// Synchronous. Unary.
-  func disableAdminSubscription(_ request: Bucketeer_Notification_DisableAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_DisableAdminSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableAdminSubscription(_ request: Bucketeer_Notification_DisableAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_DisableAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionCall
-
-  /// Synchronous. Unary.
-  func updateAdminSubscription(_ request: Bucketeer_Notification_UpdateAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_UpdateAdminSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateAdminSubscription(_ request: Bucketeer_Notification_UpdateAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_UpdateAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionCall
-
-  /// Synchronous. Unary.
-  func getSubscription(_ request: Bucketeer_Notification_GetSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_GetSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getSubscription(_ request: Bucketeer_Notification_GetSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_GetSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceGetSubscriptionCall
-
-  /// Synchronous. Unary.
-  func listSubscriptions(_ request: Bucketeer_Notification_ListSubscriptionsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_ListSubscriptionsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listSubscriptions(_ request: Bucketeer_Notification_ListSubscriptionsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_ListSubscriptionsResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceListSubscriptionsCall
-
-  /// Synchronous. Unary.
-  func createSubscription(_ request: Bucketeer_Notification_CreateSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_CreateSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createSubscription(_ request: Bucketeer_Notification_CreateSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_CreateSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceCreateSubscriptionCall
-
-  /// Synchronous. Unary.
-  func deleteSubscription(_ request: Bucketeer_Notification_DeleteSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_DeleteSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteSubscription(_ request: Bucketeer_Notification_DeleteSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_DeleteSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDeleteSubscriptionCall
-
-  /// Synchronous. Unary.
-  func enableSubscription(_ request: Bucketeer_Notification_EnableSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_EnableSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableSubscription(_ request: Bucketeer_Notification_EnableSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_EnableSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceEnableSubscriptionCall
-
-  /// Synchronous. Unary.
-  func disableSubscription(_ request: Bucketeer_Notification_DisableSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_DisableSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableSubscription(_ request: Bucketeer_Notification_DisableSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_DisableSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDisableSubscriptionCall
-
-  /// Synchronous. Unary.
-  func updateSubscription(_ request: Bucketeer_Notification_UpdateSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_UpdateSubscriptionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateSubscription(_ request: Bucketeer_Notification_UpdateSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_UpdateSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceUpdateSubscriptionCall
+  func updateSubscription(
+    _ request: Bucketeer_Notification_UpdateSubscriptionRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Notification_UpdateSubscriptionRequest, Bucketeer_Notification_UpdateSubscriptionResponse>
 
 }
 
-internal extension Bucketeer_Notification_NotificationServiceService {
-  /// Synchronous. Unary.
-  func getAdminSubscription(_ request: Bucketeer_Notification_GetAdminSubscriptionRequest) throws -> Bucketeer_Notification_GetAdminSubscriptionResponse {
-    return try self.getAdminSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAdminSubscription(_ request: Bucketeer_Notification_GetAdminSubscriptionRequest, completion: @escaping (Bucketeer_Notification_GetAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceGetAdminSubscriptionCall {
-    return try self.getAdminSubscription(request, metadata: self.metadata, completion: completion)
+extension Bucketeer_Notification_NotificationServiceClientProtocol {
+
+  /// Unary call to GetAdminSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAdminSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAdminSubscription(
+    _ request: Bucketeer_Notification_GetAdminSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_GetAdminSubscriptionRequest, Bucketeer_Notification_GetAdminSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/GetAdminSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func listAdminSubscriptions(_ request: Bucketeer_Notification_ListAdminSubscriptionsRequest) throws -> Bucketeer_Notification_ListAdminSubscriptionsResponse {
-    return try self.listAdminSubscriptions(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAdminSubscriptions(_ request: Bucketeer_Notification_ListAdminSubscriptionsRequest, completion: @escaping (Bucketeer_Notification_ListAdminSubscriptionsResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceListAdminSubscriptionsCall {
-    return try self.listAdminSubscriptions(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func createAdminSubscription(_ request: Bucketeer_Notification_CreateAdminSubscriptionRequest) throws -> Bucketeer_Notification_CreateAdminSubscriptionResponse {
-    return try self.createAdminSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createAdminSubscription(_ request: Bucketeer_Notification_CreateAdminSubscriptionRequest, completion: @escaping (Bucketeer_Notification_CreateAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionCall {
-    return try self.createAdminSubscription(request, metadata: self.metadata, completion: completion)
+  /// Unary call to ListAdminSubscriptions
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListAdminSubscriptions.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listAdminSubscriptions(
+    _ request: Bucketeer_Notification_ListAdminSubscriptionsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_ListAdminSubscriptionsRequest, Bucketeer_Notification_ListAdminSubscriptionsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/ListAdminSubscriptions",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func deleteAdminSubscription(_ request: Bucketeer_Notification_DeleteAdminSubscriptionRequest) throws -> Bucketeer_Notification_DeleteAdminSubscriptionResponse {
-    return try self.deleteAdminSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteAdminSubscription(_ request: Bucketeer_Notification_DeleteAdminSubscriptionRequest, completion: @escaping (Bucketeer_Notification_DeleteAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionCall {
-    return try self.deleteAdminSubscription(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func enableAdminSubscription(_ request: Bucketeer_Notification_EnableAdminSubscriptionRequest) throws -> Bucketeer_Notification_EnableAdminSubscriptionResponse {
-    return try self.enableAdminSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableAdminSubscription(_ request: Bucketeer_Notification_EnableAdminSubscriptionRequest, completion: @escaping (Bucketeer_Notification_EnableAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionCall {
-    return try self.enableAdminSubscription(request, metadata: self.metadata, completion: completion)
+  /// Unary call to CreateAdminSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreateAdminSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func createAdminSubscription(
+    _ request: Bucketeer_Notification_CreateAdminSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_CreateAdminSubscriptionRequest, Bucketeer_Notification_CreateAdminSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/CreateAdminSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func disableAdminSubscription(_ request: Bucketeer_Notification_DisableAdminSubscriptionRequest) throws -> Bucketeer_Notification_DisableAdminSubscriptionResponse {
-    return try self.disableAdminSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableAdminSubscription(_ request: Bucketeer_Notification_DisableAdminSubscriptionRequest, completion: @escaping (Bucketeer_Notification_DisableAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionCall {
-    return try self.disableAdminSubscription(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func updateAdminSubscription(_ request: Bucketeer_Notification_UpdateAdminSubscriptionRequest) throws -> Bucketeer_Notification_UpdateAdminSubscriptionResponse {
-    return try self.updateAdminSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateAdminSubscription(_ request: Bucketeer_Notification_UpdateAdminSubscriptionRequest, completion: @escaping (Bucketeer_Notification_UpdateAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionCall {
-    return try self.updateAdminSubscription(request, metadata: self.metadata, completion: completion)
+  /// Unary call to DeleteAdminSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DeleteAdminSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func deleteAdminSubscription(
+    _ request: Bucketeer_Notification_DeleteAdminSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_DeleteAdminSubscriptionRequest, Bucketeer_Notification_DeleteAdminSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/DeleteAdminSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func getSubscription(_ request: Bucketeer_Notification_GetSubscriptionRequest) throws -> Bucketeer_Notification_GetSubscriptionResponse {
-    return try self.getSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getSubscription(_ request: Bucketeer_Notification_GetSubscriptionRequest, completion: @escaping (Bucketeer_Notification_GetSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceGetSubscriptionCall {
-    return try self.getSubscription(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func listSubscriptions(_ request: Bucketeer_Notification_ListSubscriptionsRequest) throws -> Bucketeer_Notification_ListSubscriptionsResponse {
-    return try self.listSubscriptions(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listSubscriptions(_ request: Bucketeer_Notification_ListSubscriptionsRequest, completion: @escaping (Bucketeer_Notification_ListSubscriptionsResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceListSubscriptionsCall {
-    return try self.listSubscriptions(request, metadata: self.metadata, completion: completion)
+  /// Unary call to EnableAdminSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to EnableAdminSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func enableAdminSubscription(
+    _ request: Bucketeer_Notification_EnableAdminSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_EnableAdminSubscriptionRequest, Bucketeer_Notification_EnableAdminSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/EnableAdminSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func createSubscription(_ request: Bucketeer_Notification_CreateSubscriptionRequest) throws -> Bucketeer_Notification_CreateSubscriptionResponse {
-    return try self.createSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createSubscription(_ request: Bucketeer_Notification_CreateSubscriptionRequest, completion: @escaping (Bucketeer_Notification_CreateSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceCreateSubscriptionCall {
-    return try self.createSubscription(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func deleteSubscription(_ request: Bucketeer_Notification_DeleteSubscriptionRequest) throws -> Bucketeer_Notification_DeleteSubscriptionResponse {
-    return try self.deleteSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteSubscription(_ request: Bucketeer_Notification_DeleteSubscriptionRequest, completion: @escaping (Bucketeer_Notification_DeleteSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDeleteSubscriptionCall {
-    return try self.deleteSubscription(request, metadata: self.metadata, completion: completion)
+  /// Unary call to DisableAdminSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DisableAdminSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func disableAdminSubscription(
+    _ request: Bucketeer_Notification_DisableAdminSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_DisableAdminSubscriptionRequest, Bucketeer_Notification_DisableAdminSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/DisableAdminSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func enableSubscription(_ request: Bucketeer_Notification_EnableSubscriptionRequest) throws -> Bucketeer_Notification_EnableSubscriptionResponse {
-    return try self.enableSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func enableSubscription(_ request: Bucketeer_Notification_EnableSubscriptionRequest, completion: @escaping (Bucketeer_Notification_EnableSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceEnableSubscriptionCall {
-    return try self.enableSubscription(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func disableSubscription(_ request: Bucketeer_Notification_DisableSubscriptionRequest) throws -> Bucketeer_Notification_DisableSubscriptionResponse {
-    return try self.disableSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func disableSubscription(_ request: Bucketeer_Notification_DisableSubscriptionRequest, completion: @escaping (Bucketeer_Notification_DisableSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDisableSubscriptionCall {
-    return try self.disableSubscription(request, metadata: self.metadata, completion: completion)
+  /// Unary call to UpdateAdminSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpdateAdminSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func updateAdminSubscription(
+    _ request: Bucketeer_Notification_UpdateAdminSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_UpdateAdminSubscriptionRequest, Bucketeer_Notification_UpdateAdminSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/UpdateAdminSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func updateSubscription(_ request: Bucketeer_Notification_UpdateSubscriptionRequest) throws -> Bucketeer_Notification_UpdateSubscriptionResponse {
-    return try self.updateSubscription(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateSubscription(_ request: Bucketeer_Notification_UpdateSubscriptionRequest, completion: @escaping (Bucketeer_Notification_UpdateSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceUpdateSubscriptionCall {
-    return try self.updateSubscription(request, metadata: self.metadata, completion: completion)
-  }
-
-}
-
-internal final class Bucketeer_Notification_NotificationServiceServiceClient: ServiceClientBase, Bucketeer_Notification_NotificationServiceService {
-  /// Synchronous. Unary.
-  internal func getAdminSubscription(_ request: Bucketeer_Notification_GetAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_GetAdminSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceGetAdminSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getAdminSubscription(_ request: Bucketeer_Notification_GetAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_GetAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceGetAdminSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceGetAdminSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to GetSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getSubscription(
+    _ request: Bucketeer_Notification_GetSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_GetSubscriptionRequest, Bucketeer_Notification_GetSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/GetSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func listAdminSubscriptions(_ request: Bucketeer_Notification_ListAdminSubscriptionsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_ListAdminSubscriptionsResponse {
-    return try Bucketeer_Notification_NotificationServiceListAdminSubscriptionsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listAdminSubscriptions(_ request: Bucketeer_Notification_ListAdminSubscriptionsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_ListAdminSubscriptionsResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceListAdminSubscriptionsCall {
-    return try Bucketeer_Notification_NotificationServiceListAdminSubscriptionsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func createAdminSubscription(_ request: Bucketeer_Notification_CreateAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_CreateAdminSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func createAdminSubscription(_ request: Bucketeer_Notification_CreateAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_CreateAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to ListSubscriptions
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListSubscriptions.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listSubscriptions(
+    _ request: Bucketeer_Notification_ListSubscriptionsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_ListSubscriptionsRequest, Bucketeer_Notification_ListSubscriptionsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/ListSubscriptions",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func deleteAdminSubscription(_ request: Bucketeer_Notification_DeleteAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_DeleteAdminSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func deleteAdminSubscription(_ request: Bucketeer_Notification_DeleteAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_DeleteAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func enableAdminSubscription(_ request: Bucketeer_Notification_EnableAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_EnableAdminSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func enableAdminSubscription(_ request: Bucketeer_Notification_EnableAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_EnableAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to CreateSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreateSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func createSubscription(
+    _ request: Bucketeer_Notification_CreateSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_CreateSubscriptionRequest, Bucketeer_Notification_CreateSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/CreateSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func disableAdminSubscription(_ request: Bucketeer_Notification_DisableAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_DisableAdminSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func disableAdminSubscription(_ request: Bucketeer_Notification_DisableAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_DisableAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func updateAdminSubscription(_ request: Bucketeer_Notification_UpdateAdminSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_UpdateAdminSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func updateAdminSubscription(_ request: Bucketeer_Notification_UpdateAdminSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_UpdateAdminSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to DeleteSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DeleteSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func deleteSubscription(
+    _ request: Bucketeer_Notification_DeleteSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_DeleteSubscriptionRequest, Bucketeer_Notification_DeleteSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/DeleteSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func getSubscription(_ request: Bucketeer_Notification_GetSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_GetSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceGetSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getSubscription(_ request: Bucketeer_Notification_GetSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_GetSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceGetSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceGetSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func listSubscriptions(_ request: Bucketeer_Notification_ListSubscriptionsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_ListSubscriptionsResponse {
-    return try Bucketeer_Notification_NotificationServiceListSubscriptionsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listSubscriptions(_ request: Bucketeer_Notification_ListSubscriptionsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_ListSubscriptionsResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceListSubscriptionsCall {
-    return try Bucketeer_Notification_NotificationServiceListSubscriptionsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to EnableSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to EnableSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func enableSubscription(
+    _ request: Bucketeer_Notification_EnableSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_EnableSubscriptionRequest, Bucketeer_Notification_EnableSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/EnableSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func createSubscription(_ request: Bucketeer_Notification_CreateSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_CreateSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceCreateSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func createSubscription(_ request: Bucketeer_Notification_CreateSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_CreateSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceCreateSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceCreateSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func deleteSubscription(_ request: Bucketeer_Notification_DeleteSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_DeleteSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceDeleteSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func deleteSubscription(_ request: Bucketeer_Notification_DeleteSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_DeleteSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDeleteSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceDeleteSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to DisableSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DisableSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func disableSubscription(
+    _ request: Bucketeer_Notification_DisableSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_DisableSubscriptionRequest, Bucketeer_Notification_DisableSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/DisableSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func enableSubscription(_ request: Bucketeer_Notification_EnableSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_EnableSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceEnableSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func enableSubscription(_ request: Bucketeer_Notification_EnableSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_EnableSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceEnableSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceEnableSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func disableSubscription(_ request: Bucketeer_Notification_DisableSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_DisableSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceDisableSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func disableSubscription(_ request: Bucketeer_Notification_DisableSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_DisableSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceDisableSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceDisableSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func updateSubscription(_ request: Bucketeer_Notification_UpdateSubscriptionRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Notification_UpdateSubscriptionResponse {
-    return try Bucketeer_Notification_NotificationServiceUpdateSubscriptionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func updateSubscription(_ request: Bucketeer_Notification_UpdateSubscriptionRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Notification_UpdateSubscriptionResponse?, CallResult) -> Void) throws -> Bucketeer_Notification_NotificationServiceUpdateSubscriptionCall {
-    return try Bucketeer_Notification_NotificationServiceUpdateSubscriptionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_Notification_NotificationServiceProvider: ServiceProvider {
-  func getAdminSubscription(request: Bucketeer_Notification_GetAdminSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceGetAdminSubscriptionSession) throws -> Bucketeer_Notification_GetAdminSubscriptionResponse
-  func listAdminSubscriptions(request: Bucketeer_Notification_ListAdminSubscriptionsRequest, session: Bucketeer_Notification_NotificationServiceListAdminSubscriptionsSession) throws -> Bucketeer_Notification_ListAdminSubscriptionsResponse
-  func createAdminSubscription(request: Bucketeer_Notification_CreateAdminSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionSession) throws -> Bucketeer_Notification_CreateAdminSubscriptionResponse
-  func deleteAdminSubscription(request: Bucketeer_Notification_DeleteAdminSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionSession) throws -> Bucketeer_Notification_DeleteAdminSubscriptionResponse
-  func enableAdminSubscription(request: Bucketeer_Notification_EnableAdminSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionSession) throws -> Bucketeer_Notification_EnableAdminSubscriptionResponse
-  func disableAdminSubscription(request: Bucketeer_Notification_DisableAdminSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionSession) throws -> Bucketeer_Notification_DisableAdminSubscriptionResponse
-  func updateAdminSubscription(request: Bucketeer_Notification_UpdateAdminSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionSession) throws -> Bucketeer_Notification_UpdateAdminSubscriptionResponse
-  func getSubscription(request: Bucketeer_Notification_GetSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceGetSubscriptionSession) throws -> Bucketeer_Notification_GetSubscriptionResponse
-  func listSubscriptions(request: Bucketeer_Notification_ListSubscriptionsRequest, session: Bucketeer_Notification_NotificationServiceListSubscriptionsSession) throws -> Bucketeer_Notification_ListSubscriptionsResponse
-  func createSubscription(request: Bucketeer_Notification_CreateSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceCreateSubscriptionSession) throws -> Bucketeer_Notification_CreateSubscriptionResponse
-  func deleteSubscription(request: Bucketeer_Notification_DeleteSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceDeleteSubscriptionSession) throws -> Bucketeer_Notification_DeleteSubscriptionResponse
-  func enableSubscription(request: Bucketeer_Notification_EnableSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceEnableSubscriptionSession) throws -> Bucketeer_Notification_EnableSubscriptionResponse
-  func disableSubscription(request: Bucketeer_Notification_DisableSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceDisableSubscriptionSession) throws -> Bucketeer_Notification_DisableSubscriptionResponse
-  func updateSubscription(request: Bucketeer_Notification_UpdateSubscriptionRequest, session: Bucketeer_Notification_NotificationServiceUpdateSubscriptionSession) throws -> Bucketeer_Notification_UpdateSubscriptionResponse
-}
-
-extension Bucketeer_Notification_NotificationServiceProvider {
-  internal var serviceName: String { return "bucketeer.notification.NotificationService" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.notification.NotificationService/GetAdminSubscription":
-      return try Bucketeer_Notification_NotificationServiceGetAdminSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.getAdminSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceGetAdminSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/ListAdminSubscriptions":
-      return try Bucketeer_Notification_NotificationServiceListAdminSubscriptionsSessionBase(
-        handler: handler,
-        providerBlock: { try self.listAdminSubscriptions(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceListAdminSubscriptionsSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/CreateAdminSubscription":
-      return try Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.createAdminSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/DeleteAdminSubscription":
-      return try Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.deleteAdminSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/EnableAdminSubscription":
-      return try Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.enableAdminSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/DisableAdminSubscription":
-      return try Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.disableAdminSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/UpdateAdminSubscription":
-      return try Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.updateAdminSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/GetSubscription":
-      return try Bucketeer_Notification_NotificationServiceGetSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.getSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceGetSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/ListSubscriptions":
-      return try Bucketeer_Notification_NotificationServiceListSubscriptionsSessionBase(
-        handler: handler,
-        providerBlock: { try self.listSubscriptions(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceListSubscriptionsSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/CreateSubscription":
-      return try Bucketeer_Notification_NotificationServiceCreateSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.createSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceCreateSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/DeleteSubscription":
-      return try Bucketeer_Notification_NotificationServiceDeleteSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.deleteSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceDeleteSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/EnableSubscription":
-      return try Bucketeer_Notification_NotificationServiceEnableSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.enableSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceEnableSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/DisableSubscription":
-      return try Bucketeer_Notification_NotificationServiceDisableSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.disableSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceDisableSubscriptionSessionBase) })
-          .run()
-    case "/bucketeer.notification.NotificationService/UpdateSubscription":
-      return try Bucketeer_Notification_NotificationServiceUpdateSubscriptionSessionBase(
-        handler: handler,
-        providerBlock: { try self.updateSubscription(request: $0, session: $1 as! Bucketeer_Notification_NotificationServiceUpdateSubscriptionSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to UpdateSubscription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpdateSubscription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func updateSubscription(
+    _ request: Bucketeer_Notification_UpdateSubscriptionRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Notification_UpdateSubscriptionRequest, Bucketeer_Notification_UpdateSubscriptionResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.notification.NotificationService/UpdateSubscription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_Notification_NotificationServiceGetAdminSubscriptionSession: ServerSessionUnary {}
+internal final class Bucketeer_Notification_NotificationServiceClient: Bucketeer_Notification_NotificationServiceClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_Notification_NotificationServiceGetAdminSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_GetAdminSubscriptionRequest, Bucketeer_Notification_GetAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceGetAdminSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceListAdminSubscriptionsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceListAdminSubscriptionsSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_ListAdminSubscriptionsRequest, Bucketeer_Notification_ListAdminSubscriptionsResponse>, Bucketeer_Notification_NotificationServiceListAdminSubscriptionsSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_CreateAdminSubscriptionRequest, Bucketeer_Notification_CreateAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceCreateAdminSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_DeleteAdminSubscriptionRequest, Bucketeer_Notification_DeleteAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceDeleteAdminSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_EnableAdminSubscriptionRequest, Bucketeer_Notification_EnableAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceEnableAdminSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_DisableAdminSubscriptionRequest, Bucketeer_Notification_DisableAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceDisableAdminSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_UpdateAdminSubscriptionRequest, Bucketeer_Notification_UpdateAdminSubscriptionResponse>, Bucketeer_Notification_NotificationServiceUpdateAdminSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceGetSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceGetSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_GetSubscriptionRequest, Bucketeer_Notification_GetSubscriptionResponse>, Bucketeer_Notification_NotificationServiceGetSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceListSubscriptionsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceListSubscriptionsSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_ListSubscriptionsRequest, Bucketeer_Notification_ListSubscriptionsResponse>, Bucketeer_Notification_NotificationServiceListSubscriptionsSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceCreateSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceCreateSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_CreateSubscriptionRequest, Bucketeer_Notification_CreateSubscriptionResponse>, Bucketeer_Notification_NotificationServiceCreateSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceDeleteSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceDeleteSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_DeleteSubscriptionRequest, Bucketeer_Notification_DeleteSubscriptionResponse>, Bucketeer_Notification_NotificationServiceDeleteSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceEnableSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceEnableSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_EnableSubscriptionRequest, Bucketeer_Notification_EnableSubscriptionResponse>, Bucketeer_Notification_NotificationServiceEnableSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceDisableSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceDisableSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_DisableSubscriptionRequest, Bucketeer_Notification_DisableSubscriptionResponse>, Bucketeer_Notification_NotificationServiceDisableSubscriptionSession {}
-
-internal protocol Bucketeer_Notification_NotificationServiceUpdateSubscriptionSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Notification_NotificationServiceUpdateSubscriptionSessionBase: ServerSessionUnaryBase<Bucketeer_Notification_UpdateSubscriptionRequest, Bucketeer_Notification_UpdateSubscriptionResponse>, Bucketeer_Notification_NotificationServiceUpdateSubscriptionSession {}
+  /// Creates a client for the bucketeer.notification.NotificationService service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 

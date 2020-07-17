@@ -20,302 +20,164 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleCallBase: ClientCallUnaryBase<Bucketeer_Autoops_GetAutoOpsRuleRequest, Bucketeer_Autoops_GetAutoOpsRuleResponse>, Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleCall {
-  override class var method: String { return "/bucketeer.autoops.AutoOpsService/GetAutoOpsRule" }
-}
+/// Usage: instantiate Bucketeer_Autoops_AutoOpsServiceClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_Autoops_AutoOpsServiceClientProtocol: GRPCClient {
+  func getAutoOpsRule(
+    _ request: Bucketeer_Autoops_GetAutoOpsRuleRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Autoops_GetAutoOpsRuleRequest, Bucketeer_Autoops_GetAutoOpsRuleResponse>
 
-internal protocol Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesCall: ClientCallUnary {}
+  func listAutoOpsRules(
+    _ request: Bucketeer_Autoops_ListAutoOpsRulesRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Autoops_ListAutoOpsRulesRequest, Bucketeer_Autoops_ListAutoOpsRulesResponse>
 
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesCallBase: ClientCallUnaryBase<Bucketeer_Autoops_ListAutoOpsRulesRequest, Bucketeer_Autoops_ListAutoOpsRulesResponse>, Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesCall {
-  override class var method: String { return "/bucketeer.autoops.AutoOpsService/ListAutoOpsRules" }
-}
+  func createAutoOpsRule(
+    _ request: Bucketeer_Autoops_CreateAutoOpsRuleRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Autoops_CreateAutoOpsRuleRequest, Bucketeer_Autoops_CreateAutoOpsRuleResponse>
 
-internal protocol Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleCall: ClientCallUnary {}
+  func deleteAutoOpsRule(
+    _ request: Bucketeer_Autoops_DeleteAutoOpsRuleRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Autoops_DeleteAutoOpsRuleRequest, Bucketeer_Autoops_DeleteAutoOpsRuleResponse>
 
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleCallBase: ClientCallUnaryBase<Bucketeer_Autoops_CreateAutoOpsRuleRequest, Bucketeer_Autoops_CreateAutoOpsRuleResponse>, Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleCall {
-  override class var method: String { return "/bucketeer.autoops.AutoOpsService/CreateAutoOpsRule" }
-}
+  func updateAutoOpsRule(
+    _ request: Bucketeer_Autoops_UpdateAutoOpsRuleRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Autoops_UpdateAutoOpsRuleRequest, Bucketeer_Autoops_UpdateAutoOpsRuleResponse>
 
-internal protocol Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleCallBase: ClientCallUnaryBase<Bucketeer_Autoops_DeleteAutoOpsRuleRequest, Bucketeer_Autoops_DeleteAutoOpsRuleResponse>, Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleCall {
-  override class var method: String { return "/bucketeer.autoops.AutoOpsService/DeleteAutoOpsRule" }
-}
-
-internal protocol Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleCallBase: ClientCallUnaryBase<Bucketeer_Autoops_UpdateAutoOpsRuleRequest, Bucketeer_Autoops_UpdateAutoOpsRuleResponse>, Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleCall {
-  override class var method: String { return "/bucketeer.autoops.AutoOpsService/UpdateAutoOpsRule" }
-}
-
-internal protocol Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsCallBase: ClientCallUnaryBase<Bucketeer_Autoops_ExecuteAutoOpsRequest, Bucketeer_Autoops_ExecuteAutoOpsResponse>, Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsCall {
-  override class var method: String { return "/bucketeer.autoops.AutoOpsService/ExecuteAutoOps" }
-}
-
-
-/// Instantiate Bucketeer_Autoops_AutoOpsServiceServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_Autoops_AutoOpsServiceService: ServiceClient {
-  /// Synchronous. Unary.
-  func getAutoOpsRule(_ request: Bucketeer_Autoops_GetAutoOpsRuleRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_GetAutoOpsRuleResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAutoOpsRule(_ request: Bucketeer_Autoops_GetAutoOpsRuleRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_GetAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleCall
-
-  /// Synchronous. Unary.
-  func listAutoOpsRules(_ request: Bucketeer_Autoops_ListAutoOpsRulesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_ListAutoOpsRulesResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAutoOpsRules(_ request: Bucketeer_Autoops_ListAutoOpsRulesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_ListAutoOpsRulesResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesCall
-
-  /// Synchronous. Unary.
-  func createAutoOpsRule(_ request: Bucketeer_Autoops_CreateAutoOpsRuleRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_CreateAutoOpsRuleResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createAutoOpsRule(_ request: Bucketeer_Autoops_CreateAutoOpsRuleRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_CreateAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleCall
-
-  /// Synchronous. Unary.
-  func deleteAutoOpsRule(_ request: Bucketeer_Autoops_DeleteAutoOpsRuleRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_DeleteAutoOpsRuleResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteAutoOpsRule(_ request: Bucketeer_Autoops_DeleteAutoOpsRuleRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_DeleteAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleCall
-
-  /// Synchronous. Unary.
-  func updateAutoOpsRule(_ request: Bucketeer_Autoops_UpdateAutoOpsRuleRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_UpdateAutoOpsRuleResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateAutoOpsRule(_ request: Bucketeer_Autoops_UpdateAutoOpsRuleRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_UpdateAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleCall
-
-  /// Synchronous. Unary.
-  func executeAutoOps(_ request: Bucketeer_Autoops_ExecuteAutoOpsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_ExecuteAutoOpsResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func executeAutoOps(_ request: Bucketeer_Autoops_ExecuteAutoOpsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_ExecuteAutoOpsResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsCall
+  func executeAutoOps(
+    _ request: Bucketeer_Autoops_ExecuteAutoOpsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Autoops_ExecuteAutoOpsRequest, Bucketeer_Autoops_ExecuteAutoOpsResponse>
 
 }
 
-internal extension Bucketeer_Autoops_AutoOpsServiceService {
-  /// Synchronous. Unary.
-  func getAutoOpsRule(_ request: Bucketeer_Autoops_GetAutoOpsRuleRequest) throws -> Bucketeer_Autoops_GetAutoOpsRuleResponse {
-    return try self.getAutoOpsRule(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAutoOpsRule(_ request: Bucketeer_Autoops_GetAutoOpsRuleRequest, completion: @escaping (Bucketeer_Autoops_GetAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleCall {
-    return try self.getAutoOpsRule(request, metadata: self.metadata, completion: completion)
+extension Bucketeer_Autoops_AutoOpsServiceClientProtocol {
+
+  /// Unary call to GetAutoOpsRule
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAutoOpsRule.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAutoOpsRule(
+    _ request: Bucketeer_Autoops_GetAutoOpsRuleRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Autoops_GetAutoOpsRuleRequest, Bucketeer_Autoops_GetAutoOpsRuleResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.autoops.AutoOpsService/GetAutoOpsRule",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func listAutoOpsRules(_ request: Bucketeer_Autoops_ListAutoOpsRulesRequest) throws -> Bucketeer_Autoops_ListAutoOpsRulesResponse {
-    return try self.listAutoOpsRules(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listAutoOpsRules(_ request: Bucketeer_Autoops_ListAutoOpsRulesRequest, completion: @escaping (Bucketeer_Autoops_ListAutoOpsRulesResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesCall {
-    return try self.listAutoOpsRules(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func createAutoOpsRule(_ request: Bucketeer_Autoops_CreateAutoOpsRuleRequest) throws -> Bucketeer_Autoops_CreateAutoOpsRuleResponse {
-    return try self.createAutoOpsRule(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func createAutoOpsRule(_ request: Bucketeer_Autoops_CreateAutoOpsRuleRequest, completion: @escaping (Bucketeer_Autoops_CreateAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleCall {
-    return try self.createAutoOpsRule(request, metadata: self.metadata, completion: completion)
+  /// Unary call to ListAutoOpsRules
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListAutoOpsRules.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listAutoOpsRules(
+    _ request: Bucketeer_Autoops_ListAutoOpsRulesRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Autoops_ListAutoOpsRulesRequest, Bucketeer_Autoops_ListAutoOpsRulesResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.autoops.AutoOpsService/ListAutoOpsRules",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func deleteAutoOpsRule(_ request: Bucketeer_Autoops_DeleteAutoOpsRuleRequest) throws -> Bucketeer_Autoops_DeleteAutoOpsRuleResponse {
-    return try self.deleteAutoOpsRule(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func deleteAutoOpsRule(_ request: Bucketeer_Autoops_DeleteAutoOpsRuleRequest, completion: @escaping (Bucketeer_Autoops_DeleteAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleCall {
-    return try self.deleteAutoOpsRule(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func updateAutoOpsRule(_ request: Bucketeer_Autoops_UpdateAutoOpsRuleRequest) throws -> Bucketeer_Autoops_UpdateAutoOpsRuleResponse {
-    return try self.updateAutoOpsRule(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func updateAutoOpsRule(_ request: Bucketeer_Autoops_UpdateAutoOpsRuleRequest, completion: @escaping (Bucketeer_Autoops_UpdateAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleCall {
-    return try self.updateAutoOpsRule(request, metadata: self.metadata, completion: completion)
+  /// Unary call to CreateAutoOpsRule
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreateAutoOpsRule.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func createAutoOpsRule(
+    _ request: Bucketeer_Autoops_CreateAutoOpsRuleRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Autoops_CreateAutoOpsRuleRequest, Bucketeer_Autoops_CreateAutoOpsRuleResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.autoops.AutoOpsService/CreateAutoOpsRule",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  func executeAutoOps(_ request: Bucketeer_Autoops_ExecuteAutoOpsRequest) throws -> Bucketeer_Autoops_ExecuteAutoOpsResponse {
-    return try self.executeAutoOps(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func executeAutoOps(_ request: Bucketeer_Autoops_ExecuteAutoOpsRequest, completion: @escaping (Bucketeer_Autoops_ExecuteAutoOpsResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsCall {
-    return try self.executeAutoOps(request, metadata: self.metadata, completion: completion)
-  }
-
-}
-
-internal final class Bucketeer_Autoops_AutoOpsServiceServiceClient: ServiceClientBase, Bucketeer_Autoops_AutoOpsServiceService {
-  /// Synchronous. Unary.
-  internal func getAutoOpsRule(_ request: Bucketeer_Autoops_GetAutoOpsRuleRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_GetAutoOpsRuleResponse {
-    return try Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getAutoOpsRule(_ request: Bucketeer_Autoops_GetAutoOpsRuleRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_GetAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleCall {
-    return try Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to DeleteAutoOpsRule
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DeleteAutoOpsRule.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func deleteAutoOpsRule(
+    _ request: Bucketeer_Autoops_DeleteAutoOpsRuleRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Autoops_DeleteAutoOpsRuleRequest, Bucketeer_Autoops_DeleteAutoOpsRuleResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.autoops.AutoOpsService/DeleteAutoOpsRule",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func listAutoOpsRules(_ request: Bucketeer_Autoops_ListAutoOpsRulesRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_ListAutoOpsRulesResponse {
-    return try Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listAutoOpsRules(_ request: Bucketeer_Autoops_ListAutoOpsRulesRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_ListAutoOpsRulesResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesCall {
-    return try Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func createAutoOpsRule(_ request: Bucketeer_Autoops_CreateAutoOpsRuleRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_CreateAutoOpsRuleResponse {
-    return try Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func createAutoOpsRule(_ request: Bucketeer_Autoops_CreateAutoOpsRuleRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_CreateAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleCall {
-    return try Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
+  /// Unary call to UpdateAutoOpsRule
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpdateAutoOpsRule.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func updateAutoOpsRule(
+    _ request: Bucketeer_Autoops_UpdateAutoOpsRuleRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Autoops_UpdateAutoOpsRuleRequest, Bucketeer_Autoops_UpdateAutoOpsRuleResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.autoops.AutoOpsService/UpdateAutoOpsRule",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-  /// Synchronous. Unary.
-  internal func deleteAutoOpsRule(_ request: Bucketeer_Autoops_DeleteAutoOpsRuleRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_DeleteAutoOpsRuleResponse {
-    return try Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func deleteAutoOpsRule(_ request: Bucketeer_Autoops_DeleteAutoOpsRuleRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_DeleteAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleCall {
-    return try Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func updateAutoOpsRule(_ request: Bucketeer_Autoops_UpdateAutoOpsRuleRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_UpdateAutoOpsRuleResponse {
-    return try Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func updateAutoOpsRule(_ request: Bucketeer_Autoops_UpdateAutoOpsRuleRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_UpdateAutoOpsRuleResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleCall {
-    return try Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func executeAutoOps(_ request: Bucketeer_Autoops_ExecuteAutoOpsRequest, metadata customMetadata: Metadata) throws -> Bucketeer_Autoops_ExecuteAutoOpsResponse {
-    return try Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func executeAutoOps(_ request: Bucketeer_Autoops_ExecuteAutoOpsRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_Autoops_ExecuteAutoOpsResponse?, CallResult) -> Void) throws -> Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsCall {
-    return try Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_Autoops_AutoOpsServiceProvider: ServiceProvider {
-  func getAutoOpsRule(request: Bucketeer_Autoops_GetAutoOpsRuleRequest, session: Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleSession) throws -> Bucketeer_Autoops_GetAutoOpsRuleResponse
-  func listAutoOpsRules(request: Bucketeer_Autoops_ListAutoOpsRulesRequest, session: Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesSession) throws -> Bucketeer_Autoops_ListAutoOpsRulesResponse
-  func createAutoOpsRule(request: Bucketeer_Autoops_CreateAutoOpsRuleRequest, session: Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleSession) throws -> Bucketeer_Autoops_CreateAutoOpsRuleResponse
-  func deleteAutoOpsRule(request: Bucketeer_Autoops_DeleteAutoOpsRuleRequest, session: Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleSession) throws -> Bucketeer_Autoops_DeleteAutoOpsRuleResponse
-  func updateAutoOpsRule(request: Bucketeer_Autoops_UpdateAutoOpsRuleRequest, session: Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleSession) throws -> Bucketeer_Autoops_UpdateAutoOpsRuleResponse
-  func executeAutoOps(request: Bucketeer_Autoops_ExecuteAutoOpsRequest, session: Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsSession) throws -> Bucketeer_Autoops_ExecuteAutoOpsResponse
-}
-
-extension Bucketeer_Autoops_AutoOpsServiceProvider {
-  internal var serviceName: String { return "bucketeer.autoops.AutoOpsService" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.autoops.AutoOpsService/GetAutoOpsRule":
-      return try Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleSessionBase(
-        handler: handler,
-        providerBlock: { try self.getAutoOpsRule(request: $0, session: $1 as! Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleSessionBase) })
-          .run()
-    case "/bucketeer.autoops.AutoOpsService/ListAutoOpsRules":
-      return try Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesSessionBase(
-        handler: handler,
-        providerBlock: { try self.listAutoOpsRules(request: $0, session: $1 as! Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesSessionBase) })
-          .run()
-    case "/bucketeer.autoops.AutoOpsService/CreateAutoOpsRule":
-      return try Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleSessionBase(
-        handler: handler,
-        providerBlock: { try self.createAutoOpsRule(request: $0, session: $1 as! Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleSessionBase) })
-          .run()
-    case "/bucketeer.autoops.AutoOpsService/DeleteAutoOpsRule":
-      return try Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleSessionBase(
-        handler: handler,
-        providerBlock: { try self.deleteAutoOpsRule(request: $0, session: $1 as! Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleSessionBase) })
-          .run()
-    case "/bucketeer.autoops.AutoOpsService/UpdateAutoOpsRule":
-      return try Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleSessionBase(
-        handler: handler,
-        providerBlock: { try self.updateAutoOpsRule(request: $0, session: $1 as! Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleSessionBase) })
-          .run()
-    case "/bucketeer.autoops.AutoOpsService/ExecuteAutoOps":
-      return try Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsSessionBase(
-        handler: handler,
-        providerBlock: { try self.executeAutoOps(request: $0, session: $1 as! Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to ExecuteAutoOps
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ExecuteAutoOps.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func executeAutoOps(
+    _ request: Bucketeer_Autoops_ExecuteAutoOpsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Autoops_ExecuteAutoOpsRequest, Bucketeer_Autoops_ExecuteAutoOpsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.autoops.AutoOpsService/ExecuteAutoOps",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleSession: ServerSessionUnary {}
+internal final class Bucketeer_Autoops_AutoOpsServiceClient: Bucketeer_Autoops_AutoOpsServiceClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleSessionBase: ServerSessionUnaryBase<Bucketeer_Autoops_GetAutoOpsRuleRequest, Bucketeer_Autoops_GetAutoOpsRuleResponse>, Bucketeer_Autoops_AutoOpsServiceGetAutoOpsRuleSession {}
-
-internal protocol Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesSessionBase: ServerSessionUnaryBase<Bucketeer_Autoops_ListAutoOpsRulesRequest, Bucketeer_Autoops_ListAutoOpsRulesResponse>, Bucketeer_Autoops_AutoOpsServiceListAutoOpsRulesSession {}
-
-internal protocol Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleSessionBase: ServerSessionUnaryBase<Bucketeer_Autoops_CreateAutoOpsRuleRequest, Bucketeer_Autoops_CreateAutoOpsRuleResponse>, Bucketeer_Autoops_AutoOpsServiceCreateAutoOpsRuleSession {}
-
-internal protocol Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleSessionBase: ServerSessionUnaryBase<Bucketeer_Autoops_DeleteAutoOpsRuleRequest, Bucketeer_Autoops_DeleteAutoOpsRuleResponse>, Bucketeer_Autoops_AutoOpsServiceDeleteAutoOpsRuleSession {}
-
-internal protocol Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleSessionBase: ServerSessionUnaryBase<Bucketeer_Autoops_UpdateAutoOpsRuleRequest, Bucketeer_Autoops_UpdateAutoOpsRuleResponse>, Bucketeer_Autoops_AutoOpsServiceUpdateAutoOpsRuleSession {}
-
-internal protocol Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsSessionBase: ServerSessionUnaryBase<Bucketeer_Autoops_ExecuteAutoOpsRequest, Bucketeer_Autoops_ExecuteAutoOpsResponse>, Bucketeer_Autoops_AutoOpsServiceExecuteAutoOpsSession {}
+  /// Creates a client for the bucketeer.autoops.AutoOpsService service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 

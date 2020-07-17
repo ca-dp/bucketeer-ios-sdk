@@ -20,126 +20,76 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Dispatch
 import Foundation
-import SwiftGRPC
+import GRPC
+import NIO
+import NIOHTTP1
 import SwiftProtobuf
 
-internal protocol Bucketeer_User_UserServiceGetUserCall: ClientCallUnary {}
 
-fileprivate final class Bucketeer_User_UserServiceGetUserCallBase: ClientCallUnaryBase<Bucketeer_User_GetUserRequest, Bucketeer_User_GetUserResponse>, Bucketeer_User_UserServiceGetUserCall {
-  override class var method: String { return "/bucketeer.user.UserService/GetUser" }
-}
+/// Usage: instantiate Bucketeer_User_UserServiceClient, then call methods of this protocol to make API calls.
+internal protocol Bucketeer_User_UserServiceClientProtocol: GRPCClient {
+  func getUser(
+    _ request: Bucketeer_User_GetUserRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_User_GetUserRequest, Bucketeer_User_GetUserResponse>
 
-internal protocol Bucketeer_User_UserServiceListUsersCall: ClientCallUnary {}
-
-fileprivate final class Bucketeer_User_UserServiceListUsersCallBase: ClientCallUnaryBase<Bucketeer_User_ListUsersRequest, Bucketeer_User_ListUsersResponse>, Bucketeer_User_UserServiceListUsersCall {
-  override class var method: String { return "/bucketeer.user.UserService/ListUsers" }
-}
-
-
-/// Instantiate Bucketeer_User_UserServiceServiceClient, then call methods of this protocol to make API calls.
-internal protocol Bucketeer_User_UserServiceService: ServiceClient {
-  /// Synchronous. Unary.
-  func getUser(_ request: Bucketeer_User_GetUserRequest, metadata customMetadata: Metadata) throws -> Bucketeer_User_GetUserResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getUser(_ request: Bucketeer_User_GetUserRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_User_GetUserResponse?, CallResult) -> Void) throws -> Bucketeer_User_UserServiceGetUserCall
-
-  /// Synchronous. Unary.
-  func listUsers(_ request: Bucketeer_User_ListUsersRequest, metadata customMetadata: Metadata) throws -> Bucketeer_User_ListUsersResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listUsers(_ request: Bucketeer_User_ListUsersRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_User_ListUsersResponse?, CallResult) -> Void) throws -> Bucketeer_User_UserServiceListUsersCall
+  func listUsers(
+    _ request: Bucketeer_User_ListUsersRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_User_ListUsersRequest, Bucketeer_User_ListUsersResponse>
 
 }
 
-internal extension Bucketeer_User_UserServiceService {
-  /// Synchronous. Unary.
-  func getUser(_ request: Bucketeer_User_GetUserRequest) throws -> Bucketeer_User_GetUserResponse {
-    return try self.getUser(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getUser(_ request: Bucketeer_User_GetUserRequest, completion: @escaping (Bucketeer_User_GetUserResponse?, CallResult) -> Void) throws -> Bucketeer_User_UserServiceGetUserCall {
-    return try self.getUser(request, metadata: self.metadata, completion: completion)
-  }
+extension Bucketeer_User_UserServiceClientProtocol {
 
-  /// Synchronous. Unary.
-  func listUsers(_ request: Bucketeer_User_ListUsersRequest) throws -> Bucketeer_User_ListUsersResponse {
-    return try self.listUsers(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func listUsers(_ request: Bucketeer_User_ListUsersRequest, completion: @escaping (Bucketeer_User_ListUsersResponse?, CallResult) -> Void) throws -> Bucketeer_User_UserServiceListUsersCall {
-    return try self.listUsers(request, metadata: self.metadata, completion: completion)
+  /// Unary call to GetUser
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetUser.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getUser(
+    _ request: Bucketeer_User_GetUserRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_User_GetUserRequest, Bucketeer_User_GetUserResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.user.UserService/GetUser",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 
-}
-
-internal final class Bucketeer_User_UserServiceServiceClient: ServiceClientBase, Bucketeer_User_UserServiceService {
-  /// Synchronous. Unary.
-  internal func getUser(_ request: Bucketeer_User_GetUserRequest, metadata customMetadata: Metadata) throws -> Bucketeer_User_GetUserResponse {
-    return try Bucketeer_User_UserServiceGetUserCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getUser(_ request: Bucketeer_User_GetUserRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_User_GetUserResponse?, CallResult) -> Void) throws -> Bucketeer_User_UserServiceGetUserCall {
-    return try Bucketeer_User_UserServiceGetUserCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func listUsers(_ request: Bucketeer_User_ListUsersRequest, metadata customMetadata: Metadata) throws -> Bucketeer_User_ListUsersResponse {
-    return try Bucketeer_User_UserServiceListUsersCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func listUsers(_ request: Bucketeer_User_ListUsersRequest, metadata customMetadata: Metadata, completion: @escaping (Bucketeer_User_ListUsersResponse?, CallResult) -> Void) throws -> Bucketeer_User_UserServiceListUsersCall {
-    return try Bucketeer_User_UserServiceListUsersCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-}
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol Bucketeer_User_UserServiceProvider: ServiceProvider {
-  func getUser(request: Bucketeer_User_GetUserRequest, session: Bucketeer_User_UserServiceGetUserSession) throws -> Bucketeer_User_GetUserResponse
-  func listUsers(request: Bucketeer_User_ListUsersRequest, session: Bucketeer_User_UserServiceListUsersSession) throws -> Bucketeer_User_ListUsersResponse
-}
-
-extension Bucketeer_User_UserServiceProvider {
-  internal var serviceName: String { return "bucketeer.user.UserService" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bucketeer.user.UserService/GetUser":
-      return try Bucketeer_User_UserServiceGetUserSessionBase(
-        handler: handler,
-        providerBlock: { try self.getUser(request: $0, session: $1 as! Bucketeer_User_UserServiceGetUserSessionBase) })
-          .run()
-    case "/bucketeer.user.UserService/ListUsers":
-      return try Bucketeer_User_UserServiceListUsersSessionBase(
-        handler: handler,
-        providerBlock: { try self.listUsers(request: $0, session: $1 as! Bucketeer_User_UserServiceListUsersSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
+  /// Unary call to ListUsers
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListUsers.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func listUsers(
+    _ request: Bucketeer_User_ListUsersRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_User_ListUsersRequest, Bucketeer_User_ListUsersResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.user.UserService/ListUsers",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
   }
 }
 
-internal protocol Bucketeer_User_UserServiceGetUserSession: ServerSessionUnary {}
+internal final class Bucketeer_User_UserServiceClient: Bucketeer_User_UserServiceClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
 
-fileprivate final class Bucketeer_User_UserServiceGetUserSessionBase: ServerSessionUnaryBase<Bucketeer_User_GetUserRequest, Bucketeer_User_GetUserResponse>, Bucketeer_User_UserServiceGetUserSession {}
-
-internal protocol Bucketeer_User_UserServiceListUsersSession: ServerSessionUnary {}
-
-fileprivate final class Bucketeer_User_UserServiceListUsersSessionBase: ServerSessionUnaryBase<Bucketeer_User_ListUsersRequest, Bucketeer_User_ListUsersResponse>, Bucketeer_User_UserServiceListUsersSession {}
+  /// Creates a client for the bucketeer.user.UserService service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  internal init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+  }
+}
 
