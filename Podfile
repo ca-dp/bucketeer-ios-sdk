@@ -4,7 +4,7 @@ use_frameworks!
 workspace 'Bucketeer'
 
 def shared_pods
-    pod 'SwiftGRPC', :git => 'https://github.com/grpc/grpc-swift.git', :tag => '0.10.0'
+    pod 'gRPC-Swift', '1.0.0-alpha.17'
 end
 
 target 'Bucketeer' do
