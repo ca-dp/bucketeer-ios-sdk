@@ -116,8 +116,8 @@ class CurrentEvaluationStore {
     }
 }
 
-#if TEST
 extension CurrentEvaluationStore {
+    // for test
     func deleteAll(completion: (() -> Void)? = nil) {
         db.run { [weak self] in
             guard let me = self else {
@@ -135,7 +135,6 @@ extension CurrentEvaluationStore {
         }
     }
 }
-#endif
 
 extension Array {
     func chunked(by distance: Int) -> [[Element]] {

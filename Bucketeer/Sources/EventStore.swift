@@ -111,8 +111,8 @@ class EventStore {
     }
 }
 
-#if TEST
 extension EventStore {
+    // for test
     func deleteAll(completion: (() -> Void)? = nil) {
         db.run { [weak self] in
             guard let me = self else {
@@ -130,4 +130,3 @@ extension EventStore {
         }
     }
 }
-#endif

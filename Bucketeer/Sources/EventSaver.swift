@@ -1,10 +1,10 @@
 import Foundation
-import SwiftGRPC
+import GRPC
 import SwiftProtobuf
 
 struct EventSaver {
     let eventStore: EventStore
-
+    
     func saveEvaluationEvent(userEntity: UserEntity, evaluationEntity: EvaluationEntity, completion: ((Int?) -> Void)? = nil) {
         let evaluationEvent = Bucketeer_Event_Client_EvaluationEvent(user: userEntity.user,
                                                                      timestamp: Date().timestamp,
@@ -15,7 +15,7 @@ struct EventSaver {
         }
         eventStore.save([eventEntity], completion: completion)
     }
-
+    
     func saveClientDefaultEvaluationEvent(userEntity: UserEntity, featureID: String, completion: ((Int?) -> Void)? = nil) {
         let evaluationEvent = Bucketeer_Event_Client_EvaluationEvent(user: userEntity.user,
                                                                      timestamp: Date().timestamp,
@@ -26,7 +26,7 @@ struct EventSaver {
         }
         eventStore.save([eventEntity], completion: completion)
     }
-
+    
     func saveGoalEvent(userEntity: UserEntity, goalID: String, value: Double, evaluationEntities: Set<EvaluationEntity>, completion: ((Int?) -> Void)? = nil) {
         let goalEvent = Bucketeer_Event_Client_GoalEvent(user: userEntity.user,
                                                          timestamp: Date().timestamp,
@@ -39,12 +39,12 @@ struct EventSaver {
         }
         eventStore.save([eventEntity], completion: completion)
     }
-
+    
     func saveGetEvaluationLatencyMetricsEvent(duration: TimeInterval, labels: Dictionary<String, String>, completion: ((Int?) -> Void)? = nil) {
         let getEvaluationLatencyMetricsEvent = Bucketeer_Event_Client_GetEvaluationLatencyMetricsEvent(labels: labels,
                                                                                                        duration: duration)
         let metricsEvent = Bucketeer_Event_Client_MetricsEvent(timestamp: Date().timestamp,
-                                                         event: getEvaluationLatencyMetricsEvent)
+                                                               event: getEvaluationLatencyMetricsEvent)
         guard let eventEntity = EventEntity(eventType: .metrics, event: metricsEvent) else {
             completion?(nil)
             return
@@ -75,7 +75,7 @@ private extension Bucketeer_Event_Client_EvaluationEvent {
         self.user = user
         self.reason = evaluation.reason
     }
-
+    
     /// init for client event defalut value
     init(user: Bucketeer_User_User, timestamp: Int64, featureID: String) {
         var reason = Bucketeer_Feature_Reason()

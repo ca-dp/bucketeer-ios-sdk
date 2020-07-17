@@ -74,7 +74,6 @@ class EvaluationSynchronizerTest: XCTestCase {
     func testSyncEvaluations_success_nothing_to_sync() {
         let asyncExpectation = expectation(description: "")
         let evaluationSynchronizer = self.createEvaluationSynchronizer()
-        let userEvaluationsId = "user-evaluations-id-2"
         evaluationSynchronizer.updateUserEvaluationsId(userEvaluationsId: CommonUnitUtil.shared.userEvaluationsId)
         evaluationSynchronizer.syncEvaluations(userEntity: userEntity) { result in
             switch result {

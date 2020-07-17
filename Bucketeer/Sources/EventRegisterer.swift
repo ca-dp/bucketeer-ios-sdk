@@ -1,19 +1,19 @@
 import Foundation
-import SwiftGRPC
+import GRPC
 import SwiftProtobuf
 
 class EventRegisterer {
     let apiClient: APIClientProtocol
     let eventStore: EventStore
-
+    
     // TODO: it's better to remove this flag because this type of variable leads bugs
     private var isProcessing = false
-
+    
     init(apiClient: APIClientProtocol, eventStore: EventStore) {
         self.apiClient = apiClient
         self.eventStore = eventStore
     }
-
+    
     func registerEvents(eventEntities: [EventEntity], completion: ((Result<CallResult?, BucketeerError>) -> Void)? = nil) {
         guard !isProcessing else {
             Logger.shared.debugLog("Skipped because another one is running")
@@ -37,12 +37,12 @@ class EventRegisterer {
             completion?(result)
         }
     }
-
+    
     private func _registerEvents(eventEntities: [EventEntity], completion: @escaping (Result<CallResult?, BucketeerError>) -> Void) {
         Logger.shared.debugLog("Run registerEvents: count: \(eventEntities.count)")
         apiClient.registerEvents(eventEntities: eventEntities) { [eventStore] result in
             switch result {
-            case .success(let response, let callResult):
+            case .success((let response, let callResult)):
                 guard let response = response, !callResult.isFailed else {
                     let message = "(\(Version.number)) Failed to register events: callResult: \(callResult)"
                     Logger.shared.errorLog(message)

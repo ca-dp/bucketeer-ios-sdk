@@ -1,5 +1,5 @@
 import Foundation
-import SwiftGRPC
+import GRPC
 import SwiftProtobuf
 
 // TODO: return various error types (not only .unknown)
@@ -17,48 +17,48 @@ public final class BucketeerSDK {
         static let getEvaluationsQueueLabel = "jp.co.cyberagent.bucketeer.getEvaluationsQueue"
         static let registerEventsQueueLabel = "jp.co.cyberagent.bucketeer.registerEventsQueue"
     }
-
+    
     private static var _shared: BucketeerSDK?
     public static var shared: BucketeerSDK {
         return _shared ?? { fatalError("Failed to access shared instance. Need to Bucketeer.setup()") }()
     }
-
+    
     private let setUserQueue = DispatchQueue(label: QueueLabels.setUserQueueLabel, attributes: .concurrent)
     private let getVariationQueue = DispatchQueue(label: QueueLabels.getVariationQueueLabel, attributes: .concurrent)
     private let trackQueue = DispatchQueue(label: QueueLabels.trackQueueLabel, attributes: .concurrent)
-
+    
     private let reachability = Reachability()!
-
+    
     private lazy var getEvaluationsPoller: Poller = {
         return Poller(interval: self.config.getEvaluationsPollingInterval, label: QueueLabels.getEvaluationsQueueLabel) {
             self.getEvaluationsPollingEvent()
         }
     }()
-
+    
     private lazy var registerEventsPoller: Poller = {
         return Poller(interval: self.config.registerEventsPollingInterval, label: QueueLabels.registerEventsQueueLabel) {
             self.registerEventsPollingEvent()
         }
     }()
-
+    
     private let eventStore: EventStore
     private let latestEvaluationStore: LatestEvaluationStore
     private let currentEvaluationStore: CurrentEvaluationStore
-
+    
     private let evaluationSynchronizer: EvaluationSynchronizer
     private let eventRegisterer: EventRegisterer
     private let eventSaver: EventSaver
-
+    
     private let config: Config
     private let db: SQLiteDatabase
     private(set) var userEntity: UserEntity?
     private(set) var isOnline = true
-
+    
     private enum StatusKey: Int {
         case queued = 0
         case partial = 1
         case full = 2
-
+        
         var state: String {
             switch self {
             case .queued:
@@ -70,11 +70,11 @@ public final class BucketeerSDK {
             }
         }
     }
-
+    
     init(config: Config) throws {
         self.config = config
         let apiClient = APIClient(config: config)
-
+        
         // setup DB
         do {
             #if os(tvOS)
@@ -82,7 +82,7 @@ public final class BucketeerSDK {
             #else
             let directory: FileManager.SearchPathDirectory = .libraryDirectory
             #endif
-
+            
             let databaseURL = try FileManager.default
                 .url(for: directory, in: .userDomainMask, appropriateFor: nil, create: true)
                 .appendingPathComponent("bucketeer.db.sqlite")
@@ -92,17 +92,17 @@ public final class BucketeerSDK {
             Logger.shared.errorLog("Failed to setup database: \(error.localizedDescription)")
             throw error
         }
-
+        
         eventStore = EventStore(db: db)
         latestEvaluationStore = LatestEvaluationStore(db: db)
         currentEvaluationStore = CurrentEvaluationStore(db: db)
-
+        
         eventRegisterer = EventRegisterer(apiClient: apiClient, eventStore: eventStore)
         evaluationSynchronizer = EvaluationSynchronizer(apiClient: apiClient,
                                                         latestEvaluationStore: latestEvaluationStore,
                                                         currentEvaluationStore: currentEvaluationStore)
         eventSaver = EventSaver(eventStore: eventStore)
-
+        
         // setup reachability
         do {
             isOnline = reachability.connection != .none
@@ -117,10 +117,10 @@ public final class BucketeerSDK {
             Logger.shared.errorLog("Unable to start reachability notifier: \(error.localizedDescription)")
             throw error
         }
-
+        
         addObserver()
     }
-
+    
     deinit {
         removeObserver()
     }
@@ -142,7 +142,7 @@ public extension BucketeerSDK {
         }
         return .success(())
     }
-
+    
     func setUser(userID: String, userAttributes: [String: String]? = nil, completion: ((Result<Void, BucketeerError>) -> (Void))? = nil) {
         _setUser(userID: userID, userAttributes: userAttributes, completion: completion)
     }
@@ -150,41 +150,41 @@ public extension BucketeerSDK {
     func getUser() -> User? {
         return _getUser()
     }
-
+    
     func syncEvaluations() {
         return getEvaluationsPollingEvent()
     }
-
+    
     // MARK: Feature
-
+    
     func boolVariation(featureID: String, defaultValue: Bool) -> Bool {
         return getVariation(featureID: featureID, defaultValue: defaultValue)
     }
-
+    
     func intVariation(featureID: String, defaultValue: Int) -> Int {
         return getVariation(featureID: featureID, defaultValue: defaultValue)
     }
-
+    
     func floatVariation(featureID: String, defaultValue: Float) -> Float {
         return getVariation(featureID: featureID, defaultValue: defaultValue)
     }
-
+    
     func stringVariation(featureID: String, defaultValue: String) -> String {
         return getVariation(featureID: featureID, defaultValue: defaultValue)
     }
-
+    
     /// Retrieves generic variation for `feature`.
     func variation<T: VariationProtocol>(for feature: Feature<T>) -> T {
         return getVariation(featureID: feature.id, defaultValue: feature.defaultValue)
     }
-
+    
     // MARK: Goal
-
+    
     /// Send `goalID` and associated `value` (default is `0.0`).
     func track(goalID: String, value: Double = 0.0) {
         _track(goalID: goalID, value: value)
     }
-
+    
     func getEvaluation(featureID: String) -> Evaluation? {
         return _getEvaluation(featureID: featureID)
     }
@@ -257,7 +257,7 @@ private extension BucketeerSDK {
 // MARK: - Logics
 
 private extension BucketeerSDK {
-
+    
     func getVariation<T: VariationProtocol>(featureID: String, defaultValue: T) -> T {
         guard let userEntity = userEntity else {
             return defaultValue
@@ -275,7 +275,7 @@ private extension BucketeerSDK {
         }
         return defaultValue
     }
-
+    
     func _track(goalID: String, value: Double) {
         trackQueue.async { [userEntity, currentEvaluationStore, eventSaver, registerEventsIfNeeded] in
             guard let userEntity = userEntity else {
@@ -290,7 +290,7 @@ private extension BucketeerSDK {
             }
         }
     }
-
+    
     func _sendGetEvaluationLatencyMetricsEvent(duration: TimeInterval, state: String) {
         self.trackQueue.async { [duration] in
             self.eventSaver.saveGetEvaluationLatencyMetricsEvent(
@@ -308,7 +308,7 @@ private extension BucketeerSDK {
                 completion: self.registerEventsIfNeeded)
         }
     }
-
+    
     func registerEventsIfNeeded(eventsCount: Int?) -> () {
         guard isOnline else {
             return
@@ -320,7 +320,7 @@ private extension BucketeerSDK {
             eventRegisterer.registerEvents(eventEntities: eventEntities)
         }
     }
-
+    
     func _getEvaluation(featureID: String) -> Evaluation? {
         if let evaluationEntity = latestEvaluationStore.fetch(featureID: featureID) {
             return Evaluation(
@@ -364,7 +364,7 @@ private extension BucketeerSDK {
             self.startEvaluationsPolling()
         }
     }
-
+    
     func registerEventsPollingEvent() {
         Logger.shared.debugLog("registerEventsPollingEvent fired")
         guard isOnline else {
@@ -388,13 +388,13 @@ private extension BucketeerSDK {
         center.addObserver(self, selector: #selector(type(of: self).willEnterForeground(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
         center.addObserver(self, selector: #selector(type(of: self).willEnterBackground(notification:)), name: UIApplication.willResignActiveNotification, object: nil)
     }
-
+    
     func removeObserver() {
         Logger.shared.debugLog()
         let center = NotificationCenter.default
         center.removeObserver(self)
     }
-
+    
     @objc func willEnterForeground(notification: Notification) {
         Logger.shared.debugLog()
         startEvaluationsPolling()
@@ -405,7 +405,7 @@ private extension BucketeerSDK {
             Logger.shared.errorLog("Unable to start reachability notifier: \(error.localizedDescription)")
         }
     }
-
+    
     @objc func willEnterBackground(notification: Notification) {
         Logger.shared.debugLog()
         getEvaluationsPoller.stop()
@@ -422,13 +422,13 @@ private extension BucketeerSDK {
             self.startPollingIfNeeded(self.getEvaluationsPoller)
         }
     }
-
+    
     func startRegisterEventsPolling() {
         DispatchQueue.main.async {
             self.startPollingIfNeeded(self.registerEventsPoller)
         }
     }
-
+    
     func startPollingIfNeeded(_ poller: Poller, applicationState: UIApplication.State = UIApplication.shared.applicationState) {
         #if TEST
         Logger.shared.debugLog("startPolling is suppressed during test")
