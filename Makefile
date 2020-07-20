@@ -1,3 +1,7 @@
+PROTO_OUTPUT := proto_output
+PROTO_FOLDERS := $(filter-out ./rpc%, $(shell cd ../bucketeer/proto && find . -name '*.proto' -print0 | xargs -0 -n1 dirname | sort --unique))
+PROTO_TOP_DIR := $(shell cd ../bucketeer && pwd)
+
 APP_NAME=Bucketeer
 
 CONFIGURATION ?= Debug
@@ -50,11 +54,11 @@ settings:
 	$(SHOW_BUILD_SETTINGS)
 
 .PHONY: build
-build: copy-protos
+build:
 	$(BUILD)
 
 .PHONY: build-for-testing
-build-for-testing: copy-protos
+build-for-testing:
 	$(BUILD_FOR_TESTING)
 
 .PHONY: test-without-building
@@ -80,7 +84,24 @@ deps:
 	bundle exec fastlane setup
 
 .PHONY: copy-protos
-copy-protos:
-	make -C ../bucketeer/proto swift
+copy-protos: gen-protos
 	rm -rf Bucketeer/Sources/proto
-	mv ../bucketeer/proto/swift_output/proto Bucketeer/Sources/
+	mv $(PROTO_OUTPUT)/proto Bucketeer/Sources/
+
+.PHONY: gen-protos
+gen-protos:
+	if [ -d ${PROTO_OUTPUT} ]; then rm -fr ${PROTO_OUTPUT}; fi; \
+	mkdir ${PROTO_OUTPUT}; \
+	for f in ${PROTO_FOLDERS}; do \
+		protoc -I"$(PROTO_TOP_DIR)" \
+			-I"${GOPATH}/src/github.com/googleapis/googleapis" \
+			--swift_out=./${PROTO_OUTPUT} \
+			--grpc-swift_out=Client=true,Server=false:./${PROTO_OUTPUT} \
+			${PROTO_TOP_DIR}/proto/$$f/*.proto; \
+	done; \
+	for file in $$(find ./${PROTO_OUTPUT} -name "*.swift"); do \
+		var=$$(basename $$file); \
+		dir=$$(dirname $$file); \
+		dirName=$${dir##*/}; \
+		mv $$file $$dir/$$dirName"_"$$var; \
+	done
