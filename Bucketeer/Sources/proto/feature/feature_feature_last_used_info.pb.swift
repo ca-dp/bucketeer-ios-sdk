@@ -33,6 +33,10 @@ struct Bucketeer_Feature_FeatureLastUsedInfo {
 
   var createdAt: Int64 = 0
 
+  var clientOldestVersion: String = String()
+
+  var clientLatestVersion: String = String()
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -49,6 +53,8 @@ extension Bucketeer_Feature_FeatureLastUsedInfo: SwiftProtobuf.Message, SwiftPro
     2: .same(proto: "version"),
     3: .standard(proto: "last_used_at"),
     4: .standard(proto: "created_at"),
+    5: .standard(proto: "client_oldest_version"),
+    6: .standard(proto: "client_latest_version"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -58,6 +64,8 @@ extension Bucketeer_Feature_FeatureLastUsedInfo: SwiftProtobuf.Message, SwiftPro
       case 2: try decoder.decodeSingularInt32Field(value: &self.version)
       case 3: try decoder.decodeSingularInt64Field(value: &self.lastUsedAt)
       case 4: try decoder.decodeSingularInt64Field(value: &self.createdAt)
+      case 5: try decoder.decodeSingularStringField(value: &self.clientOldestVersion)
+      case 6: try decoder.decodeSingularStringField(value: &self.clientLatestVersion)
       default: break
       }
     }
@@ -76,6 +84,12 @@ extension Bucketeer_Feature_FeatureLastUsedInfo: SwiftProtobuf.Message, SwiftPro
     if self.createdAt != 0 {
       try visitor.visitSingularInt64Field(value: self.createdAt, fieldNumber: 4)
     }
+    if !self.clientOldestVersion.isEmpty {
+      try visitor.visitSingularStringField(value: self.clientOldestVersion, fieldNumber: 5)
+    }
+    if !self.clientLatestVersion.isEmpty {
+      try visitor.visitSingularStringField(value: self.clientLatestVersion, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -84,6 +98,8 @@ extension Bucketeer_Feature_FeatureLastUsedInfo: SwiftProtobuf.Message, SwiftPro
     if lhs.version != rhs.version {return false}
     if lhs.lastUsedAt != rhs.lastUsedAt {return false}
     if lhs.createdAt != rhs.createdAt {return false}
+    if lhs.clientOldestVersion != rhs.clientOldestVersion {return false}
+    if lhs.clientLatestVersion != rhs.clientLatestVersion {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
