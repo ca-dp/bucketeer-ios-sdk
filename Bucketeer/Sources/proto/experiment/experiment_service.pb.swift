@@ -399,6 +399,76 @@ struct Bucketeer_Experiment_UpdateExperimentResponse {
   init() {}
 }
 
+struct Bucketeer_Experiment_StartExperimentRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var environmentNamespace: String = String()
+
+  var id: String = String()
+
+  var command: Bucketeer_Experiment_StartExperimentCommand {
+    get {return _command ?? Bucketeer_Experiment_StartExperimentCommand()}
+    set {_command = newValue}
+  }
+  /// Returns true if `command` has been explicitly set.
+  var hasCommand: Bool {return self._command != nil}
+  /// Clears the value of `command`. Subsequent reads from it will return its default value.
+  mutating func clearCommand() {self._command = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _command: Bucketeer_Experiment_StartExperimentCommand? = nil
+}
+
+struct Bucketeer_Experiment_StartExperimentResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Experiment_FinishExperimentRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var environmentNamespace: String = String()
+
+  var id: String = String()
+
+  var command: Bucketeer_Experiment_FinishExperimentCommand {
+    get {return _command ?? Bucketeer_Experiment_FinishExperimentCommand()}
+    set {_command = newValue}
+  }
+  /// Returns true if `command` has been explicitly set.
+  var hasCommand: Bool {return self._command != nil}
+  /// Clears the value of `command`. Subsequent reads from it will return its default value.
+  mutating func clearCommand() {self._command = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _command: Bucketeer_Experiment_FinishExperimentCommand? = nil
+}
+
+struct Bucketeer_Experiment_FinishExperimentResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Bucketeer_Experiment_StopExperimentRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -1100,6 +1170,126 @@ extension Bucketeer_Experiment_UpdateExperimentResponse: SwiftProtobuf.Message, 
   }
 
   static func ==(lhs: Bucketeer_Experiment_UpdateExperimentResponse, rhs: Bucketeer_Experiment_UpdateExperimentResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Experiment_StartExperimentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".StartExperimentRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "environment_namespace"),
+    2: .same(proto: "id"),
+    3: .same(proto: "command"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 2: try decoder.decodeSingularStringField(value: &self.id)
+      case 3: try decoder.decodeSingularMessageField(value: &self._command)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.environmentNamespace.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 1)
+    }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 2)
+    }
+    if let v = self._command {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Experiment_StartExperimentRequest, rhs: Bucketeer_Experiment_StartExperimentRequest) -> Bool {
+    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.id != rhs.id {return false}
+    if lhs._command != rhs._command {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Experiment_StartExperimentResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".StartExperimentResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Experiment_StartExperimentResponse, rhs: Bucketeer_Experiment_StartExperimentResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Experiment_FinishExperimentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FinishExperimentRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "environment_namespace"),
+    2: .same(proto: "id"),
+    3: .same(proto: "command"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 2: try decoder.decodeSingularStringField(value: &self.id)
+      case 3: try decoder.decodeSingularMessageField(value: &self._command)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.environmentNamespace.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 1)
+    }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 2)
+    }
+    if let v = self._command {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Experiment_FinishExperimentRequest, rhs: Bucketeer_Experiment_FinishExperimentRequest) -> Bool {
+    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.id != rhs.id {return false}
+    if lhs._command != rhs._command {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Experiment_FinishExperimentResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FinishExperimentResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Experiment_FinishExperimentResponse, rhs: Bucketeer_Experiment_FinishExperimentResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

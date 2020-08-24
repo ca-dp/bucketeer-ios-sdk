@@ -174,6 +174,8 @@ struct Bucketeer_Event_Domain_Event {
     case experimentPeriodChanged // = 205
     case experimentNameChanged // = 206
     case experimentDescriptionChanged // = 207
+    case experimentStarted // = 208
+    case experimentFinished // = 209
     case accountCreated // = 300
     case accountRoleChanged // = 301
     case accountEnabled // = 302
@@ -286,6 +288,8 @@ struct Bucketeer_Event_Domain_Event {
       case 205: self = .experimentPeriodChanged
       case 206: self = .experimentNameChanged
       case 207: self = .experimentDescriptionChanged
+      case 208: self = .experimentStarted
+      case 209: self = .experimentFinished
       case 300: self = .accountCreated
       case 301: self = .accountRoleChanged
       case 302: self = .accountEnabled
@@ -396,6 +400,8 @@ struct Bucketeer_Event_Domain_Event {
       case .experimentPeriodChanged: return 205
       case .experimentNameChanged: return 206
       case .experimentDescriptionChanged: return 207
+      case .experimentStarted: return 208
+      case .experimentFinished: return 209
       case .accountCreated: return 300
       case .accountRoleChanged: return 301
       case .accountEnabled: return 302
@@ -536,6 +542,8 @@ extension Bucketeer_Event_Domain_Event.TypeEnum: CaseIterable {
     .experimentPeriodChanged,
     .experimentNameChanged,
     .experimentDescriptionChanged,
+    .experimentStarted,
+    .experimentFinished,
     .accountCreated,
     .accountRoleChanged,
     .accountEnabled,
@@ -1354,6 +1362,26 @@ struct Bucketeer_Event_Domain_ExperimentDescriptionChangedEvent {
   var id: String = String()
 
   var description_p: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Event_Domain_ExperimentStartedEvent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Event_Domain_ExperimentFinishedEvent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2442,6 +2470,8 @@ extension Bucketeer_Event_Domain_Event.TypeEnum: SwiftProtobuf._ProtoNameProvidi
     205: .same(proto: "EXPERIMENT_PERIOD_CHANGED"),
     206: .same(proto: "EXPERIMENT_NAME_CHANGED"),
     207: .same(proto: "EXPERIMENT_DESCRIPTION_CHANGED"),
+    208: .same(proto: "EXPERIMENT_STARTED"),
+    209: .same(proto: "EXPERIMENT_FINISHED"),
     300: .same(proto: "ACCOUNT_CREATED"),
     301: .same(proto: "ACCOUNT_ROLE_CHANGED"),
     302: .same(proto: "ACCOUNT_ENABLED"),
@@ -4273,6 +4303,44 @@ extension Bucketeer_Event_Domain_ExperimentDescriptionChangedEvent: SwiftProtobu
   static func ==(lhs: Bucketeer_Event_Domain_ExperimentDescriptionChangedEvent, rhs: Bucketeer_Event_Domain_ExperimentDescriptionChangedEvent) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.description_p != rhs.description_p {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Event_Domain_ExperimentStartedEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ExperimentStartedEvent"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Event_Domain_ExperimentStartedEvent, rhs: Bucketeer_Event_Domain_ExperimentStartedEvent) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Event_Domain_ExperimentFinishedEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ExperimentFinishedEvent"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Event_Domain_ExperimentFinishedEvent, rhs: Bucketeer_Event_Domain_ExperimentFinishedEvent) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
