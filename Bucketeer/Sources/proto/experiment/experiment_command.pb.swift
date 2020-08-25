@@ -176,6 +176,26 @@ struct Bucketeer_Experiment_DeleteExperimentCommand {
   init() {}
 }
 
+struct Bucketeer_Experiment_StartExperimentCommand {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Experiment_FinishExperimentCommand {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bucketeer.experiment"
@@ -547,6 +567,44 @@ extension Bucketeer_Experiment_DeleteExperimentCommand: SwiftProtobuf.Message, S
   }
 
   static func ==(lhs: Bucketeer_Experiment_DeleteExperimentCommand, rhs: Bucketeer_Experiment_DeleteExperimentCommand) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Experiment_StartExperimentCommand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".StartExperimentCommand"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Experiment_StartExperimentCommand, rhs: Bucketeer_Experiment_StartExperimentCommand) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Experiment_FinishExperimentCommand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FinishExperimentCommand"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Experiment_FinishExperimentCommand, rhs: Bucketeer_Experiment_FinishExperimentCommand) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

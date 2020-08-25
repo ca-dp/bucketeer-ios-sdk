@@ -74,6 +74,16 @@ internal protocol Bucketeer_Experiment_ExperimentServiceClientProtocol: GRPCClie
     callOptions: CallOptions?
   ) -> UnaryCall<Bucketeer_Experiment_UpdateExperimentRequest, Bucketeer_Experiment_UpdateExperimentResponse>
 
+  func startExperiment(
+    _ request: Bucketeer_Experiment_StartExperimentRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Experiment_StartExperimentRequest, Bucketeer_Experiment_StartExperimentResponse>
+
+  func finishExperiment(
+    _ request: Bucketeer_Experiment_FinishExperimentRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Experiment_FinishExperimentRequest, Bucketeer_Experiment_FinishExperimentResponse>
+
   func stopExperiment(
     _ request: Bucketeer_Experiment_StopExperimentRequest,
     callOptions: CallOptions?
@@ -236,6 +246,40 @@ extension Bucketeer_Experiment_ExperimentServiceClientProtocol {
   ) -> UnaryCall<Bucketeer_Experiment_UpdateExperimentRequest, Bucketeer_Experiment_UpdateExperimentResponse> {
     return self.makeUnaryCall(
       path: "/bucketeer.experiment.ExperimentService/UpdateExperiment",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
+  }
+
+  /// Unary call to StartExperiment
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to StartExperiment.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func startExperiment(
+    _ request: Bucketeer_Experiment_StartExperimentRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Experiment_StartExperimentRequest, Bucketeer_Experiment_StartExperimentResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.experiment.ExperimentService/StartExperiment",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
+  }
+
+  /// Unary call to FinishExperiment
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to FinishExperiment.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func finishExperiment(
+    _ request: Bucketeer_Experiment_FinishExperimentRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Experiment_FinishExperimentRequest, Bucketeer_Experiment_FinishExperimentResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.experiment.ExperimentService/FinishExperiment",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions
     )
