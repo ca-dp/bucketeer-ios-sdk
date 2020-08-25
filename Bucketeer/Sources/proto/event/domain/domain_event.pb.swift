@@ -174,6 +174,8 @@ struct Bucketeer_Event_Domain_Event {
     case experimentPeriodChanged // = 205
     case experimentNameChanged // = 206
     case experimentDescriptionChanged // = 207
+    case experimentStarted // = 208
+    case experimentFinished // = 209
     case accountCreated // = 300
     case accountRoleChanged // = 301
     case accountEnabled // = 302
@@ -286,6 +288,8 @@ struct Bucketeer_Event_Domain_Event {
       case 205: self = .experimentPeriodChanged
       case 206: self = .experimentNameChanged
       case 207: self = .experimentDescriptionChanged
+      case 208: self = .experimentStarted
+      case 209: self = .experimentFinished
       case 300: self = .accountCreated
       case 301: self = .accountRoleChanged
       case 302: self = .accountEnabled
@@ -396,6 +400,8 @@ struct Bucketeer_Event_Domain_Event {
       case .experimentPeriodChanged: return 205
       case .experimentNameChanged: return 206
       case .experimentDescriptionChanged: return 207
+      case .experimentStarted: return 208
+      case .experimentFinished: return 209
       case .accountCreated: return 300
       case .accountRoleChanged: return 301
       case .accountEnabled: return 302
@@ -536,6 +542,8 @@ extension Bucketeer_Event_Domain_Event.TypeEnum: CaseIterable {
     .experimentPeriodChanged,
     .experimentNameChanged,
     .experimentDescriptionChanged,
+    .experimentStarted,
+    .experimentFinished,
     .accountCreated,
     .accountRoleChanged,
     .accountEnabled,
@@ -646,9 +654,30 @@ struct Bucketeer_Event_Domain_FeatureCreatedEvent {
 
   var variations: [Bucketeer_Feature_Variation] = []
 
+  var defaultOnVariationIndex: SwiftProtobuf.Google_Protobuf_Int32Value {
+    get {return _defaultOnVariationIndex ?? SwiftProtobuf.Google_Protobuf_Int32Value()}
+    set {_defaultOnVariationIndex = newValue}
+  }
+  /// Returns true if `defaultOnVariationIndex` has been explicitly set.
+  var hasDefaultOnVariationIndex: Bool {return self._defaultOnVariationIndex != nil}
+  /// Clears the value of `defaultOnVariationIndex`. Subsequent reads from it will return its default value.
+  mutating func clearDefaultOnVariationIndex() {self._defaultOnVariationIndex = nil}
+
+  var defaultOffVariationIndex: SwiftProtobuf.Google_Protobuf_Int32Value {
+    get {return _defaultOffVariationIndex ?? SwiftProtobuf.Google_Protobuf_Int32Value()}
+    set {_defaultOffVariationIndex = newValue}
+  }
+  /// Returns true if `defaultOffVariationIndex` has been explicitly set.
+  var hasDefaultOffVariationIndex: Bool {return self._defaultOffVariationIndex != nil}
+  /// Clears the value of `defaultOffVariationIndex`. Subsequent reads from it will return its default value.
+  mutating func clearDefaultOffVariationIndex() {self._defaultOffVariationIndex = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _defaultOnVariationIndex: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
+  fileprivate var _defaultOffVariationIndex: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
 }
 
 struct Bucketeer_Event_Domain_FeatureEnabledEvent {
@@ -1354,6 +1383,26 @@ struct Bucketeer_Event_Domain_ExperimentDescriptionChangedEvent {
   var id: String = String()
 
   var description_p: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Event_Domain_ExperimentStartedEvent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Event_Domain_ExperimentFinishedEvent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2442,6 +2491,8 @@ extension Bucketeer_Event_Domain_Event.TypeEnum: SwiftProtobuf._ProtoNameProvidi
     205: .same(proto: "EXPERIMENT_PERIOD_CHANGED"),
     206: .same(proto: "EXPERIMENT_NAME_CHANGED"),
     207: .same(proto: "EXPERIMENT_DESCRIPTION_CHANGED"),
+    208: .same(proto: "EXPERIMENT_STARTED"),
+    209: .same(proto: "EXPERIMENT_FINISHED"),
     300: .same(proto: "ACCOUNT_CREATED"),
     301: .same(proto: "ACCOUNT_ROLE_CHANGED"),
     302: .same(proto: "ACCOUNT_ENABLED"),
@@ -2589,6 +2640,8 @@ extension Bucketeer_Event_Domain_FeatureCreatedEvent: SwiftProtobuf.Message, Swi
     3: .same(proto: "description"),
     4: .same(proto: "user"),
     5: .same(proto: "variations"),
+    6: .standard(proto: "default_on_variation_index"),
+    7: .standard(proto: "default_off_variation_index"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2599,6 +2652,8 @@ extension Bucketeer_Event_Domain_FeatureCreatedEvent: SwiftProtobuf.Message, Swi
       case 3: try decoder.decodeSingularStringField(value: &self.description_p)
       case 4: try decoder.decodeSingularStringField(value: &self.user)
       case 5: try decoder.decodeRepeatedMessageField(value: &self.variations)
+      case 6: try decoder.decodeSingularMessageField(value: &self._defaultOnVariationIndex)
+      case 7: try decoder.decodeSingularMessageField(value: &self._defaultOffVariationIndex)
       default: break
       }
     }
@@ -2620,6 +2675,12 @@ extension Bucketeer_Event_Domain_FeatureCreatedEvent: SwiftProtobuf.Message, Swi
     if !self.variations.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.variations, fieldNumber: 5)
     }
+    if let v = self._defaultOnVariationIndex {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
+    if let v = self._defaultOffVariationIndex {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2629,6 +2690,8 @@ extension Bucketeer_Event_Domain_FeatureCreatedEvent: SwiftProtobuf.Message, Swi
     if lhs.description_p != rhs.description_p {return false}
     if lhs.user != rhs.user {return false}
     if lhs.variations != rhs.variations {return false}
+    if lhs._defaultOnVariationIndex != rhs._defaultOnVariationIndex {return false}
+    if lhs._defaultOffVariationIndex != rhs._defaultOffVariationIndex {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -4273,6 +4336,44 @@ extension Bucketeer_Event_Domain_ExperimentDescriptionChangedEvent: SwiftProtobu
   static func ==(lhs: Bucketeer_Event_Domain_ExperimentDescriptionChangedEvent, rhs: Bucketeer_Event_Domain_ExperimentDescriptionChangedEvent) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.description_p != rhs.description_p {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Event_Domain_ExperimentStartedEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ExperimentStartedEvent"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Event_Domain_ExperimentStartedEvent, rhs: Bucketeer_Event_Domain_ExperimentStartedEvent) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Event_Domain_ExperimentFinishedEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ExperimentFinishedEvent"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Event_Domain_ExperimentFinishedEvent, rhs: Bucketeer_Event_Domain_ExperimentFinishedEvent) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
