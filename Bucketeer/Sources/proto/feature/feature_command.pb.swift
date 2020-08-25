@@ -57,9 +57,30 @@ struct Bucketeer_Feature_CreateFeatureCommand {
 
   var tags: [String] = []
 
+  var defaultOnVariationIndex: SwiftProtobuf.Google_Protobuf_Int32Value {
+    get {return _defaultOnVariationIndex ?? SwiftProtobuf.Google_Protobuf_Int32Value()}
+    set {_defaultOnVariationIndex = newValue}
+  }
+  /// Returns true if `defaultOnVariationIndex` has been explicitly set.
+  var hasDefaultOnVariationIndex: Bool {return self._defaultOnVariationIndex != nil}
+  /// Clears the value of `defaultOnVariationIndex`. Subsequent reads from it will return its default value.
+  mutating func clearDefaultOnVariationIndex() {self._defaultOnVariationIndex = nil}
+
+  var defaultOffVariationIndex: SwiftProtobuf.Google_Protobuf_Int32Value {
+    get {return _defaultOffVariationIndex ?? SwiftProtobuf.Google_Protobuf_Int32Value()}
+    set {_defaultOffVariationIndex = newValue}
+  }
+  /// Returns true if `defaultOffVariationIndex` has been explicitly set.
+  var hasDefaultOffVariationIndex: Bool {return self._defaultOffVariationIndex != nil}
+  /// Clears the value of `defaultOffVariationIndex`. Subsequent reads from it will return its default value.
+  mutating func clearDefaultOffVariationIndex() {self._defaultOffVariationIndex = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _defaultOnVariationIndex: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
+  fileprivate var _defaultOffVariationIndex: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
 }
 
 struct Bucketeer_Feature_DeleteFeatureCommand {
@@ -639,6 +660,8 @@ extension Bucketeer_Feature_CreateFeatureCommand: SwiftProtobuf.Message, SwiftPr
     3: .same(proto: "description"),
     4: .same(proto: "variations"),
     5: .same(proto: "tags"),
+    6: .standard(proto: "default_on_variation_index"),
+    7: .standard(proto: "default_off_variation_index"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -649,6 +672,8 @@ extension Bucketeer_Feature_CreateFeatureCommand: SwiftProtobuf.Message, SwiftPr
       case 3: try decoder.decodeSingularStringField(value: &self.description_p)
       case 4: try decoder.decodeRepeatedMessageField(value: &self.variations)
       case 5: try decoder.decodeRepeatedStringField(value: &self.tags)
+      case 6: try decoder.decodeSingularMessageField(value: &self._defaultOnVariationIndex)
+      case 7: try decoder.decodeSingularMessageField(value: &self._defaultOffVariationIndex)
       default: break
       }
     }
@@ -670,6 +695,12 @@ extension Bucketeer_Feature_CreateFeatureCommand: SwiftProtobuf.Message, SwiftPr
     if !self.tags.isEmpty {
       try visitor.visitRepeatedStringField(value: self.tags, fieldNumber: 5)
     }
+    if let v = self._defaultOnVariationIndex {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
+    if let v = self._defaultOffVariationIndex {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -679,6 +710,8 @@ extension Bucketeer_Feature_CreateFeatureCommand: SwiftProtobuf.Message, SwiftPr
     if lhs.description_p != rhs.description_p {return false}
     if lhs.variations != rhs.variations {return false}
     if lhs.tags != rhs.tags {return false}
+    if lhs._defaultOnVariationIndex != rhs._defaultOnVariationIndex {return false}
+    if lhs._defaultOffVariationIndex != rhs._defaultOffVariationIndex {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
