@@ -125,7 +125,7 @@ struct Bucketeer_Experiment_Experiment {
   enum Status: SwiftProtobuf.Enum {
     typealias RawValue = Int
     case waiting // = 0
-    case runnning // = 1
+    case running // = 1
     case stopped // = 2
     case forceStopped // = 3
     case UNRECOGNIZED(Int)
@@ -137,7 +137,7 @@ struct Bucketeer_Experiment_Experiment {
     init?(rawValue: Int) {
       switch rawValue {
       case 0: self = .waiting
-      case 1: self = .runnning
+      case 1: self = .running
       case 2: self = .stopped
       case 3: self = .forceStopped
       default: self = .UNRECOGNIZED(rawValue)
@@ -147,7 +147,7 @@ struct Bucketeer_Experiment_Experiment {
     var rawValue: Int {
       switch self {
       case .waiting: return 0
-      case .runnning: return 1
+      case .running: return 1
       case .stopped: return 2
       case .forceStopped: return 3
       case .UNRECOGNIZED(let i): return i
@@ -167,7 +167,7 @@ extension Bucketeer_Experiment_Experiment.Status: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
   static var allCases: [Bucketeer_Experiment_Experiment.Status] = [
     .waiting,
-    .runnning,
+    .running,
     .stopped,
     .forceStopped,
   ]
@@ -391,7 +391,7 @@ extension Bucketeer_Experiment_Experiment: SwiftProtobuf.Message, SwiftProtobuf.
 extension Bucketeer_Experiment_Experiment.Status: SwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "WAITING"),
-    1: .same(proto: "RUNNNING"),
+    1: .same(proto: "RUNNING"),
     2: .same(proto: "STOPPED"),
     3: .same(proto: "FORCE_STOPPED"),
   ]
