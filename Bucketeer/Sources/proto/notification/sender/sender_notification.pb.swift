@@ -45,12 +45,22 @@ struct Bucketeer_Notification_Sender_Notification {
   /// Clears the value of `featureStaleNotification`. Subsequent reads from it will return its default value.
   mutating func clearFeatureStaleNotification() {self._featureStaleNotification = nil}
 
+  var experimentRunningNotification: Bucketeer_Notification_Sender_ExperimentRunningNotification {
+    get {return _experimentRunningNotification ?? Bucketeer_Notification_Sender_ExperimentRunningNotification()}
+    set {_experimentRunningNotification = newValue}
+  }
+  /// Returns true if `experimentRunningNotification` has been explicitly set.
+  var hasExperimentRunningNotification: Bool {return self._experimentRunningNotification != nil}
+  /// Clears the value of `experimentRunningNotification`. Subsequent reads from it will return its default value.
+  mutating func clearExperimentRunningNotification() {self._experimentRunningNotification = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum TypeEnum: SwiftProtobuf.Enum {
     typealias RawValue = Int
     case domainEvent // = 0
     case featureStale // = 1
+    case experimentRunning // = 2
     case UNRECOGNIZED(Int)
 
     init() {
@@ -61,6 +71,7 @@ struct Bucketeer_Notification_Sender_Notification {
       switch rawValue {
       case 0: self = .domainEvent
       case 1: self = .featureStale
+      case 2: self = .experimentRunning
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -69,6 +80,7 @@ struct Bucketeer_Notification_Sender_Notification {
       switch self {
       case .domainEvent: return 0
       case .featureStale: return 1
+      case .experimentRunning: return 2
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -79,6 +91,7 @@ struct Bucketeer_Notification_Sender_Notification {
 
   fileprivate var _domainEventNotification: Bucketeer_Notification_Sender_DomainEventNotification? = nil
   fileprivate var _featureStaleNotification: Bucketeer_Notification_Sender_FeatureStaleNotification? = nil
+  fileprivate var _experimentRunningNotification: Bucketeer_Notification_Sender_ExperimentRunningNotification? = nil
 }
 
 #if swift(>=4.2)
@@ -88,6 +101,7 @@ extension Bucketeer_Notification_Sender_Notification.TypeEnum: CaseIterable {
   static var allCases: [Bucketeer_Notification_Sender_Notification.TypeEnum] = [
     .domainEvent,
     .featureStale,
+    .experimentRunning,
   ]
 }
 
@@ -140,6 +154,22 @@ struct Bucketeer_Notification_Sender_FeatureStaleNotification {
   init() {}
 }
 
+struct Bucketeer_Notification_Sender_ExperimentRunningNotification {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var environmentNamespace: String = String()
+
+  var environmentID: String = String()
+
+  var experiments: [Bucketeer_Experiment_Experiment] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bucketeer.notification.sender"
@@ -150,6 +180,7 @@ extension Bucketeer_Notification_Sender_Notification: SwiftProtobuf.Message, Swi
     1: .same(proto: "type"),
     2: .standard(proto: "domain_event_notification"),
     3: .standard(proto: "feature_stale_notification"),
+    4: .standard(proto: "experiment_running_notification"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -158,6 +189,7 @@ extension Bucketeer_Notification_Sender_Notification: SwiftProtobuf.Message, Swi
       case 1: try decoder.decodeSingularEnumField(value: &self.type)
       case 2: try decoder.decodeSingularMessageField(value: &self._domainEventNotification)
       case 3: try decoder.decodeSingularMessageField(value: &self._featureStaleNotification)
+      case 4: try decoder.decodeSingularMessageField(value: &self._experimentRunningNotification)
       default: break
       }
     }
@@ -173,6 +205,9 @@ extension Bucketeer_Notification_Sender_Notification: SwiftProtobuf.Message, Swi
     if let v = self._featureStaleNotification {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
     }
+    if let v = self._experimentRunningNotification {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -180,6 +215,7 @@ extension Bucketeer_Notification_Sender_Notification: SwiftProtobuf.Message, Swi
     if lhs.type != rhs.type {return false}
     if lhs._domainEventNotification != rhs._domainEventNotification {return false}
     if lhs._featureStaleNotification != rhs._featureStaleNotification {return false}
+    if lhs._experimentRunningNotification != rhs._experimentRunningNotification {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -189,6 +225,7 @@ extension Bucketeer_Notification_Sender_Notification.TypeEnum: SwiftProtobuf._Pr
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "DomainEvent"),
     1: .same(proto: "FeatureStale"),
+    2: .same(proto: "ExperimentRunning"),
   ]
 }
 
@@ -287,6 +324,47 @@ extension Bucketeer_Notification_Sender_FeatureStaleNotification: SwiftProtobuf.
     if lhs.environmentNamespace != rhs.environmentNamespace {return false}
     if lhs.features != rhs.features {return false}
     if lhs.environmentID != rhs.environmentID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Notification_Sender_ExperimentRunningNotification: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ExperimentRunningNotification"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "environment_namespace"),
+    2: .standard(proto: "environment_id"),
+    3: .same(proto: "experiments"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 2: try decoder.decodeSingularStringField(value: &self.environmentID)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.experiments)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.environmentNamespace.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 1)
+    }
+    if !self.environmentID.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentID, fieldNumber: 2)
+    }
+    if !self.experiments.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.experiments, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Notification_Sender_ExperimentRunningNotification, rhs: Bucketeer_Notification_Sender_ExperimentRunningNotification) -> Bool {
+    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.environmentID != rhs.environmentID {return false}
+    if lhs.experiments != rhs.experiments {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

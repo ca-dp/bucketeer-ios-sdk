@@ -63,6 +63,7 @@ struct Bucketeer_Notification_Subscription {
     case domainEventSubscription // = 10
     case domainEventAdminSubscription // = 11
     case featureStale // = 100
+    case experimentRunning // = 200
     case UNRECOGNIZED(Int)
 
     init() {
@@ -84,6 +85,7 @@ struct Bucketeer_Notification_Subscription {
       case 10: self = .domainEventSubscription
       case 11: self = .domainEventAdminSubscription
       case 100: self = .featureStale
+      case 200: self = .experimentRunning
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -103,6 +105,7 @@ struct Bucketeer_Notification_Subscription {
       case .domainEventSubscription: return 10
       case .domainEventAdminSubscription: return 11
       case .featureStale: return 100
+      case .experimentRunning: return 200
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -132,6 +135,7 @@ extension Bucketeer_Notification_Subscription.SourceType: CaseIterable {
     .domainEventSubscription,
     .domainEventAdminSubscription,
     .featureStale,
+    .experimentRunning,
   ]
 }
 
@@ -221,5 +225,6 @@ extension Bucketeer_Notification_Subscription.SourceType: SwiftProtobuf._ProtoNa
     10: .same(proto: "DOMAIN_EVENT_SUBSCRIPTION"),
     11: .same(proto: "DOMAIN_EVENT_ADMIN_SUBSCRIPTION"),
     100: .same(proto: "FEATURE_STALE"),
+    200: .same(proto: "EXPERIMENT_RUNNING"),
   ]
 }
