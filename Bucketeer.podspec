@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = "Bucketeer"
-  s.version  = "<VERSION>" # replace this at CI
+  s.version  = "1.14.0" # replace this at CI
   s.summary  = "Bucketeer Feature Flag & A/B Testing Service"
   s.homepage = "https://github.com/ca-dp/bucketeer-ios-sdk"
 

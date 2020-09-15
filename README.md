@@ -19,9 +19,9 @@ brew install protobuf
 ```
 git clone git@github.com:grpc/grpc-swift.git /tmp/grpc-swift
 cd /tmp/grpc-swift
-git checkout 1.0.0-alpha.17
+git checkout 1.0.0-alpha.19
 make plugins
-cp protoc-gen-swift protoc-gen-swiftgrpc /usr/local/bin
+cp protoc-gen-swift protoc-gen-grpc-swift /usr/local/bin
 ```
 
 - [googleapis/googleapis](https://github.com/googleapis/googleapis)
