@@ -16,32 +16,6 @@
 		1B01C6912372D36D00803FA3 /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C6902372D36D00803FA3 /* MockAPIClient.swift */; };
 		1B01C6922372D71C00803FA3 /* EvaluationSynchronizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5020EB63D0004BB277 /* EvaluationSynchronizerTest.swift */; };
 		1B01C6932372D82B00803FA3 /* EventRegistererTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5720EB63D0004BB277 /* EventRegistererTest.swift */; };
-		1B14DF9F23DAB0A700A6F657 /* account_account.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DF9D23DAB0A700A6F657 /* account_account.pb.swift */; };
-		1B14DFA023DAB0A700A6F657 /* account_api_key.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DF9E23DAB0A700A6F657 /* account_api_key.pb.swift */; };
-		1B14DFA223DAB0BD00A6F657 /* auditlog_auditlog.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA123DAB0BD00A6F657 /* auditlog_auditlog.pb.swift */; };
-		1B14DFA423DAB0D000A6F657 /* auth_token.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA323DAB0D000A6F657 /* auth_token.pb.swift */; };
-		1B14DFAA23DAB0ED00A6F657 /* autoops_clause.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA523DAB0ED00A6F657 /* autoops_clause.pb.swift */; };
-		1B14DFAB23DAB0ED00A6F657 /* autoops_auto_ops_rule.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA623DAB0ED00A6F657 /* autoops_auto_ops_rule.pb.swift */; };
-		1B14DFAC23DAB0ED00A6F657 /* autoops_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA723DAB0ED00A6F657 /* autoops_command.pb.swift */; };
-		1B14DFAD23DAB0ED00A6F657 /* autoops_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA823DAB0ED00A6F657 /* autoops_service.pb.swift */; };
-		1B14DFAE23DAB0ED00A6F657 /* autoops_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA923DAB0ED00A6F657 /* autoops_service.grpc.swift */; };
-		1B14DFB323DAB10300A6F657 /* environment_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFAF23DAB10200A6F657 /* environment_service.pb.swift */; };
-		1B14DFB423DAB10300A6F657 /* environment_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB023DAB10300A6F657 /* environment_command.pb.swift */; };
-		1B14DFB523DAB10300A6F657 /* environment_environment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB123DAB10300A6F657 /* environment_environment.pb.swift */; };
-		1B14DFB623DAB10300A6F657 /* environment_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB223DAB10300A6F657 /* environment_service.grpc.swift */; };
-		1B14DFB823DAB11900A6F657 /* service_segment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB723DAB11900A6F657 /* service_segment.pb.swift */; };
-		1B14DFC023DAB14300A6F657 /* eventcounter_streaming_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB923DAB14300A6F657 /* eventcounter_streaming_service.grpc.swift */; };
-		1B14DFC123DAB14300A6F657 /* eventcounter_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBA23DAB14300A6F657 /* eventcounter_service.grpc.swift */; };
-		1B14DFC223DAB14300A6F657 /* eventcounter_variation_count.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBB23DAB14300A6F657 /* eventcounter_variation_count.pb.swift */; };
-		1B14DFC323DAB14300A6F657 /* eventcounter_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBC23DAB14300A6F657 /* eventcounter_service.pb.swift */; };
-		1B14DFC423DAB14300A6F657 /* eventcounter_streaming_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBD23DAB14300A6F657 /* eventcounter_streaming_service.pb.swift */; };
-		1B14DFC523DAB14300A6F657 /* eventcounter_evaluation_count.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBE23DAB14300A6F657 /* eventcounter_evaluation_count.pb.swift */; };
-		1B14DFC623DAB14300A6F657 /* eventcounter_experiment_count.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBF23DAB14300A6F657 /* eventcounter_experiment_count.pb.swift */; };
-		1B14DFCC23DAB15C00A6F657 /* experiment_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFC723DAB15B00A6F657 /* experiment_service.grpc.swift */; };
-		1B14DFCD23DAB15C00A6F657 /* experiment_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFC823DAB15C00A6F657 /* experiment_command.pb.swift */; };
-		1B14DFCE23DAB15C00A6F657 /* experiment_experiment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFC923DAB15C00A6F657 /* experiment_experiment.pb.swift */; };
-		1B14DFCF23DAB15C00A6F657 /* experiment_goal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFCA23DAB15C00A6F657 /* experiment_goal.pb.swift */; };
-		1B14DFD023DAB15C00A6F657 /* experiment_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFCB23DAB15C00A6F657 /* experiment_service.pb.swift */; };
 		1B14DFDE23DAB17300A6F657 /* feature_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFD123DAB17100A6F657 /* feature_service.pb.swift */; };
 		1B14DFDF23DAB17300A6F657 /* feature_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFD223DAB17100A6F657 /* feature_service.grpc.swift */; };
 		1B14DFE023DAB17300A6F657 /* feature_evaluation.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFD323DAB17100A6F657 /* feature_evaluation.pb.swift */; };
@@ -55,56 +29,6 @@
 		1B14DFE823DAB17300A6F657 /* feature_feature.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFDB23DAB17200A6F657 /* feature_feature.pb.swift */; };
 		1B14DFE923DAB17300A6F657 /* feature_clause.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFDC23DAB17200A6F657 /* feature_clause.pb.swift */; };
 		1B14DFEA23DAB17300A6F657 /* feature_strategy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFDD23DAB17300A6F657 /* feature_strategy.pb.swift */; };
-		1B14DFF123DAB1B100A6F657 /* push_push.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFED23DAB1B000A6F657 /* push_push.pb.swift */; };
-		1B14DFF223DAB1B100A6F657 /* push_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFEE23DAB1B100A6F657 /* push_command.pb.swift */; };
-		1B14DFF323DAB1B100A6F657 /* push_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFEF23DAB1B100A6F657 /* push_service.pb.swift */; };
-		1B14DFF423DAB1B100A6F657 /* push_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFF023DAB1B100A6F657 /* push_service.grpc.swift */; };
-		1B14DFF523DAB76200A6F657 /* push_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFEE23DAB1B100A6F657 /* push_command.pb.swift */; };
-		1B14DFF623DAB76300A6F657 /* push_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFEE23DAB1B100A6F657 /* push_command.pb.swift */; };
-		1B14DFF723DAB77100A6F657 /* autoops_auto_ops_rule.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA623DAB0ED00A6F657 /* autoops_auto_ops_rule.pb.swift */; };
-		1B14DFF823DAB77200A6F657 /* autoops_auto_ops_rule.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA623DAB0ED00A6F657 /* autoops_auto_ops_rule.pb.swift */; };
-		1B14DFF923DAB77800A6F657 /* autoops_clause.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA523DAB0ED00A6F657 /* autoops_clause.pb.swift */; };
-		1B14DFFA23DAB77800A6F657 /* autoops_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA723DAB0ED00A6F657 /* autoops_command.pb.swift */; };
-		1B14DFFB23DAB77800A6F657 /* autoops_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA923DAB0ED00A6F657 /* autoops_service.grpc.swift */; };
-		1B14DFFC23DAB77800A6F657 /* autoops_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA823DAB0ED00A6F657 /* autoops_service.pb.swift */; };
-		1B14DFFD23DAB77900A6F657 /* autoops_clause.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA523DAB0ED00A6F657 /* autoops_clause.pb.swift */; };
-		1B14DFFE23DAB77900A6F657 /* autoops_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA723DAB0ED00A6F657 /* autoops_command.pb.swift */; };
-		1B14DFFF23DAB77900A6F657 /* autoops_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA923DAB0ED00A6F657 /* autoops_service.grpc.swift */; };
-		1B14E00023DAB77900A6F657 /* autoops_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA823DAB0ED00A6F657 /* autoops_service.pb.swift */; };
-		1B14E00123DAB78000A6F657 /* eventcounter_evaluation_count.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBE23DAB14300A6F657 /* eventcounter_evaluation_count.pb.swift */; };
-		1B14E00223DAB78000A6F657 /* eventcounter_experiment_count.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBF23DAB14300A6F657 /* eventcounter_experiment_count.pb.swift */; };
-		1B14E00323DAB78000A6F657 /* eventcounter_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBA23DAB14300A6F657 /* eventcounter_service.grpc.swift */; };
-		1B14E00423DAB78000A6F657 /* eventcounter_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBC23DAB14300A6F657 /* eventcounter_service.pb.swift */; };
-		1B14E00523DAB78000A6F657 /* eventcounter_streaming_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB923DAB14300A6F657 /* eventcounter_streaming_service.grpc.swift */; };
-		1B14E00623DAB78000A6F657 /* eventcounter_streaming_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBD23DAB14300A6F657 /* eventcounter_streaming_service.pb.swift */; };
-		1B14E00723DAB78000A6F657 /* eventcounter_variation_count.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBB23DAB14300A6F657 /* eventcounter_variation_count.pb.swift */; };
-		1B14E00823DAB78000A6F657 /* eventcounter_evaluation_count.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBE23DAB14300A6F657 /* eventcounter_evaluation_count.pb.swift */; };
-		1B14E00923DAB78000A6F657 /* eventcounter_experiment_count.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBF23DAB14300A6F657 /* eventcounter_experiment_count.pb.swift */; };
-		1B14E00A23DAB78000A6F657 /* eventcounter_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBA23DAB14300A6F657 /* eventcounter_service.grpc.swift */; };
-		1B14E00B23DAB78000A6F657 /* eventcounter_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBC23DAB14300A6F657 /* eventcounter_service.pb.swift */; };
-		1B14E00C23DAB78000A6F657 /* eventcounter_streaming_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB923DAB14300A6F657 /* eventcounter_streaming_service.grpc.swift */; };
-		1B14E00D23DAB78000A6F657 /* eventcounter_streaming_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBD23DAB14300A6F657 /* eventcounter_streaming_service.pb.swift */; };
-		1B14E00E23DAB78000A6F657 /* eventcounter_variation_count.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFBB23DAB14300A6F657 /* eventcounter_variation_count.pb.swift */; };
-		1B14E00F23DAB78800A6F657 /* auth_token.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA323DAB0D000A6F657 /* auth_token.pb.swift */; };
-		1B14E01023DAB78900A6F657 /* auth_token.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA323DAB0D000A6F657 /* auth_token.pb.swift */; };
-		1B14E01123DAB79300A6F657 /* environment_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB023DAB10300A6F657 /* environment_command.pb.swift */; };
-		1B14E01223DAB79300A6F657 /* environment_environment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB123DAB10300A6F657 /* environment_environment.pb.swift */; };
-		1B14E01323DAB79300A6F657 /* environment_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB223DAB10300A6F657 /* environment_service.grpc.swift */; };
-		1B14E01423DAB79300A6F657 /* environment_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFAF23DAB10200A6F657 /* environment_service.pb.swift */; };
-		1B14E01523DAB79400A6F657 /* environment_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB023DAB10300A6F657 /* environment_command.pb.swift */; };
-		1B14E01623DAB79400A6F657 /* environment_environment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB123DAB10300A6F657 /* environment_environment.pb.swift */; };
-		1B14E01723DAB79400A6F657 /* environment_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB223DAB10300A6F657 /* environment_service.grpc.swift */; };
-		1B14E01823DAB79400A6F657 /* environment_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFAF23DAB10200A6F657 /* environment_service.pb.swift */; };
-		1B14E01923DAB79900A6F657 /* experiment_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFC823DAB15C00A6F657 /* experiment_command.pb.swift */; };
-		1B14E01A23DAB79900A6F657 /* experiment_experiment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFC923DAB15C00A6F657 /* experiment_experiment.pb.swift */; };
-		1B14E01B23DAB79900A6F657 /* experiment_goal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFCA23DAB15C00A6F657 /* experiment_goal.pb.swift */; };
-		1B14E01C23DAB79900A6F657 /* experiment_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFC723DAB15B00A6F657 /* experiment_service.grpc.swift */; };
-		1B14E01D23DAB79900A6F657 /* experiment_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFCB23DAB15C00A6F657 /* experiment_service.pb.swift */; };
-		1B14E01E23DAB79A00A6F657 /* experiment_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFC823DAB15C00A6F657 /* experiment_command.pb.swift */; };
-		1B14E01F23DAB79A00A6F657 /* experiment_experiment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFC923DAB15C00A6F657 /* experiment_experiment.pb.swift */; };
-		1B14E02023DAB79A00A6F657 /* experiment_goal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFCA23DAB15C00A6F657 /* experiment_goal.pb.swift */; };
-		1B14E02123DAB79A00A6F657 /* experiment_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFC723DAB15B00A6F657 /* experiment_service.grpc.swift */; };
-		1B14E02223DAB79A00A6F657 /* experiment_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFCB23DAB15C00A6F657 /* experiment_service.pb.swift */; };
 		1B14E02323DAB7A000A6F657 /* feature_clause.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFDC23DAB17200A6F657 /* feature_clause.pb.swift */; };
 		1B14E02423DAB7A000A6F657 /* feature_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFD823DAB17200A6F657 /* feature_command.pb.swift */; };
 		1B14E02523DAB7A000A6F657 /* feature_evaluation.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFD323DAB17100A6F657 /* feature_evaluation.pb.swift */; };
@@ -131,20 +55,6 @@
 		1B14E03A23DAB7A000A6F657 /* feature_strategy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFDD23DAB17300A6F657 /* feature_strategy.pb.swift */; };
 		1B14E03B23DAB7A000A6F657 /* feature_target.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFD923DAB17200A6F657 /* feature_target.pb.swift */; };
 		1B14E03C23DAB7A000A6F657 /* feature_variation.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFDA23DAB17200A6F657 /* feature_variation.pb.swift */; };
-		1B14E03D23DAB7A800A6F657 /* account_account.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DF9D23DAB0A700A6F657 /* account_account.pb.swift */; };
-		1B14E03E23DAB7A800A6F657 /* account_api_key.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DF9E23DAB0A700A6F657 /* account_api_key.pb.swift */; };
-		1B14E03F23DAB7A900A6F657 /* account_account.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DF9D23DAB0A700A6F657 /* account_account.pb.swift */; };
-		1B14E04023DAB7A900A6F657 /* account_api_key.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DF9E23DAB0A700A6F657 /* account_api_key.pb.swift */; };
-		1B14E04123DAB7AE00A6F657 /* service_segment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB723DAB11900A6F657 /* service_segment.pb.swift */; };
-		1B14E04223DAB7AF00A6F657 /* service_segment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFB723DAB11900A6F657 /* service_segment.pb.swift */; };
-		1B14E04323DAB7BE00A6F657 /* auditlog_auditlog.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA123DAB0BD00A6F657 /* auditlog_auditlog.pb.swift */; };
-		1B14E04423DAB7BF00A6F657 /* auditlog_auditlog.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFA123DAB0BD00A6F657 /* auditlog_auditlog.pb.swift */; };
-		1B14E04523DAB7E400A6F657 /* push_push.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFED23DAB1B000A6F657 /* push_push.pb.swift */; };
-		1B14E04623DAB7E400A6F657 /* push_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFF023DAB1B100A6F657 /* push_service.grpc.swift */; };
-		1B14E04723DAB7E400A6F657 /* push_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFEF23DAB1B100A6F657 /* push_service.pb.swift */; };
-		1B14E04823DAB7E500A6F657 /* push_push.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFED23DAB1B000A6F657 /* push_push.pb.swift */; };
-		1B14E04923DAB7E500A6F657 /* push_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFF023DAB1B100A6F657 /* push_service.grpc.swift */; };
-		1B14E04A23DAB7E500A6F657 /* push_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14DFEF23DAB1B100A6F657 /* push_service.pb.swift */; };
 		1B14E11623DEC86B00A6F657 /* CommonE2EUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14E11523DEC86B00A6F657 /* CommonE2EUtil.swift */; };
 		1B14E11823DEC8B400A6F657 /* BucketeerE2ETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B14E11723DEC8B400A6F657 /* BucketeerE2ETest.swift */; };
 		1B14E11A23DEC90800A6F657 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B14E11923DEC90800A6F657 /* environment.plist */; };
@@ -184,24 +94,12 @@
 		6B6ACD79234DD60700BD6069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6ACD78234DD60700BD6069 /* Assets.xcassets */; };
 		6B6ACD7C234DD60700BD6069 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6ACD7B234DD60700BD6069 /* Preview Assets.xcassets */; };
 		6B6ACD7F234DD60700BD6069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B6ACD7D234DD60700BD6069 /* LaunchScreen.storyboard */; };
-		6B6ACD8C234DD68D00BD6069 /* test_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE34B2320E41E000960FF /* test_service.grpc.swift */; };
-		6B6ACD8D234DD68D00BD6069 /* test_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE34C2320E41E000960FF /* test_service.pb.swift */; };
-		6B6ACD8F234DD68D00BD6069 /* auth_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE34F2320E41E000960FF /* auth_service.grpc.swift */; };
-		6B6ACD90234DD68D00BD6069 /* auth_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3502320E41E000960FF /* auth_service.pb.swift */; };
 		6B6ACD91234DD68D00BD6069 /* user_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3522320E41E000960FF /* user_service.pb.swift */; };
 		6B6ACD92234DD68D00BD6069 /* user_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3532320E41E000960FF /* user_user.pb.swift */; };
 		6B6ACD93234DD68D00BD6069 /* user_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3542320E41E000960FF /* user_service.grpc.swift */; };
-		6B6ACDAA234DD68E00BD6069 /* account_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE36F2320E41E000960FF /* account_service.grpc.swift */; };
-		6B6ACDAB234DD68E00BD6069 /* account_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3702320E41E000960FF /* account_command.pb.swift */; };
-		6B6ACDAE234DD68E00BD6069 /* account_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3732320E41E000960FF /* account_service.pb.swift */; };
-		6B6ACDAF234DD68E00BD6069 /* service_feature.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3762320E41E000960FF /* service_feature.pb.swift */; };
-		6B6ACDB0234DD68E00BD6069 /* service_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3772320E41E000960FF /* service_user.pb.swift */; };
-		6B6ACDB1234DD68E00BD6069 /* domain_event.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3792320E41E000960FF /* domain_event.pb.swift */; };
 		6B6ACDB2234DD68E00BD6069 /* client_event.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE37B2320E41E000960FF /* client_event.pb.swift */; };
 		6B6ACDB3234DD68E00BD6069 /* gateway_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE37D2320E41E000960FF /* gateway_service.grpc.swift */; };
 		6B6ACDB4234DD68E00BD6069 /* gateway_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE37E2320E41E000960FF /* gateway_service.pb.swift */; };
-		6B6ACDB5234DD68E00BD6069 /* auditlog_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3802320E41E000960FF /* auditlog_service.grpc.swift */; };
-		6B6ACDB6234DD68E00BD6069 /* auditlog_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3812320E41E000960FF /* auditlog_service.pb.swift */; };
 		6B6ACDB8234DD68E00BD6069 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB1520EB56AE004BB277 /* APIClient.swift */; };
 		6B6ACDB9234DD68E00BD6069 /* BucketeerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB1620EB56AE004BB277 /* BucketeerError.swift */; };
 		6B6ACDBA234DD68E00BD6069 /* BucketeerSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4136BB20A554FF0092B2FA /* BucketeerSDK.swift */; };
@@ -224,89 +122,26 @@
 		6B6ACDCC234DD68E00BD6069 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB0C20EB56AD004BB277 /* UserEntity.swift */; };
 		6B6ACDCD234DD68E00BD6069 /* VariationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB0B20EB56AD004BB277 /* VariationProtocol.swift */; };
 		6B6ACDCE234DD68E00BD6069 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF48E621106053006AC1F3 /* Version.swift */; };
-		6B6ACDD6234DD6A600BD6069 /* test_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE34B2320E41E000960FF /* test_service.grpc.swift */; };
-		6B6ACDD7234DD6A600BD6069 /* test_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE34C2320E41E000960FF /* test_service.pb.swift */; };
-		6B6ACDD9234DD6A600BD6069 /* auth_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE34F2320E41E000960FF /* auth_service.grpc.swift */; };
-		6B6ACDDA234DD6A600BD6069 /* auth_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3502320E41E000960FF /* auth_service.pb.swift */; };
 		6B6ACDDB234DD6A600BD6069 /* user_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3522320E41E000960FF /* user_service.pb.swift */; };
 		6B6ACDDC234DD6A600BD6069 /* user_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3532320E41E000960FF /* user_user.pb.swift */; };
 		6B6ACDDD234DD6A600BD6069 /* user_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3542320E41E000960FF /* user_service.grpc.swift */; };
-		6B6ACDF4234DD6A700BD6069 /* account_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE36F2320E41E000960FF /* account_service.grpc.swift */; };
-		6B6ACDF5234DD6A700BD6069 /* account_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3702320E41E000960FF /* account_command.pb.swift */; };
-		6B6ACDF8234DD6A700BD6069 /* account_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3732320E41E000960FF /* account_service.pb.swift */; };
-		6B6ACDF9234DD6A700BD6069 /* service_feature.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3762320E41E000960FF /* service_feature.pb.swift */; };
-		6B6ACDFA234DD6A700BD6069 /* service_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3772320E41E000960FF /* service_user.pb.swift */; };
-		6B6ACDFB234DD6A700BD6069 /* domain_event.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3792320E41E000960FF /* domain_event.pb.swift */; };
 		6B6ACDFC234DD6A700BD6069 /* client_event.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE37B2320E41E000960FF /* client_event.pb.swift */; };
 		6B6ACDFD234DD6A700BD6069 /* gateway_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE37D2320E41E000960FF /* gateway_service.grpc.swift */; };
 		6B6ACDFE234DD6A700BD6069 /* gateway_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE37E2320E41E000960FF /* gateway_service.pb.swift */; };
-		6B6ACDFF234DD6A700BD6069 /* auditlog_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3802320E41E000960FF /* auditlog_service.grpc.swift */; };
-		6B6ACE00234DD6A700BD6069 /* auditlog_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3812320E41E000960FF /* auditlog_service.pb.swift */; };
 		6B6ACE1F234DDA0100BD6069 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE19234DDA0000BD6069 /* ThirdViewController.swift */; };
 		6B6ACE20234DDA0100BD6069 /* CustomFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1A234DDA0000BD6069 /* CustomFeature.swift */; };
 		6B6ACE21234DDA0100BD6069 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1B234DDA0000BD6069 /* FirstViewController.swift */; };
 		6B6ACE22234DDA0100BD6069 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1C234DDA0000BD6069 /* SplashViewController.swift */; };
 		6B6ACE24234DDA0100BD6069 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1E234DDA0100BD6069 /* SecondViewController.swift */; };
 		6B6ACE25234DDA5B00BD6069 /* BucketeerTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6ACD65234DD5E700BD6069 /* BucketeerTVOS.framework */; };
-		AB11758F2436EA080066E6E5 /* eventcounter_distribution_summary.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758B2436EA080066E6E5 /* eventcounter_distribution_summary.pb.swift */; };
-		AB1175902436EA080066E6E5 /* eventcounter_goal_result.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758C2436EA080066E6E5 /* eventcounter_goal_result.pb.swift */; };
-		AB1175912436EA080066E6E5 /* eventcounter_variation_result.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758D2436EA080066E6E5 /* eventcounter_variation_result.pb.swift */; };
-		AB1175922436EA080066E6E5 /* eventcounter_experiment_result.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758E2436EA080066E6E5 /* eventcounter_experiment_result.pb.swift */; };
-		AB1175932436EBFD0066E6E5 /* eventcounter_distribution_summary.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758B2436EA080066E6E5 /* eventcounter_distribution_summary.pb.swift */; };
-		AB1175942436EBFD0066E6E5 /* eventcounter_experiment_result.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758E2436EA080066E6E5 /* eventcounter_experiment_result.pb.swift */; };
-		AB1175952436EBFD0066E6E5 /* eventcounter_goal_result.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758C2436EA080066E6E5 /* eventcounter_goal_result.pb.swift */; };
-		AB1175962436EBFD0066E6E5 /* eventcounter_variation_result.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758D2436EA080066E6E5 /* eventcounter_variation_result.pb.swift */; };
-		AB1175972436EC240066E6E5 /* eventcounter_distribution_summary.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758B2436EA080066E6E5 /* eventcounter_distribution_summary.pb.swift */; };
-		AB1175982436EC240066E6E5 /* eventcounter_experiment_result.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758E2436EA080066E6E5 /* eventcounter_experiment_result.pb.swift */; };
-		AB1175992436EC240066E6E5 /* eventcounter_goal_result.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758C2436EA080066E6E5 /* eventcounter_goal_result.pb.swift */; };
-		AB11759A2436EC240066E6E5 /* eventcounter_variation_result.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB11758D2436EA080066E6E5 /* eventcounter_variation_result.pb.swift */; };
 		AB5FF9DA23D17C1D000B46DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF3C36C23D16E8500B45FB2 /* User.swift */; };
-		AB68B282244031F800AAFF75 /* domain_localized_message.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB68B281244031F800AAFF75 /* domain_localized_message.pb.swift */; };
-		AB68B2832440320E00AAFF75 /* domain_localized_message.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB68B281244031F800AAFF75 /* domain_localized_message.pb.swift */; };
-		AB68B2842440320E00AAFF75 /* domain_localized_message.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB68B281244031F800AAFF75 /* domain_localized_message.pb.swift */; };
-		AB8CE3922320E41E000960FF /* test_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE34B2320E41E000960FF /* test_service.grpc.swift */; };
-		AB8CE3942320E41E000960FF /* test_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE34C2320E41E000960FF /* test_service.pb.swift */; };
-		AB8CE3982320E41E000960FF /* auth_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE34F2320E41E000960FF /* auth_service.grpc.swift */; };
-		AB8CE39A2320E41E000960FF /* auth_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3502320E41E000960FF /* auth_service.pb.swift */; };
 		AB8CE39C2320E41E000960FF /* user_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3522320E41E000960FF /* user_service.pb.swift */; };
 		AB8CE39E2320E41E000960FF /* user_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3532320E41E000960FF /* user_user.pb.swift */; };
 		AB8CE3A02320E41E000960FF /* user_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3542320E41E000960FF /* user_service.grpc.swift */; };
-		AB8CE3CE2320E41E000960FF /* account_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE36F2320E41E000960FF /* account_service.grpc.swift */; };
-		AB8CE3D02320E41E000960FF /* account_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3702320E41E000960FF /* account_command.pb.swift */; };
-		AB8CE3D62320E41E000960FF /* account_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3732320E41E000960FF /* account_service.pb.swift */; };
-		AB8CE3D82320E41E000960FF /* service_feature.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3762320E41E000960FF /* service_feature.pb.swift */; };
-		AB8CE3DA2320E41E000960FF /* service_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3772320E41E000960FF /* service_user.pb.swift */; };
-		AB8CE3DC2320E41E000960FF /* domain_event.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3792320E41E000960FF /* domain_event.pb.swift */; };
 		AB8CE3DE2320E41E000960FF /* client_event.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE37B2320E41E000960FF /* client_event.pb.swift */; };
 		AB8CE3E02320E41E000960FF /* gateway_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE37D2320E41E000960FF /* gateway_service.grpc.swift */; };
 		AB8CE3E22320E41E000960FF /* gateway_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE37E2320E41E000960FF /* gateway_service.pb.swift */; };
-		AB8CE3E42320E41E000960FF /* auditlog_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3802320E41E000960FF /* auditlog_service.grpc.swift */; };
-		AB8CE3E62320E41E000960FF /* auditlog_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3812320E41E000960FF /* auditlog_service.pb.swift */; };
-		AB9E9F22246CD43300DEB531 /* sender_notification_event.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E9F21246CD43300DEB531 /* sender_notification_event.pb.swift */; };
-		AB9E9F23246CD43300DEB531 /* sender_notification_event.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E9F21246CD43300DEB531 /* sender_notification_event.pb.swift */; };
-		AB9E9F24246CD43300DEB531 /* sender_notification_event.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E9F21246CD43300DEB531 /* sender_notification_event.pb.swift */; };
 		ABAB5E2E7B65CE0D1CF55EFF /* Pods_ExampleTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C9BE34EAEA31F77EE649B8 /* Pods_ExampleTVOS.framework */; };
-		ABC273CF246542ED00ADC8CB /* eventcounter_histogram.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC273CE246542EC00ADC8CB /* eventcounter_histogram.pb.swift */; };
-		ABC273D0246542ED00ADC8CB /* eventcounter_histogram.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC273CE246542EC00ADC8CB /* eventcounter_histogram.pb.swift */; };
-		ABC273D1246542ED00ADC8CB /* eventcounter_histogram.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC273CE246542EC00ADC8CB /* eventcounter_histogram.pb.swift */; };
-		ABD77479246BC23400C0D5CD /* notification_recipient.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77472246BC23400C0D5CD /* notification_recipient.pb.swift */; };
-		ABD7747A246BC23400C0D5CD /* notification_recipient.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77472246BC23400C0D5CD /* notification_recipient.pb.swift */; };
-		ABD7747B246BC23400C0D5CD /* notification_recipient.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77472246BC23400C0D5CD /* notification_recipient.pb.swift */; };
-		ABD7747C246BC23400C0D5CD /* sender_notification.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77474246BC23400C0D5CD /* sender_notification.pb.swift */; };
-		ABD7747D246BC23400C0D5CD /* sender_notification.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77474246BC23400C0D5CD /* sender_notification.pb.swift */; };
-		ABD7747E246BC23400C0D5CD /* sender_notification.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77474246BC23400C0D5CD /* sender_notification.pb.swift */; };
-		ABD7747F246BC23400C0D5CD /* notification_subscription.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77475246BC23400C0D5CD /* notification_subscription.pb.swift */; };
-		ABD77480246BC23400C0D5CD /* notification_subscription.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77475246BC23400C0D5CD /* notification_subscription.pb.swift */; };
-		ABD77481246BC23400C0D5CD /* notification_subscription.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77475246BC23400C0D5CD /* notification_subscription.pb.swift */; };
-		ABD77482246BC23400C0D5CD /* notification_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77476246BC23400C0D5CD /* notification_service.grpc.swift */; };
-		ABD77483246BC23400C0D5CD /* notification_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77476246BC23400C0D5CD /* notification_service.grpc.swift */; };
-		ABD77484246BC23400C0D5CD /* notification_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77476246BC23400C0D5CD /* notification_service.grpc.swift */; };
-		ABD77485246BC23400C0D5CD /* notification_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77477246BC23400C0D5CD /* notification_service.pb.swift */; };
-		ABD77486246BC23400C0D5CD /* notification_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77477246BC23400C0D5CD /* notification_service.pb.swift */; };
-		ABD77487246BC23400C0D5CD /* notification_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77477246BC23400C0D5CD /* notification_service.pb.swift */; };
-		ABD77488246BC23400C0D5CD /* notification_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77478246BC23400C0D5CD /* notification_command.pb.swift */; };
-		ABD77489246BC23400C0D5CD /* notification_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77478246BC23400C0D5CD /* notification_command.pb.swift */; };
-		ABD7748A246BC23400C0D5CD /* notification_command.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD77478246BC23400C0D5CD /* notification_command.pb.swift */; };
 		ABE0880123CED0A700866E1D /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0880023CED0A700866E1D /* Evaluation.swift */; };
 		ABE0880423CF112400866E1D /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE0880023CED0A700866E1D /* Evaluation.swift */; };
 		ABF3C36D23D16E8500B45FB2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF3C36C23D16E8500B45FB2 /* User.swift */; };
@@ -386,32 +221,6 @@
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
 		18C891303C70390084D40F41 /* Pods-App-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		1B01C6902372D36D00803FA3 /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
-		1B14DF9D23DAB0A700A6F657 /* account_account.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_account.pb.swift; sourceTree = "<group>"; };
-		1B14DF9E23DAB0A700A6F657 /* account_api_key.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_api_key.pb.swift; sourceTree = "<group>"; };
-		1B14DFA123DAB0BD00A6F657 /* auditlog_auditlog.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = auditlog_auditlog.pb.swift; sourceTree = "<group>"; };
-		1B14DFA323DAB0D000A6F657 /* auth_token.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = auth_token.pb.swift; sourceTree = "<group>"; };
-		1B14DFA523DAB0ED00A6F657 /* autoops_clause.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = autoops_clause.pb.swift; sourceTree = "<group>"; };
-		1B14DFA623DAB0ED00A6F657 /* autoops_auto_ops_rule.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = autoops_auto_ops_rule.pb.swift; sourceTree = "<group>"; };
-		1B14DFA723DAB0ED00A6F657 /* autoops_command.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = autoops_command.pb.swift; sourceTree = "<group>"; };
-		1B14DFA823DAB0ED00A6F657 /* autoops_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = autoops_service.pb.swift; sourceTree = "<group>"; };
-		1B14DFA923DAB0ED00A6F657 /* autoops_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = autoops_service.grpc.swift; sourceTree = "<group>"; };
-		1B14DFAF23DAB10200A6F657 /* environment_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = environment_service.pb.swift; sourceTree = "<group>"; };
-		1B14DFB023DAB10300A6F657 /* environment_command.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = environment_command.pb.swift; sourceTree = "<group>"; };
-		1B14DFB123DAB10300A6F657 /* environment_environment.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = environment_environment.pb.swift; sourceTree = "<group>"; };
-		1B14DFB223DAB10300A6F657 /* environment_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = environment_service.grpc.swift; sourceTree = "<group>"; };
-		1B14DFB723DAB11900A6F657 /* service_segment.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = service_segment.pb.swift; sourceTree = "<group>"; };
-		1B14DFB923DAB14300A6F657 /* eventcounter_streaming_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_streaming_service.grpc.swift; sourceTree = "<group>"; };
-		1B14DFBA23DAB14300A6F657 /* eventcounter_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_service.grpc.swift; sourceTree = "<group>"; };
-		1B14DFBB23DAB14300A6F657 /* eventcounter_variation_count.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_variation_count.pb.swift; sourceTree = "<group>"; };
-		1B14DFBC23DAB14300A6F657 /* eventcounter_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_service.pb.swift; sourceTree = "<group>"; };
-		1B14DFBD23DAB14300A6F657 /* eventcounter_streaming_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_streaming_service.pb.swift; sourceTree = "<group>"; };
-		1B14DFBE23DAB14300A6F657 /* eventcounter_evaluation_count.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_evaluation_count.pb.swift; sourceTree = "<group>"; };
-		1B14DFBF23DAB14300A6F657 /* eventcounter_experiment_count.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_experiment_count.pb.swift; sourceTree = "<group>"; };
-		1B14DFC723DAB15B00A6F657 /* experiment_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = experiment_service.grpc.swift; sourceTree = "<group>"; };
-		1B14DFC823DAB15C00A6F657 /* experiment_command.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = experiment_command.pb.swift; sourceTree = "<group>"; };
-		1B14DFC923DAB15C00A6F657 /* experiment_experiment.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = experiment_experiment.pb.swift; sourceTree = "<group>"; };
-		1B14DFCA23DAB15C00A6F657 /* experiment_goal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = experiment_goal.pb.swift; sourceTree = "<group>"; };
-		1B14DFCB23DAB15C00A6F657 /* experiment_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = experiment_service.pb.swift; sourceTree = "<group>"; };
 		1B14DFD123DAB17100A6F657 /* feature_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_service.pb.swift; sourceTree = "<group>"; };
 		1B14DFD223DAB17100A6F657 /* feature_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_service.grpc.swift; sourceTree = "<group>"; };
 		1B14DFD323DAB17100A6F657 /* feature_evaluation.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_evaluation.pb.swift; sourceTree = "<group>"; };
@@ -425,10 +234,6 @@
 		1B14DFDB23DAB17200A6F657 /* feature_feature.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_feature.pb.swift; sourceTree = "<group>"; };
 		1B14DFDC23DAB17200A6F657 /* feature_clause.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_clause.pb.swift; sourceTree = "<group>"; };
 		1B14DFDD23DAB17300A6F657 /* feature_strategy.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_strategy.pb.swift; sourceTree = "<group>"; };
-		1B14DFED23DAB1B000A6F657 /* push_push.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = push_push.pb.swift; path = push/push_push.pb.swift; sourceTree = "<group>"; };
-		1B14DFEE23DAB1B100A6F657 /* push_command.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = push_command.pb.swift; path = push/push_command.pb.swift; sourceTree = "<group>"; };
-		1B14DFEF23DAB1B100A6F657 /* push_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = push_service.pb.swift; path = push/push_service.pb.swift; sourceTree = "<group>"; };
-		1B14DFF023DAB1B100A6F657 /* push_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = push_service.grpc.swift; path = push/push_service.grpc.swift; sourceTree = "<group>"; };
 		1B14E11523DEC86B00A6F657 /* CommonE2EUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonE2EUtil.swift; sourceTree = "<group>"; };
 		1B14E11723DEC8B400A6F657 /* BucketeerE2ETest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketeerE2ETest.swift; sourceTree = "<group>"; };
 		1B14E11923DEC90800A6F657 /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
@@ -467,37 +272,12 @@
 		8BF68C8C8C3D1C73A11B1063 /* Pods-Bucketeer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bucketeer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bucketeer/Pods-Bucketeer.debug.xcconfig"; sourceTree = "<group>"; };
 		924D0FBBDD90D45002DA0E1B /* Pods-ExampleTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleTVOS/Pods-ExampleTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		98C9BE34EAEA31F77EE649B8 /* Pods_ExampleTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB11758B2436EA080066E6E5 /* eventcounter_distribution_summary.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_distribution_summary.pb.swift; sourceTree = "<group>"; };
-		AB11758C2436EA080066E6E5 /* eventcounter_goal_result.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_goal_result.pb.swift; sourceTree = "<group>"; };
-		AB11758D2436EA080066E6E5 /* eventcounter_variation_result.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_variation_result.pb.swift; sourceTree = "<group>"; };
-		AB11758E2436EA080066E6E5 /* eventcounter_experiment_result.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_experiment_result.pb.swift; sourceTree = "<group>"; };
-		AB68B281244031F800AAFF75 /* domain_localized_message.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = domain_localized_message.pb.swift; sourceTree = "<group>"; };
-		AB8CE34B2320E41E000960FF /* test_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_service.grpc.swift; sourceTree = "<group>"; };
-		AB8CE34C2320E41E000960FF /* test_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_service.pb.swift; sourceTree = "<group>"; };
-		AB8CE34F2320E41E000960FF /* auth_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = auth_service.grpc.swift; sourceTree = "<group>"; };
-		AB8CE3502320E41E000960FF /* auth_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = auth_service.pb.swift; sourceTree = "<group>"; };
 		AB8CE3522320E41E000960FF /* user_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_service.pb.swift; sourceTree = "<group>"; };
 		AB8CE3532320E41E000960FF /* user_user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_user.pb.swift; sourceTree = "<group>"; };
 		AB8CE3542320E41E000960FF /* user_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_service.grpc.swift; sourceTree = "<group>"; };
-		AB8CE36F2320E41E000960FF /* account_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_service.grpc.swift; sourceTree = "<group>"; };
-		AB8CE3702320E41E000960FF /* account_command.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_command.pb.swift; sourceTree = "<group>"; };
-		AB8CE3732320E41E000960FF /* account_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_service.pb.swift; sourceTree = "<group>"; };
-		AB8CE3762320E41E000960FF /* service_feature.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = service_feature.pb.swift; sourceTree = "<group>"; };
-		AB8CE3772320E41E000960FF /* service_user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = service_user.pb.swift; sourceTree = "<group>"; };
-		AB8CE3792320E41E000960FF /* domain_event.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = domain_event.pb.swift; sourceTree = "<group>"; };
 		AB8CE37B2320E41E000960FF /* client_event.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = client_event.pb.swift; sourceTree = "<group>"; };
 		AB8CE37D2320E41E000960FF /* gateway_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gateway_service.grpc.swift; sourceTree = "<group>"; };
 		AB8CE37E2320E41E000960FF /* gateway_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gateway_service.pb.swift; sourceTree = "<group>"; };
-		AB8CE3802320E41E000960FF /* auditlog_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = auditlog_service.grpc.swift; sourceTree = "<group>"; };
-		AB8CE3812320E41E000960FF /* auditlog_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = auditlog_service.pb.swift; sourceTree = "<group>"; };
-		AB9E9F21246CD43300DEB531 /* sender_notification_event.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sender_notification_event.pb.swift; sourceTree = "<group>"; };
-		ABC273CE246542EC00ADC8CB /* eventcounter_histogram.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventcounter_histogram.pb.swift; sourceTree = "<group>"; };
-		ABD77472246BC23400C0D5CD /* notification_recipient.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notification_recipient.pb.swift; sourceTree = "<group>"; };
-		ABD77474246BC23400C0D5CD /* sender_notification.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sender_notification.pb.swift; sourceTree = "<group>"; };
-		ABD77475246BC23400C0D5CD /* notification_subscription.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notification_subscription.pb.swift; sourceTree = "<group>"; };
-		ABD77476246BC23400C0D5CD /* notification_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notification_service.grpc.swift; sourceTree = "<group>"; };
-		ABD77477246BC23400C0D5CD /* notification_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notification_service.pb.swift; sourceTree = "<group>"; };
-		ABD77478246BC23400C0D5CD /* notification_command.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notification_command.pb.swift; sourceTree = "<group>"; };
 		ABE0880023CED0A700866E1D /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
 		ABF3C36C23D16E8500B45FB2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B44D2048E26FF08245E48ECB /* Pods-Bucketeer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bucketeer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bucketeer/Pods-Bucketeer.release.xcconfig"; sourceTree = "<group>"; };
@@ -614,35 +394,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1B01C66723728B9700803FA3 /* autoops */ = {
-			isa = PBXGroup;
-			children = (
-				1B14DFA623DAB0ED00A6F657 /* autoops_auto_ops_rule.pb.swift */,
-				1B14DFA523DAB0ED00A6F657 /* autoops_clause.pb.swift */,
-				1B14DFA723DAB0ED00A6F657 /* autoops_command.pb.swift */,
-				1B14DFA923DAB0ED00A6F657 /* autoops_service.grpc.swift */,
-				1B14DFA823DAB0ED00A6F657 /* autoops_service.pb.swift */,
-			);
-			path = autoops;
-			sourceTree = "<group>";
-		};
 		1B01C68F2372D33D00803FA3 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
 				1B01C6902372D36D00803FA3 /* MockAPIClient.swift */,
 			);
 			path = Mocks;
-			sourceTree = "<group>";
-		};
-		1B14DFEC23DAB1A200A6F657 /* push */ = {
-			isa = PBXGroup;
-			children = (
-				1B14DFEE23DAB1B100A6F657 /* push_command.pb.swift */,
-				1B14DFED23DAB1B000A6F657 /* push_push.pb.swift */,
-				1B14DFF023DAB1B100A6F657 /* push_service.grpc.swift */,
-				1B14DFEF23DAB1B100A6F657 /* push_service.pb.swift */,
-			);
-			name = push;
 			sourceTree = "<group>";
 		};
 		1B14E11323DEC78A00A6F657 /* Unit */ = {
@@ -738,60 +495,12 @@
 		AB8CE3412320E41E000960FF /* proto */ = {
 			isa = PBXGroup;
 			children = (
-				ABD77471246BC23400C0D5CD /* notification */,
-				1B14DFEC23DAB1A200A6F657 /* push */,
-				1B01C66723728B9700803FA3 /* autoops */,
-				AB8CE3422320E41E000960FF /* eventcounter */,
-				AB8CE34A2320E41E000960FF /* test */,
-				AB8CE34D2320E41E000960FF /* auth */,
 				AB8CE3512320E41E000960FF /* user */,
-				AB8CE3552320E41E000960FF /* environment */,
-				AB8CE35A2320E41E000960FF /* experiment */,
 				AB8CE3602320E41E000960FF /* feature */,
-				AB8CE36E2320E41E000960FF /* account */,
 				AB8CE3742320E41E000960FF /* event */,
 				AB8CE37C2320E41E000960FF /* gateway */,
-				AB8CE37F2320E41E000960FF /* auditlog */,
 			);
 			path = proto;
-			sourceTree = "<group>";
-		};
-		AB8CE3422320E41E000960FF /* eventcounter */ = {
-			isa = PBXGroup;
-			children = (
-				AB11758B2436EA080066E6E5 /* eventcounter_distribution_summary.pb.swift */,
-				AB11758E2436EA080066E6E5 /* eventcounter_experiment_result.pb.swift */,
-				AB11758C2436EA080066E6E5 /* eventcounter_goal_result.pb.swift */,
-				AB11758D2436EA080066E6E5 /* eventcounter_variation_result.pb.swift */,
-				1B14DFBE23DAB14300A6F657 /* eventcounter_evaluation_count.pb.swift */,
-				1B14DFBF23DAB14300A6F657 /* eventcounter_experiment_count.pb.swift */,
-				1B14DFBA23DAB14300A6F657 /* eventcounter_service.grpc.swift */,
-				ABC273CE246542EC00ADC8CB /* eventcounter_histogram.pb.swift */,
-				1B14DFBC23DAB14300A6F657 /* eventcounter_service.pb.swift */,
-				1B14DFB923DAB14300A6F657 /* eventcounter_streaming_service.grpc.swift */,
-				1B14DFBD23DAB14300A6F657 /* eventcounter_streaming_service.pb.swift */,
-				1B14DFBB23DAB14300A6F657 /* eventcounter_variation_count.pb.swift */,
-			);
-			path = eventcounter;
-			sourceTree = "<group>";
-		};
-		AB8CE34A2320E41E000960FF /* test */ = {
-			isa = PBXGroup;
-			children = (
-				AB8CE34B2320E41E000960FF /* test_service.grpc.swift */,
-				AB8CE34C2320E41E000960FF /* test_service.pb.swift */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
-		AB8CE34D2320E41E000960FF /* auth */ = {
-			isa = PBXGroup;
-			children = (
-				1B14DFA323DAB0D000A6F657 /* auth_token.pb.swift */,
-				AB8CE34F2320E41E000960FF /* auth_service.grpc.swift */,
-				AB8CE3502320E41E000960FF /* auth_service.pb.swift */,
-			);
-			path = auth;
 			sourceTree = "<group>";
 		};
 		AB8CE3512320E41E000960FF /* user */ = {
@@ -802,29 +511,6 @@
 				AB8CE3542320E41E000960FF /* user_service.grpc.swift */,
 			);
 			path = user;
-			sourceTree = "<group>";
-		};
-		AB8CE3552320E41E000960FF /* environment */ = {
-			isa = PBXGroup;
-			children = (
-				1B14DFB023DAB10300A6F657 /* environment_command.pb.swift */,
-				1B14DFB123DAB10300A6F657 /* environment_environment.pb.swift */,
-				1B14DFB223DAB10300A6F657 /* environment_service.grpc.swift */,
-				1B14DFAF23DAB10200A6F657 /* environment_service.pb.swift */,
-			);
-			path = environment;
-			sourceTree = "<group>";
-		};
-		AB8CE35A2320E41E000960FF /* experiment */ = {
-			isa = PBXGroup;
-			children = (
-				1B14DFC823DAB15C00A6F657 /* experiment_command.pb.swift */,
-				1B14DFC923DAB15C00A6F657 /* experiment_experiment.pb.swift */,
-				1B14DFCA23DAB15C00A6F657 /* experiment_goal.pb.swift */,
-				1B14DFC723DAB15B00A6F657 /* experiment_service.grpc.swift */,
-				1B14DFCB23DAB15C00A6F657 /* experiment_service.pb.swift */,
-			);
-			path = experiment;
 			sourceTree = "<group>";
 		};
 		AB8CE3602320E41E000960FF /* feature */ = {
@@ -847,45 +533,12 @@
 			path = feature;
 			sourceTree = "<group>";
 		};
-		AB8CE36E2320E41E000960FF /* account */ = {
-			isa = PBXGroup;
-			children = (
-				1B14DF9D23DAB0A700A6F657 /* account_account.pb.swift */,
-				1B14DF9E23DAB0A700A6F657 /* account_api_key.pb.swift */,
-				AB8CE36F2320E41E000960FF /* account_service.grpc.swift */,
-				AB8CE3702320E41E000960FF /* account_command.pb.swift */,
-				AB8CE3732320E41E000960FF /* account_service.pb.swift */,
-			);
-			path = account;
-			sourceTree = "<group>";
-		};
 		AB8CE3742320E41E000960FF /* event */ = {
 			isa = PBXGroup;
 			children = (
-				AB8CE3752320E41E000960FF /* service */,
-				AB8CE3782320E41E000960FF /* domain */,
 				AB8CE37A2320E41E000960FF /* client */,
 			);
 			path = event;
-			sourceTree = "<group>";
-		};
-		AB8CE3752320E41E000960FF /* service */ = {
-			isa = PBXGroup;
-			children = (
-				1B14DFB723DAB11900A6F657 /* service_segment.pb.swift */,
-				AB8CE3762320E41E000960FF /* service_feature.pb.swift */,
-				AB8CE3772320E41E000960FF /* service_user.pb.swift */,
-			);
-			path = service;
-			sourceTree = "<group>";
-		};
-		AB8CE3782320E41E000960FF /* domain */ = {
-			isa = PBXGroup;
-			children = (
-				AB68B281244031F800AAFF75 /* domain_localized_message.pb.swift */,
-				AB8CE3792320E41E000960FF /* domain_event.pb.swift */,
-			);
-			path = domain;
 			sourceTree = "<group>";
 		};
 		AB8CE37A2320E41E000960FF /* client */ = {
@@ -903,38 +556,6 @@
 				AB8CE37E2320E41E000960FF /* gateway_service.pb.swift */,
 			);
 			path = gateway;
-			sourceTree = "<group>";
-		};
-		AB8CE37F2320E41E000960FF /* auditlog */ = {
-			isa = PBXGroup;
-			children = (
-				1B14DFA123DAB0BD00A6F657 /* auditlog_auditlog.pb.swift */,
-				AB8CE3802320E41E000960FF /* auditlog_service.grpc.swift */,
-				AB8CE3812320E41E000960FF /* auditlog_service.pb.swift */,
-			);
-			path = auditlog;
-			sourceTree = "<group>";
-		};
-		ABD77471246BC23400C0D5CD /* notification */ = {
-			isa = PBXGroup;
-			children = (
-				ABD77472246BC23400C0D5CD /* notification_recipient.pb.swift */,
-				ABD77473246BC23400C0D5CD /* sender */,
-				ABD77475246BC23400C0D5CD /* notification_subscription.pb.swift */,
-				ABD77476246BC23400C0D5CD /* notification_service.grpc.swift */,
-				ABD77477246BC23400C0D5CD /* notification_service.pb.swift */,
-				ABD77478246BC23400C0D5CD /* notification_command.pb.swift */,
-			);
-			path = notification;
-			sourceTree = "<group>";
-		};
-		ABD77473246BC23400C0D5CD /* sender */ = {
-			isa = PBXGroup;
-			children = (
-				AB9E9F21246CD43300DEB531 /* sender_notification_event.pb.swift */,
-				ABD77474246BC23400C0D5CD /* sender_notification.pb.swift */,
-			);
-			path = sender;
 			sourceTree = "<group>";
 		};
 		EB2EFB4F20EB63D0004BB277 /* Sources */ = {
@@ -1414,101 +1035,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB1175972436EC240066E6E5 /* eventcounter_distribution_summary.pb.swift in Sources */,
-				AB1175982436EC240066E6E5 /* eventcounter_experiment_result.pb.swift in Sources */,
-				AB1175992436EC240066E6E5 /* eventcounter_goal_result.pb.swift in Sources */,
-				ABD77489246BC23400C0D5CD /* notification_command.pb.swift in Sources */,
-				AB11759A2436EC240066E6E5 /* eventcounter_variation_result.pb.swift in Sources */,
-				1B14E01223DAB79300A6F657 /* environment_environment.pb.swift in Sources */,
-				6B6ACDD6234DD6A600BD6069 /* test_service.grpc.swift in Sources */,
-				6B6ACDD7234DD6A600BD6069 /* test_service.pb.swift in Sources */,
-				1B14E01923DAB79900A6F657 /* experiment_command.pb.swift in Sources */,
-				1B14E03D23DAB7A800A6F657 /* account_account.pb.swift in Sources */,
-				6B6ACDD9234DD6A600BD6069 /* auth_service.grpc.swift in Sources */,
-				1B14E04323DAB7BE00A6F657 /* auditlog_auditlog.pb.swift in Sources */,
 				1B14E12823DEC9C100A6F657 /* EventRegisterer.swift in Sources */,
-				1B14DFF523DAB76200A6F657 /* push_command.pb.swift in Sources */,
-				6B6ACDDA234DD6A600BD6069 /* auth_service.pb.swift in Sources */,
 				1B14E11E23DEC9C100A6F657 /* Evaluation.swift in Sources */,
-				1B14E01D23DAB79900A6F657 /* experiment_service.pb.swift in Sources */,
 				6B6ACDDB234DD6A600BD6069 /* user_service.pb.swift in Sources */,
 				6B6ACDDC234DD6A600BD6069 /* user_user.pb.swift in Sources */,
-				1B14E01B23DAB79900A6F657 /* experiment_goal.pb.swift in Sources */,
-				1B14DFF923DAB77800A6F657 /* autoops_clause.pb.swift in Sources */,
 				6B6ACDDD234DD6A600BD6069 /* user_service.grpc.swift in Sources */,
-				6B6ACDF4234DD6A700BD6069 /* account_service.grpc.swift in Sources */,
-				1B14E00F23DAB78800A6F657 /* auth_token.pb.swift in Sources */,
-				6B6ACDF5234DD6A700BD6069 /* account_command.pb.swift in Sources */,
 				1B14E12723DEC9C100A6F657 /* EventEntity.swift in Sources */,
 				1B14E11F23DEC9C100A6F657 /* BucketeerError.swift in Sources */,
 				1B14E12023DEC9C100A6F657 /* BucketeerSDK.swift in Sources */,
-				1B14E01A23DAB79900A6F657 /* experiment_experiment.pb.swift in Sources */,
-				ABD7747A246BC23400C0D5CD /* notification_recipient.pb.swift in Sources */,
-				AB68B2832440320E00AAFF75 /* domain_localized_message.pb.swift in Sources */,
 				1B14E12123DEC9C100A6F657 /* CallResult.swift in Sources */,
 				1B14E02F23DAB7A000A6F657 /* feature_variation.pb.swift in Sources */,
-				6B6ACDF8234DD6A700BD6069 /* account_service.pb.swift in Sources */,
 				1B14E02723DAB7A000A6F657 /* feature_feature.pb.swift in Sources */,
-				6B6ACDF9234DD6A700BD6069 /* service_feature.pb.swift in Sources */,
-				1B14E00723DAB78000A6F657 /* eventcounter_variation_count.pb.swift in Sources */,
 				1B14E12623DEC9C100A6F657 /* EvaluationSynchronizer.swift in Sources */,
-				1B14E00323DAB78000A6F657 /* eventcounter_service.grpc.swift in Sources */,
-				6B6ACDFA234DD6A700BD6069 /* service_user.pb.swift in Sources */,
-				6B6ACDFB234DD6A700BD6069 /* domain_event.pb.swift in Sources */,
-				1B14DFF723DAB77100A6F657 /* autoops_auto_ops_rule.pb.swift in Sources */,
 				1B14E12A23DEC9C100A6F657 /* EventStore.swift in Sources */,
 				1B14E02623DAB7A000A6F657 /* feature_feature_last_used_info.pb.swift in Sources */,
-				ABD77483246BC23400C0D5CD /* notification_service.grpc.swift in Sources */,
 				6B6ACDFC234DD6A700BD6069 /* client_event.pb.swift in Sources */,
 				6B6ACDFD234DD6A700BD6069 /* gateway_service.grpc.swift in Sources */,
-				1B14E01323DAB79300A6F657 /* environment_service.grpc.swift in Sources */,
 				6B6ACDFE234DD6A700BD6069 /* gateway_service.pb.swift in Sources */,
 				E28D246F2456E47A00E275D1 /* Constants.swift in Sources */,
-				AB9E9F23246CD43300DEB531 /* sender_notification_event.pb.swift in Sources */,
 				1B14E12423DEC9C100A6F657 /* DateExtension.swift in Sources */,
-				6B6ACDFF234DD6A700BD6069 /* auditlog_service.grpc.swift in Sources */,
-				6B6ACE00234DD6A700BD6069 /* auditlog_service.pb.swift in Sources */,
 				1B14E13023DEC9C100A6F657 /* SQLiteDatabase.swift in Sources */,
 				1B14E12223DEC9C100A6F657 /* Config.swift in Sources */,
 				1B14E13323DEC9C100A6F657 /* Version.swift in Sources */,
 				1B14E02E23DAB7A000A6F657 /* feature_target.pb.swift in Sources */,
-				1B14E00123DAB78000A6F657 /* eventcounter_evaluation_count.pb.swift in Sources */,
-				1B14DFFA23DAB77800A6F657 /* autoops_command.pb.swift in Sources */,
-				1B14E01C23DAB79900A6F657 /* experiment_service.grpc.swift in Sources */,
-				1B14E00223DAB78000A6F657 /* eventcounter_experiment_count.pb.swift in Sources */,
 				1B14E12523DEC9C100A6F657 /* EvaluationEntity.swift in Sources */,
 				1B14E02C23DAB7A000A6F657 /* feature_service.pb.swift in Sources */,
 				1B14E13123DEC9C100A6F657 /* UserEntity.swift in Sources */,
 				1B14E02B23DAB7A000A6F657 /* feature_service.grpc.swift in Sources */,
-				1B14E00523DAB78000A6F657 /* eventcounter_streaming_service.grpc.swift in Sources */,
 				1B14E02523DAB7A000A6F657 /* feature_evaluation.pb.swift in Sources */,
 				1B14E13423DEC9C100A6F657 /* User.swift in Sources */,
-				1B14E04623DAB7E400A6F657 /* push_service.grpc.swift in Sources */,
 				1B14E12B23DEC9C100A6F657 /* Feature.swift in Sources */,
-				1B14E04523DAB7E400A6F657 /* push_push.pb.swift in Sources */,
-				1B14E03E23DAB7A800A6F657 /* account_api_key.pb.swift in Sources */,
 				1B14E02923DAB7A000A6F657 /* feature_rule.pb.swift in Sources */,
-				1B14E00423DAB78000A6F657 /* eventcounter_service.pb.swift in Sources */,
-				ABD7747D246BC23400C0D5CD /* sender_notification.pb.swift in Sources */,
 				1B14E12D23DEC9C100A6F657 /* Logger.swift in Sources */,
-				1B14E01423DAB79300A6F657 /* environment_service.pb.swift in Sources */,
-				ABC273D0246542ED00ADC8CB /* eventcounter_histogram.pb.swift in Sources */,
-				1B14E04723DAB7E400A6F657 /* push_service.pb.swift in Sources */,
-				1B14E00623DAB78000A6F657 /* eventcounter_streaming_service.pb.swift in Sources */,
-				1B14DFFC23DAB77800A6F657 /* autoops_service.pb.swift in Sources */,
 				1B14E02823DAB7A000A6F657 /* feature_reason.pb.swift in Sources */,
-				1B14E04123DAB7AE00A6F657 /* service_segment.pb.swift in Sources */,
 				1B14E02A23DAB7A000A6F657 /* feature_segment.pb.swift in Sources */,
 				1B14E13223DEC9C100A6F657 /* VariationProtocol.swift in Sources */,
 				1B14E02423DAB7A000A6F657 /* feature_command.pb.swift in Sources */,
 				1B14E02323DAB7A000A6F657 /* feature_clause.pb.swift in Sources */,
 				1B14E02D23DAB7A000A6F657 /* feature_strategy.pb.swift in Sources */,
 				1B14E12C23DEC9C100A6F657 /* LatestEvaluationStore.swift in Sources */,
-				ABD77486246BC23400C0D5CD /* notification_service.pb.swift in Sources */,
 				1B14E12E23DEC9C100A6F657 /* Poller.swift in Sources */,
-				1B14DFFB23DAB77800A6F657 /* autoops_service.grpc.swift in Sources */,
-				1B14E01123DAB79300A6F657 /* environment_command.pb.swift in Sources */,
-				ABD77480246BC23400C0D5CD /* notification_subscription.pb.swift in Sources */,
 				1B14E11D23DEC9C100A6F657 /* APIClient.swift in Sources */,
 				1B14E12923DEC9C100A6F657 /* EventSaver.swift in Sources */,
 				1B14E12F23DEC9C100A6F657 /* Reachability.swift in Sources */,
@@ -1533,101 +1099,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB68B282244031F800AAFF75 /* domain_localized_message.pb.swift in Sources */,
-				1B14DFC323DAB14300A6F657 /* eventcounter_service.pb.swift in Sources */,
-				1B14DFA223DAB0BD00A6F657 /* auditlog_auditlog.pb.swift in Sources */,
-				ABD77488246BC23400C0D5CD /* notification_command.pb.swift in Sources */,
-				1B14DFAD23DAB0ED00A6F657 /* autoops_service.pb.swift in Sources */,
-				1B14DFC123DAB14300A6F657 /* eventcounter_service.grpc.swift in Sources */,
-				AB1175922436EA080066E6E5 /* eventcounter_experiment_result.pb.swift in Sources */,
-				6B6ACD8C234DD68D00BD6069 /* test_service.grpc.swift in Sources */,
-				AB1175912436EA080066E6E5 /* eventcounter_variation_result.pb.swift in Sources */,
-				6B6ACD8D234DD68D00BD6069 /* test_service.pb.swift in Sources */,
-				6B6ACD8F234DD68D00BD6069 /* auth_service.grpc.swift in Sources */,
-				6B6ACD90234DD68D00BD6069 /* auth_service.pb.swift in Sources */,
 				6B6ACD91234DD68D00BD6069 /* user_service.pb.swift in Sources */,
 				6B6ACD92234DD68D00BD6069 /* user_user.pb.swift in Sources */,
 				1B14DFE923DAB17300A6F657 /* feature_clause.pb.swift in Sources */,
 				6B6ACD93234DD68D00BD6069 /* user_service.grpc.swift in Sources */,
 				1B14DFE323DAB17300A6F657 /* feature_segment.pb.swift in Sources */,
-				1B14DFA423DAB0D000A6F657 /* auth_token.pb.swift in Sources */,
-				1B14DFCD23DAB15C00A6F657 /* experiment_command.pb.swift in Sources */,
-				1B14DFAB23DAB0ED00A6F657 /* autoops_auto_ops_rule.pb.swift in Sources */,
-				1B14DFB323DAB10300A6F657 /* environment_service.pb.swift in Sources */,
-				1B14DFCF23DAB15C00A6F657 /* experiment_goal.pb.swift in Sources */,
-				1B14DFC023DAB14300A6F657 /* eventcounter_streaming_service.grpc.swift in Sources */,
-				1B14DFA023DAB0A700A6F657 /* account_api_key.pb.swift in Sources */,
-				1B14DF9F23DAB0A700A6F657 /* account_account.pb.swift in Sources */,
-				6B6ACDAA234DD68E00BD6069 /* account_service.grpc.swift in Sources */,
-				1B14DFAE23DAB0ED00A6F657 /* autoops_service.grpc.swift in Sources */,
-				6B6ACDAB234DD68E00BD6069 /* account_command.pb.swift in Sources */,
-				1B14DFF323DAB1B100A6F657 /* push_service.pb.swift in Sources */,
-				ABD77479246BC23400C0D5CD /* notification_recipient.pb.swift in Sources */,
 				1B14DFE723DAB17300A6F657 /* feature_variation.pb.swift in Sources */,
 				ABF3C36D23D16E8500B45FB2 /* User.swift in Sources */,
-				1B14DFCC23DAB15C00A6F657 /* experiment_service.grpc.swift in Sources */,
-				1B14DFC223DAB14300A6F657 /* eventcounter_variation_count.pb.swift in Sources */,
-				6B6ACDAE234DD68E00BD6069 /* account_service.pb.swift in Sources */,
-				6B6ACDAF234DD68E00BD6069 /* service_feature.pb.swift in Sources */,
-				AB1175902436EA080066E6E5 /* eventcounter_goal_result.pb.swift in Sources */,
-				6B6ACDB0234DD68E00BD6069 /* service_user.pb.swift in Sources */,
-				6B6ACDB1234DD68E00BD6069 /* domain_event.pb.swift in Sources */,
 				6B6ACDB2234DD68E00BD6069 /* client_event.pb.swift in Sources */,
 				6B6ACDB3234DD68E00BD6069 /* gateway_service.grpc.swift in Sources */,
 				1B14DFDF23DAB17300A6F657 /* feature_service.grpc.swift in Sources */,
 				6B6ACDB4234DD68E00BD6069 /* gateway_service.pb.swift in Sources */,
-				6B6ACDB5234DD68E00BD6069 /* auditlog_service.grpc.swift in Sources */,
-				ABD77482246BC23400C0D5CD /* notification_service.grpc.swift in Sources */,
-				6B6ACDB6234DD68E00BD6069 /* auditlog_service.pb.swift in Sources */,
-				1B14DFB523DAB10300A6F657 /* environment_environment.pb.swift in Sources */,
-				1B14DFF223DAB1B100A6F657 /* push_command.pb.swift in Sources */,
 				6B6ACDB8234DD68E00BD6069 /* APIClient.swift in Sources */,
 				E28D246E2456E47A00E275D1 /* Constants.swift in Sources */,
-				AB9E9F22246CD43300DEB531 /* sender_notification_event.pb.swift in Sources */,
 				1B14DFE123DAB17300A6F657 /* feature_reason.pb.swift in Sources */,
-				AB11758F2436EA080066E6E5 /* eventcounter_distribution_summary.pb.swift in Sources */,
 				1B14DFE623DAB17300A6F657 /* feature_target.pb.swift in Sources */,
-				1B14DFCE23DAB15C00A6F657 /* experiment_experiment.pb.swift in Sources */,
 				1B14DFE823DAB17300A6F657 /* feature_feature.pb.swift in Sources */,
-				1B14DFF423DAB1B100A6F657 /* push_service.grpc.swift in Sources */,
 				1B14DFDE23DAB17300A6F657 /* feature_service.pb.swift in Sources */,
-				1B14DFC523DAB14300A6F657 /* eventcounter_evaluation_count.pb.swift in Sources */,
 				6B6ACDB9234DD68E00BD6069 /* BucketeerError.swift in Sources */,
 				6B6ACDBA234DD68E00BD6069 /* BucketeerSDK.swift in Sources */,
 				6B6ACDBB234DD68E00BD6069 /* CallResult.swift in Sources */,
-				1B14DFB623DAB10300A6F657 /* environment_service.grpc.swift in Sources */,
 				6B6ACDBC234DD68E00BD6069 /* Config.swift in Sources */,
 				ABE0880123CED0A700866E1D /* Evaluation.swift in Sources */,
 				6B6ACDBD234DD68E00BD6069 /* CurrentEvaluationStore.swift in Sources */,
 				6B6ACDBE234DD68E00BD6069 /* DateExtension.swift in Sources */,
 				6B6ACDBF234DD68E00BD6069 /* EvaluationEntity.swift in Sources */,
 				6B6ACDC0234DD68E00BD6069 /* EvaluationSynchronizer.swift in Sources */,
-				1B14DFAA23DAB0ED00A6F657 /* autoops_clause.pb.swift in Sources */,
-				1B14DFD023DAB15C00A6F657 /* experiment_service.pb.swift in Sources */,
 				1B14DFE023DAB17300A6F657 /* feature_evaluation.pb.swift in Sources */,
 				6B6ACDC1234DD68E00BD6069 /* EventEntity.swift in Sources */,
 				6B6ACDC2234DD68E00BD6069 /* EventRegisterer.swift in Sources */,
 				6B6ACDC3234DD68E00BD6069 /* EventSaver.swift in Sources */,
-				ABD7747C246BC23400C0D5CD /* sender_notification.pb.swift in Sources */,
-				1B14DFB823DAB11900A6F657 /* service_segment.pb.swift in Sources */,
 				1B14DFEA23DAB17300A6F657 /* feature_strategy.pb.swift in Sources */,
-				ABC273CF246542ED00ADC8CB /* eventcounter_histogram.pb.swift in Sources */,
-				1B14DFAC23DAB0ED00A6F657 /* autoops_command.pb.swift in Sources */,
 				6B6ACDC4234DD68E00BD6069 /* EventStore.swift in Sources */,
 				6B6ACDC5234DD68E00BD6069 /* Feature.swift in Sources */,
 				6B6ACDC6234DD68E00BD6069 /* LatestEvaluationStore.swift in Sources */,
-				1B14DFF123DAB1B100A6F657 /* push_push.pb.swift in Sources */,
 				6B6ACDC7234DD68E00BD6069 /* Logger.swift in Sources */,
 				6B6ACDC8234DD68E00BD6069 /* Poller.swift in Sources */,
-				1B14DFC423DAB14300A6F657 /* eventcounter_streaming_service.pb.swift in Sources */,
 				1B14DFE423DAB17300A6F657 /* feature_rule.pb.swift in Sources */,
-				1B14DFB423DAB10300A6F657 /* environment_command.pb.swift in Sources */,
-				1B14DFC623DAB14300A6F657 /* eventcounter_experiment_count.pb.swift in Sources */,
-				ABD77485246BC23400C0D5CD /* notification_service.pb.swift in Sources */,
 				1B14DFE523DAB17300A6F657 /* feature_command.pb.swift in Sources */,
 				6B6ACDC9234DD68E00BD6069 /* Reachability.swift in Sources */,
 				6B6ACDCB234DD68E00BD6069 /* SQLiteDatabase.swift in Sources */,
-				ABD7747F246BC23400C0D5CD /* notification_subscription.pb.swift in Sources */,
 				6B6ACDCC234DD68E00BD6069 /* UserEntity.swift in Sources */,
 				1B14DFE223DAB17300A6F657 /* feature_feature_last_used_info.pb.swift in Sources */,
 				6B6ACDCD234DD68E00BD6069 /* VariationProtocol.swift in Sources */,
@@ -1639,115 +1150,60 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB1175932436EBFD0066E6E5 /* eventcounter_distribution_summary.pb.swift in Sources */,
-				AB1175942436EBFD0066E6E5 /* eventcounter_experiment_result.pb.swift in Sources */,
-				AB1175952436EBFD0066E6E5 /* eventcounter_goal_result.pb.swift in Sources */,
-				AB1175962436EBFD0066E6E5 /* eventcounter_variation_result.pb.swift in Sources */,
 				1B14E03B23DAB7A000A6F657 /* feature_target.pb.swift in Sources */,
 				AB5FF9DA23D17C1D000B46DD /* User.swift in Sources */,
-				1B14E01723DAB79400A6F657 /* environment_service.grpc.swift in Sources */,
 				ABE0880423CF112400866E1D /* Evaluation.swift in Sources */,
-				1B14DFF823DAB77200A6F657 /* autoops_auto_ops_rule.pb.swift in Sources */,
-				1B14E00E23DAB78000A6F657 /* eventcounter_variation_count.pb.swift in Sources */,
-				1B14DFF623DAB76300A6F657 /* push_command.pb.swift in Sources */,
-				1B14E00B23DAB78000A6F657 /* eventcounter_service.pb.swift in Sources */,
-				AB8CE3D62320E41E000960FF /* account_service.pb.swift in Sources */,
 				EB2EFB6420EB8904004BB277 /* DateExtension.swift in Sources */,
 				EB2EFB3220EB56AE004BB277 /* EventRegisterer.swift in Sources */,
-				ABD77487246BC23400C0D5CD /* notification_service.pb.swift in Sources */,
 				1B14E03423DAB7A000A6F657 /* feature_feature.pb.swift in Sources */,
 				1B14E03623DAB7A000A6F657 /* feature_rule.pb.swift in Sources */,
-				1B14E04023DAB7A900A6F657 /* account_api_key.pb.swift in Sources */,
-				1B14DFFD23DAB77900A6F657 /* autoops_clause.pb.swift in Sources */,
 				1B14E11823DEC8B400A6F657 /* BucketeerE2ETest.swift in Sources */,
-				ABD7748A246BC23400C0D5CD /* notification_command.pb.swift in Sources */,
-				ABD77484246BC23400C0D5CD /* notification_service.grpc.swift in Sources */,
 				AB8CE3E22320E41E000960FF /* gateway_service.pb.swift in Sources */,
-				1B14E00C23DAB78000A6F657 /* eventcounter_streaming_service.grpc.swift in Sources */,
 				1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */,
-				1B14E04423DAB7BF00A6F657 /* auditlog_auditlog.pb.swift in Sources */,
 				1D142D0121526D3C00B8EA25 /* APIClient.swift in Sources */,
 				EB2EFB3E20EB56AE004BB277 /* EvaluationEntity.swift in Sources */,
-				1B14E02023DAB79A00A6F657 /* experiment_goal.pb.swift in Sources */,
 				1B01C68E2372B9DF00803FA3 /* PollerTest.swift in Sources */,
 				1B14E03C23DAB7A000A6F657 /* feature_variation.pb.swift in Sources */,
-				1B14E01623DAB79400A6F657 /* environment_environment.pb.swift in Sources */,
 				EB2EFB3C20EB56AE004BB277 /* CallResult.swift in Sources */,
 				AB8CE3E02320E41E000960FF /* gateway_service.grpc.swift in Sources */,
-				AB8CE3942320E41E000960FF /* test_service.pb.swift in Sources */,
 				AB8CE3A02320E41E000960FF /* user_service.grpc.swift in Sources */,
-				AB8CE3DA2320E41E000960FF /* service_user.pb.swift in Sources */,
 				E28D24702456E47A00E275D1 /* Constants.swift in Sources */,
-				1B14E01E23DAB79A00A6F657 /* experiment_command.pb.swift in Sources */,
 				1B01C6912372D36D00803FA3 /* MockAPIClient.swift in Sources */,
 				EB2EFB2A20EB56AE004BB277 /* EventEntity.swift in Sources */,
-				AB8CE3CE2320E41E000960FF /* account_service.grpc.swift in Sources */,
 				AB8CE3DE2320E41E000960FF /* client_event.pb.swift in Sources */,
 				1B14E03823DAB7A000A6F657 /* feature_service.grpc.swift in Sources */,
 				EB2EFB2C20EB56AE004BB277 /* Config.swift in Sources */,
-				AB8CE3E42320E41E000960FF /* auditlog_service.grpc.swift in Sources */,
 				1B01C6922372D71C00803FA3 /* EvaluationSynchronizerTest.swift in Sources */,
-				1B14E03F23DAB7A900A6F657 /* account_account.pb.swift in Sources */,
-				AB8CE3922320E41E000960FF /* test_service.grpc.swift in Sources */,
-				1B14E04823DAB7E500A6F657 /* push_push.pb.swift in Sources */,
 				1B14E03723DAB7A000A6F657 /* feature_segment.pb.swift in Sources */,
 				EB2EFB2820EB56AE004BB277 /* EventStore.swift in Sources */,
 				1B14E03A23DAB7A000A6F657 /* feature_strategy.pb.swift in Sources */,
-				ABD7747B246BC23400C0D5CD /* notification_recipient.pb.swift in Sources */,
-				1B14E04223DAB7AF00A6F657 /* service_segment.pb.swift in Sources */,
-				1B14E00D23DAB78000A6F657 /* eventcounter_streaming_service.pb.swift in Sources */,
-				1B14E02123DAB79A00A6F657 /* experiment_service.grpc.swift in Sources */,
 				1B14E03523DAB7A000A6F657 /* feature_reason.pb.swift in Sources */,
 				EB2EFB1E20EB56AE004BB277 /* Logger.swift in Sources */,
 				1B14E03323DAB7A000A6F657 /* feature_feature_last_used_info.pb.swift in Sources */,
 				1B14E03923DAB7A000A6F657 /* feature_service.pb.swift in Sources */,
-				1B14E01823DAB79400A6F657 /* environment_service.pb.swift in Sources */,
 				EB2EFB2220EB56AE004BB277 /* SQLiteDatabase.swift in Sources */,
-				1B14E04A23DAB7E500A6F657 /* push_service.pb.swift in Sources */,
 				EB2EFB1A20EB56AE004BB277 /* Reachability.swift in Sources */,
-				1B14DFFF23DAB77900A6F657 /* autoops_service.grpc.swift in Sources */,
-				AB8CE3DC2320E41E000960FF /* domain_event.pb.swift in Sources */,
 				EB2EFB2020EB56AE004BB277 /* LatestEvaluationStore.swift in Sources */,
-				ABC273D1246542ED00ADC8CB /* eventcounter_histogram.pb.swift in Sources */,
 				1B01C68D2372B9DA00803FA3 /* LatestEvaluationTest.swift in Sources */,
 				AB8CE39C2320E41E000960FF /* user_service.pb.swift in Sources */,
-				1B14E04923DAB7E500A6F657 /* push_service.grpc.swift in Sources */,
 				EB2EFB2420EB56AE004BB277 /* VariationProtocol.swift in Sources */,
 				1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */,
-				1B14E00A23DAB78000A6F657 /* eventcounter_service.grpc.swift in Sources */,
-				1B14E00823DAB78000A6F657 /* eventcounter_evaluation_count.pb.swift in Sources */,
-				1B14DFFE23DAB77900A6F657 /* autoops_command.pb.swift in Sources */,
-				1B14E00923DAB78000A6F657 /* eventcounter_experiment_count.pb.swift in Sources */,
-				ABD77481246BC23400C0D5CD /* notification_subscription.pb.swift in Sources */,
 				1B14E03223DAB7A000A6F657 /* feature_evaluation.pb.swift in Sources */,
-				1B14E01523DAB79400A6F657 /* environment_command.pb.swift in Sources */,
-				1B14E01F23DAB79A00A6F657 /* experiment_experiment.pb.swift in Sources */,
-				AB9E9F24246CD43300DEB531 /* sender_notification_event.pb.swift in Sources */,
-				AB8CE3D82320E41E000960FF /* service_feature.pb.swift in Sources */,
 				EB41373B20A556550092B2FA /* BucketeerSDK.swift in Sources */,
 				EB2EFB3020EB56AE004BB277 /* EventSaver.swift in Sources */,
-				1B14E00023DAB77900A6F657 /* autoops_service.pb.swift in Sources */,
 				1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */,
 				EB2EFB3620EB56AE004BB277 /* Poller.swift in Sources */,
 				EBAF48E821106053006AC1F3 /* Version.swift in Sources */,
 				EB2EFB2620EB56AE004BB277 /* UserEntity.swift in Sources */,
 				AB8CE39E2320E41E000960FF /* user_user.pb.swift in Sources */,
 				1B14E11623DEC86B00A6F657 /* CommonE2EUtil.swift in Sources */,
-				AB8CE3E62320E41E000960FF /* auditlog_service.pb.swift in Sources */,
 				EB2EFB2E20EB56AE004BB277 /* EvaluationSynchronizer.swift in Sources */,
-				AB8CE3982320E41E000960FF /* auth_service.grpc.swift in Sources */,
-				ABD7747E246BC23400C0D5CD /* sender_notification.pb.swift in Sources */,
 				EBAF48E5210F118B006AC1F3 /* Feature.swift in Sources */,
-				AB8CE3D02320E41E000960FF /* account_command.pb.swift in Sources */,
 				1B01C6932372D82B00803FA3 /* EventRegistererTest.swift in Sources */,
 				EB2EFB3A20EB56AE004BB277 /* BucketeerError.swift in Sources */,
 				1B01C68C2372B9D000803FA3 /* EventStoreTest.swift in Sources */,
-				AB8CE39A2320E41E000960FF /* auth_service.pb.swift in Sources */,
-				1B14E01023DAB78900A6F657 /* auth_token.pb.swift in Sources */,
 				1B14E03123DAB7A000A6F657 /* feature_command.pb.swift in Sources */,
-				1B14E02223DAB79A00A6F657 /* experiment_service.pb.swift in Sources */,
 				1B14E03023DAB7A000A6F657 /* feature_clause.pb.swift in Sources */,
-				AB68B2842440320E00AAFF75 /* domain_localized_message.pb.swift in Sources */,
 				EB2EFB3420EB56AE004BB277 /* CurrentEvaluationStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
