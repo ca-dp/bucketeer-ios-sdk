@@ -1,6 +1,6 @@
-PROTO_OUTPUT := proto_output
-PROTO_FOLDERS := $(filter-out ./rpc%, $(shell cd ../bucketeer/proto && find . -name '*.proto' -print0 | xargs -0 -n1 dirname | sort --unique))
 PROTO_TOP_DIR := $(shell cd ../bucketeer && pwd)
+PROTO_FOLDERS := event/client feature gateway user
+PROTO_OUTPUT := proto_output
 
 APP_NAME=Bucketeer
 
@@ -84,12 +84,12 @@ deps:
 	bundle exec fastlane setup
 
 .PHONY: copy-protos
-copy-protos: gen-protos
+copy-protos: .gen-protos
 	rm -rf Bucketeer/Sources/proto
 	mv $(PROTO_OUTPUT)/proto Bucketeer/Sources/
 
-.PHONY: gen-protos
-gen-protos:
+.PHONY: .gen-protos
+.gen-protos:
 	if [ -d ${PROTO_OUTPUT} ]; then rm -fr ${PROTO_OUTPUT}; fi; \
 	mkdir ${PROTO_OUTPUT}; \
 	for f in ${PROTO_FOLDERS}; do \
