@@ -47,7 +47,7 @@ make deps
 
 ### Development with Xcode
 
-Open `sdk/ios/Bucketeer.xcworkspace` with Xcode.
+Open `Bucketeer.xcworkspace` with Xcode.
 
 ### Development with command line
 
