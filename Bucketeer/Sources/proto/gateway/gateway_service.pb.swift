@@ -60,6 +60,8 @@ struct Bucketeer_Gateway_GetEvaluationsRequest {
 
   var userEvaluationsID: String = String()
 
+  var featureID: String = String()
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -188,6 +190,7 @@ extension Bucketeer_Gateway_GetEvaluationsRequest: SwiftProtobuf.Message, SwiftP
     1: .same(proto: "tag"),
     2: .same(proto: "user"),
     3: .standard(proto: "user_evaluations_id"),
+    4: .standard(proto: "feature_id"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -196,6 +199,7 @@ extension Bucketeer_Gateway_GetEvaluationsRequest: SwiftProtobuf.Message, SwiftP
       case 1: try decoder.decodeSingularStringField(value: &self.tag)
       case 2: try decoder.decodeSingularMessageField(value: &self._user)
       case 3: try decoder.decodeSingularStringField(value: &self.userEvaluationsID)
+      case 4: try decoder.decodeSingularStringField(value: &self.featureID)
       default: break
       }
     }
@@ -211,6 +215,9 @@ extension Bucketeer_Gateway_GetEvaluationsRequest: SwiftProtobuf.Message, SwiftP
     if !self.userEvaluationsID.isEmpty {
       try visitor.visitSingularStringField(value: self.userEvaluationsID, fieldNumber: 3)
     }
+    if !self.featureID.isEmpty {
+      try visitor.visitSingularStringField(value: self.featureID, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -218,6 +225,7 @@ extension Bucketeer_Gateway_GetEvaluationsRequest: SwiftProtobuf.Message, SwiftP
     if lhs.tag != rhs.tag {return false}
     if lhs._user != rhs._user {return false}
     if lhs.userEvaluationsID != rhs.userEvaluationsID {return false}
+    if lhs.featureID != rhs.featureID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
