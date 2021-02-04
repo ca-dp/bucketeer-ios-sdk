@@ -1,6 +1,6 @@
 [![Build Status](https://app.bitrise.io/app/b2a26a787a314dad/status.svg?token=dbGgTCEurcQ8NoD64CekLA&branch=master)](https://app.bitrise.io/app/b2a26a787a314dad)
 
-# Bucketeer Client SDK for iOS
+# Bucketeer Client-side SDK for iOS
 
 ## Setup
 
