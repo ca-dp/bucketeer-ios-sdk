@@ -37,6 +37,11 @@ internal protocol Bucketeer_Gateway_GatewayClientProtocol: GRPCClient {
     callOptions: CallOptions?
   ) -> UnaryCall<Bucketeer_Gateway_GetEvaluationsRequest, Bucketeer_Gateway_GetEvaluationsResponse>
 
+  func getEvaluation(
+    _ request: Bucketeer_Gateway_GetEvaluationRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Gateway_GetEvaluationRequest, Bucketeer_Gateway_GetEvaluationResponse>
+
   func registerEvents(
     _ request: Bucketeer_Gateway_RegisterEventsRequest,
     callOptions: CallOptions?
@@ -75,6 +80,23 @@ extension Bucketeer_Gateway_GatewayClientProtocol {
   ) -> UnaryCall<Bucketeer_Gateway_GetEvaluationsRequest, Bucketeer_Gateway_GetEvaluationsResponse> {
     return self.makeUnaryCall(
       path: "/bucketeer.gateway.Gateway/GetEvaluations",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
+  }
+
+  /// Unary call to GetEvaluation
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetEvaluation.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getEvaluation(
+    _ request: Bucketeer_Gateway_GetEvaluationRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Gateway_GetEvaluationRequest, Bucketeer_Gateway_GetEvaluationResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.gateway.Gateway/GetEvaluation",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions
     )

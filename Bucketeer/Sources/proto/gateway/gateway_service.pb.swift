@@ -60,6 +60,7 @@ struct Bucketeer_Gateway_GetEvaluationsRequest {
 
   var userEvaluationsID: String = String()
 
+  /// instead, use GetEvaluation API
   var featureID: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -92,6 +93,52 @@ struct Bucketeer_Gateway_GetEvaluationsResponse {
   init() {}
 
   fileprivate var _evaluations: Bucketeer_Feature_UserEvaluations? = nil
+}
+
+struct Bucketeer_Gateway_GetEvaluationRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var tag: String = String()
+
+  var user: Bucketeer_User_User {
+    get {return _user ?? Bucketeer_User_User()}
+    set {_user = newValue}
+  }
+  /// Returns true if `user` has been explicitly set.
+  var hasUser: Bool {return self._user != nil}
+  /// Clears the value of `user`. Subsequent reads from it will return its default value.
+  mutating func clearUser() {self._user = nil}
+
+  var featureID: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _user: Bucketeer_User_User? = nil
+}
+
+struct Bucketeer_Gateway_GetEvaluationResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var evaluation: Bucketeer_Feature_Evaluation {
+    get {return _evaluation ?? Bucketeer_Feature_Evaluation()}
+    set {_evaluation = newValue}
+  }
+  /// Returns true if `evaluation` has been explicitly set.
+  var hasEvaluation: Bool {return self._evaluation != nil}
+  /// Clears the value of `evaluation`. Subsequent reads from it will return its default value.
+  mutating func clearEvaluation() {self._evaluation = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _evaluation: Bucketeer_Feature_Evaluation? = nil
 }
 
 struct Bucketeer_Gateway_RegisterEventsRequest {
@@ -267,6 +314,76 @@ extension Bucketeer_Gateway_GetEvaluationsResponse: SwiftProtobuf.Message, Swift
     if lhs.state != rhs.state {return false}
     if lhs._evaluations != rhs._evaluations {return false}
     if lhs.userEvaluationsID != rhs.userEvaluationsID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Gateway_GetEvaluationRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GetEvaluationRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "tag"),
+    2: .same(proto: "user"),
+    3: .standard(proto: "feature_id"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.tag)
+      case 2: try decoder.decodeSingularMessageField(value: &self._user)
+      case 3: try decoder.decodeSingularStringField(value: &self.featureID)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.tag.isEmpty {
+      try visitor.visitSingularStringField(value: self.tag, fieldNumber: 1)
+    }
+    if let v = self._user {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if !self.featureID.isEmpty {
+      try visitor.visitSingularStringField(value: self.featureID, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Gateway_GetEvaluationRequest, rhs: Bucketeer_Gateway_GetEvaluationRequest) -> Bool {
+    if lhs.tag != rhs.tag {return false}
+    if lhs._user != rhs._user {return false}
+    if lhs.featureID != rhs.featureID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Gateway_GetEvaluationResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GetEvaluationResponse"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "evaluation"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularMessageField(value: &self._evaluation)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._evaluation {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Gateway_GetEvaluationResponse, rhs: Bucketeer_Gateway_GetEvaluationResponse) -> Bool {
+    if lhs._evaluation != rhs._evaluation {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
