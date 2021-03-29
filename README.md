@@ -8,27 +8,6 @@ Install prerequisite tools.
 
 - Xcode
 - Ruby
-- protoc
-
-```
-brew install protobuf
-```
-
-- [protoc-gen-swift](https://github.com/grpc/grpc-swift#getting-the-plugins)
-
-```
-git clone git@github.com:grpc/grpc-swift.git /tmp/grpc-swift
-cd /tmp/grpc-swift
-git checkout 1.0.0-alpha.19
-make plugins
-cp protoc-gen-swift protoc-gen-grpc-swift /usr/local/bin
-```
-
-- [googleapis/googleapis](https://github.com/googleapis/googleapis)
-
-```
-git clone git@github.com:googleapis/googleapis.git $GOPATH/src/github.com/googleapis/googleapis
-```
 
 Then, you need to create `fastlane/.env`.
 
@@ -90,6 +69,6 @@ make build-example
 - [Tutorial](https://bucketeer.io/docs/#/sdk-tutorial-ios)
 - [Integration](https://bucketeer.io/docs/#/sdk-reference-guides-ios)
 
-## Samples 
+## Samples
 
 [Bucketeer Samples](https://github.com/ca-dp/bucketeer-samples)
