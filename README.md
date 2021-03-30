@@ -66,8 +66,8 @@ make build-example
 
 ## SDK User Docs
 
-- [Tutorial](https://bucketeer.io/docs/#/sdk-tutorial-ios)
-- [Integration](https://bucketeer.io/docs/#/sdk-reference-guides-ios)
+- [Tutorial](https://bucketeer.io/docs/#/./client-side-sdk-tutorial-ios)
+- [Integration](https://bucketeer.io/docs/#/./client-side-sdk-reference-guides-ios)
 
 ## Samples
 
