@@ -64,6 +64,8 @@ Build Example.
 make build-example
 ```
 
+[TODO] How to use published SDK instead of local one.
+
 ## SDK User Docs
 
 - [Tutorial](https://bucketeer.io/docs/#/./client-side-sdk-tutorial-ios)
