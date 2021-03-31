@@ -64,7 +64,11 @@ Build Example.
 make build-example
 ```
 
-[TODO] How to use published SDK instead of local one.
+### Tips
+
+#### Use published SDK in Example
+
+TODO
 
 ## SDK User Docs
 
