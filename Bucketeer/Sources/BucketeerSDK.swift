@@ -26,6 +26,7 @@ public final class BucketeerSDK {
     private let setUserQueue = DispatchQueue(label: QueueLabels.setUserQueueLabel, attributes: .concurrent)
     private let getVariationQueue = DispatchQueue(label: QueueLabels.getVariationQueueLabel, attributes: .concurrent)
     private let trackQueue = DispatchQueue(label: QueueLabels.trackQueueLabel, attributes: .concurrent)
+    private let registerEventsQueue = DispatchQueue(label: QueueLabels.registerEventsQueueLabel)
     
     private let reachability = Reachability()!
     
@@ -316,8 +317,16 @@ private extension BucketeerSDK {
         if let eventsCount = eventsCount, eventsCount < config.minEventsPerRequest {
             return
         }
-        eventStore.fetch(limit: config.maxEventsPerRequest) { [eventRegisterer] eventEntities in
-            eventRegisterer.registerEvents(eventEntities: eventEntities)
+        self._registerEvents()
+    }
+
+    func _registerEvents(completion: (() -> Void)? = nil) {
+        self.registerEventsQueue.sync {
+            eventStore.fetch(limit: config.maxEventsPerRequest) { eventEntities in
+                self.eventRegisterer.registerEvents(eventEntities: eventEntities) { _ in
+                    completion?()
+                }
+            }
         }
     }
     
@@ -371,10 +380,8 @@ private extension BucketeerSDK {
             return
         }
         registerEventsPoller.stop()
-        eventStore.fetch(limit: config.maxEventsPerRequest) { eventEntities in
-            self.eventRegisterer.registerEvents(eventEntities: eventEntities) { _ in
-                self.startRegisterEventsPolling()
-            }
+        self._registerEvents() {
+             self.startRegisterEventsPolling()
         }
     }
 }
