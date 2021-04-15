@@ -70,6 +70,10 @@ make build-example
 
 TODO
 
+## Contributing
+
+[CONTRIBUTING.md](./CONTRIBUTING.md)
+
 ## SDK User Docs
 
 - [Tutorial](https://bucketeer.io/docs/#/./client-side-sdk-tutorial-ios)
