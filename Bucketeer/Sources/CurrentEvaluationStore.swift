@@ -16,123 +16,99 @@ class CurrentEvaluationStore {
     }
 
     func fetchAll(userID: String, completion: @escaping ([EvaluationEntity]) -> Void) {
-        db.run { [weak self] in
-            guard let me = self else {
-                completion([])
-                return
-            }
-            do {
-                let stmt = try me.db.prepareStatement(sql: Query.fetchAll)
-                try me.db.bindText(stmt: stmt, name: ":userID", value: userID)
-                var items: [EvaluationEntity] = []
-                while (try me.db.query(stmt: stmt) == SQLITE_ROW) {
-                    let blob = sqlite3_column_blob(stmt, 0)
-                    let size = sqlite3_column_bytes(stmt, 0)
-                    let data = NSData(bytes: blob, length: Int(size)) as Data
-                    do {
-                        let evaluation = try Bucketeer_Feature_Evaluation(serializedData: data)
-                        if let entity = EvaluationEntity(evaluation: evaluation) {
-                            items.append(entity)
-                        }
-                    } catch {
-                        Logger.shared.errorLog(error.localizedDescription)
+        do {
+            let stmt = try db.prepareStatement(sql: Query.fetchAll)
+            try db.bindText(stmt: stmt, name: ":userID", value: userID)
+            var items: [EvaluationEntity] = []
+            while (try db.query(stmt: stmt) == SQLITE_ROW) {
+                let blob = sqlite3_column_blob(stmt, 0)
+                let size = sqlite3_column_bytes(stmt, 0)
+                let data = NSData(bytes: blob, length: Int(size)) as Data
+                do {
+                    let evaluation = try Bucketeer_Feature_Evaluation(serializedData: data)
+                    if let entity = EvaluationEntity(evaluation: evaluation) {
+                        items.append(entity)
                     }
+                } catch {
+                    Logger.shared.errorLog(error.localizedDescription)
                 }
-                try me.db.finalize(stmt: stmt)
-                completion(items)
-            } catch {
-                Logger.shared.errorLog("Failed to fetchAll CurrentEvaluations: \(error.localizedDescription)")
-                completion([])
             }
+            try db.finalize(stmt: stmt)
+            completion(items)
+        } catch {
+            Logger.shared.errorLog("Failed to fetchAll CurrentEvaluations: \(error.localizedDescription)")
+            completion([])
         }
     }
 
     func deleteUnused(userID: String, validIDs: [String], completion: (() -> Void)? = nil) {
-        db.run { [weak self] in
-            guard let me = self else {
-                completion?()
-                return
-            }
-            do {
-                // 1. fetch all
-                let stmt = try me.db.prepareStatement(sql: Query.fetchAll)
-                try me.db.bindText(stmt: stmt, name: ":userID", value: userID)
-                var ids: [String] = []
-                while (try me.db.query(stmt: stmt) == SQLITE_ROW) {
-                    guard let id = sqlite3_column_text(stmt, 1) else {
-                        continue
-                    }
-                    ids.append(String(cString: id))
+        do {
+            // 1. fetch all
+            let stmt = try db.prepareStatement(sql: Query.fetchAll)
+            try db.bindText(stmt: stmt, name: ":userID", value: userID)
+            var ids: [String] = []
+            while (try db.query(stmt: stmt) == SQLITE_ROW) {
+                guard let id = sqlite3_column_text(stmt, 1) else {
+                    continue
                 }
-                try me.db.finalize(stmt: stmt)
-
-                // 2. find delete target
-                let targetIDs = ids.filter { !validIDs.contains($0) }
-
-                // 3. execute deletion: execute 100 rows per query
-                let targetIDsList = targetIDs.chunked(by: 100)
-                for targetIDs in targetIDsList {
-                    let idListStr = targetIDs.map { "'\($0)'" }.joined(separator: ",")
-                    let sql = Query.delete.replacingOccurrences(of: ":idList", with: idListStr)
-                    do {
-                        let stmt = try me.db.prepareStatement(sql: sql)
-                        try me.db.execute(stmt: stmt)
-                        try me.db.finalize(stmt: stmt)
-                    } catch {
-                        Logger.shared.errorLog("Failed to delete CurrentEvaluations: \(error.localizedDescription)")
-                    }
-                }
-            } catch {
-                Logger.shared.errorLog("Failed to delete unused rows of CurrentEvaluations: \(error.localizedDescription)")
+                ids.append(String(cString: id))
             }
-            completion?()
+            try db.finalize(stmt: stmt)
+
+            // 2. find delete target
+            let targetIDs = ids.filter { !validIDs.contains($0) }
+
+            // 3. execute deletion: execute 100 rows per query
+            let targetIDsList = targetIDs.chunked(by: 100)
+            for targetIDs in targetIDsList {
+                let idListStr = targetIDs.map { "'\($0)'" }.joined(separator: ",")
+                let sql = Query.delete.replacingOccurrences(of: ":idList", with: idListStr)
+                do {
+                    let stmt = try db.prepareStatement(sql: sql)
+                    try db.execute(stmt: stmt)
+                    try db.finalize(stmt: stmt)
+                } catch {
+                    Logger.shared.errorLog("Failed to delete CurrentEvaluations: \(error.localizedDescription)")
+                }
+            }
+        } catch {
+            Logger.shared.errorLog("Failed to delete unused rows of CurrentEvaluations: \(error.localizedDescription)")
         }
+        completion?()
     }
 
     func save(_ entities: [EvaluationEntity], completion: (() -> Void)? = nil) {
-        db.run { [weak self] in
-            guard let me = self else {
-                completion?()
-                return
-            }
-            for entity in entities {
-                do {
-                    let stmt = try me.db.prepareStatement(sql: Query.save)
-                    try me.db.bindText(stmt: stmt, name: ":id", value: entity.id)
-                    try me.db.bindText(stmt: stmt, name: ":userID", value: entity.userID)
-                    let bytes = [UInt8](entity.data)
-                    if sqlite3_bind_blob(stmt, sqlite3_bind_parameter_index(stmt, ":data"), bytes, Int32(bytes.count), nil) != SQLITE_OK {
-                        continue
-                    }
-                    try me.db.execute(stmt: stmt)
-                    try me.db.finalize(stmt: stmt)
-                } catch {
-                    Logger.shared.errorLog("Failed to save CurrentEvaluations: \(error.localizedDescription)")
-                    break
+        for entity in entities {
+            do {
+                let stmt = try db.prepareStatement(sql: Query.save)
+                try db.bindText(stmt: stmt, name: ":id", value: entity.id)
+                try db.bindText(stmt: stmt, name: ":userID", value: entity.userID)
+                let bytes = [UInt8](entity.data)
+                if sqlite3_bind_blob(stmt, sqlite3_bind_parameter_index(stmt, ":data"), bytes, Int32(bytes.count), nil) != SQLITE_OK {
+                    continue
                 }
+                try db.execute(stmt: stmt)
+                try db.finalize(stmt: stmt)
+            } catch {
+                Logger.shared.errorLog("Failed to save CurrentEvaluations: \(error.localizedDescription)")
+                break
             }
-            completion?()
         }
+        completion?()
     }
 }
 
 extension CurrentEvaluationStore {
     // for test
     func deleteAll(completion: (() -> Void)? = nil) {
-        db.run { [weak self] in
-            guard let me = self else {
-                completion?()
-                return
-            }
-            do {
-                let stmt = try me.db.prepareStatement(sql: Query.deleteAll)
-                try me.db.execute(stmt: stmt)
-                try me.db.finalize(stmt: stmt)
-            } catch {
-                Logger.shared.errorLog("Failed to delete CurrentEvaluations: \(error.localizedDescription)")
-            }
-            completion?()
+        do {
+            let stmt = try db.prepareStatement(sql: Query.deleteAll)
+            try db.execute(stmt: stmt)
+            try db.finalize(stmt: stmt)
+        } catch {
+            Logger.shared.errorLog("Failed to delete CurrentEvaluations: \(error.localizedDescription)")
         }
+        completion?()
     }
 }
 
