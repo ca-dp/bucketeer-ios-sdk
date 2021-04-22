@@ -2,23 +2,21 @@ import Foundation
 
 class Poller {
     private var timer: DispatchSourceTimer?
-
     private let interval: TimeInterval
-    private let label: String
+    private let queue: DispatchQueue
     private let handler: (() -> Void)
 
-    init(interval: TimeInterval, label: String, handler: @escaping () -> Void) {
+    init(interval: TimeInterval, queue: DispatchQueue, handler: @escaping () -> Void) {
         self.interval = interval
-        self.label = label
         self.handler = handler
+        self.queue = queue
     }
 
     func start() {
         if timer != nil {
             return
         }
-        let queue = DispatchQueue(label: label)
-        timer = DispatchSource.makeTimerSource(queue: queue)
+        timer = DispatchSource.makeTimerSource(queue: self.queue)
         // memo: deadline is based on nanoseconds
         timer?.schedule(deadline: .now() + (interval / 1000), repeating: .milliseconds(Int(interval)))
         timer?.setEventHandler(handler: handler)
@@ -26,9 +24,6 @@ class Poller {
     }
 
     func stop() {
-        if timer == nil {
-            return
-        }
         timer?.cancel()
         timer = nil
     }
