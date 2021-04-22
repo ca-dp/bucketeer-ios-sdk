@@ -230,7 +230,7 @@ private extension BucketeerSDK {
             }
             return T.variationValue(evaluationEntity.evaluation.variation.value) ?? defaultValue
         }
-        // if there is no matched latestEvaluation in local store, add a default value event to event store
+        // if there is no evaluation for the target feature flag, report the evaluation event as default
         taskQueue.async { [eventSaver, registerEventsIfNeeded] in
             eventSaver.saveClientDefaultEvaluationEvent(userEntity: userEntity, featureID: featureID, completion: registerEventsIfNeeded)
         }
