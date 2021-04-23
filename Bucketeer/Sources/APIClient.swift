@@ -23,7 +23,7 @@ final class APIClient: APIClientProtocol {
         let callOpts = CallOptions(customMetadata: metadata, timeLimit: timeLimit)
         serviceClient = Bucketeer_Gateway_GatewayClient(channel: connection, defaultCallOptions: callOpts)
     }
-    
+
     func getEvaluations(userEntity: UserEntity, userEvaluationsId: String, completion: @escaping (Result<(Bucketeer_Gateway_GetEvaluationsResponse?, CallResult), BucketeerError>) -> Void) {
         var request = Bucketeer_Gateway_GetEvaluationsRequest()
         request.user = userEntity.user
@@ -32,21 +32,21 @@ final class APIClient: APIClientProtocol {
         let call = self.serviceClient.getEvaluations(request)
         let response: Bucketeer_Gateway_GetEvaluationsResponse
         let status: GRPCStatus
+        let errorHandler: (String) -> Void = { message in
+            Logger.shared.errorLog(message)
+            completion(.failure(.unknown(message)))
+        }
         do {
             let result = try call.response.and(call.status).wait()
             response = result.0
             status = result.1
         } catch {
-            let message = "(\(Version.number)) Failed to get evaluations: \(error.localizedDescription)"
-            Logger.shared.errorLog(message)
-            completion(.failure(.unknown(message)))
+            errorHandler("(\(Version.number)) Failed to get evaluations: \(error.localizedDescription)")
             return
         }
         let callResult = CallResult(success: status.isOk, code: status.code, message: status.message)
         if callResult.isFailed {
-            let message = "(\(Version.number)) Failed to get evaluations: \(callResult)"
-            Logger.shared.errorLog(message)
-            completion(.failure(.unknown(message)))
+            errorHandler("(\(Version.number)) Failed to get evaluations: \(callResult)")
             return
         }
         completion(.success((response, callResult)))
@@ -58,21 +58,21 @@ final class APIClient: APIClientProtocol {
         let call = self.serviceClient.registerEvents(request)
         let response: Bucketeer_Gateway_RegisterEventsResponse
         let status: GRPCStatus
+        let errorHandler: (String) -> Void = { message in
+            Logger.shared.errorLog(message)
+            completion(.failure(.unknown(message)))
+        }
         do {
             let result = try call.response.and(call.status).wait()
             response = result.0
             status = result.1
         } catch {
-            let message = "(\(Version.number)) Failed to register events: \(error.localizedDescription)"
-            Logger.shared.errorLog(message)
-            completion(.failure(.unknown(message)))
+            errorHandler("(\(Version.number)) Failed to register events: \(error.localizedDescription)")
             return
         }
         let callResult = CallResult(success: status.isOk, code: status.code, message: status.message)
         if callResult.isFailed {
-            let message = "(\(Version.number)) Failed to register events: \(callResult)"
-            Logger.shared.errorLog(message)
-            completion(.failure(.unknown(message)))
+            errorHandler("(\(Version.number)) Failed to get evaluations: \(callResult)")
             return
         }
         completion(.success((response, callResult)))
