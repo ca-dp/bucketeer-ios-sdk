@@ -8,9 +8,10 @@ class PollerTests: XCTestCase {
 
     func testStart() {
         let asyncExpectation = expectation(description: "")
+        let queue = DispatchQueue(label: "queue-test")
 
         var counter = 0
-        let poller = Poller(interval: 1000, label: "p001") {
+        let poller = Poller(interval: 1000, queue: queue) {
             print("pollingEvent called")
             counter += 1
         }
@@ -28,9 +29,10 @@ class PollerTests: XCTestCase {
 
     func testReset() {
         let asyncExpectation = expectation(description: "")
+        let queue = DispatchQueue(label: "queue-test")
 
         var counter = 0
-        let poller = Poller(interval: 1000, label: "p001") {
+        let poller = Poller(interval: 1000, queue: queue) {
             print("pollingEvent called")
             counter += 1
         }
@@ -55,9 +57,10 @@ class PollerTests: XCTestCase {
 
     func testStartRepeats() {
         let asyncExpectation = expectation(description: "")
+        let queue = DispatchQueue(label: "queue-test")
 
         var counter = 0
-        let poller = Poller(interval: 1000, label: "p001") {
+        let poller = Poller(interval: 1000, queue: queue) {
             print("pollingEvent called")
             counter += 1
         }
@@ -76,9 +79,10 @@ class PollerTests: XCTestCase {
 
     func testStopRepeats() {
         let asyncExpectation = expectation(description: "")
+        let queue = DispatchQueue(label: "queue-test")
 
         var counter = 0
-        let poller = Poller(interval: 1000, label: "p001") {
+        let poller = Poller(interval: 1000, queue: queue) {
             print("pollingEvent called")
             counter += 1
         }

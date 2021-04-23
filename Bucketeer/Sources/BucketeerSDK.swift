@@ -10,33 +10,22 @@ import SwiftProtobuf
 /// https://bucketeer.io/docs/#/sdk-reference-guides-ios
 ///
 public final class BucketeerSDK {
-    private enum QueueLabels {
-        static let setUserQueueLabel = "jp.co.cyberagent.bucketeer.setUserQueue"
-        static let getVariationQueueLabel = "jp.co.cyberagent.bucketeer.getVariationQueue"
-        static let trackQueueLabel = "jp.co.cyberagent.bucketeer.trackQueue"
-        static let getEvaluationsQueueLabel = "jp.co.cyberagent.bucketeer.getEvaluationsQueue"
-        static let registerEventsQueueLabel = "jp.co.cyberagent.bucketeer.registerEventsQueue"
-    }
-    
     private static var _shared: BucketeerSDK?
     public static var shared: BucketeerSDK {
         return _shared ?? { fatalError("Failed to access shared instance. Need to Bucketeer.setup()") }()
     }
-    
-    private let setUserQueue = DispatchQueue(label: QueueLabels.setUserQueueLabel, attributes: .concurrent)
-    private let getVariationQueue = DispatchQueue(label: QueueLabels.getVariationQueueLabel, attributes: .concurrent)
-    private let trackQueue = DispatchQueue(label: QueueLabels.trackQueueLabel, attributes: .concurrent)
-    
+
+    private let taskQueue = DispatchQueue(label: "jp.co.cyberagent.bucketeer.taskQueue")
     private let reachability = Reachability()!
     
     private lazy var getEvaluationsPoller: Poller = {
-        return Poller(interval: self.config.getEvaluationsPollingInterval, label: QueueLabels.getEvaluationsQueueLabel) {
+        return Poller(interval: self.config.getEvaluationsPollingInterval, queue: taskQueue) {
             self.getEvaluationsPollingEvent()
         }
     }()
     
     private lazy var registerEventsPoller: Poller = {
-        return Poller(interval: self.config.registerEventsPollingInterval, label: QueueLabels.registerEventsQueueLabel) {
+        return Poller(interval: self.config.registerEventsPollingInterval, queue: taskQueue) {
             self.registerEventsPollingEvent()
         }
     }()
@@ -152,7 +141,7 @@ public extension BucketeerSDK {
     }
     
     func syncEvaluations() {
-        return getEvaluationsPollingEvent()
+        return _syncEvaluations()
     }
     
     // MARK: Feature
@@ -194,55 +183,27 @@ public extension BucketeerSDK {
 
 private extension BucketeerSDK {
     // TODO: add cares about atomic data access: ex. call setUser while processing setUser could cause unintentional data state
-    func _setUser(userID: String, userAttributes: [String: String]? = nil, completion: ((Result<Void, BucketeerError>) -> Void)? = nil) {
-        guard let userEntity = UserEntity(id: userID, attributes: userAttributes) else {
-            let message = "(\(Version.number)) Failed to init userEntity instance"
-            Logger.shared.errorLog(message)
-            completion?(.failure(.unknown(message)))
-            return
-        }
-        self.userEntity = userEntity
-        setUserQueue.async {
-            self.latestEvaluationStore.fetchAll(userID: userID) { [weak self] result in
-                guard let me = self else {
-                    let message = "(\(Version.number)) Failed to refer self in setUserQueue"
-                    Logger.shared.errorLog(message)
-                    completion?(.failure(.unknown(message)))
-                    return
-                }
-                func startPolling() {
-                    me.startEvaluationsPolling()
-                    me.startRegisterEventsPolling()
-                }
-                switch result {
-                case .success:
-                    guard me.isOnline else {
-                        startPolling()
-                        let message = "Failed to setUser because the network connection was unavailable"
-                        completion?(.failure(.network(message)))
-                        return
-                    }
-                    let startTime = CFAbsoluteTimeGetCurrent()
-                    me.evaluationSynchronizer.syncEvaluations(userEntity: userEntity) { result in
-                        switch result {
-                        case .success(let response):
-                            let status = StatusKey(rawValue: response.state.rawValue)?.state ?? ""
-                            me._sendGetEvaluationLatencyMetricsEvent(duration: TimeInterval(CFAbsoluteTimeGetCurrent() - startTime), state: status)
-                            do {
-                                let size = try response.serializedData().count
-                                me._sendGetEvaluationSizeMetricsEvent(sizeByte: Int32(size), state: status)
-                            } catch {
-                                Logger.shared.errorLog("Unable to serialize evaluations: \(error.localizedDescription)")
-                            }
-                            completion?(.success(()))
-                        case .failure(let error):
-                            completion?(.failure(error))
-                        }
-                        startPolling()
-                    }
-                case .failure(let error):
-                    completion?(.failure(error))
-                }
+    func _setUser(
+        userID: String,
+        userAttributes: [String: String]? = nil,
+        completion: ((Result<Void, BucketeerError>) -> Void)? = nil)
+    {
+        taskQueue.async { [getEvaluationsPoller, registerEventsPoller, startEvaluationsPolling, startRegisterEventsPolling, _syncEvaluations] in
+            getEvaluationsPoller.stop()
+            registerEventsPoller.stop()
+            guard let userEntity = UserEntity(id: userID, attributes: userAttributes) else {
+                let message = "(\(Version.number)) Failed to init userEntity instance"
+                Logger.shared.errorLog(message)
+                startEvaluationsPolling()
+                startRegisterEventsPolling()
+                completion?(.failure(.unknown(message)))
+                return
+            }
+            self.userEntity = userEntity
+            _syncEvaluations() { result in
+                startEvaluationsPolling()
+                startRegisterEventsPolling()
+                completion?(result)
             }
         }
     }
@@ -263,21 +224,21 @@ private extension BucketeerSDK {
             return defaultValue
         }
         if let evaluationEntity = latestEvaluationStore.fetch(featureID: featureID) {
-            getVariationQueue.async { [currentEvaluationStore, eventSaver] in
+            taskQueue.async { [currentEvaluationStore, eventSaver, registerEventsIfNeeded] in
                 currentEvaluationStore.save([evaluationEntity])
-                eventSaver.saveEvaluationEvent(userEntity: userEntity, evaluationEntity: evaluationEntity, completion: self.registerEventsIfNeeded)
+                eventSaver.saveEvaluationEvent(userEntity: userEntity, evaluationEntity: evaluationEntity, completion: registerEventsIfNeeded)
             }
             return T.variationValue(evaluationEntity.evaluation.variation.value) ?? defaultValue
         }
-        // if there is no matched latestEvaluation in local store, add a default value event to event store
-        getVariationQueue.async { [eventSaver] in
-            eventSaver.saveClientDefaultEvaluationEvent(userEntity: userEntity, featureID: featureID, completion: self.registerEventsIfNeeded)
+        // if there is no evaluation for the target feature flag, report the evaluation event as default
+        taskQueue.async { [eventSaver, registerEventsIfNeeded] in
+            eventSaver.saveClientDefaultEvaluationEvent(userEntity: userEntity, featureID: featureID, completion: registerEventsIfNeeded)
         }
         return defaultValue
     }
     
     func _track(goalID: String, value: Double) {
-        trackQueue.async { [userEntity, currentEvaluationStore, eventSaver, registerEventsIfNeeded] in
+        taskQueue.async { [userEntity, currentEvaluationStore, eventSaver, registerEventsIfNeeded] in
             guard let userEntity = userEntity else {
                 return
             }
@@ -291,33 +252,24 @@ private extension BucketeerSDK {
         }
     }
     
-    func _sendGetEvaluationLatencyMetricsEvent(duration: TimeInterval, state: String) {
-        self.trackQueue.async { [duration] in
-            self.eventSaver.saveGetEvaluationLatencyMetricsEvent(
-                duration: duration,
-                labels: ["tag": self.config.tag, "state": state],
-                completion: self.registerEventsIfNeeded)
-        }
-    }
-    
-    func _sendGetEvaluationSizeMetricsEvent(sizeByte: Int32, state: String) {
-        self.trackQueue.async { [sizeByte] in
-            self.eventSaver.saveGetEvaluationSizeMetricsEvent(
-                sizeByte: sizeByte,
-                labels: ["tag": self.config.tag, "state": state],
-                completion: self.registerEventsIfNeeded)
-        }
-    }
-    
     func registerEventsIfNeeded(eventsCount: Int?) -> () {
-        guard isOnline else {
-            return
-        }
         if let eventsCount = eventsCount, eventsCount < config.minEventsPerRequest {
             return
         }
-        eventStore.fetch(limit: config.maxEventsPerRequest) { [eventRegisterer] eventEntities in
-            eventRegisterer.registerEvents(eventEntities: eventEntities)
+        self._registerEvents()
+    }
+
+    func _registerEvents(completion: (() -> Void)? = nil) {
+        taskQueue.async { [isOnline, config, eventStore, eventRegisterer] in
+            guard isOnline else {
+                completion?()
+                return
+            }
+            eventStore.fetch(limit: config.maxEventsPerRequest) { eventEntities in
+                eventRegisterer.registerEvents(eventEntities: eventEntities) { _ in
+                    completion?()
+                }
+            }
         }
     }
     
@@ -334,6 +286,52 @@ private extension BucketeerSDK {
         }
         return nil
     }
+
+    func _syncEvaluations(completion: ((Result<Void, BucketeerError>) -> Void)? = nil) {
+        taskQueue.async { [isOnline, userEntity, evaluationSynchronizer, _sendGetEvaluationLatencyMetricsEvent, _sendGetEvaluationSizeMetricsEvent] in
+            guard isOnline, let userEntity = userEntity else {
+                completion?(.success(()))
+                return
+            }
+            let startTime = CFAbsoluteTimeGetCurrent()
+            evaluationSynchronizer.syncEvaluations(userEntity: userEntity) { result in
+                switch result {
+                case .success(let response):
+                    let status = StatusKey(rawValue: response.state.rawValue)?.state ?? ""
+                    _sendGetEvaluationLatencyMetricsEvent(TimeInterval(CFAbsoluteTimeGetCurrent() - startTime), status)
+                    do {
+                        let size = try response.serializedData().count
+                        _sendGetEvaluationSizeMetricsEvent(Int32(size), status)
+                    } catch {
+                        Logger.shared.errorLog("Unable to serialize evaluations: \(error.localizedDescription)")
+                    }
+                    Logger.shared.debugLog("Succeeded to sync evaluations")
+                    completion?(.success(()))
+                case .failure(let error):
+                    Logger.shared.errorLog("Failed to sync evaluations: \(error.localizedDescription)")
+                    completion?(.failure(error))
+                }
+            }
+        }
+    }
+
+    func _sendGetEvaluationLatencyMetricsEvent(duration: TimeInterval, state: String) {
+        taskQueue.async { [eventSaver, config, registerEventsIfNeeded] in
+            eventSaver.saveGetEvaluationLatencyMetricsEvent(
+                duration: duration,
+                labels: ["tag": config.tag, "state": state],
+                completion: registerEventsIfNeeded)
+        }
+    }
+
+    func _sendGetEvaluationSizeMetricsEvent(sizeByte: Int32, state: String) {
+        taskQueue.async { [eventSaver, config, registerEventsIfNeeded] in
+            eventSaver.saveGetEvaluationSizeMetricsEvent(
+                sizeByte: sizeByte,
+                labels: ["tag": config.tag, "state": state],
+                completion: registerEventsIfNeeded)
+        }
+    }
 }
 
 // MARK: - Polling
@@ -341,40 +339,17 @@ private extension BucketeerSDK {
 private extension BucketeerSDK {
     func getEvaluationsPollingEvent() {
         Logger.shared.debugLog("getEvaluationsPollingEvent fired")
-        guard isOnline, let userEntity = userEntity else {
-            return
-        }
         getEvaluationsPoller.stop()
-        let startTime = CFAbsoluteTimeGetCurrent()
-        evaluationSynchronizer.syncEvaluations(userEntity: userEntity) { result in
-            switch result {
-            case .success(let response):
-                let status = StatusKey(rawValue: response.state.rawValue)?.state ?? ""
-                self._sendGetEvaluationLatencyMetricsEvent(duration: TimeInterval(CFAbsoluteTimeGetCurrent() - startTime), state: status)
-                do {
-                    let size = try response.serializedData().count
-                    self._sendGetEvaluationSizeMetricsEvent(sizeByte: Int32(size), state: status)
-                } catch {
-                    Logger.shared.errorLog("Unable to serialize evaluations: \(error.localizedDescription)")
-                }
-                Logger.shared.debugLog("Succeeded to sync evaluations")
-            case .failure(let error):
-                Logger.shared.errorLog("Failed to sync evaluations: \(error.localizedDescription)")
-            }
-            self.startEvaluationsPolling()
+        _syncEvaluations() { [startEvaluationsPolling] _ in
+            startEvaluationsPolling()
         }
     }
     
     func registerEventsPollingEvent() {
         Logger.shared.debugLog("registerEventsPollingEvent fired")
-        guard isOnline else {
-            return
-        }
         registerEventsPoller.stop()
-        eventStore.fetch(limit: config.maxEventsPerRequest) { eventEntities in
-            self.eventRegisterer.registerEvents(eventEntities: eventEntities) { _ in
-                self.startRegisterEventsPolling()
-            }
+        _registerEvents() { [startRegisterEventsPolling] in
+            startRegisterEventsPolling()
         }
     }
 }

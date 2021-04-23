@@ -11,7 +11,6 @@ enum SQLiteError: Error {
 
 class SQLiteDatabase {
     private let dbPointer: OpaquePointer?
-    private let queue = DispatchQueue(label: "jp.co.cyberagent.Bucketeer.SQLite") // Serial
 
     private init(dbPointer: OpaquePointer) {
         self.dbPointer = dbPointer
@@ -19,7 +18,8 @@ class SQLiteDatabase {
 
     static func open(path: String) throws -> SQLiteDatabase {
         var _db: OpaquePointer? = nil
-        if sqlite3_open(path, &_db) != SQLITE_OK {
+        let flags = SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX
+        if sqlite3_open_v2(path, &_db, flags, nil) != SQLITE_OK {
             throw SQLiteError.failedToOpenDatabase(message: String(cString: sqlite3_errmsg(_db)))
         }
         guard let db = _db else {
@@ -40,10 +40,6 @@ class SQLiteDatabase {
 
 // TODO: Make execute/query func with sql and parameters to do prepare, bind, executre, and finalize.
 extension SQLiteDatabase {
-    func run(_ block: @escaping () -> Void) {
-        queue.async(execute: block)
-    }
-
     func prepareStatement(sql: String) throws -> OpaquePointer {
         var _stmt: OpaquePointer? = nil
         guard sqlite3_prepare_v2(dbPointer, sql, -1, &_stmt, nil) == SQLITE_OK,
