@@ -118,43 +118,6 @@ struct Bucketeer_Event_Client_GoalEvent {
   fileprivate var _user: Bucketeer_User_User? = nil
 }
 
-struct Bucketeer_Event_Client_ExperimentEvent {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  var timestamp: Int64 = 0
-
-  var experimentID: String = String()
-
-  var featureID: String = String()
-
-  var featureVersion: Int32 = 0
-
-  var goalID: String = String()
-
-  var userID: String = String()
-
-  var variationID: String = String()
-
-  var value: Double = 0
-
-  var user: Bucketeer_User_User {
-    get {return _user ?? Bucketeer_User_User()}
-    set {_user = newValue}
-  }
-  /// Returns true if `user` has been explicitly set.
-  var hasUser: Bool {return self._user != nil}
-  /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  mutating func clearUser() {self._user = nil}
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  fileprivate var _user: Bucketeer_User_User? = nil
-}
-
 struct Bucketeer_Event_Client_MetricsEvent {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -469,83 +432,6 @@ extension Bucketeer_Event_Client_GoalEvent: SwiftProtobuf.Message, SwiftProtobuf
     if lhs.value != rhs.value {return false}
     if lhs._user != rhs._user {return false}
     if lhs.evaluations != rhs.evaluations {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bucketeer_Event_Client_ExperimentEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".ExperimentEvent"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "timestamp"),
-    2: .standard(proto: "experiment_id"),
-    3: .standard(proto: "feature_id"),
-    4: .standard(proto: "feature_version"),
-    5: .standard(proto: "goal_id"),
-    6: .standard(proto: "user_id"),
-    7: .standard(proto: "variation_id"),
-    8: .same(proto: "value"),
-    9: .same(proto: "user"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.timestamp)
-      case 2: try decoder.decodeSingularStringField(value: &self.experimentID)
-      case 3: try decoder.decodeSingularStringField(value: &self.featureID)
-      case 4: try decoder.decodeSingularInt32Field(value: &self.featureVersion)
-      case 5: try decoder.decodeSingularStringField(value: &self.goalID)
-      case 6: try decoder.decodeSingularStringField(value: &self.userID)
-      case 7: try decoder.decodeSingularStringField(value: &self.variationID)
-      case 8: try decoder.decodeSingularDoubleField(value: &self.value)
-      case 9: try decoder.decodeSingularMessageField(value: &self._user)
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.timestamp != 0 {
-      try visitor.visitSingularInt64Field(value: self.timestamp, fieldNumber: 1)
-    }
-    if !self.experimentID.isEmpty {
-      try visitor.visitSingularStringField(value: self.experimentID, fieldNumber: 2)
-    }
-    if !self.featureID.isEmpty {
-      try visitor.visitSingularStringField(value: self.featureID, fieldNumber: 3)
-    }
-    if self.featureVersion != 0 {
-      try visitor.visitSingularInt32Field(value: self.featureVersion, fieldNumber: 4)
-    }
-    if !self.goalID.isEmpty {
-      try visitor.visitSingularStringField(value: self.goalID, fieldNumber: 5)
-    }
-    if !self.userID.isEmpty {
-      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 6)
-    }
-    if !self.variationID.isEmpty {
-      try visitor.visitSingularStringField(value: self.variationID, fieldNumber: 7)
-    }
-    if self.value != 0 {
-      try visitor.visitSingularDoubleField(value: self.value, fieldNumber: 8)
-    }
-    if let v = self._user {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: Bucketeer_Event_Client_ExperimentEvent, rhs: Bucketeer_Event_Client_ExperimentEvent) -> Bool {
-    if lhs.timestamp != rhs.timestamp {return false}
-    if lhs.experimentID != rhs.experimentID {return false}
-    if lhs.featureID != rhs.featureID {return false}
-    if lhs.featureVersion != rhs.featureVersion {return false}
-    if lhs.goalID != rhs.goalID {return false}
-    if lhs.userID != rhs.userID {return false}
-    if lhs.variationID != rhs.variationID {return false}
-    if lhs.value != rhs.value {return false}
-    if lhs._user != rhs._user {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
