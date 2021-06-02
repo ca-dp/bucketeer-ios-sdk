@@ -12,7 +12,7 @@ Install prerequisite tools.
 Then, you need to create `fastlane/.env`.
 
 ```
-apiURL=<API_URL> # e.g. api-uat.bucketeer.jp
+apiURL=<API_URL> # e.g. api-media.bucketeer.jp
 sdkKey=<SDK_KEY>
 ```
 
