@@ -20,6 +20,66 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+enum Bucketeer_Event_Client_SourceId: SwiftProtobuf.Enum {
+  typealias RawValue = Int
+  case unknown // = 0
+  case android // = 1
+  case ios // = 2
+  case web // = 3
+  case flutter // = 4
+  case goServer // = 5
+  case goalBatch // = 6
+  case UNRECOGNIZED(Int)
+
+  init() {
+    self = .unknown
+  }
+
+  init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .unknown
+    case 1: self = .android
+    case 2: self = .ios
+    case 3: self = .web
+    case 4: self = .flutter
+    case 5: self = .goServer
+    case 6: self = .goalBatch
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  var rawValue: Int {
+    switch self {
+    case .unknown: return 0
+    case .android: return 1
+    case .ios: return 2
+    case .web: return 3
+    case .flutter: return 4
+    case .goServer: return 5
+    case .goalBatch: return 6
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Bucketeer_Event_Client_SourceId: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Bucketeer_Event_Client_SourceId] = [
+    .unknown,
+    .android,
+    .ios,
+    .web,
+    .flutter,
+    .goServer,
+    .goalBatch,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 struct Bucketeer_Event_Client_Event {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -79,6 +139,10 @@ struct Bucketeer_Event_Client_EvaluationEvent {
   /// Clears the value of `reason`. Subsequent reads from it will return its default value.
   mutating func clearReason() {self._reason = nil}
 
+  var tag: String = String()
+
+  var sourceID: Bucketeer_Event_Client_SourceId = .unknown
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -110,6 +174,10 @@ struct Bucketeer_Event_Client_GoalEvent {
   mutating func clearUser() {self._user = nil}
 
   var evaluations: [Bucketeer_Feature_Evaluation] = []
+
+  var tag: String = String()
+
+  var sourceID: Bucketeer_Event_Client_SourceId = .unknown
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -272,6 +340,18 @@ struct Bucketeer_Event_Client_UserGoalEvent {
 
 fileprivate let _protobuf_package = "bucketeer.event.client"
 
+extension Bucketeer_Event_Client_SourceId: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNKNOWN"),
+    1: .same(proto: "ANDROID"),
+    2: .same(proto: "IOS"),
+    3: .same(proto: "WEB"),
+    4: .same(proto: "FLUTTER"),
+    5: .same(proto: "GO_SERVER"),
+    6: .same(proto: "GOAL_BATCH"),
+  ]
+}
+
 extension Bucketeer_Event_Client_Event: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Event"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -323,6 +403,8 @@ extension Bucketeer_Event_Client_EvaluationEvent: SwiftProtobuf.Message, SwiftPr
     5: .standard(proto: "variation_id"),
     6: .same(proto: "user"),
     7: .same(proto: "reason"),
+    8: .same(proto: "tag"),
+    9: .standard(proto: "source_id"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -335,6 +417,8 @@ extension Bucketeer_Event_Client_EvaluationEvent: SwiftProtobuf.Message, SwiftPr
       case 5: try decoder.decodeSingularStringField(value: &self.variationID)
       case 6: try decoder.decodeSingularMessageField(value: &self._user)
       case 7: try decoder.decodeSingularMessageField(value: &self._reason)
+      case 8: try decoder.decodeSingularStringField(value: &self.tag)
+      case 9: try decoder.decodeSingularEnumField(value: &self.sourceID)
       default: break
       }
     }
@@ -362,6 +446,12 @@ extension Bucketeer_Event_Client_EvaluationEvent: SwiftProtobuf.Message, SwiftPr
     if let v = self._reason {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
     }
+    if !self.tag.isEmpty {
+      try visitor.visitSingularStringField(value: self.tag, fieldNumber: 8)
+    }
+    if self.sourceID != .unknown {
+      try visitor.visitSingularEnumField(value: self.sourceID, fieldNumber: 9)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -373,6 +463,8 @@ extension Bucketeer_Event_Client_EvaluationEvent: SwiftProtobuf.Message, SwiftPr
     if lhs.variationID != rhs.variationID {return false}
     if lhs._user != rhs._user {return false}
     if lhs._reason != rhs._reason {return false}
+    if lhs.tag != rhs.tag {return false}
+    if lhs.sourceID != rhs.sourceID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -387,6 +479,8 @@ extension Bucketeer_Event_Client_GoalEvent: SwiftProtobuf.Message, SwiftProtobuf
     4: .same(proto: "value"),
     5: .same(proto: "user"),
     6: .same(proto: "evaluations"),
+    7: .same(proto: "tag"),
+    8: .standard(proto: "source_id"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -398,6 +492,8 @@ extension Bucketeer_Event_Client_GoalEvent: SwiftProtobuf.Message, SwiftProtobuf
       case 4: try decoder.decodeSingularDoubleField(value: &self.value)
       case 5: try decoder.decodeSingularMessageField(value: &self._user)
       case 6: try decoder.decodeRepeatedMessageField(value: &self.evaluations)
+      case 7: try decoder.decodeSingularStringField(value: &self.tag)
+      case 8: try decoder.decodeSingularEnumField(value: &self.sourceID)
       default: break
       }
     }
@@ -422,6 +518,12 @@ extension Bucketeer_Event_Client_GoalEvent: SwiftProtobuf.Message, SwiftProtobuf
     if !self.evaluations.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.evaluations, fieldNumber: 6)
     }
+    if !self.tag.isEmpty {
+      try visitor.visitSingularStringField(value: self.tag, fieldNumber: 7)
+    }
+    if self.sourceID != .unknown {
+      try visitor.visitSingularEnumField(value: self.sourceID, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -432,6 +534,8 @@ extension Bucketeer_Event_Client_GoalEvent: SwiftProtobuf.Message, SwiftProtobuf
     if lhs.value != rhs.value {return false}
     if lhs._user != rhs._user {return false}
     if lhs.evaluations != rhs.evaluations {return false}
+    if lhs.tag != rhs.tag {return false}
+    if lhs.sourceID != rhs.sourceID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
