@@ -53,6 +53,8 @@ struct Bucketeer_Feature_Evaluation {
   /// Clears the value of `reason`. Subsequent reads from it will return its default value.
   mutating func clearReason() {self._reason = nil}
 
+  var variationValue: String = String()
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -135,6 +137,7 @@ extension Bucketeer_Feature_Evaluation: SwiftProtobuf.Message, SwiftProtobuf._Me
     5: .standard(proto: "variation_id"),
     6: .same(proto: "variation"),
     7: .same(proto: "reason"),
+    8: .standard(proto: "variation_value"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -147,6 +150,7 @@ extension Bucketeer_Feature_Evaluation: SwiftProtobuf.Message, SwiftProtobuf._Me
       case 5: try decoder.decodeSingularStringField(value: &self.variationID)
       case 6: try decoder.decodeSingularMessageField(value: &self._variation)
       case 7: try decoder.decodeSingularMessageField(value: &self._reason)
+      case 8: try decoder.decodeSingularStringField(value: &self.variationValue)
       default: break
       }
     }
@@ -174,6 +178,9 @@ extension Bucketeer_Feature_Evaluation: SwiftProtobuf.Message, SwiftProtobuf._Me
     if let v = self._reason {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
     }
+    if !self.variationValue.isEmpty {
+      try visitor.visitSingularStringField(value: self.variationValue, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -185,6 +192,7 @@ extension Bucketeer_Feature_Evaluation: SwiftProtobuf.Message, SwiftProtobuf._Me
     if lhs.variationID != rhs.variationID {return false}
     if lhs._variation != rhs._variation {return false}
     if lhs._reason != rhs._reason {return false}
+    if lhs.variationValue != rhs.variationValue {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
