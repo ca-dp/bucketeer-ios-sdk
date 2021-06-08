@@ -26,9 +26,8 @@ enum Bucketeer_Event_Client_SourceId: SwiftProtobuf.Enum {
   case android // = 1
   case ios // = 2
   case web // = 3
-  case flutter // = 4
+  case goalBatch // = 4
   case goServer // = 5
-  case goalBatch // = 6
   case UNRECOGNIZED(Int)
 
   init() {
@@ -41,9 +40,8 @@ enum Bucketeer_Event_Client_SourceId: SwiftProtobuf.Enum {
     case 1: self = .android
     case 2: self = .ios
     case 3: self = .web
-    case 4: self = .flutter
+    case 4: self = .goalBatch
     case 5: self = .goServer
-    case 6: self = .goalBatch
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -54,9 +52,8 @@ enum Bucketeer_Event_Client_SourceId: SwiftProtobuf.Enum {
     case .android: return 1
     case .ios: return 2
     case .web: return 3
-    case .flutter: return 4
+    case .goalBatch: return 4
     case .goServer: return 5
-    case .goalBatch: return 6
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -72,9 +69,8 @@ extension Bucketeer_Event_Client_SourceId: CaseIterable {
     .android,
     .ios,
     .web,
-    .flutter,
-    .goServer,
     .goalBatch,
+    .goServer,
   ]
 }
 
@@ -346,9 +342,8 @@ extension Bucketeer_Event_Client_SourceId: SwiftProtobuf._ProtoNameProviding {
     1: .same(proto: "ANDROID"),
     2: .same(proto: "IOS"),
     3: .same(proto: "WEB"),
-    4: .same(proto: "FLUTTER"),
+    4: .same(proto: "GOAL_BATCH"),
     5: .same(proto: "GO_SERVER"),
-    6: .same(proto: "GOAL_BATCH"),
   ]
 }
 
