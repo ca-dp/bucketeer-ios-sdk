@@ -228,7 +228,7 @@ private extension BucketeerSDK {
                 currentEvaluationStore.save([evaluationEntity])
                 eventSaver.saveEvaluationEvent(userEntity: userEntity, evaluationEntity: evaluationEntity, completion: registerEventsIfNeeded)
             }
-            return T.variationValue(evaluationEntity.evaluation.variation.value) ?? defaultValue
+            return T.variationValue(evaluationEntity.evaluation.variationValue) ?? defaultValue
         }
         // if there is no evaluation for the target feature flag, report the evaluation event as default
         taskQueue.async { [eventSaver, registerEventsIfNeeded] in
@@ -281,7 +281,7 @@ private extension BucketeerSDK {
                 featureVersion: Int(evaluationEntity.evaluation.featureVersion),
                 userID: evaluationEntity.evaluation.userID,
                 variationID: evaluationEntity.evaluation.variationID,
-                variationValue: evaluationEntity.evaluation.variation.value,
+                variationValue: evaluationEntity.evaluation.variationValue,
                 reason: evaluationEntity.evaluation.reason.type.rawValue)
         }
         return nil
