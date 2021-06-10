@@ -4,11 +4,19 @@ import SwiftProtobuf
 
 struct EventSaver {
     let eventStore: EventStore
+    let tag: String
     
-    func saveEvaluationEvent(userEntity: UserEntity, evaluationEntity: EvaluationEntity, completion: ((Int?) -> Void)? = nil) {
-        let evaluationEvent = Bucketeer_Event_Client_EvaluationEvent(user: userEntity.user,
-                                                                     timestamp: Date().timestamp,
-                                                                     evaluation: evaluationEntity.evaluation)
+    func saveEvaluationEvent(
+        userEntity: UserEntity,
+        evaluationEntity: EvaluationEntity,
+        completion: ((Int?) -> Void)? = nil
+    ) {
+        let evaluationEvent = Bucketeer_Event_Client_EvaluationEvent(
+            tag: tag,
+            user: userEntity.user,
+            timestamp: Date().timestamp,
+            evaluation: evaluationEntity.evaluation
+        )
         guard let eventEntity = EventEntity(eventType: .evaluation, event: evaluationEvent) else {
             completion?(nil)
             return
@@ -16,10 +24,17 @@ struct EventSaver {
         eventStore.save([eventEntity], completion: completion)
     }
     
-    func saveClientDefaultEvaluationEvent(userEntity: UserEntity, featureID: String, completion: ((Int?) -> Void)? = nil) {
-        let evaluationEvent = Bucketeer_Event_Client_EvaluationEvent(user: userEntity.user,
-                                                                     timestamp: Date().timestamp,
-                                                                     featureID: featureID)
+    func saveClientDefaultEvaluationEvent(
+        userEntity: UserEntity,
+        featureID: String,
+        completion: ((Int?) -> Void)? = nil
+    ) {
+        let evaluationEvent = Bucketeer_Event_Client_EvaluationEvent(
+            tag: tag,
+            user: userEntity.user,
+            timestamp: Date().timestamp,
+            featureID: featureID
+        )
         guard let eventEntity = EventEntity(eventType: .evaluation, event: evaluationEvent) else {
             completion?(nil)
             return
@@ -27,12 +42,21 @@ struct EventSaver {
         eventStore.save([eventEntity], completion: completion)
     }
     
-    func saveGoalEvent(userEntity: UserEntity, goalID: String, value: Double, evaluationEntities: Set<EvaluationEntity>, completion: ((Int?) -> Void)? = nil) {
-        let goalEvent = Bucketeer_Event_Client_GoalEvent(user: userEntity.user,
-                                                         timestamp: Date().timestamp,
-                                                         goalID: goalID,
-                                                         value: value,
-                                                         evaluationEntities: evaluationEntities)
+    func saveGoalEvent(
+        userEntity: UserEntity,
+        goalID: String,
+        value: Double,
+        evaluationEntities: Set<EvaluationEntity>,
+        completion: ((Int?) -> Void)? = nil
+    ) {
+        let goalEvent = Bucketeer_Event_Client_GoalEvent(
+            tag: tag,
+            user: userEntity.user,
+            timestamp: Date().timestamp,
+            goalID: goalID,
+            value: value,
+            evaluationEntities: evaluationEntities
+        )
         guard let eventEntity = EventEntity(eventType: .goal, event: goalEvent) else {
             completion?(nil)
             return
@@ -40,7 +64,11 @@ struct EventSaver {
         eventStore.save([eventEntity], completion: completion)
     }
     
-    func saveGetEvaluationLatencyMetricsEvent(duration: TimeInterval, labels: Dictionary<String, String>, completion: ((Int?) -> Void)? = nil) {
+    func saveGetEvaluationLatencyMetricsEvent(
+        duration: TimeInterval,
+        labels: Dictionary<String, String>,
+        completion: ((Int?) -> Void)? = nil
+    ) {
         let getEvaluationLatencyMetricsEvent = Bucketeer_Event_Client_GetEvaluationLatencyMetricsEvent(labels: labels,
                                                                                                        duration: duration)
         let metricsEvent = Bucketeer_Event_Client_MetricsEvent(timestamp: Date().timestamp,
@@ -52,7 +80,11 @@ struct EventSaver {
         eventStore.save([eventEntity], completion: completion)
     }
     
-    func saveGetEvaluationSizeMetricsEvent(sizeByte: Int32, labels: Dictionary<String, String>, completion: ((Int?) -> Void)? = nil) {
+    func saveGetEvaluationSizeMetricsEvent(
+        sizeByte: Int32,
+        labels: Dictionary<String, String>,
+        completion: ((Int?) -> Void)? = nil
+    ) {
         let getEvaluationSizeMetricsEvent = Bucketeer_Event_Client_GetEvaluationSizeMetricsEvent(labels: labels,
                                                                                                  sizeByte: sizeByte)
         let metricsEvent = Bucketeer_Event_Client_MetricsEvent(timestamp: Date().timestamp,
@@ -66,7 +98,12 @@ struct EventSaver {
 }
 
 private extension Bucketeer_Event_Client_EvaluationEvent {
-    init(user: Bucketeer_User_User, timestamp: Int64, evaluation: Bucketeer_Feature_Evaluation) {
+    init(
+        tag: String,
+        user: Bucketeer_User_User,
+        timestamp: Int64,
+        evaluation: Bucketeer_Feature_Evaluation
+    ) {
         self.timestamp = timestamp
         self.featureID = evaluation.featureID
         self.featureVersion = evaluation.featureVersion
@@ -74,10 +111,12 @@ private extension Bucketeer_Event_Client_EvaluationEvent {
         self.variationID = evaluation.variationID
         self.user = user
         self.reason = evaluation.reason
+        self.tag = tag
+        self.sourceID = Bucketeer_Event_Client_SourceId.ios
     }
     
     /// init for client event defalut value
-    init(user: Bucketeer_User_User, timestamp: Int64, featureID: String) {
+    init(tag: String, user: Bucketeer_User_User, timestamp: Int64, featureID: String) {
         var reason = Bucketeer_Feature_Reason()
         reason.type = .client
         self.timestamp = timestamp
@@ -87,17 +126,28 @@ private extension Bucketeer_Event_Client_EvaluationEvent {
         self.variationID = ""
         self.user = user
         self.reason = reason
+        self.tag = tag
+        self.sourceID = Bucketeer_Event_Client_SourceId.ios
     }
 }
 
 private extension Bucketeer_Event_Client_GoalEvent {
-    init(user: Bucketeer_User_User, timestamp: Int64, goalID: String, value: Double, evaluationEntities: Set<EvaluationEntity>) {
+    init(
+        tag: String,
+        user: Bucketeer_User_User,
+        timestamp: Int64,
+        goalID: String,
+        value: Double,
+        evaluationEntities: Set<EvaluationEntity>
+    ) {
         self.timestamp = timestamp
         self.goalID = goalID
         self.userID = user.id
         self.value = value
         self.user = user
         self.evaluations = evaluationEntities.compactMap { $0.evaluation }
+        self.tag = tag
+        self.sourceID = Bucketeer_Event_Client_SourceId.ios
     }
 }
 

@@ -50,7 +50,7 @@ class EventSaverTest: XCTestCase {
         evaluation.featureID = "f001"
         let entity = EvaluationEntity(evaluation: evaluation)!
 
-        let eventSaver = EventSaver(eventStore: eventStore)
+        let eventSaver = EventSaver(eventStore: eventStore, tag: config.tag)
 
         let asyncExpectation = expectation(description: "")
 
@@ -75,7 +75,7 @@ class EventSaverTest: XCTestCase {
 
         let entities: Set = [entity1, entity2]
 
-        let eventSaver = EventSaver(eventStore: eventStore)
+        let eventSaver = EventSaver(eventStore: eventStore, tag: config.tag)
 
         let asyncExpectation = expectation(description: "")
 
@@ -90,9 +90,9 @@ class EventSaverTest: XCTestCase {
     }
 
     func testPushGetEvaluationLatencyMetricsEvent() {
-        let eventSaver = EventSaver(eventStore: eventStore)
+        let eventSaver = EventSaver(eventStore: eventStore, tag: config.tag)
         let asyncExpectation = expectation(description: "")
-        eventSaver.saveGetEvaluationLatencyMetricsEvent(duration: TimeInterval(0.123), labels: ["tag": "ios", "state": "FULL"]){ _ in
+        eventSaver.saveGetEvaluationLatencyMetricsEvent(duration: TimeInterval(0.123), labels: ["tag": config.tag, "state": "FULL"]){ _ in
             self.eventStore.fetch { items in
                 XCTAssertEqual(items.count, 1)
                 asyncExpectation.fulfill()
@@ -102,9 +102,9 @@ class EventSaverTest: XCTestCase {
     }
 
     func testPushGetEvaluationSizeMetricsEvent() {
-        let eventSaver = EventSaver(eventStore: eventStore)
+        let eventSaver = EventSaver(eventStore: eventStore, tag: config.tag)
         let asyncExpectation = expectation(description: "")
-        eventSaver.saveGetEvaluationSizeMetricsEvent(sizeByte: 1234, labels: ["tag": "ios", "state": "FULL"]){ _ in
+        eventSaver.saveGetEvaluationSizeMetricsEvent(sizeByte: 1234, labels: ["tag": config.tag, "state": "FULL"]){ _ in
             self.eventStore.fetch { items in
                 XCTAssertEqual(items.count, 1)
                 asyncExpectation.fulfill()
@@ -114,7 +114,7 @@ class EventSaverTest: XCTestCase {
     }
 
     func testPushBothEvent() {
-        let eventSaver = EventSaver(eventStore: eventStore)
+        let eventSaver = EventSaver(eventStore: eventStore, tag: config.tag)
 
         var evaluation = Bucketeer_Feature_Evaluation()
         evaluation.featureID = "f001"

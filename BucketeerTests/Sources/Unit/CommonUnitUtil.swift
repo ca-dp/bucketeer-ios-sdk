@@ -13,7 +13,7 @@ class CommonUnitUtil {
     var evaluation: Bucketeer_Feature_Evaluation
 
     private init() {
-        let config = Config(sdkKey: "", apiURL: "")
+        let config = Config(sdkKey: "", apiURL: "", tag: "ios")
         self.config = config
 
         let userID = "u001"
