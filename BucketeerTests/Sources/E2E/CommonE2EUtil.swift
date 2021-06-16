@@ -35,6 +35,8 @@ class CommonE2EUtil {
         evaluationEvent1.featureID = featureFlagID1
         evaluationEvent1.userID = userID1
         evaluationEvent1.user = userEntity1.user
+        evaluationEvent1.tag = tag
+        evaluationEvent1.sourceID = Bucketeer_Event_Client_SourceId.ios
         self.evaluationEvent1 = evaluationEvent1
         
         var goalEvent1 = Bucketeer_Event_Client_GoalEvent()
@@ -42,6 +44,8 @@ class CommonE2EUtil {
         goalEvent1.goalID = goalID1
         goalEvent1.userID = userID1
         goalEvent1.user = userEntity1.user
+        evaluationEvent1.tag = tag
+        evaluationEvent1.sourceID = Bucketeer_Event_Client_SourceId.ios
         self.goalEvent1 = goalEvent1
     }
 }

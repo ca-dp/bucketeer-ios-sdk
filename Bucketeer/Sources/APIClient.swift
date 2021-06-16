@@ -27,6 +27,7 @@ final class APIClient: APIClientProtocol {
     func getEvaluations(userEntity: UserEntity, userEvaluationsId: String, completion: @escaping (Result<(Bucketeer_Gateway_GetEvaluationsResponse?, CallResult), BucketeerError>) -> Void) {
         var request = Bucketeer_Gateway_GetEvaluationsRequest()
         request.user = userEntity.user
+        request.sourceID = Bucketeer_Event_Client_SourceId.ios
         request.tag = self.config.tag
         request.userEvaluationsID = userEvaluationsId
         let call = self.serviceClient.getEvaluations(request)

@@ -90,7 +90,7 @@ public final class BucketeerSDK {
         evaluationSynchronizer = EvaluationSynchronizer(apiClient: apiClient,
                                                         latestEvaluationStore: latestEvaluationStore,
                                                         currentEvaluationStore: currentEvaluationStore)
-        eventSaver = EventSaver(eventStore: eventStore)
+        eventSaver = EventSaver(eventStore: eventStore, tag: config.tag)
         
         // setup reachability
         do {
