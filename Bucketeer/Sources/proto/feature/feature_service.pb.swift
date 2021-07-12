@@ -950,6 +950,69 @@ struct Bucketeer_Feature_EvaluateOnAllFeaturesResponse {
   fileprivate var _userEvaluations: Bucketeer_Feature_UserEvaluations? = nil
 }
 
+struct Bucketeer_Feature_GetUserEvaluationsRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var environmentNamespace: String = String()
+
+  var tag: String = String()
+
+  var userID: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Feature_GetUserEvaluationsResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var evaluations: [Bucketeer_Feature_Evaluation] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Feature_UpsertUserEvaluationRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var environmentNamespace: String = String()
+
+  var tag: String = String()
+
+  var evaluation: Bucketeer_Feature_Evaluation {
+    get {return _evaluation ?? Bucketeer_Feature_Evaluation()}
+    set {_evaluation = newValue}
+  }
+  /// Returns true if `evaluation` has been explicitly set.
+  var hasEvaluation: Bool {return self._evaluation != nil}
+  /// Clears the value of `evaluation`. Subsequent reads from it will return its default value.
+  mutating func clearEvaluation() {self._evaluation = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _evaluation: Bucketeer_Feature_Evaluation? = nil
+}
+
+struct Bucketeer_Feature_UpsertUserEvaluationResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bucketeer.feature"
@@ -2611,6 +2674,136 @@ extension Bucketeer_Feature_EvaluateOnAllFeaturesResponse: SwiftProtobuf.Message
 
   static func ==(lhs: Bucketeer_Feature_EvaluateOnAllFeaturesResponse, rhs: Bucketeer_Feature_EvaluateOnAllFeaturesResponse) -> Bool {
     if lhs._userEvaluations != rhs._userEvaluations {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_GetUserEvaluationsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GetUserEvaluationsRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "environment_namespace"),
+    2: .same(proto: "tag"),
+    3: .standard(proto: "user_id"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 2: try decoder.decodeSingularStringField(value: &self.tag)
+      case 3: try decoder.decodeSingularStringField(value: &self.userID)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.environmentNamespace.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 1)
+    }
+    if !self.tag.isEmpty {
+      try visitor.visitSingularStringField(value: self.tag, fieldNumber: 2)
+    }
+    if !self.userID.isEmpty {
+      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_GetUserEvaluationsRequest, rhs: Bucketeer_Feature_GetUserEvaluationsRequest) -> Bool {
+    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.tag != rhs.tag {return false}
+    if lhs.userID != rhs.userID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_GetUserEvaluationsResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GetUserEvaluationsResponse"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "evaluations"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.evaluations)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.evaluations.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.evaluations, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_GetUserEvaluationsResponse, rhs: Bucketeer_Feature_GetUserEvaluationsResponse) -> Bool {
+    if lhs.evaluations != rhs.evaluations {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_UpsertUserEvaluationRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".UpsertUserEvaluationRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "environment_namespace"),
+    2: .same(proto: "tag"),
+    3: .same(proto: "evaluation"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 2: try decoder.decodeSingularStringField(value: &self.tag)
+      case 3: try decoder.decodeSingularMessageField(value: &self._evaluation)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.environmentNamespace.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 1)
+    }
+    if !self.tag.isEmpty {
+      try visitor.visitSingularStringField(value: self.tag, fieldNumber: 2)
+    }
+    if let v = self._evaluation {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_UpsertUserEvaluationRequest, rhs: Bucketeer_Feature_UpsertUserEvaluationRequest) -> Bool {
+    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.tag != rhs.tag {return false}
+    if lhs._evaluation != rhs._evaluation {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_UpsertUserEvaluationResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".UpsertUserEvaluationResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_UpsertUserEvaluationResponse, rhs: Bucketeer_Feature_UpsertUserEvaluationResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

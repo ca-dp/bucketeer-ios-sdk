@@ -147,6 +147,16 @@ internal protocol Bucketeer_Feature_FeatureServiceClientProtocol: GRPCClient {
     callOptions: CallOptions?
   ) -> UnaryCall<Bucketeer_Feature_EvaluateOnAllFeaturesRequest, Bucketeer_Feature_EvaluateOnAllFeaturesResponse>
 
+  func getUserEvaluations(
+    _ request: Bucketeer_Feature_GetUserEvaluationsRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_GetUserEvaluationsRequest, Bucketeer_Feature_GetUserEvaluationsResponse>
+
+  func upsertUserEvaluation(
+    _ request: Bucketeer_Feature_UpsertUserEvaluationRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_UpsertUserEvaluationRequest, Bucketeer_Feature_UpsertUserEvaluationResponse>
+
 }
 
 extension Bucketeer_Feature_FeatureServiceClientProtocol {
@@ -554,6 +564,40 @@ extension Bucketeer_Feature_FeatureServiceClientProtocol {
   ) -> UnaryCall<Bucketeer_Feature_EvaluateOnAllFeaturesRequest, Bucketeer_Feature_EvaluateOnAllFeaturesResponse> {
     return self.makeUnaryCall(
       path: "/bucketeer.feature.FeatureService/EvaluateOnAllFeatures",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
+  }
+
+  /// Unary call to GetUserEvaluations
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetUserEvaluations.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getUserEvaluations(
+    _ request: Bucketeer_Feature_GetUserEvaluationsRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_GetUserEvaluationsRequest, Bucketeer_Feature_GetUserEvaluationsResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/GetUserEvaluations",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
+  }
+
+  /// Unary call to UpsertUserEvaluation
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpsertUserEvaluation.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func upsertUserEvaluation(
+    _ request: Bucketeer_Feature_UpsertUserEvaluationRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_UpsertUserEvaluationRequest, Bucketeer_Feature_UpsertUserEvaluationResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/UpsertUserEvaluation",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions
     )
