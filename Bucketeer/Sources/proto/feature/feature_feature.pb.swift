@@ -109,8 +109,6 @@ struct Bucketeer_Feature_Feature {
     set {_uniqueStorage()._tags = newValue}
   }
 
-  /// is permanent flag?
-  /// maintainer? creator?
   var lastUsedInfo: Bucketeer_Feature_FeatureLastUsedInfo {
     get {return _storage._lastUsedInfo ?? Bucketeer_Feature_FeatureLastUsedInfo()}
     set {_uniqueStorage()._lastUsedInfo = newValue}
@@ -119,6 +117,11 @@ struct Bucketeer_Feature_Feature {
   var hasLastUsedInfo: Bool {return _storage._lastUsedInfo != nil}
   /// Clears the value of `lastUsedInfo`. Subsequent reads from it will return its default value.
   mutating func clearLastUsedInfo() {_uniqueStorage()._lastUsedInfo = nil}
+
+  var maintainer: String {
+    get {return _storage._maintainer}
+    set {_uniqueStorage()._maintainer = newValue}
+  }
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -165,6 +168,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
     15: .standard(proto: "off_variation"),
     16: .same(proto: "tags"),
     17: .standard(proto: "last_used_info"),
+    18: .same(proto: "maintainer"),
   ]
 
   fileprivate class _StorageClass {
@@ -185,6 +189,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
     var _offVariation: String = String()
     var _tags: [String] = []
     var _lastUsedInfo: Bucketeer_Feature_FeatureLastUsedInfo? = nil
+    var _maintainer: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -208,6 +213,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
       _offVariation = source._offVariation
       _tags = source._tags
       _lastUsedInfo = source._lastUsedInfo
+      _maintainer = source._maintainer
     }
   }
 
@@ -240,6 +246,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
         case 15: try decoder.decodeSingularStringField(value: &_storage._offVariation)
         case 16: try decoder.decodeRepeatedStringField(value: &_storage._tags)
         case 17: try decoder.decodeSingularMessageField(value: &_storage._lastUsedInfo)
+        case 18: try decoder.decodeSingularStringField(value: &_storage._maintainer)
         default: break
         }
       }
@@ -299,6 +306,9 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
       if let v = _storage._lastUsedInfo {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
       }
+      if !_storage._maintainer.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._maintainer, fieldNumber: 18)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -325,6 +335,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
         if _storage._offVariation != rhs_storage._offVariation {return false}
         if _storage._tags != rhs_storage._tags {return false}
         if _storage._lastUsedInfo != rhs_storage._lastUsedInfo {return false}
+        if _storage._maintainer != rhs_storage._maintainer {return false}
         return true
       }
       if !storagesAreEqual {return false}
