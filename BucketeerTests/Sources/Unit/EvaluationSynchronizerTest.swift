@@ -54,16 +54,11 @@ class EvaluationSynchronizerTest: XCTestCase {
             switch result {
             case .success:
                 XCTAssertEqual(evaluationSynchronizer.currentUserEvaluationsId, CommonUnitUtil.shared.userEvaluationsId)
-                self.latestEvaluationStore.fetchAll(userID: self.userEntity.id) { result in
-                    switch result {
-                    case .success(let items):
-                        XCTAssertEqual(items.count, 1)
-                        XCTAssertEqual(self.latestEvaluationStore.evaluationEntities.count, 1)
-                        asyncExpectation.fulfill()
-                    case .failure:
-                        assertionFailure()
-                    }
-                }
+                XCTAssertNotNil(self.latestEvaluationStore.fetch(
+                    userID: CommonUnitUtil.shared.evaluation.userID,
+                    featureID: CommonUnitUtil.shared.evaluation.featureID
+                ))
+                asyncExpectation.fulfill()
             default:
                 assertionFailure()
             }
@@ -78,16 +73,11 @@ class EvaluationSynchronizerTest: XCTestCase {
         evaluationSynchronizer.syncEvaluations(userEntity: userEntity) { result in
             switch result {
             case .success:
-                self.latestEvaluationStore.fetchAll(userID: self.userEntity.id) { result in
-                    switch result {
-                    case .success(let items):
-                        XCTAssertEqual(items.count, 0)
-                        XCTAssertEqual(self.latestEvaluationStore.evaluationEntities.count, 0)
-                        asyncExpectation.fulfill()
-                    case .failure:
-                        assertionFailure()
-                    }
-                }
+                XCTAssertNil(self.latestEvaluationStore.fetch(
+                    userID: CommonUnitUtil.shared.evaluation.userID,
+                    featureID: CommonUnitUtil.shared.evaluation.featureID
+                ))
+                asyncExpectation.fulfill()
             default:
                 assertionFailure()
             }
