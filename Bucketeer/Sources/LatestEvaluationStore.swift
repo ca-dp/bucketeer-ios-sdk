@@ -11,13 +11,13 @@ class LatestEvaluationStore {
     }
 
     private let db: SQLiteDatabase
-    private(set) var evaluationEntities: Set<EvaluationEntity> = []
+    private(set) var evaluationEntities: Set<EvaluationEntity> = []  // in-memory data
 
     init(db: SQLiteDatabase) {
         self.db = db
     }
 
-    func fetchAll(userID: String, completion: @escaping (Result<[EvaluationEntity], BucketeerError>) -> Void) {
+    func fetchInMemoryEvaluations(userID: String, completion: ((Result<Void, BucketeerError>) -> Void)? = nil) {
         do {
             let stmt = try db.prepareStatement(sql: Query.fetchAll)
             try db.bindText(stmt: stmt, name: ":userID", value: userID)
@@ -36,12 +36,12 @@ class LatestEvaluationStore {
                 }
             }
             try db.finalize(stmt: stmt)
-            evaluationEntities = Set(items) // update in-memory data
-            completion(.success(items))
+            evaluationEntities = Set(items)
+            completion?(.success(()))
         } catch {
-            let message = "(\(Version.number)) Failed to fetchAll LatestEvaluations: \(error.localizedDescription)"
+            let message = "(\(Version.number)) Failed to fetchInMemoryEvaluations: \(error.localizedDescription)"
             Logger.shared.errorLog(message)
-            completion(.failure(.unknown(message)))
+            completion?(.failure(.unknown(message)))
         }
     }
 
