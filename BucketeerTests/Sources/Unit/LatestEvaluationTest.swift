@@ -43,7 +43,7 @@ class LatestEvaluationStoreTest: XCTestCase {
         latestEvaluationStore.replaceAll(userID: "test001", entities: Set([entity])) { result in
             switch result {
             case .success:
-                XCTAssertNotNil(self.latestEvaluationStore.fetch(userID: "test001", featureID: "f001"))
+                XCTAssertNotNil(self.latestEvaluationStore.fetch(featureID: "f001"))
                 asyncExpectation.fulfill()
              default:
                 assertionFailure()
@@ -77,9 +77,9 @@ class LatestEvaluationStoreTest: XCTestCase {
         latestEvaluationStore.replaceAll(userID: "test001", entities: Set([entity, entity2, entity3])) { result in
             switch result {
             case .success:
-                XCTAssertNotNil(self.latestEvaluationStore.fetch(userID: "test001", featureID: "f001"))
-                XCTAssertNotNil(self.latestEvaluationStore.fetch(userID: "test001", featureID: "f002"))
-                XCTAssertNotNil(self.latestEvaluationStore.fetch(userID: "test001", featureID: "f003"))
+                XCTAssertNotNil(self.latestEvaluationStore.fetch(featureID: "f001"))
+                XCTAssertNotNil(self.latestEvaluationStore.fetch(featureID: "f002"))
+                XCTAssertNotNil(self.latestEvaluationStore.fetch(featureID: "f003"))
                 asyncExpectation.fulfill()
             default:
                 assertionFailure()

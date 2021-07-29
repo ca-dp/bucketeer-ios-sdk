@@ -17,35 +17,35 @@ class LatestEvaluationStore {
         self.db = db
     }
 
-    func fetch(userID: String, featureID: String) -> EvaluationEntity? {
-        if (evaluationEntities.count == 0) {
-            // update in-memory data
-            do {
-                let stmt = try db.prepareStatement(sql: Query.fetchAll)
-                try db.bindText(stmt: stmt, name: ":userID", value: userID)
-                var items: [EvaluationEntity] = []
-                while (try db.query(stmt: stmt) == SQLITE_ROW) {
-                    let blob = sqlite3_column_blob(stmt, 0)
-                    let size = sqlite3_column_bytes(stmt, 0)
-                    let data = NSData(bytes: blob, length: Int(size)) as Data
-                    do {
-                        let evaluation = try Bucketeer_Feature_Evaluation(serializedData: data)
-                        if let entity = EvaluationEntity(evaluation: evaluation) {
-                            items.append(entity)
-                        }
-                    } catch {
-                        Logger.shared.errorLog(error.localizedDescription)
-                        return nil
+    func fetchInMemoryEvaluations(userID: String, completion: ((Result<Void, BucketeerError>) -> Void)? = nil) {
+        do {
+            let stmt = try db.prepareStatement(sql: Query.fetchAll)
+            try db.bindText(stmt: stmt, name: ":userID", value: userID)
+            var items: [EvaluationEntity] = []
+            while (try db.query(stmt: stmt) == SQLITE_ROW) {
+                let blob = sqlite3_column_blob(stmt, 0)
+                let size = sqlite3_column_bytes(stmt, 0)
+                let data = NSData(bytes: blob, length: Int(size)) as Data
+                do {
+                    let evaluation = try Bucketeer_Feature_Evaluation(serializedData: data)
+                    if let entity = EvaluationEntity(evaluation: evaluation) {
+                        items.append(entity)
                     }
+                } catch {
+                    Logger.shared.errorLog(error.localizedDescription)
                 }
-                try db.finalize(stmt: stmt)
-                evaluationEntities = Set(items)
-            } catch {
-                let message = "(\(Version.number)) Failed to fetchAll LatestEvaluations: \(error.localizedDescription)"
-                Logger.shared.errorLog(message)
-                return nil
             }
+            try db.finalize(stmt: stmt)
+            evaluationEntities = Set(items)
+            completion?(.success(()))
+        } catch {
+            let message = "(\(Version.number)) Failed to fetchInMemoryEvaluations: \(error.localizedDescription)"
+            Logger.shared.errorLog(message)
+            completion?(.failure(.unknown(message)))
         }
+    }
+
+    func fetch(featureID: String) -> EvaluationEntity? {
         return evaluationEntities.first(where: { $0.featureID == featureID })
     }
 

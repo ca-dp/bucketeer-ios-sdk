@@ -54,10 +54,7 @@ class EvaluationSynchronizerTest: XCTestCase {
             switch result {
             case .success:
                 XCTAssertEqual(evaluationSynchronizer.currentUserEvaluationsId, CommonUnitUtil.shared.userEvaluationsId)
-                XCTAssertNotNil(self.latestEvaluationStore.fetch(
-                    userID: CommonUnitUtil.shared.evaluation.userID,
-                    featureID: CommonUnitUtil.shared.evaluation.featureID
-                ))
+                XCTAssertNotNil(self.latestEvaluationStore.fetch(featureID: CommonUnitUtil.shared.evaluation.featureID))
                 asyncExpectation.fulfill()
             default:
                 assertionFailure()
@@ -73,10 +70,7 @@ class EvaluationSynchronizerTest: XCTestCase {
         evaluationSynchronizer.syncEvaluations(userEntity: userEntity) { result in
             switch result {
             case .success:
-                XCTAssertNil(self.latestEvaluationStore.fetch(
-                    userID: CommonUnitUtil.shared.evaluation.userID,
-                    featureID: CommonUnitUtil.shared.evaluation.featureID
-                ))
+                XCTAssertNil(self.latestEvaluationStore.fetch(featureID: CommonUnitUtil.shared.evaluation.featureID))
                 asyncExpectation.fulfill()
             default:
                 assertionFailure()

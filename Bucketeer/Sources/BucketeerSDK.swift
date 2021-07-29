@@ -223,7 +223,7 @@ private extension BucketeerSDK {
         guard let userEntity = userEntity else {
             return defaultValue
         }
-        if let evaluationEntity = latestEvaluationStore.fetch(userID: userEntity.id, featureID: featureID) {
+        if let evaluationEntity = latestEvaluationStore.fetch(featureID: featureID) {
             taskQueue.async { [currentEvaluationStore, eventSaver, registerEventsIfNeeded] in
                 currentEvaluationStore.save([evaluationEntity])
                 eventSaver.saveEvaluationEvent(userEntity: userEntity, evaluationEntity: evaluationEntity, completion: registerEventsIfNeeded)
@@ -274,10 +274,7 @@ private extension BucketeerSDK {
     }
     
     func _getEvaluation(featureID: String) -> Evaluation? {
-        guard let userEntity = userEntity else {
-            return nil
-        }
-        if let evaluationEntity = latestEvaluationStore.fetch(userID: userEntity.id, featureID: featureID) {
+        if let evaluationEntity = latestEvaluationStore.fetch(featureID: featureID) {
             return Evaluation(
                 id: evaluationEntity.evaluation.id,
                 featureID: evaluationEntity.evaluation.featureID,

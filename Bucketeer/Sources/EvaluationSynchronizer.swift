@@ -39,6 +39,7 @@ class EvaluationSynchronizer {
                     let userEvaluationsId = response.userEvaluationsID
                     if currentUserEvaluationsId == userEvaluationsId {
                         Logger.shared.debugLog("Nothing to sync")
+                        latestEvaluationStore.fetchInMemoryEvaluations(userID: userEntity.id)
                         completion(.success(response))
                         return
                     }
@@ -71,6 +72,7 @@ class EvaluationSynchronizer {
             case .failure(let error):
                 let message = "(\(Version.number)) Failed to sync evaluations: \(error.localizedDescription)"
                 Logger.shared.errorLog(message)
+                latestEvaluationStore.fetchInMemoryEvaluations(userID: userEntity.id)
                 completion(.failure(.unknown(message)))
             }
         }
