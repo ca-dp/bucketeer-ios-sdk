@@ -75,6 +75,8 @@ struct Bucketeer_Feature_CreateFeatureCommand {
   /// Clears the value of `defaultOffVariationIndex`. Subsequent reads from it will return its default value.
   mutating func clearDefaultOffVariationIndex() {self._defaultOffVariationIndex = nil}
 
+  var variationType: Bucketeer_Feature_Feature.VariationType = .string
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -662,6 +664,7 @@ extension Bucketeer_Feature_CreateFeatureCommand: SwiftProtobuf.Message, SwiftPr
     5: .same(proto: "tags"),
     6: .standard(proto: "default_on_variation_index"),
     7: .standard(proto: "default_off_variation_index"),
+    8: .standard(proto: "variation_type"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -674,6 +677,7 @@ extension Bucketeer_Feature_CreateFeatureCommand: SwiftProtobuf.Message, SwiftPr
       case 5: try decoder.decodeRepeatedStringField(value: &self.tags)
       case 6: try decoder.decodeSingularMessageField(value: &self._defaultOnVariationIndex)
       case 7: try decoder.decodeSingularMessageField(value: &self._defaultOffVariationIndex)
+      case 8: try decoder.decodeSingularEnumField(value: &self.variationType)
       default: break
       }
     }
@@ -701,6 +705,9 @@ extension Bucketeer_Feature_CreateFeatureCommand: SwiftProtobuf.Message, SwiftPr
     if let v = self._defaultOffVariationIndex {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
     }
+    if self.variationType != .string {
+      try visitor.visitSingularEnumField(value: self.variationType, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -712,6 +719,7 @@ extension Bucketeer_Feature_CreateFeatureCommand: SwiftProtobuf.Message, SwiftPr
     if lhs.tags != rhs.tags {return false}
     if lhs._defaultOnVariationIndex != rhs._defaultOnVariationIndex {return false}
     if lhs._defaultOffVariationIndex != rhs._defaultOffVariationIndex {return false}
+    if lhs.variationType != rhs.variationType {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
