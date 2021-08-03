@@ -124,6 +124,28 @@ struct Bucketeer_Feature_ListFeaturesRequest {
 
   var environmentNamespace: String = String()
 
+  var maintainer: String = String()
+
+  var enabled: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _enabled ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_enabled = newValue}
+  }
+  /// Returns true if `enabled` has been explicitly set.
+  var hasEnabled: Bool {return self._enabled != nil}
+  /// Clears the value of `enabled`. Subsequent reads from it will return its default value.
+  mutating func clearEnabled() {self._enabled = nil}
+
+  var hasExperiment_p: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _hasExperiment_p ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_hasExperiment_p = newValue}
+  }
+  /// Returns true if `hasExperiment_p` has been explicitly set.
+  var hasHasExperiment_p: Bool {return self._hasExperiment_p != nil}
+  /// Clears the value of `hasExperiment_p`. Subsequent reads from it will return its default value.
+  mutating func clearHasExperiment_p() {self._hasExperiment_p = nil}
+
+  var searchKeyword: String = String()
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum OrderBy: SwiftProtobuf.Enum {
@@ -195,6 +217,9 @@ struct Bucketeer_Feature_ListFeaturesRequest {
   }
 
   init() {}
+
+  fileprivate var _enabled: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+  fileprivate var _hasExperiment_p: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
 
 #if swift(>=4.2)
@@ -229,6 +254,8 @@ struct Bucketeer_Feature_ListFeaturesResponse {
   var features: [Bucketeer_Feature_Feature] = []
 
   var cursor: String = String()
+
+  var totalCount: Int64 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1331,6 +1358,10 @@ extension Bucketeer_Feature_ListFeaturesRequest: SwiftProtobuf.Message, SwiftPro
     4: .standard(proto: "order_by"),
     5: .standard(proto: "order_direction"),
     6: .standard(proto: "environment_namespace"),
+    7: .same(proto: "maintainer"),
+    8: .same(proto: "enabled"),
+    9: .standard(proto: "has_experiment"),
+    10: .standard(proto: "search_keyword"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1342,6 +1373,10 @@ extension Bucketeer_Feature_ListFeaturesRequest: SwiftProtobuf.Message, SwiftPro
       case 4: try decoder.decodeSingularEnumField(value: &self.orderBy)
       case 5: try decoder.decodeSingularEnumField(value: &self.orderDirection)
       case 6: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 7: try decoder.decodeSingularStringField(value: &self.maintainer)
+      case 8: try decoder.decodeSingularMessageField(value: &self._enabled)
+      case 9: try decoder.decodeSingularMessageField(value: &self._hasExperiment_p)
+      case 10: try decoder.decodeSingularStringField(value: &self.searchKeyword)
       default: break
       }
     }
@@ -1366,6 +1401,18 @@ extension Bucketeer_Feature_ListFeaturesRequest: SwiftProtobuf.Message, SwiftPro
     if !self.environmentNamespace.isEmpty {
       try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 6)
     }
+    if !self.maintainer.isEmpty {
+      try visitor.visitSingularStringField(value: self.maintainer, fieldNumber: 7)
+    }
+    if let v = self._enabled {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    }
+    if let v = self._hasExperiment_p {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    }
+    if !self.searchKeyword.isEmpty {
+      try visitor.visitSingularStringField(value: self.searchKeyword, fieldNumber: 10)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -1376,6 +1423,10 @@ extension Bucketeer_Feature_ListFeaturesRequest: SwiftProtobuf.Message, SwiftPro
     if lhs.orderBy != rhs.orderBy {return false}
     if lhs.orderDirection != rhs.orderDirection {return false}
     if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.maintainer != rhs.maintainer {return false}
+    if lhs._enabled != rhs._enabled {return false}
+    if lhs._hasExperiment_p != rhs._hasExperiment_p {return false}
+    if lhs.searchKeyword != rhs.searchKeyword {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1404,6 +1455,7 @@ extension Bucketeer_Feature_ListFeaturesResponse: SwiftProtobuf.Message, SwiftPr
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "features"),
     2: .same(proto: "cursor"),
+    3: .standard(proto: "total_count"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1411,6 +1463,7 @@ extension Bucketeer_Feature_ListFeaturesResponse: SwiftProtobuf.Message, SwiftPr
       switch fieldNumber {
       case 1: try decoder.decodeRepeatedMessageField(value: &self.features)
       case 2: try decoder.decodeSingularStringField(value: &self.cursor)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.totalCount)
       default: break
       }
     }
@@ -1423,12 +1476,16 @@ extension Bucketeer_Feature_ListFeaturesResponse: SwiftProtobuf.Message, SwiftPr
     if !self.cursor.isEmpty {
       try visitor.visitSingularStringField(value: self.cursor, fieldNumber: 2)
     }
+    if self.totalCount != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalCount, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Bucketeer_Feature_ListFeaturesResponse, rhs: Bucketeer_Feature_ListFeaturesResponse) -> Bool {
     if lhs.features != rhs.features {return false}
     if lhs.cursor != rhs.cursor {return false}
+    if lhs.totalCount != rhs.totalCount {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
