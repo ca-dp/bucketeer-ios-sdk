@@ -608,10 +608,121 @@ struct Bucketeer_Feature_ListSegmentsRequest {
 
   var environmentNamespace: String = String()
 
+  var orderBy: Bucketeer_Feature_ListSegmentsRequest.OrderBy = .default
+
+  var orderDirection: Bucketeer_Feature_ListSegmentsRequest.OrderDirection = .asc
+
+  var searchKeyword: String = String()
+
+  var status: SwiftProtobuf.Google_Protobuf_Int32Value {
+    get {return _status ?? SwiftProtobuf.Google_Protobuf_Int32Value()}
+    set {_status = newValue}
+  }
+  /// Returns true if `status` has been explicitly set.
+  var hasStatus: Bool {return self._status != nil}
+  /// Clears the value of `status`. Subsequent reads from it will return its default value.
+  mutating func clearStatus() {self._status = nil}
+
+  var isInUseStatus: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _isInUseStatus ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_isInUseStatus = newValue}
+  }
+  /// Returns true if `isInUseStatus` has been explicitly set.
+  var hasIsInUseStatus: Bool {return self._isInUseStatus != nil}
+  /// Clears the value of `isInUseStatus`. Subsequent reads from it will return its default value.
+  mutating func clearIsInUseStatus() {self._isInUseStatus = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  enum OrderBy: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case `default` // = 0
+    case name // = 1
+    case createdAt // = 2
+    case updatedAt // = 3
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .default
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .default
+      case 1: self = .name
+      case 2: self = .createdAt
+      case 3: self = .updatedAt
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .default: return 0
+      case .name: return 1
+      case .createdAt: return 2
+      case .updatedAt: return 3
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  enum OrderDirection: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case asc // = 0
+    case desc // = 1
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .asc
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .asc
+      case 1: self = .desc
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .asc: return 0
+      case .desc: return 1
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   init() {}
+
+  fileprivate var _status: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
+  fileprivate var _isInUseStatus: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
+
+#if swift(>=4.2)
+
+extension Bucketeer_Feature_ListSegmentsRequest.OrderBy: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Bucketeer_Feature_ListSegmentsRequest.OrderBy] = [
+    .default,
+    .name,
+    .createdAt,
+    .updatedAt,
+  ]
+}
+
+extension Bucketeer_Feature_ListSegmentsRequest.OrderDirection: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Bucketeer_Feature_ListSegmentsRequest.OrderDirection] = [
+    .asc,
+    .desc,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 struct Bucketeer_Feature_ListSegmentsResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -621,6 +732,8 @@ struct Bucketeer_Feature_ListSegmentsResponse {
   var segments: [Bucketeer_Feature_Segment] = []
 
   var cursor: String = String()
+
+  var totalCount: Int64 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2005,6 +2118,11 @@ extension Bucketeer_Feature_ListSegmentsRequest: SwiftProtobuf.Message, SwiftPro
     1: .standard(proto: "page_size"),
     2: .same(proto: "cursor"),
     3: .standard(proto: "environment_namespace"),
+    4: .standard(proto: "order_by"),
+    5: .standard(proto: "order_direction"),
+    6: .standard(proto: "search_keyword"),
+    7: .same(proto: "status"),
+    8: .standard(proto: "is_in_use_status"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2013,6 +2131,11 @@ extension Bucketeer_Feature_ListSegmentsRequest: SwiftProtobuf.Message, SwiftPro
       case 1: try decoder.decodeSingularInt64Field(value: &self.pageSize)
       case 2: try decoder.decodeSingularStringField(value: &self.cursor)
       case 3: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 4: try decoder.decodeSingularEnumField(value: &self.orderBy)
+      case 5: try decoder.decodeSingularEnumField(value: &self.orderDirection)
+      case 6: try decoder.decodeSingularStringField(value: &self.searchKeyword)
+      case 7: try decoder.decodeSingularMessageField(value: &self._status)
+      case 8: try decoder.decodeSingularMessageField(value: &self._isInUseStatus)
       default: break
       }
     }
@@ -2028,6 +2151,21 @@ extension Bucketeer_Feature_ListSegmentsRequest: SwiftProtobuf.Message, SwiftPro
     if !self.environmentNamespace.isEmpty {
       try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 3)
     }
+    if self.orderBy != .default {
+      try visitor.visitSingularEnumField(value: self.orderBy, fieldNumber: 4)
+    }
+    if self.orderDirection != .asc {
+      try visitor.visitSingularEnumField(value: self.orderDirection, fieldNumber: 5)
+    }
+    if !self.searchKeyword.isEmpty {
+      try visitor.visitSingularStringField(value: self.searchKeyword, fieldNumber: 6)
+    }
+    if let v = self._status {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
+    if let v = self._isInUseStatus {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2035,9 +2173,30 @@ extension Bucketeer_Feature_ListSegmentsRequest: SwiftProtobuf.Message, SwiftPro
     if lhs.pageSize != rhs.pageSize {return false}
     if lhs.cursor != rhs.cursor {return false}
     if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.orderBy != rhs.orderBy {return false}
+    if lhs.orderDirection != rhs.orderDirection {return false}
+    if lhs.searchKeyword != rhs.searchKeyword {return false}
+    if lhs._status != rhs._status {return false}
+    if lhs._isInUseStatus != rhs._isInUseStatus {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Bucketeer_Feature_ListSegmentsRequest.OrderBy: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "DEFAULT"),
+    1: .same(proto: "NAME"),
+    2: .same(proto: "CREATED_AT"),
+    3: .same(proto: "UPDATED_AT"),
+  ]
+}
+
+extension Bucketeer_Feature_ListSegmentsRequest.OrderDirection: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "ASC"),
+    1: .same(proto: "DESC"),
+  ]
 }
 
 extension Bucketeer_Feature_ListSegmentsResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -2045,6 +2204,7 @@ extension Bucketeer_Feature_ListSegmentsResponse: SwiftProtobuf.Message, SwiftPr
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "segments"),
     2: .same(proto: "cursor"),
+    3: .standard(proto: "total_count"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2052,6 +2212,7 @@ extension Bucketeer_Feature_ListSegmentsResponse: SwiftProtobuf.Message, SwiftPr
       switch fieldNumber {
       case 1: try decoder.decodeRepeatedMessageField(value: &self.segments)
       case 2: try decoder.decodeSingularStringField(value: &self.cursor)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.totalCount)
       default: break
       }
     }
@@ -2064,12 +2225,16 @@ extension Bucketeer_Feature_ListSegmentsResponse: SwiftProtobuf.Message, SwiftPr
     if !self.cursor.isEmpty {
       try visitor.visitSingularStringField(value: self.cursor, fieldNumber: 2)
     }
+    if self.totalCount != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalCount, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Bucketeer_Feature_ListSegmentsResponse, rhs: Bucketeer_Feature_ListSegmentsResponse) -> Bool {
     if lhs.segments != rhs.segments {return false}
     if lhs.cursor != rhs.cursor {return false}
+    if lhs.totalCount != rhs.totalCount {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -47,6 +47,9 @@ struct Bucketeer_Feature_Segment {
 
   var status: Bucketeer_Feature_Segment.Status = .initial
 
+  /// This field is set only when APIs return.
+  var isInUseStatus: Bool = false
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum Status: SwiftProtobuf.Enum {
@@ -192,6 +195,7 @@ extension Bucketeer_Feature_Segment: SwiftProtobuf.Message, SwiftProtobuf._Messa
     9: .standard(proto: "included_user_count"),
     10: .standard(proto: "excluded_user_count"),
     11: .same(proto: "status"),
+    12: .standard(proto: "is_in_use_status"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -208,6 +212,7 @@ extension Bucketeer_Feature_Segment: SwiftProtobuf.Message, SwiftProtobuf._Messa
       case 9: try decoder.decodeSingularInt64Field(value: &self.includedUserCount)
       case 10: try decoder.decodeSingularInt64Field(value: &self.excludedUserCount)
       case 11: try decoder.decodeSingularEnumField(value: &self.status)
+      case 12: try decoder.decodeSingularBoolField(value: &self.isInUseStatus)
       default: break
       }
     }
@@ -247,6 +252,9 @@ extension Bucketeer_Feature_Segment: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if self.status != .initial {
       try visitor.visitSingularEnumField(value: self.status, fieldNumber: 11)
     }
+    if self.isInUseStatus != false {
+      try visitor.visitSingularBoolField(value: self.isInUseStatus, fieldNumber: 12)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -262,6 +270,7 @@ extension Bucketeer_Feature_Segment: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if lhs.includedUserCount != rhs.includedUserCount {return false}
     if lhs.excludedUserCount != rhs.excludedUserCount {return false}
     if lhs.status != rhs.status {return false}
+    if lhs.isInUseStatus != rhs.isInUseStatus {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
