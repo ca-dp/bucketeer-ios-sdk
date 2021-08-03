@@ -123,12 +123,65 @@ struct Bucketeer_Feature_Feature {
     set {_uniqueStorage()._maintainer = newValue}
   }
 
+  var variationType: Bucketeer_Feature_Feature.VariationType {
+    get {return _storage._variationType}
+    set {_uniqueStorage()._variationType = newValue}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum VariationType: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case string // = 0
+    case boolean // = 1
+    case number // = 2
+    case json // = 3
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .string
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .string
+      case 1: self = .boolean
+      case 2: self = .number
+      case 3: self = .json
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .string: return 0
+      case .boolean: return 1
+      case .number: return 2
+      case .json: return 3
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
 
   init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
+
+#if swift(>=4.2)
+
+extension Bucketeer_Feature_Feature.VariationType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Bucketeer_Feature_Feature.VariationType] = [
+    .string,
+    .boolean,
+    .number,
+    .json,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 struct Bucketeer_Feature_TagFeatures {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -185,6 +238,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
     16: .same(proto: "tags"),
     17: .standard(proto: "last_used_info"),
     18: .same(proto: "maintainer"),
+    19: .standard(proto: "variation_type"),
   ]
 
   fileprivate class _StorageClass {
@@ -206,6 +260,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
     var _tags: [String] = []
     var _lastUsedInfo: Bucketeer_Feature_FeatureLastUsedInfo? = nil
     var _maintainer: String = String()
+    var _variationType: Bucketeer_Feature_Feature.VariationType = .string
 
     static let defaultInstance = _StorageClass()
 
@@ -230,6 +285,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
       _tags = source._tags
       _lastUsedInfo = source._lastUsedInfo
       _maintainer = source._maintainer
+      _variationType = source._variationType
     }
   }
 
@@ -263,6 +319,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
         case 16: try decoder.decodeRepeatedStringField(value: &_storage._tags)
         case 17: try decoder.decodeSingularMessageField(value: &_storage._lastUsedInfo)
         case 18: try decoder.decodeSingularStringField(value: &_storage._maintainer)
+        case 19: try decoder.decodeSingularEnumField(value: &_storage._variationType)
         default: break
         }
       }
@@ -325,6 +382,9 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
       if !_storage._maintainer.isEmpty {
         try visitor.visitSingularStringField(value: _storage._maintainer, fieldNumber: 18)
       }
+      if _storage._variationType != .string {
+        try visitor.visitSingularEnumField(value: _storage._variationType, fieldNumber: 19)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -352,6 +412,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
         if _storage._tags != rhs_storage._tags {return false}
         if _storage._lastUsedInfo != rhs_storage._lastUsedInfo {return false}
         if _storage._maintainer != rhs_storage._maintainer {return false}
+        if _storage._variationType != rhs_storage._variationType {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -359,6 +420,15 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Bucketeer_Feature_Feature.VariationType: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "STRING"),
+    1: .same(proto: "BOOLEAN"),
+    2: .same(proto: "NUMBER"),
+    3: .same(proto: "JSON"),
+  ]
 }
 
 extension Bucketeer_Feature_TagFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
