@@ -146,6 +146,15 @@ struct Bucketeer_Feature_ListFeaturesRequest {
 
   var searchKeyword: String = String()
 
+  var archived: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _archived ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_archived = newValue}
+  }
+  /// Returns true if `archived` has been explicitly set.
+  var hasArchived: Bool {return self._archived != nil}
+  /// Clears the value of `archived`. Subsequent reads from it will return its default value.
+  mutating func clearArchived() {self._archived = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum OrderBy: SwiftProtobuf.Enum {
@@ -220,6 +229,7 @@ struct Bucketeer_Feature_ListFeaturesRequest {
 
   fileprivate var _enabled: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
   fileprivate var _hasExperiment_p: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+  fileprivate var _archived: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
 
 #if swift(>=4.2)
@@ -1362,6 +1372,7 @@ extension Bucketeer_Feature_ListFeaturesRequest: SwiftProtobuf.Message, SwiftPro
     8: .same(proto: "enabled"),
     9: .standard(proto: "has_experiment"),
     10: .standard(proto: "search_keyword"),
+    11: .same(proto: "archived"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1377,6 +1388,7 @@ extension Bucketeer_Feature_ListFeaturesRequest: SwiftProtobuf.Message, SwiftPro
       case 8: try decoder.decodeSingularMessageField(value: &self._enabled)
       case 9: try decoder.decodeSingularMessageField(value: &self._hasExperiment_p)
       case 10: try decoder.decodeSingularStringField(value: &self.searchKeyword)
+      case 11: try decoder.decodeSingularMessageField(value: &self._archived)
       default: break
       }
     }
@@ -1413,6 +1425,9 @@ extension Bucketeer_Feature_ListFeaturesRequest: SwiftProtobuf.Message, SwiftPro
     if !self.searchKeyword.isEmpty {
       try visitor.visitSingularStringField(value: self.searchKeyword, fieldNumber: 10)
     }
+    if let v = self._archived {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -1427,6 +1442,7 @@ extension Bucketeer_Feature_ListFeaturesRequest: SwiftProtobuf.Message, SwiftPro
     if lhs._enabled != rhs._enabled {return false}
     if lhs._hasExperiment_p != rhs._hasExperiment_p {return false}
     if lhs.searchKeyword != rhs.searchKeyword {return false}
+    if lhs._archived != rhs._archived {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
