@@ -128,6 +128,11 @@ struct Bucketeer_Feature_Feature {
     set {_uniqueStorage()._variationType = newValue}
   }
 
+  var archived: Bool {
+    get {return _storage._archived}
+    set {_uniqueStorage()._archived = newValue}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum VariationType: SwiftProtobuf.Enum {
@@ -239,6 +244,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
     17: .standard(proto: "last_used_info"),
     18: .same(proto: "maintainer"),
     19: .standard(proto: "variation_type"),
+    20: .same(proto: "archived"),
   ]
 
   fileprivate class _StorageClass {
@@ -261,6 +267,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
     var _lastUsedInfo: Bucketeer_Feature_FeatureLastUsedInfo? = nil
     var _maintainer: String = String()
     var _variationType: Bucketeer_Feature_Feature.VariationType = .string
+    var _archived: Bool = false
 
     static let defaultInstance = _StorageClass()
 
@@ -286,6 +293,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
       _lastUsedInfo = source._lastUsedInfo
       _maintainer = source._maintainer
       _variationType = source._variationType
+      _archived = source._archived
     }
   }
 
@@ -320,6 +328,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
         case 17: try decoder.decodeSingularMessageField(value: &_storage._lastUsedInfo)
         case 18: try decoder.decodeSingularStringField(value: &_storage._maintainer)
         case 19: try decoder.decodeSingularEnumField(value: &_storage._variationType)
+        case 20: try decoder.decodeSingularBoolField(value: &_storage._archived)
         default: break
         }
       }
@@ -385,6 +394,9 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
       if _storage._variationType != .string {
         try visitor.visitSingularEnumField(value: _storage._variationType, fieldNumber: 19)
       }
+      if _storage._archived != false {
+        try visitor.visitSingularBoolField(value: _storage._archived, fieldNumber: 20)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -413,6 +425,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
         if _storage._lastUsedInfo != rhs_storage._lastUsedInfo {return false}
         if _storage._maintainer != rhs_storage._maintainer {return false}
         if _storage._variationType != rhs_storage._variationType {return false}
+        if _storage._archived != rhs_storage._archived {return false}
         return true
       }
       if !storagesAreEqual {return false}
