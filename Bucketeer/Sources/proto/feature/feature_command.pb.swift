@@ -85,6 +85,16 @@ struct Bucketeer_Feature_CreateFeatureCommand {
   fileprivate var _defaultOffVariationIndex: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
 }
 
+struct Bucketeer_Feature_ArchiveFeatureCommand {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Bucketeer_Feature_DeleteFeatureCommand {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -720,6 +730,25 @@ extension Bucketeer_Feature_CreateFeatureCommand: SwiftProtobuf.Message, SwiftPr
     if lhs._defaultOnVariationIndex != rhs._defaultOnVariationIndex {return false}
     if lhs._defaultOffVariationIndex != rhs._defaultOffVariationIndex {return false}
     if lhs.variationType != rhs.variationType {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_ArchiveFeatureCommand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ArchiveFeatureCommand"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_ArchiveFeatureCommand, rhs: Bucketeer_Feature_ArchiveFeatureCommand) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
