@@ -4,7 +4,7 @@ use_frameworks!
 workspace 'Bucketeer'
 
 def shared_pods
-    pod 'gRPC-Swift', '1.0.0-alpha.19'
+    pod 'gRPC-Swift', '1.5.0'
 end
 
 target 'Bucketeer' do
