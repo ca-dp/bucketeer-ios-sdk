@@ -28,6 +28,7 @@ enum Bucketeer_Event_Client_SourceId: SwiftProtobuf.Enum {
   case web // = 3
   case goalBatch // = 4
   case goServer // = 5
+  case nodeServer // = 6
   case UNRECOGNIZED(Int)
 
   init() {
@@ -42,6 +43,7 @@ enum Bucketeer_Event_Client_SourceId: SwiftProtobuf.Enum {
     case 3: self = .web
     case 4: self = .goalBatch
     case 5: self = .goServer
+    case 6: self = .nodeServer
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -54,6 +56,7 @@ enum Bucketeer_Event_Client_SourceId: SwiftProtobuf.Enum {
     case .web: return 3
     case .goalBatch: return 4
     case .goServer: return 5
+    case .nodeServer: return 6
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -71,6 +74,7 @@ extension Bucketeer_Event_Client_SourceId: CaseIterable {
     .web,
     .goalBatch,
     .goServer,
+    .nodeServer,
   ]
 }
 
@@ -344,6 +348,7 @@ extension Bucketeer_Event_Client_SourceId: SwiftProtobuf._ProtoNameProviding {
     3: .same(proto: "WEB"),
     4: .same(proto: "GOAL_BATCH"),
     5: .same(proto: "GO_SERVER"),
+    6: .same(proto: "NODE_SERVER"),
   ]
 }
 
