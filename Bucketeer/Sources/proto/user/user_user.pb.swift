@@ -49,6 +49,8 @@ struct Bucketeer_User_UserEntity {
 
   var taggedData: [Bucketeer_User_TaggedData] = []
 
+  var createdAt: Int64 = 0
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -134,6 +136,7 @@ extension Bucketeer_User_UserEntity: SwiftProtobuf.Message, SwiftProtobuf._Messa
     2: .same(proto: "data"),
     3: .standard(proto: "last_seen"),
     4: .standard(proto: "tagged_data"),
+    5: .standard(proto: "created_at"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -143,6 +146,7 @@ extension Bucketeer_User_UserEntity: SwiftProtobuf.Message, SwiftProtobuf._Messa
       case 2: try decoder.decodeRepeatedMessageField(value: &self.data)
       case 3: try decoder.decodeSingularInt64Field(value: &self.lastSeen)
       case 4: try decoder.decodeRepeatedMessageField(value: &self.taggedData)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.createdAt)
       default: break
       }
     }
@@ -161,6 +165,9 @@ extension Bucketeer_User_UserEntity: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if !self.taggedData.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.taggedData, fieldNumber: 4)
     }
+    if self.createdAt != 0 {
+      try visitor.visitSingularInt64Field(value: self.createdAt, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -169,6 +176,7 @@ extension Bucketeer_User_UserEntity: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if lhs.data != rhs.data {return false}
     if lhs.lastSeen != rhs.lastSeen {return false}
     if lhs.taggedData != rhs.taggedData {return false}
+    if lhs.createdAt != rhs.createdAt {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
