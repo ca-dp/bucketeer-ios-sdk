@@ -592,6 +592,41 @@ struct Bucketeer_Feature_UpdateFeatureTargetingResponse {
   init() {}
 }
 
+struct Bucketeer_Feature_CloneFeatureRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: String = String()
+
+  var command: Bucketeer_Feature_CloneFeatureCommand {
+    get {return _command ?? Bucketeer_Feature_CloneFeatureCommand()}
+    set {_command = newValue}
+  }
+  /// Returns true if `command` has been explicitly set.
+  var hasCommand: Bool {return self._command != nil}
+  /// Clears the value of `command`. Subsequent reads from it will return its default value.
+  mutating func clearCommand() {self._command = nil}
+
+  var environmentNamespace: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _command: Bucketeer_Feature_CloneFeatureCommand? = nil
+}
+
+struct Bucketeer_Feature_CloneFeatureResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Bucketeer_Feature_CreateSegmentRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -2155,6 +2190,66 @@ extension Bucketeer_Feature_UpdateFeatureTargetingResponse: SwiftProtobuf.Messag
   }
 
   static func ==(lhs: Bucketeer_Feature_UpdateFeatureTargetingResponse, rhs: Bucketeer_Feature_UpdateFeatureTargetingResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_CloneFeatureRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CloneFeatureRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "command"),
+    3: .standard(proto: "environment_namespace"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularMessageField(value: &self._command)
+      case 3: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if let v = self._command {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if !self.environmentNamespace.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_CloneFeatureRequest, rhs: Bucketeer_Feature_CloneFeatureRequest) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs._command != rhs._command {return false}
+    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_CloneFeatureResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CloneFeatureResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_CloneFeatureResponse, rhs: Bucketeer_Feature_CloneFeatureResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
