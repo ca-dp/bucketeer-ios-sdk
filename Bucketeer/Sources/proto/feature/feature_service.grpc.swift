@@ -92,6 +92,11 @@ internal protocol Bucketeer_Feature_FeatureServiceClientProtocol: GRPCClient {
     callOptions: CallOptions?
   ) -> UnaryCall<Bucketeer_Feature_UpdateFeatureTargetingRequest, Bucketeer_Feature_UpdateFeatureTargetingResponse>
 
+  func cloneFeature(
+    _ request: Bucketeer_Feature_CloneFeatureRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_CloneFeatureRequest, Bucketeer_Feature_CloneFeatureResponse>
+
   func createSegment(
     _ request: Bucketeer_Feature_CreateSegmentRequest,
     callOptions: CallOptions?
@@ -151,6 +156,11 @@ internal protocol Bucketeer_Feature_FeatureServiceClientProtocol: GRPCClient {
     _ request: Bucketeer_Feature_EvaluateOnAllFeaturesRequest,
     callOptions: CallOptions?
   ) -> UnaryCall<Bucketeer_Feature_EvaluateOnAllFeaturesRequest, Bucketeer_Feature_EvaluateOnAllFeaturesResponse>
+
+  func evaluateFeatures(
+    _ request: Bucketeer_Feature_EvaluateFeaturesRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_EvaluateFeaturesRequest, Bucketeer_Feature_EvaluateFeaturesResponse>
 
   func getUserEvaluations(
     _ request: Bucketeer_Feature_GetUserEvaluationsRequest,
@@ -387,6 +397,23 @@ extension Bucketeer_Feature_FeatureServiceClientProtocol {
     )
   }
 
+  /// Unary call to CloneFeature
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CloneFeature.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func cloneFeature(
+    _ request: Bucketeer_Feature_CloneFeatureRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_CloneFeatureRequest, Bucketeer_Feature_CloneFeatureResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/CloneFeature",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
+  }
+
   /// Unary call to CreateSegment
   ///
   /// - Parameters:
@@ -586,6 +613,23 @@ extension Bucketeer_Feature_FeatureServiceClientProtocol {
   ) -> UnaryCall<Bucketeer_Feature_EvaluateOnAllFeaturesRequest, Bucketeer_Feature_EvaluateOnAllFeaturesResponse> {
     return self.makeUnaryCall(
       path: "/bucketeer.feature.FeatureService/EvaluateOnAllFeatures",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
+  }
+
+  /// Unary call to EvaluateFeatures
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to EvaluateFeatures.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func evaluateFeatures(
+    _ request: Bucketeer_Feature_EvaluateFeaturesRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_EvaluateFeaturesRequest, Bucketeer_Feature_EvaluateFeaturesResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/EvaluateFeatures",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions
     )
