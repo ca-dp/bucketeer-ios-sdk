@@ -48,21 +48,11 @@ struct Bucketeer_User_GetUserResponse {
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
   mutating func clearUser() {self._user = nil}
 
-  var userEntity: Bucketeer_User_UserEntity {
-    get {return _userEntity ?? Bucketeer_User_UserEntity()}
-    set {_userEntity = newValue}
-  }
-  /// Returns true if `userEntity` has been explicitly set.
-  var hasUserEntity: Bool {return self._userEntity != nil}
-  /// Clears the value of `userEntity`. Subsequent reads from it will return its default value.
-  mutating func clearUserEntity() {self._userEntity = nil}
-
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 
   fileprivate var _user: Bucketeer_User_User? = nil
-  fileprivate var _userEntity: Bucketeer_User_UserEntity? = nil
 }
 
 struct Bucketeer_User_ListUsersRequest {
@@ -70,16 +60,106 @@ struct Bucketeer_User_ListUsersRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  var environmentNamespace: String = String()
+
   var pageSize: Int64 = 0
 
   var cursor: String = String()
 
-  var environmentNamespace: String = String()
+  var orderBy: Bucketeer_User_ListUsersRequest.OrderBy = .default
+
+  var orderDirection: Bucketeer_User_ListUsersRequest.OrderDirection = .asc
+
+  var searchKeyword: String = String()
+
+  var from: Int64 = 0
+
+  var to: Int64 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  enum OrderBy: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case `default` // = 0
+    case createdAt // = 1
+    case lastSeen // = 2
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .default
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .default
+      case 1: self = .createdAt
+      case 2: self = .lastSeen
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .default: return 0
+      case .createdAt: return 1
+      case .lastSeen: return 2
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  enum OrderDirection: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case asc // = 0
+    case desc // = 1
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .asc
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .asc
+      case 1: self = .desc
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .asc: return 0
+      case .desc: return 1
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   init() {}
 }
+
+#if swift(>=4.2)
+
+extension Bucketeer_User_ListUsersRequest.OrderBy: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Bucketeer_User_ListUsersRequest.OrderBy] = [
+    .default,
+    .createdAt,
+    .lastSeen,
+  ]
+}
+
+extension Bucketeer_User_ListUsersRequest.OrderDirection: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Bucketeer_User_ListUsersRequest.OrderDirection] = [
+    .asc,
+    .desc,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 struct Bucketeer_User_ListUsersResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -89,8 +169,6 @@ struct Bucketeer_User_ListUsersResponse {
   var users: [Bucketeer_User_User] = []
 
   var cursor: String = String()
-
-  var userEntities: [Bucketeer_User_UserEntity] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -140,14 +218,12 @@ extension Bucketeer_User_GetUserResponse: SwiftProtobuf.Message, SwiftProtobuf._
   static let protoMessageName: String = _protobuf_package + ".GetUserResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "user"),
-    2: .standard(proto: "user_entity"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularMessageField(value: &self._user)
-      case 2: try decoder.decodeSingularMessageField(value: &self._userEntity)
       default: break
       }
     }
@@ -157,15 +233,11 @@ extension Bucketeer_User_GetUserResponse: SwiftProtobuf.Message, SwiftProtobuf._
     if let v = self._user {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
     }
-    if let v = self._userEntity {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Bucketeer_User_GetUserResponse, rhs: Bucketeer_User_GetUserResponse) -> Bool {
     if lhs._user != rhs._user {return false}
-    if lhs._userEntity != rhs._userEntity {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -174,42 +246,87 @@ extension Bucketeer_User_GetUserResponse: SwiftProtobuf.Message, SwiftProtobuf._
 extension Bucketeer_User_ListUsersRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ListUsersRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "page_size"),
-    2: .same(proto: "cursor"),
-    3: .standard(proto: "environment_namespace"),
+    1: .standard(proto: "environment_namespace"),
+    2: .standard(proto: "page_size"),
+    3: .same(proto: "cursor"),
+    4: .standard(proto: "order_by"),
+    5: .standard(proto: "order_direction"),
+    6: .standard(proto: "search_keyword"),
+    7: .same(proto: "from"),
+    8: .same(proto: "to"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.pageSize)
-      case 2: try decoder.decodeSingularStringField(value: &self.cursor)
-      case 3: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 1: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.pageSize)
+      case 3: try decoder.decodeSingularStringField(value: &self.cursor)
+      case 4: try decoder.decodeSingularEnumField(value: &self.orderBy)
+      case 5: try decoder.decodeSingularEnumField(value: &self.orderDirection)
+      case 6: try decoder.decodeSingularStringField(value: &self.searchKeyword)
+      case 7: try decoder.decodeSingularInt64Field(value: &self.from)
+      case 8: try decoder.decodeSingularInt64Field(value: &self.to)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.environmentNamespace.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 1)
+    }
     if self.pageSize != 0 {
-      try visitor.visitSingularInt64Field(value: self.pageSize, fieldNumber: 1)
+      try visitor.visitSingularInt64Field(value: self.pageSize, fieldNumber: 2)
     }
     if !self.cursor.isEmpty {
-      try visitor.visitSingularStringField(value: self.cursor, fieldNumber: 2)
+      try visitor.visitSingularStringField(value: self.cursor, fieldNumber: 3)
     }
-    if !self.environmentNamespace.isEmpty {
-      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 3)
+    if self.orderBy != .default {
+      try visitor.visitSingularEnumField(value: self.orderBy, fieldNumber: 4)
+    }
+    if self.orderDirection != .asc {
+      try visitor.visitSingularEnumField(value: self.orderDirection, fieldNumber: 5)
+    }
+    if !self.searchKeyword.isEmpty {
+      try visitor.visitSingularStringField(value: self.searchKeyword, fieldNumber: 6)
+    }
+    if self.from != 0 {
+      try visitor.visitSingularInt64Field(value: self.from, fieldNumber: 7)
+    }
+    if self.to != 0 {
+      try visitor.visitSingularInt64Field(value: self.to, fieldNumber: 8)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Bucketeer_User_ListUsersRequest, rhs: Bucketeer_User_ListUsersRequest) -> Bool {
+    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
     if lhs.pageSize != rhs.pageSize {return false}
     if lhs.cursor != rhs.cursor {return false}
-    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.orderBy != rhs.orderBy {return false}
+    if lhs.orderDirection != rhs.orderDirection {return false}
+    if lhs.searchKeyword != rhs.searchKeyword {return false}
+    if lhs.from != rhs.from {return false}
+    if lhs.to != rhs.to {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Bucketeer_User_ListUsersRequest.OrderBy: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "DEFAULT"),
+    1: .same(proto: "CREATED_AT"),
+    2: .same(proto: "LAST_SEEN"),
+  ]
+}
+
+extension Bucketeer_User_ListUsersRequest.OrderDirection: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "ASC"),
+    1: .same(proto: "DESC"),
+  ]
 }
 
 extension Bucketeer_User_ListUsersResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -217,7 +334,6 @@ extension Bucketeer_User_ListUsersResponse: SwiftProtobuf.Message, SwiftProtobuf
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "users"),
     2: .same(proto: "cursor"),
-    3: .standard(proto: "user_entities"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -225,7 +341,6 @@ extension Bucketeer_User_ListUsersResponse: SwiftProtobuf.Message, SwiftProtobuf
       switch fieldNumber {
       case 1: try decoder.decodeRepeatedMessageField(value: &self.users)
       case 2: try decoder.decodeSingularStringField(value: &self.cursor)
-      case 3: try decoder.decodeRepeatedMessageField(value: &self.userEntities)
       default: break
       }
     }
@@ -238,16 +353,12 @@ extension Bucketeer_User_ListUsersResponse: SwiftProtobuf.Message, SwiftProtobuf
     if !self.cursor.isEmpty {
       try visitor.visitSingularStringField(value: self.cursor, fieldNumber: 2)
     }
-    if !self.userEntities.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.userEntities, fieldNumber: 3)
-    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Bucketeer_User_ListUsersResponse, rhs: Bucketeer_User_ListUsersResponse) -> Bool {
     if lhs.users != rhs.users {return false}
     if lhs.cursor != rhs.cursor {return false}
-    if lhs.userEntities != rhs.userEntities {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
