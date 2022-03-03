@@ -133,6 +133,11 @@ struct Bucketeer_Feature_Feature {
     set {_uniqueStorage()._archived = newValue}
   }
 
+  var prerequisites: [Bucketeer_Feature_Prerequisite] {
+    get {return _storage._prerequisites}
+    set {_uniqueStorage()._prerequisites = newValue}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum VariationType: SwiftProtobuf.Enum {
@@ -245,6 +250,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
     18: .same(proto: "maintainer"),
     19: .standard(proto: "variation_type"),
     20: .same(proto: "archived"),
+    21: .same(proto: "prerequisites"),
   ]
 
   fileprivate class _StorageClass {
@@ -268,6 +274,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
     var _maintainer: String = String()
     var _variationType: Bucketeer_Feature_Feature.VariationType = .string
     var _archived: Bool = false
+    var _prerequisites: [Bucketeer_Feature_Prerequisite] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -294,6 +301,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
       _maintainer = source._maintainer
       _variationType = source._variationType
       _archived = source._archived
+      _prerequisites = source._prerequisites
     }
   }
 
@@ -329,6 +337,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
         case 18: try decoder.decodeSingularStringField(value: &_storage._maintainer)
         case 19: try decoder.decodeSingularEnumField(value: &_storage._variationType)
         case 20: try decoder.decodeSingularBoolField(value: &_storage._archived)
+        case 21: try decoder.decodeRepeatedMessageField(value: &_storage._prerequisites)
         default: break
         }
       }
@@ -397,6 +406,9 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
       if _storage._archived != false {
         try visitor.visitSingularBoolField(value: _storage._archived, fieldNumber: 20)
       }
+      if !_storage._prerequisites.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._prerequisites, fieldNumber: 21)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -426,6 +438,7 @@ extension Bucketeer_Feature_Feature: SwiftProtobuf.Message, SwiftProtobuf._Messa
         if _storage._maintainer != rhs_storage._maintainer {return false}
         if _storage._variationType != rhs_storage._variationType {return false}
         if _storage._archived != rhs_storage._archived {return false}
+        if _storage._prerequisites != rhs_storage._prerequisites {return false}
         return true
       }
       if !storagesAreEqual {return false}
