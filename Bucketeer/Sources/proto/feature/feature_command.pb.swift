@@ -643,6 +643,16 @@ struct Bucketeer_Feature_CloneFeatureCommand {
   init() {}
 }
 
+struct Bucketeer_Feature_ResetSamplingSeedCommand {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bucketeer.feature"
@@ -1958,6 +1968,25 @@ extension Bucketeer_Feature_CloneFeatureCommand: SwiftProtobuf.Message, SwiftPro
 
   static func ==(lhs: Bucketeer_Feature_CloneFeatureCommand, rhs: Bucketeer_Feature_CloneFeatureCommand) -> Bool {
     if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_ResetSamplingSeedCommand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ResetSamplingSeedCommand"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_ResetSamplingSeedCommand, rhs: Bucketeer_Feature_ResetSamplingSeedCommand) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
