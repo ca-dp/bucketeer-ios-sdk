@@ -38,6 +38,7 @@ struct Bucketeer_Feature_Reason {
     case `default` // = 3
     case client // = 4
     case offVariation // = 5
+    case prerequisite // = 6
     case UNRECOGNIZED(Int)
 
     init() {
@@ -51,6 +52,7 @@ struct Bucketeer_Feature_Reason {
       case 3: self = .default
       case 4: self = .client
       case 5: self = .offVariation
+      case 6: self = .prerequisite
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -62,6 +64,7 @@ struct Bucketeer_Feature_Reason {
       case .default: return 3
       case .client: return 4
       case .offVariation: return 5
+      case .prerequisite: return 6
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -81,6 +84,7 @@ extension Bucketeer_Feature_Reason.TypeEnum: CaseIterable {
     .default,
     .client,
     .offVariation,
+    .prerequisite,
   ]
 }
 
@@ -132,5 +136,6 @@ extension Bucketeer_Feature_Reason.TypeEnum: SwiftProtobuf._ProtoNameProviding {
     3: .same(proto: "DEFAULT"),
     4: .same(proto: "CLIENT"),
     5: .same(proto: "OFF_VARIATION"),
+    6: .same(proto: "PREREQUISITE"),
   ]
 }
