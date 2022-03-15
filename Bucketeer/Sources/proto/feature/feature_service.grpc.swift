@@ -72,6 +72,11 @@ internal protocol Bucketeer_Feature_FeatureServiceClientProtocol: GRPCClient {
     callOptions: CallOptions?
   ) -> UnaryCall<Bucketeer_Feature_ArchiveFeatureRequest, Bucketeer_Feature_ArchiveFeatureResponse>
 
+  func unarchiveFeature(
+    _ request: Bucketeer_Feature_UnarchiveFeatureRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Bucketeer_Feature_UnarchiveFeatureRequest, Bucketeer_Feature_UnarchiveFeatureResponse>
+
   func deleteFeature(
     _ request: Bucketeer_Feature_DeleteFeatureRequest,
     callOptions: CallOptions?
@@ -324,6 +329,23 @@ extension Bucketeer_Feature_FeatureServiceClientProtocol {
   ) -> UnaryCall<Bucketeer_Feature_ArchiveFeatureRequest, Bucketeer_Feature_ArchiveFeatureResponse> {
     return self.makeUnaryCall(
       path: "/bucketeer.feature.FeatureService/ArchiveFeature",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions
+    )
+  }
+
+  /// Unary call to UnarchiveFeature
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UnarchiveFeature.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func unarchiveFeature(
+    _ request: Bucketeer_Feature_UnarchiveFeatureRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Bucketeer_Feature_UnarchiveFeatureRequest, Bucketeer_Feature_UnarchiveFeatureResponse> {
+    return self.makeUnaryCall(
+      path: "/bucketeer.feature.FeatureService/UnarchiveFeature",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions
     )
