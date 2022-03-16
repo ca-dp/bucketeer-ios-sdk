@@ -448,6 +448,43 @@ struct Bucketeer_Feature_ArchiveFeatureResponse {
   init() {}
 }
 
+struct Bucketeer_Feature_UnarchiveFeatureRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: String = String()
+
+  var command: Bucketeer_Feature_UnarchiveFeatureCommand {
+    get {return _command ?? Bucketeer_Feature_UnarchiveFeatureCommand()}
+    set {_command = newValue}
+  }
+  /// Returns true if `command` has been explicitly set.
+  var hasCommand: Bool {return self._command != nil}
+  /// Clears the value of `command`. Subsequent reads from it will return its default value.
+  mutating func clearCommand() {self._command = nil}
+
+  var environmentNamespace: String = String()
+
+  var comment: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _command: Bucketeer_Feature_UnarchiveFeatureCommand? = nil
+}
+
+struct Bucketeer_Feature_UnarchiveFeatureResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Bucketeer_Feature_DeleteFeatureRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -1954,6 +1991,72 @@ extension Bucketeer_Feature_ArchiveFeatureResponse: SwiftProtobuf.Message, Swift
   }
 
   static func ==(lhs: Bucketeer_Feature_ArchiveFeatureResponse, rhs: Bucketeer_Feature_ArchiveFeatureResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_UnarchiveFeatureRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".UnarchiveFeatureRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "command"),
+    3: .standard(proto: "environment_namespace"),
+    4: .same(proto: "comment"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularMessageField(value: &self._command)
+      case 3: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 4: try decoder.decodeSingularStringField(value: &self.comment)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if let v = self._command {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if !self.environmentNamespace.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 3)
+    }
+    if !self.comment.isEmpty {
+      try visitor.visitSingularStringField(value: self.comment, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_UnarchiveFeatureRequest, rhs: Bucketeer_Feature_UnarchiveFeatureRequest) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs._command != rhs._command {return false}
+    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.comment != rhs.comment {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_UnarchiveFeatureResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".UnarchiveFeatureResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_UnarchiveFeatureResponse, rhs: Bucketeer_Feature_UnarchiveFeatureResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
