@@ -20,32 +20,6 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct Bucketeer_Feature_SearchFeaturesRequest {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  var keyword: String = String()
-
-  var environmentNamespace: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-}
-
-struct Bucketeer_Feature_SearchFeaturesResponse {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  var features: [Bucketeer_Feature_Feature] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-}
-
 struct Bucketeer_Feature_GetFeatureRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -439,6 +413,43 @@ struct Bucketeer_Feature_ArchiveFeatureRequest {
 }
 
 struct Bucketeer_Feature_ArchiveFeatureResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Feature_UnarchiveFeatureRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: String = String()
+
+  var command: Bucketeer_Feature_UnarchiveFeatureCommand {
+    get {return _command ?? Bucketeer_Feature_UnarchiveFeatureCommand()}
+    set {_command = newValue}
+  }
+  /// Returns true if `command` has been explicitly set.
+  var hasCommand: Bool {return self._command != nil}
+  /// Clears the value of `command`. Subsequent reads from it will return its default value.
+  mutating func clearCommand() {self._command = nil}
+
+  var environmentNamespace: String = String()
+
+  var comment: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _command: Bucketeer_Feature_UnarchiveFeatureCommand? = nil
+}
+
+struct Bucketeer_Feature_UnarchiveFeatureResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1128,50 +1139,6 @@ struct Bucketeer_Feature_BulkDownloadSegmentUsersResponse {
   init() {}
 }
 
-struct Bucketeer_Feature_EvaluateOnAllFeaturesRequest {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  var user: Bucketeer_User_User {
-    get {return _user ?? Bucketeer_User_User()}
-    set {_user = newValue}
-  }
-  /// Returns true if `user` has been explicitly set.
-  var hasUser: Bool {return self._user != nil}
-  /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  mutating func clearUser() {self._user = nil}
-
-  var environmentNamespace: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  fileprivate var _user: Bucketeer_User_User? = nil
-}
-
-struct Bucketeer_Feature_EvaluateOnAllFeaturesResponse {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  var userEvaluations: Bucketeer_Feature_UserEvaluations {
-    get {return _userEvaluations ?? Bucketeer_Feature_UserEvaluations()}
-    set {_userEvaluations = newValue}
-  }
-  /// Returns true if `userEvaluations` has been explicitly set.
-  var hasUserEvaluations: Bool {return self._userEvaluations != nil}
-  /// Clears the value of `userEvaluations`. Subsequent reads from it will return its default value.
-  mutating func clearUserEvaluations() {self._userEvaluations = nil}
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  fileprivate var _userEvaluations: Bucketeer_Feature_UserEvaluations? = nil
-}
-
 struct Bucketeer_Feature_EvaluateFeaturesRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -1284,70 +1251,6 @@ struct Bucketeer_Feature_UpsertUserEvaluationResponse {
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bucketeer.feature"
-
-extension Bucketeer_Feature_SearchFeaturesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".SearchFeaturesRequest"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "keyword"),
-    2: .standard(proto: "environment_namespace"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.keyword)
-      case 2: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.keyword.isEmpty {
-      try visitor.visitSingularStringField(value: self.keyword, fieldNumber: 1)
-    }
-    if !self.environmentNamespace.isEmpty {
-      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: Bucketeer_Feature_SearchFeaturesRequest, rhs: Bucketeer_Feature_SearchFeaturesRequest) -> Bool {
-    if lhs.keyword != rhs.keyword {return false}
-    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bucketeer_Feature_SearchFeaturesResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".SearchFeaturesResponse"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "features"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeRepeatedMessageField(value: &self.features)
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.features.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.features, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: Bucketeer_Feature_SearchFeaturesResponse, rhs: Bucketeer_Feature_SearchFeaturesResponse) -> Bool {
-    if lhs.features != rhs.features {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
 
 extension Bucketeer_Feature_GetFeatureRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".GetFeatureRequest"
@@ -1954,6 +1857,72 @@ extension Bucketeer_Feature_ArchiveFeatureResponse: SwiftProtobuf.Message, Swift
   }
 
   static func ==(lhs: Bucketeer_Feature_ArchiveFeatureResponse, rhs: Bucketeer_Feature_ArchiveFeatureResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_UnarchiveFeatureRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".UnarchiveFeatureRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "command"),
+    3: .standard(proto: "environment_namespace"),
+    4: .same(proto: "comment"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularMessageField(value: &self._command)
+      case 3: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
+      case 4: try decoder.decodeSingularStringField(value: &self.comment)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if let v = self._command {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if !self.environmentNamespace.isEmpty {
+      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 3)
+    }
+    if !self.comment.isEmpty {
+      try visitor.visitSingularStringField(value: self.comment, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_UnarchiveFeatureRequest, rhs: Bucketeer_Feature_UnarchiveFeatureRequest) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs._command != rhs._command {return false}
+    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.comment != rhs.comment {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_UnarchiveFeatureResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".UnarchiveFeatureResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_UnarchiveFeatureResponse, rhs: Bucketeer_Feature_UnarchiveFeatureResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -3092,70 +3061,6 @@ extension Bucketeer_Feature_BulkDownloadSegmentUsersResponse: SwiftProtobuf.Mess
 
   static func ==(lhs: Bucketeer_Feature_BulkDownloadSegmentUsersResponse, rhs: Bucketeer_Feature_BulkDownloadSegmentUsersResponse) -> Bool {
     if lhs.data != rhs.data {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bucketeer_Feature_EvaluateOnAllFeaturesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".EvaluateOnAllFeaturesRequest"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "user"),
-    2: .standard(proto: "environment_namespace"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularMessageField(value: &self._user)
-      case 2: try decoder.decodeSingularStringField(value: &self.environmentNamespace)
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._user {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-    }
-    if !self.environmentNamespace.isEmpty {
-      try visitor.visitSingularStringField(value: self.environmentNamespace, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: Bucketeer_Feature_EvaluateOnAllFeaturesRequest, rhs: Bucketeer_Feature_EvaluateOnAllFeaturesRequest) -> Bool {
-    if lhs._user != rhs._user {return false}
-    if lhs.environmentNamespace != rhs.environmentNamespace {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bucketeer_Feature_EvaluateOnAllFeaturesResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".EvaluateOnAllFeaturesResponse"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "user_evaluations"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularMessageField(value: &self._userEvaluations)
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._userEvaluations {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: Bucketeer_Feature_EvaluateOnAllFeaturesResponse, rhs: Bucketeer_Feature_EvaluateOnAllFeaturesResponse) -> Bool {
-    if lhs._userEvaluations != rhs._userEvaluations {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
