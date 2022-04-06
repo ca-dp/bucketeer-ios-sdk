@@ -95,6 +95,16 @@ struct Bucketeer_Feature_ArchiveFeatureCommand {
   init() {}
 }
 
+struct Bucketeer_Feature_UnarchiveFeatureCommand {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Bucketeer_Feature_DeleteFeatureCommand {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -643,6 +653,70 @@ struct Bucketeer_Feature_CloneFeatureCommand {
   init() {}
 }
 
+struct Bucketeer_Feature_ResetSamplingSeedCommand {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Feature_AddPrerequisiteCommand {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var prerequisite: Bucketeer_Feature_Prerequisite {
+    get {return _prerequisite ?? Bucketeer_Feature_Prerequisite()}
+    set {_prerequisite = newValue}
+  }
+  /// Returns true if `prerequisite` has been explicitly set.
+  var hasPrerequisite: Bool {return self._prerequisite != nil}
+  /// Clears the value of `prerequisite`. Subsequent reads from it will return its default value.
+  mutating func clearPrerequisite() {self._prerequisite = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _prerequisite: Bucketeer_Feature_Prerequisite? = nil
+}
+
+struct Bucketeer_Feature_RemovePrerequisiteCommand {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var featureID: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Bucketeer_Feature_ChangePrerequisiteVariationCommand {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var prerequisite: Bucketeer_Feature_Prerequisite {
+    get {return _prerequisite ?? Bucketeer_Feature_Prerequisite()}
+    set {_prerequisite = newValue}
+  }
+  /// Returns true if `prerequisite` has been explicitly set.
+  var hasPrerequisite: Bool {return self._prerequisite != nil}
+  /// Clears the value of `prerequisite`. Subsequent reads from it will return its default value.
+  mutating func clearPrerequisite() {self._prerequisite = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _prerequisite: Bucketeer_Feature_Prerequisite? = nil
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bucketeer.feature"
@@ -761,6 +835,25 @@ extension Bucketeer_Feature_ArchiveFeatureCommand: SwiftProtobuf.Message, SwiftP
   }
 
   static func ==(lhs: Bucketeer_Feature_ArchiveFeatureCommand, rhs: Bucketeer_Feature_ArchiveFeatureCommand) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_UnarchiveFeatureCommand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".UnarchiveFeatureCommand"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_UnarchiveFeatureCommand, rhs: Bucketeer_Feature_UnarchiveFeatureCommand) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1958,6 +2051,112 @@ extension Bucketeer_Feature_CloneFeatureCommand: SwiftProtobuf.Message, SwiftPro
 
   static func ==(lhs: Bucketeer_Feature_CloneFeatureCommand, rhs: Bucketeer_Feature_CloneFeatureCommand) -> Bool {
     if lhs.environmentNamespace != rhs.environmentNamespace {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_ResetSamplingSeedCommand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ResetSamplingSeedCommand"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_ResetSamplingSeedCommand, rhs: Bucketeer_Feature_ResetSamplingSeedCommand) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_AddPrerequisiteCommand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".AddPrerequisiteCommand"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "prerequisite"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularMessageField(value: &self._prerequisite)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._prerequisite {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_AddPrerequisiteCommand, rhs: Bucketeer_Feature_AddPrerequisiteCommand) -> Bool {
+    if lhs._prerequisite != rhs._prerequisite {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_RemovePrerequisiteCommand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".RemovePrerequisiteCommand"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "feature_id"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.featureID)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.featureID.isEmpty {
+      try visitor.visitSingularStringField(value: self.featureID, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_RemovePrerequisiteCommand, rhs: Bucketeer_Feature_RemovePrerequisiteCommand) -> Bool {
+    if lhs.featureID != rhs.featureID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bucketeer_Feature_ChangePrerequisiteVariationCommand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ChangePrerequisiteVariationCommand"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "prerequisite"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularMessageField(value: &self._prerequisite)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._prerequisite {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Bucketeer_Feature_ChangePrerequisiteVariationCommand, rhs: Bucketeer_Feature_ChangePrerequisiteVariationCommand) -> Bool {
+    if lhs._prerequisite != rhs._prerequisite {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
