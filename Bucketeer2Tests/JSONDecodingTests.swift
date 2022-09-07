@@ -1,11 +1,3 @@
-//
-//  JSONDecodingTests.swift
-//  Bucketeer2Tests
-//
-//  Created by Jin Sasaki on 2022/09/07.
-//  Copyright © 2022 Bucketeer. All rights reserved.
-//
-
 import XCTest
 @testable import Bucketeer2
 
