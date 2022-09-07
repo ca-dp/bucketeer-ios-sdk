@@ -10,6 +10,22 @@
 		0065C3C628C7BB76002D92A2 /* Bucketeer2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0065C3BE28C7BB76002D92A2 /* Bucketeer2.framework */; };
 		0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */; };
 		0065C3CC28C7BB76002D92A2 /* Bucketeer2.h in Headers */ = {isa = PBXBuildFile; fileRef = 0065C3C028C7BB76002D92A2 /* Bucketeer2.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0065C3D928C7BC8C002D92A2 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3D828C7BC8C002D92A2 /* JSON.swift */; };
+		0065C3DB28C7BCC0002D92A2 /* JSON.Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DA28C7BCC0002D92A2 /* JSON.Duration.swift */; };
+		0065C3DD28C7BCFF002D92A2 /* JSON.Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DC28C7BCFF002D92A2 /* JSON.Evaluation.swift */; };
+		0065C3DF28C7BD32002D92A2 /* JSON.Variation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DE28C7BD32002D92A2 /* JSON.Variation.swift */; };
+		0065C3E128C7BD4E002D92A2 /* JSON.Reason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E028C7BD4E002D92A2 /* JSON.Reason.swift */; };
+		0065C3E328C8136D002D92A2 /* JSON.Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E228C8136D002D92A2 /* JSON.Event.swift */; };
+		0065C3E528C813D6002D92A2 /* JSON.EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E428C813D6002D92A2 /* JSON.EventData.swift */; };
+		0065C3E728C815EA002D92A2 /* JSON.SourceID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E628C815EA002D92A2 /* JSON.SourceID.swift */; };
+		0065C3E928C815F8002D92A2 /* JSON.User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E828C815F8002D92A2 /* JSON.User.swift */; };
+		0065C3EB28C81620002D92A2 /* JSON.MetricsEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EA28C81620002D92A2 /* JSON.MetricsEventData.swift */; };
+		0065C3ED28C8162D002D92A2 /* JSON.MetricsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EC28C8162D002D92A2 /* JSON.MetricsEventType.swift */; };
+		0065C3EF28C8164E002D92A2 /* JSON.EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EE28C8164E002D92A2 /* JSON.EventType.swift */; };
+		0065C3F128C817E9002D92A2 /* JSON.ReasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F028C817E9002D92A2 /* JSON.ReasonType.swift */; };
+		0065C3F328C818C0002D92A2 /* JSON.UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F228C818C0002D92A2 /* JSON.UserData.swift */; };
+		0065C3F528C818EF002D92A2 /* JSON.UserEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */; };
+		0065C3F728C81921002D92A2 /* JSON.UserEvaluationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F628C81921002D92A2 /* JSON.UserEvaluationsState.swift */; };
 		1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5320EB63D0004BB277 /* CommonUnitUtil.swift */; };
 		1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5520EB63D0004BB277 /* CurrentEvaluationStoreTest.swift */; };
 		1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5420EB63D0004BB277 /* EventSaverTest.swift */; };
@@ -230,6 +246,22 @@
 		0065C3C028C7BB76002D92A2 /* Bucketeer2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bucketeer2.h; sourceTree = "<group>"; };
 		0065C3C528C7BB76002D92A2 /* Bucketeer2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bucketeer2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucketeer2Tests.swift; sourceTree = "<group>"; };
+		0065C3D828C7BC8C002D92A2 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		0065C3DA28C7BCC0002D92A2 /* JSON.Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Duration.swift; sourceTree = "<group>"; };
+		0065C3DC28C7BCFF002D92A2 /* JSON.Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Evaluation.swift; sourceTree = "<group>"; };
+		0065C3DE28C7BD32002D92A2 /* JSON.Variation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Variation.swift; sourceTree = "<group>"; };
+		0065C3E028C7BD4E002D92A2 /* JSON.Reason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Reason.swift; sourceTree = "<group>"; };
+		0065C3E228C8136D002D92A2 /* JSON.Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Event.swift; sourceTree = "<group>"; };
+		0065C3E428C813D6002D92A2 /* JSON.EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.EventData.swift; sourceTree = "<group>"; };
+		0065C3E628C815EA002D92A2 /* JSON.SourceID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.SourceID.swift; sourceTree = "<group>"; };
+		0065C3E828C815F8002D92A2 /* JSON.User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.User.swift; sourceTree = "<group>"; };
+		0065C3EA28C81620002D92A2 /* JSON.MetricsEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.MetricsEventData.swift; sourceTree = "<group>"; };
+		0065C3EC28C8162D002D92A2 /* JSON.MetricsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.MetricsEventType.swift; sourceTree = "<group>"; };
+		0065C3EE28C8164E002D92A2 /* JSON.EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.EventType.swift; sourceTree = "<group>"; };
+		0065C3F028C817E9002D92A2 /* JSON.ReasonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.ReasonType.swift; sourceTree = "<group>"; };
+		0065C3F228C818C0002D92A2 /* JSON.UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserData.swift; sourceTree = "<group>"; };
+		0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserEvaluations.swift; sourceTree = "<group>"; };
+		0065C3F628C81921002D92A2 /* JSON.UserEvaluationsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserEvaluationsState.swift; sourceTree = "<group>"; };
 		038E7311AB81EF508137B217 /* Pods-BucketeerTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTVOS/Pods-BucketeerTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		09861BB62ADD613222969F0B /* Pods-App-Bucketeer.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Bucketeer.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Bucketeer/Pods-App-Bucketeer.test.xcconfig"; sourceTree = "<group>"; };
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
@@ -414,6 +446,7 @@
 		0065C3BF28C7BB76002D92A2 /* Bucketeer2 */ = {
 			isa = PBXGroup;
 			children = (
+				0065C3D528C7BC66002D92A2 /* Sources */,
 				0065C3C028C7BB76002D92A2 /* Bucketeer2.h */,
 			);
 			path = Bucketeer2;
@@ -425,6 +458,45 @@
 				0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */,
 			);
 			path = Bucketeer2Tests;
+			sourceTree = "<group>";
+		};
+		0065C3D528C7BC66002D92A2 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0065C3D628C7BC75002D92A2 /* Internal */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		0065C3D628C7BC75002D92A2 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				0065C3D728C7BC82002D92A2 /* JSON */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		0065C3D728C7BC82002D92A2 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				0065C3DA28C7BCC0002D92A2 /* JSON.Duration.swift */,
+				0065C3DC28C7BCFF002D92A2 /* JSON.Evaluation.swift */,
+				0065C3E228C8136D002D92A2 /* JSON.Event.swift */,
+				0065C3E428C813D6002D92A2 /* JSON.EventData.swift */,
+				0065C3EE28C8164E002D92A2 /* JSON.EventType.swift */,
+				0065C3EA28C81620002D92A2 /* JSON.MetricsEventData.swift */,
+				0065C3EC28C8162D002D92A2 /* JSON.MetricsEventType.swift */,
+				0065C3E028C7BD4E002D92A2 /* JSON.Reason.swift */,
+				0065C3F028C817E9002D92A2 /* JSON.ReasonType.swift */,
+				0065C3E628C815EA002D92A2 /* JSON.SourceID.swift */,
+				0065C3D828C7BC8C002D92A2 /* JSON.swift */,
+				0065C3E828C815F8002D92A2 /* JSON.User.swift */,
+				0065C3F228C818C0002D92A2 /* JSON.UserData.swift */,
+				0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */,
+				0065C3F628C81921002D92A2 /* JSON.UserEvaluationsState.swift */,
+				0065C3DE28C7BD32002D92A2 /* JSON.Variation.swift */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		02CF7E94683CC949DA6982F7 /* Frameworks */ = {
@@ -890,6 +962,7 @@
 				TargetAttributes = {
 					0065C3BD28C7BB76002D92A2 = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 					0065C3C428C7BB76002D92A2 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -1150,6 +1223,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0065C3DB28C7BCC0002D92A2 /* JSON.Duration.swift in Sources */,
+				0065C3DD28C7BCFF002D92A2 /* JSON.Evaluation.swift in Sources */,
+				0065C3E328C8136D002D92A2 /* JSON.Event.swift in Sources */,
+				0065C3E528C813D6002D92A2 /* JSON.EventData.swift in Sources */,
+				0065C3EF28C8164E002D92A2 /* JSON.EventType.swift in Sources */,
+				0065C3EB28C81620002D92A2 /* JSON.MetricsEventData.swift in Sources */,
+				0065C3ED28C8162D002D92A2 /* JSON.MetricsEventType.swift in Sources */,
+				0065C3E128C7BD4E002D92A2 /* JSON.Reason.swift in Sources */,
+				0065C3F128C817E9002D92A2 /* JSON.ReasonType.swift in Sources */,
+				0065C3E728C815EA002D92A2 /* JSON.SourceID.swift in Sources */,
+				0065C3D928C7BC8C002D92A2 /* JSON.swift in Sources */,
+				0065C3E928C815F8002D92A2 /* JSON.User.swift in Sources */,
+				0065C3F328C818C0002D92A2 /* JSON.UserData.swift in Sources */,
+				0065C3F528C818EF002D92A2 /* JSON.UserEvaluations.swift in Sources */,
+				0065C3F728C81921002D92A2 /* JSON.UserEvaluationsState.swift in Sources */,
+				0065C3DF28C7BD32002D92A2 /* JSON.Variation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1404,6 +1493,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1429,6 +1519,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1438,6 +1529,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1462,6 +1554,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1471,6 +1564,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1503,6 +1597,7 @@
 		0065C3D028C7BB76002D92A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
@@ -1524,6 +1619,7 @@
 		0065C3D128C7BB76002D92A2 /* Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
@@ -1544,6 +1640,7 @@
 		0065C3D228C7BB76002D92A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
