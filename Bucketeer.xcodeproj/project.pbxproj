@@ -26,6 +26,7 @@
 		0065C3F328C818C0002D92A2 /* JSON.UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F228C818C0002D92A2 /* JSON.UserData.swift */; };
 		0065C3F528C818EF002D92A2 /* JSON.UserEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */; };
 		0065C3F728C81921002D92A2 /* JSON.UserEvaluationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F628C81921002D92A2 /* JSON.UserEvaluationsState.swift */; };
+		0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */; };
 		1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5320EB63D0004BB277 /* CommonUnitUtil.swift */; };
 		1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5520EB63D0004BB277 /* CurrentEvaluationStoreTest.swift */; };
 		1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5420EB63D0004BB277 /* EventSaverTest.swift */; };
@@ -262,6 +263,7 @@
 		0065C3F228C818C0002D92A2 /* JSON.UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserData.swift; sourceTree = "<group>"; };
 		0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserEvaluations.swift; sourceTree = "<group>"; };
 		0065C3F628C81921002D92A2 /* JSON.UserEvaluationsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserEvaluationsState.swift; sourceTree = "<group>"; };
+		0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingTests.swift; sourceTree = "<group>"; };
 		038E7311AB81EF508137B217 /* Pods-BucketeerTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTVOS/Pods-BucketeerTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		09861BB62ADD613222969F0B /* Pods-App-Bucketeer.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Bucketeer.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Bucketeer/Pods-App-Bucketeer.test.xcconfig"; sourceTree = "<group>"; };
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */,
+				0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */,
 			);
 			path = Bucketeer2Tests;
 			sourceTree = "<group>";
@@ -1247,6 +1250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */,
+				0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
