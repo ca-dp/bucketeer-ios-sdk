@@ -107,3 +107,7 @@ copy-protos: .gen-protos
 		dirName=$${dir##*/}; \
 		mv $$file $$dir/$$dirName"_"$$var; \
 	done
+
+.PHONY: sort-proj
+sort-proj:
+	./scripts/sort-Xcode-project-file $(APP_NAME).xcodeproj
