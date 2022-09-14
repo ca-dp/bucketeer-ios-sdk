@@ -26,6 +26,21 @@
 		0065C3F328C818C0002D92A2 /* JSON.UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F228C818C0002D92A2 /* JSON.UserData.swift */; };
 		0065C3F528C818EF002D92A2 /* JSON.UserEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */; };
 		0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */; };
+		00696D6628D1C806000068E1 /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6528D1C806000068E1 /* SQLite.swift */; };
+		00696D6928D1CA77000068E1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6828D1CA76000068E1 /* Logger.swift */; };
+		00696D6B28D1D175000068E1 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6A28D1D175000068E1 /* Migration.swift */; };
+		00696D6D28D1D189000068E1 /* Migration1to2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6C28D1D189000068E1 /* Migration1to2.swift */; };
+		00696D7128D1D258000068E1 /* CurrentEvaluationDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D7028D1D258000068E1 /* CurrentEvaluationDao.swift */; };
+		00696D7328D1D295000068E1 /* CurrentEvaluationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D7228D1D295000068E1 /* CurrentEvaluationEntity.swift */; };
+		00696D7528D1D2BB000068E1 /* CurrentEvaluationDaoImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D7428D1D2BB000068E1 /* CurrentEvaluationDaoImpl.swift */; };
+		00696D9B28D21ADA000068E1 /* SQLite.Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D9A28D21ADA000068E1 /* SQLite.Statement.swift */; };
+		00696D9D28D21B2E000068E1 /* SQLiteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D9C28D21B2E000068E1 /* SQLiteEntity.swift */; };
+		00696D9F28D21B46000068E1 /* AnySQLiteColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D9E28D21B46000068E1 /* AnySQLiteColumn.swift */; };
+		00696DA128D21B58000068E1 /* SQLiteValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DA028D21B58000068E1 /* SQLiteValue.swift */; };
+		00696DA328D21B6C000068E1 /* SQLiteColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DA228D21B6C000068E1 /* SQLiteColumn.swift */; };
+		00696DA528D21B7E000068E1 /* SQLite.Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DA428D21B7E000068E1 /* SQLite.Condition.swift */; };
+		00696DA728D21B9A000068E1 /* SQLite.Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DA628D21B9A000068E1 /* SQLite.Table.swift */; };
+		00696DA928D21C0E000068E1 /* SQLite.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DA828D21C0E000068E1 /* SQLite.Error.swift */; };
 		1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5320EB63D0004BB277 /* CommonUnitUtil.swift */; };
 		1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5520EB63D0004BB277 /* CurrentEvaluationStoreTest.swift */; };
 		1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5420EB63D0004BB277 /* EventSaverTest.swift */; };
@@ -262,6 +277,21 @@
 		0065C3F228C818C0002D92A2 /* JSON.UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserData.swift; sourceTree = "<group>"; };
 		0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserEvaluations.swift; sourceTree = "<group>"; };
 		0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingTests.swift; sourceTree = "<group>"; };
+		00696D6528D1C806000068E1 /* SQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
+		00696D6828D1CA76000068E1 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		00696D6A28D1D175000068E1 /* Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
+		00696D6C28D1D189000068E1 /* Migration1to2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration1to2.swift; sourceTree = "<group>"; };
+		00696D7028D1D258000068E1 /* CurrentEvaluationDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEvaluationDao.swift; sourceTree = "<group>"; };
+		00696D7228D1D295000068E1 /* CurrentEvaluationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEvaluationEntity.swift; sourceTree = "<group>"; };
+		00696D7428D1D2BB000068E1 /* CurrentEvaluationDaoImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEvaluationDaoImpl.swift; sourceTree = "<group>"; };
+		00696D9A28D21ADA000068E1 /* SQLite.Statement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.Statement.swift; sourceTree = "<group>"; };
+		00696D9C28D21B2E000068E1 /* SQLiteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteEntity.swift; sourceTree = "<group>"; };
+		00696D9E28D21B46000068E1 /* AnySQLiteColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnySQLiteColumn.swift; sourceTree = "<group>"; };
+		00696DA028D21B58000068E1 /* SQLiteValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteValue.swift; sourceTree = "<group>"; };
+		00696DA228D21B6C000068E1 /* SQLiteColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteColumn.swift; sourceTree = "<group>"; };
+		00696DA428D21B7E000068E1 /* SQLite.Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.Condition.swift; sourceTree = "<group>"; };
+		00696DA628D21B9A000068E1 /* SQLite.Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.Table.swift; sourceTree = "<group>"; };
+		00696DA828D21C0E000068E1 /* SQLite.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.Error.swift; sourceTree = "<group>"; };
 		038E7311AB81EF508137B217 /* Pods-BucketeerTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTVOS/Pods-BucketeerTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		09861BB62ADD613222969F0B /* Pods-App-Bucketeer.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Bucketeer.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Bucketeer/Pods-App-Bucketeer.test.xcconfig"; sourceTree = "<group>"; };
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
@@ -465,6 +495,7 @@
 			isa = PBXGroup;
 			children = (
 				0065C3D628C7BC75002D92A2 /* Internal */,
+				00696D6728D1CA6D000068E1 /* Public */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -472,6 +503,8 @@
 		0065C3D628C7BC75002D92A2 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				00696D6428D1C7C5000068E1 /* Database */,
+				00696D6E28D1D1EE000068E1 /* Evaluation */,
 				0065C3D728C7BC82002D92A2 /* JSON */,
 			);
 			path = Internal;
@@ -497,6 +530,58 @@
 				0065C3DE28C7BD32002D92A2 /* JSON.Variation.swift */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		00696D6428D1C7C5000068E1 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				00696D6F28D1D235000068E1 /* Migration */,
+				00696DAA28D21CD0000068E1 /* SQLite */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		00696D6728D1CA6D000068E1 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				00696D6828D1CA76000068E1 /* Logger.swift */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		00696D6E28D1D1EE000068E1 /* Evaluation */ = {
+			isa = PBXGroup;
+			children = (
+				00696D7028D1D258000068E1 /* CurrentEvaluationDao.swift */,
+				00696D7428D1D2BB000068E1 /* CurrentEvaluationDaoImpl.swift */,
+				00696D7228D1D295000068E1 /* CurrentEvaluationEntity.swift */,
+			);
+			path = Evaluation;
+			sourceTree = "<group>";
+		};
+		00696D6F28D1D235000068E1 /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				00696D6A28D1D175000068E1 /* Migration.swift */,
+				00696D6C28D1D189000068E1 /* Migration1to2.swift */,
+			);
+			path = Migration;
+			sourceTree = "<group>";
+		};
+		00696DAA28D21CD0000068E1 /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				00696D9E28D21B46000068E1 /* AnySQLiteColumn.swift */,
+				00696DA428D21B7E000068E1 /* SQLite.Condition.swift */,
+				00696DA828D21C0E000068E1 /* SQLite.Error.swift */,
+				00696D9A28D21ADA000068E1 /* SQLite.Statement.swift */,
+				00696D6528D1C806000068E1 /* SQLite.swift */,
+				00696DA628D21B9A000068E1 /* SQLite.Table.swift */,
+				00696DA228D21B6C000068E1 /* SQLiteColumn.swift */,
+				00696D9C28D21B2E000068E1 /* SQLiteEntity.swift */,
+				00696DA028D21B58000068E1 /* SQLiteValue.swift */,
+			);
+			path = SQLite;
 			sourceTree = "<group>";
 		};
 		02CF7E94683CC949DA6982F7 /* Frameworks */ = {
@@ -1223,6 +1308,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00696D9F28D21B46000068E1 /* AnySQLiteColumn.swift in Sources */,
+				00696D7128D1D258000068E1 /* CurrentEvaluationDao.swift in Sources */,
+				00696D7528D1D2BB000068E1 /* CurrentEvaluationDaoImpl.swift in Sources */,
+				00696D7328D1D295000068E1 /* CurrentEvaluationEntity.swift in Sources */,
 				0065C3DB28C7BCC0002D92A2 /* JSON.Duration.swift in Sources */,
 				0065C3DD28C7BCFF002D92A2 /* JSON.Evaluation.swift in Sources */,
 				0065C3E328C8136D002D92A2 /* JSON.Event.swift in Sources */,
@@ -1238,6 +1327,17 @@
 				0065C3F328C818C0002D92A2 /* JSON.UserData.swift in Sources */,
 				0065C3F528C818EF002D92A2 /* JSON.UserEvaluations.swift in Sources */,
 				0065C3DF28C7BD32002D92A2 /* JSON.Variation.swift in Sources */,
+				00696D6928D1CA77000068E1 /* Logger.swift in Sources */,
+				00696D6B28D1D175000068E1 /* Migration.swift in Sources */,
+				00696D6D28D1D189000068E1 /* Migration1to2.swift in Sources */,
+				00696DA528D21B7E000068E1 /* SQLite.Condition.swift in Sources */,
+				00696DA928D21C0E000068E1 /* SQLite.Error.swift in Sources */,
+				00696D9B28D21ADA000068E1 /* SQLite.Statement.swift in Sources */,
+				00696D6628D1C806000068E1 /* SQLite.swift in Sources */,
+				00696DA728D21B9A000068E1 /* SQLite.Table.swift in Sources */,
+				00696DA328D21B6C000068E1 /* SQLiteColumn.swift in Sources */,
+				00696D9D28D21B2E000068E1 /* SQLiteEntity.swift in Sources */,
+				00696DA128D21B58000068E1 /* SQLiteValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

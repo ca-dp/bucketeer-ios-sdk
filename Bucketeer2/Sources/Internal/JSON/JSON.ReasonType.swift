@@ -1,7 +1,7 @@
 import Foundation
 
 extension JSON {
-    enum ReasonType: Int, Decodable, Hashable {
+    enum ReasonType: Int, Codable, Hashable {
         case target = 0
         case rule = 1
         case `default` = 3
