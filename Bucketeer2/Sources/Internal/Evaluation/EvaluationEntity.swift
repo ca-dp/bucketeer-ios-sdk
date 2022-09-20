@@ -1,8 +1,8 @@
 import Foundation
 
-struct CurrentEvaluationEntity: SQLiteEntity {
+struct EvaluationEntity: SQLiteEntity {
     static var tableName: String {
-        return "CurrentEvaluations"
+        return "Evaluations"
     }
     typealias Model = Evaluation
 
@@ -18,7 +18,7 @@ struct CurrentEvaluationEntity: SQLiteEntity {
 
 }
 
-extension CurrentEvaluationEntity {
+extension EvaluationEntity {
     init(model: Model) throws {
         self.id.value = model.id
         self.userId.value = model.user_id

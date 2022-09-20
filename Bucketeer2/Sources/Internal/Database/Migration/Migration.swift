@@ -14,9 +14,9 @@ final class Migration1to2: Migration {
     }
 
     func migration() throws {
-        let currentEvaluationTable = SQLite.Table(entity: CurrentEvaluationEntity())
-        let currentEvaluationSql = currentEvaluationTable.sqlToCreate()
-        try db.exec(query: currentEvaluationSql)
+        let evaluationTable = SQLite.Table(entity: EvaluationEntity())
+        let evaluationSql = evaluationTable.sqlToCreate()
+        try db.exec(query: evaluationSql)
         try db.exec(query: Query.createTableLatestEvaluations)
         try db.exec(query: Query.createTableEvents)
     }

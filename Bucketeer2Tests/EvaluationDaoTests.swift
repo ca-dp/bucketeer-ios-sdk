@@ -1,7 +1,7 @@
 import XCTest
 @testable import Bucketeer2
 
-final class CurrentEvaluationDaoTests: XCTestCase {
+final class EvaluationDaoTests: XCTestCase {
     let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("evaluation_test.db")
     var path: String { url.path }
 
@@ -51,10 +51,8 @@ final class CurrentEvaluationDaoTests: XCTestCase {
         let db = try! SQLite(path: path, logger: nil)
         let migration = Migration1to2(db: db)
         try! migration.migration()
-        let dao = CurrentEvaluationDaoImpl(db: db)
-        for mock in mocks {
-            try! dao.upsertEvaluation(evaluation: mock)
-        }
+        let dao = EvaluationDaoImpl(db: db)
+        try! dao.put(userId: "user1", evaluations: mocks)
     }
 
     override func tearDown() {
@@ -65,7 +63,7 @@ final class CurrentEvaluationDaoTests: XCTestCase {
 
     func testUpsert() throws {
         let db = try SQLite(path: path, logger: nil)
-        let dao = CurrentEvaluationDaoImpl(db: db)
+        let dao = EvaluationDaoImpl(db: db)
         let evaluation = Evaluation(
             id: "evaluation3",
             feature_id: "feature3",
@@ -84,8 +82,8 @@ final class CurrentEvaluationDaoTests: XCTestCase {
             ),
             variation_value: "variation_value3"
         )
-        try dao.upsertEvaluation(evaluation: evaluation)
-        let evaluations = try dao.getEvaluations(userId: "user3")
+        try! dao.put(userId: "user3", evaluations: [evaluation])
+        let evaluations = try dao.get(userId: "user3")
         XCTAssertEqual(evaluations.count, 1)
         guard let evaluation = evaluations.first else {
             return
@@ -97,16 +95,34 @@ final class CurrentEvaluationDaoTests: XCTestCase {
 
     func testDelete() throws {
         let db = try SQLite(path: path, logger: nil)
-        let dao = CurrentEvaluationDaoImpl(db: db)
-        try dao.deleteNotIn(userId: "user1", featureIds: ["feature1"])
+        let dao = EvaluationDaoImpl(db: db)
+        let evaluation = Evaluation(
+            id: "evaluation3",
+            feature_id: "feature3",
+            feature_version: 3,
+            user_id: "user3",
+            variation_id: "variation3",
+            variation: .init(
+                id: "variation3",
+                value: "value3",
+                name: "name3",
+                description: "description3"
+            ),
+            reason: .init(
+                type: .rule,
+                rule_id: "rule3"
+            ),
+            variation_value: "variation_value3"
+        )
+        try dao.deleteAllAndInsert(userId: "user1", evaluations: [evaluation])
 
-        let evaluations = try dao.getEvaluations(userId: "user1")
+        let evaluations = try dao.get(userId: "user3")
         XCTAssertEqual(evaluations.count, 1)
         guard let evaluation = evaluations.first else {
             return
         }
-        XCTAssertEqual(evaluation.id, "evaluation1")
-        XCTAssertEqual(evaluation.variation.id, "variation1")
-        XCTAssertEqual(evaluation.reason.rule_id, "rule1")
+        XCTAssertEqual(evaluation.id, "evaluation3")
+        XCTAssertEqual(evaluation.variation.id, "variation3")
+        XCTAssertEqual(evaluation.reason.rule_id, "rule3")
     }
 }
