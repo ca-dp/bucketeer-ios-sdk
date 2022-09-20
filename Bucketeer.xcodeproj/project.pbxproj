@@ -173,6 +173,7 @@
 		9340CA1928DA0F6200E690CC /* EventDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1628DA0F6200E690CC /* EventDao.swift */; };
 		9340CA1A28DA0F6200E690CC /* EventEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1728DA0F6200E690CC /* EventEntity.swift */; };
 		9340CA1B28DA0F6200E690CC /* EventDaoImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1828DA0F6200E690CC /* EventDaoImpl.swift */; };
+		9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1E28DA106200E690CC /* EventDaoTests.swift */; };
 		AB5FF9DA23D17C1D000B46DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF3C36C23D16E8500B45FB2 /* User.swift */; };
 		AB8CE39C2320E41E000960FF /* user_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3522320E41E000960FF /* user_service.pb.swift */; };
 		AB8CE39E2320E41E000960FF /* user_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3532320E41E000960FF /* user_user.pb.swift */; };
@@ -357,6 +358,7 @@
 		9340CA1628DA0F6200E690CC /* EventDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDao.swift; sourceTree = "<group>"; };
 		9340CA1728DA0F6200E690CC /* EventEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEntity.swift; sourceTree = "<group>"; };
 		9340CA1828DA0F6200E690CC /* EventDaoImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDaoImpl.swift; sourceTree = "<group>"; };
+		9340CA1E28DA106200E690CC /* EventDaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDaoTests.swift; sourceTree = "<group>"; };
 		98C9BE34EAEA31F77EE649B8 /* Pods_ExampleTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CE3522320E41E000960FF /* user_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_service.pb.swift; sourceTree = "<group>"; };
 		AB8CE3532320E41E000960FF /* user_user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_user.pb.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 			children = (
 				0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */,
 				9340CA0828D9D1DD00E690CC /* EvaluationDaoTests.swift */,
+				9340CA1E28DA106200E690CC /* EventDaoTests.swift */,
 				0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */,
 				00696DAB28D21D02000068E1 /* SQLiteTests.swift */,
 			);
@@ -1373,6 +1376,7 @@
 			files = (
 				0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */,
 				9340CA0928D9D1DD00E690CC /* EvaluationDaoTests.swift in Sources */,
+				9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */,
 				0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */,
 				00696DAC28D21D02000068E1 /* SQLiteTests.swift in Sources */,
 			);
