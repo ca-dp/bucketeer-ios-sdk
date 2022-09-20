@@ -41,6 +41,7 @@
 		00696DA528D21B7E000068E1 /* SQLite.Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DA428D21B7E000068E1 /* SQLite.Condition.swift */; };
 		00696DA728D21B9A000068E1 /* SQLite.Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DA628D21B9A000068E1 /* SQLite.Table.swift */; };
 		00696DA928D21C0E000068E1 /* SQLite.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DA828D21C0E000068E1 /* SQLite.Error.swift */; };
+		00696DAC28D21D02000068E1 /* SQLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DAB28D21D02000068E1 /* SQLiteTests.swift */; };
 		1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5320EB63D0004BB277 /* CommonUnitUtil.swift */; };
 		1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5520EB63D0004BB277 /* CurrentEvaluationStoreTest.swift */; };
 		1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5420EB63D0004BB277 /* EventSaverTest.swift */; };
@@ -168,6 +169,7 @@
 		6B6ACE22234DDA0100BD6069 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1C234DDA0000BD6069 /* SplashViewController.swift */; };
 		6B6ACE24234DDA0100BD6069 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1E234DDA0100BD6069 /* SecondViewController.swift */; };
 		6B6ACE25234DDA5B00BD6069 /* BucketeerTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6ACD65234DD5E700BD6069 /* BucketeerTVOS.framework */; };
+		9340CA0928D9D1DD00E690CC /* CurrentEvaluationDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA0828D9D1DD00E690CC /* CurrentEvaluationDaoTests.swift */; };
 		AB5FF9DA23D17C1D000B46DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF3C36C23D16E8500B45FB2 /* User.swift */; };
 		AB8CE39C2320E41E000960FF /* user_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3522320E41E000960FF /* user_service.pb.swift */; };
 		AB8CE39E2320E41E000960FF /* user_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3532320E41E000960FF /* user_user.pb.swift */; };
@@ -292,6 +294,7 @@
 		00696DA428D21B7E000068E1 /* SQLite.Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.Condition.swift; sourceTree = "<group>"; };
 		00696DA628D21B9A000068E1 /* SQLite.Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.Table.swift; sourceTree = "<group>"; };
 		00696DA828D21C0E000068E1 /* SQLite.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.Error.swift; sourceTree = "<group>"; };
+		00696DAB28D21D02000068E1 /* SQLiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTests.swift; sourceTree = "<group>"; };
 		038E7311AB81EF508137B217 /* Pods-BucketeerTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTVOS/Pods-BucketeerTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		09861BB62ADD613222969F0B /* Pods-App-Bucketeer.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Bucketeer.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Bucketeer/Pods-App-Bucketeer.test.xcconfig"; sourceTree = "<group>"; };
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
@@ -347,6 +350,7 @@
 		80A78A5E3322426C2524D2A5 /* Pods-BucketeerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTests/Pods-BucketeerTests.release.xcconfig"; sourceTree = "<group>"; };
 		8BF68C8C8C3D1C73A11B1063 /* Pods-Bucketeer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bucketeer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bucketeer/Pods-Bucketeer.debug.xcconfig"; sourceTree = "<group>"; };
 		924D0FBBDD90D45002DA0E1B /* Pods-ExampleTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleTVOS/Pods-ExampleTVOS.release.xcconfig"; sourceTree = "<group>"; };
+		9340CA0828D9D1DD00E690CC /* CurrentEvaluationDaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEvaluationDaoTests.swift; sourceTree = "<group>"; };
 		98C9BE34EAEA31F77EE649B8 /* Pods_ExampleTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CE3522320E41E000960FF /* user_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_service.pb.swift; sourceTree = "<group>"; };
 		AB8CE3532320E41E000960FF /* user_user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_user.pb.swift; sourceTree = "<group>"; };
@@ -486,7 +490,9 @@
 			isa = PBXGroup;
 			children = (
 				0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */,
+				9340CA0828D9D1DD00E690CC /* CurrentEvaluationDaoTests.swift */,
 				0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */,
+				00696DAB28D21D02000068E1 /* SQLiteTests.swift */,
 			);
 			path = Bucketeer2Tests;
 			sourceTree = "<group>";
@@ -1346,7 +1352,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */,
+				9340CA0928D9D1DD00E690CC /* CurrentEvaluationDaoTests.swift in Sources */,
 				0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */,
+				00696DAC28D21D02000068E1 /* SQLiteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
