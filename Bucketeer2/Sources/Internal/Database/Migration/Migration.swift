@@ -11,9 +11,9 @@ final class Migration1to2: Migration {
 
     func migration() throws {
         // Drop
-        db.exec(query: "DROP TABLE current_evaluation")
-        db.exec(query: "DROP TABLE latest_evaluation")
-        db.exec(query: "DROP TABLE event")
+        try db.exec(query: "DROP TABLE current_evaluation")
+        try db.exec(query: "DROP TABLE latest_evaluation")
+        try db.exec(query: "DROP TABLE event")
 
         // Create
         let evaluationTable = SQLite.Table(entity: EvaluationEntity())
