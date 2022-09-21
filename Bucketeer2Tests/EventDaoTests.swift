@@ -12,37 +12,6 @@ final class EventDaoTests: XCTestCase {
         let eventTable = SQLite.Table(entity: EventEntity())
         let eventSql = eventTable.sqlToCreate()
         try! db.exec(query: eventSql)
-
-        let dao = EventDaoImpl(db: db)
-        let events = [
-            Event(
-                id: "event1",
-                event: .goal(.init(
-                    timestamp: 1,
-                    goal_id: "goal1",
-                    user_id: "user1",
-                    value: 1,
-                    user: .init(id: "user1", data: [:]),
-                    tag: "tag1",
-                    source_id: .ios
-                )),
-                type: .goal
-            ),
-            Event(
-                id: "event2",
-                event: .goal(.init(
-                    timestamp: 2,
-                    goal_id: "goal2",
-                    user_id: "user2",
-                    value: 2,
-                    user: .init(id: "user2", data: [:]),
-                    tag: "tag2",
-                    source_id: .ios
-                )),
-                type: .goal
-            ),
-        ]
-        try! dao.add(events: events)
     }
 
     override func tearDown() {
@@ -51,39 +20,111 @@ final class EventDaoTests: XCTestCase {
         super.tearDown()
     }
 
-    func testAddEvent() throws {
+    func testAddEventGoal() throws {
         let db = try SQLite(path: path, logger: nil)
         let dao = EventDaoImpl(db: db)
-        let event = Event(
-            id: "event3",
-            event: .goal(.init(
-                timestamp: 3,
-                goal_id: "goal3",
-                user_id: "user3",
-                value: 3,
-                user: .init(id: "user3", data: [:]),
-                tag: "tag3",
-                source_id: .ios
-            )),
-            type: .goal
-        )
-        try dao.add(event: event)
-        let events = try dao.getEvents()
-        XCTAssertEqual(events.count, 3)
-        let ids = events.map(\.id)
-        XCTAssertEqual(ids, ["event1", "event2", "event3"])
+
+        try dao.add(event: .mockGoal1)
+
+        let sql = "SELECT id, data FROM Events"
+        let statement = try db.prepareStatement(sql: sql)
+        let decoder = JSONDecoder()
+
+        // Mock1
+        XCTAssertTrue(try statement.step())
+        XCTAssertEqual(statement.string(at: 0), "goal_event1")
+        XCTAssertEqual(try decoder.decode(Event.self, from: statement.data(at: 1)), Event.mockGoal1)
+
+        // End
+        XCTAssertFalse(try statement.step())
+
+        try statement.reset()
+        try statement.finalize()
     }
 
-    func testDelete() throws {
+    func testAddEventEvaluation() throws {
         let db = try SQLite(path: path, logger: nil)
         let dao = EventDaoImpl(db: db)
-        try dao.delete(ids: ["event1", "event3"])
+
+        try dao.add(event: .mockEvaluation1)
+
+        let sql = "SELECT id, data FROM Events"
+        let statement = try db.prepareStatement(sql: sql)
+        let decoder = JSONDecoder()
+
+        // Mock1
+        XCTAssertTrue(try statement.step())
+        XCTAssertEqual(statement.string(at: 0), "evaluation_event1")
+        XCTAssertEqual(try decoder.decode(Event.self, from: statement.data(at: 1)), Event.mockEvaluation1)
+
+        // End
+        XCTAssertFalse(try statement.step())
+
+        try statement.reset()
+        try statement.finalize()
+    }
+
+    func testAddEventMetrics() throws {
+        let db = try SQLite(path: path, logger: nil)
+        let dao = EventDaoImpl(db: db)
+
+        try dao.add(event: .mockMetrics1)
+
+        let sql = "SELECT id, data FROM Events"
+        let statement = try db.prepareStatement(sql: sql)
+        let decoder = JSONDecoder()
+
+        // Mock1
+        XCTAssertTrue(try statement.step())
+        XCTAssertEqual(statement.string(at: 0), "metrics_event1")
+        XCTAssertEqual(try decoder.decode(Event.self, from: statement.data(at: 1)), Event.mockMetrics1)
+
+        // End
+        XCTAssertFalse(try statement.step())
+
+        try statement.reset()
+        try statement.finalize()
+    }
+
+    func testAddEvents() throws {
+        let db = try SQLite(path: path, logger: nil)
+        let dao = EventDaoImpl(db: db)
+
+        try dao.add(events: [.mockGoal1, .mockEvaluation1, .mockMetrics1, .mockEvaluation2])
 
         let events = try dao.getEvents()
-        XCTAssertEqual(events.count, 1)
-        guard let event = events.first else {
-            return
-        }
-        XCTAssertEqual(event.id, "event2")
+        XCTAssertEqual(events.count, 4)
+        XCTAssertEqual(events[0], Event.mockGoal1)
+        XCTAssertEqual(events[1], Event.mockEvaluation1)
+        XCTAssertEqual(events[2], Event.mockMetrics1)
+        XCTAssertEqual(events[3], Event.mockEvaluation2)
+    }
+
+    func testDeleteAll() throws {
+        let db = try SQLite(path: path, logger: nil)
+        let dao = EventDaoImpl(db: db)
+        let target: [Event] = [.mockGoal1, .mockEvaluation1, .mockMetrics1, .mockEvaluation2]
+        try dao.add(events: target)
+
+        let ids = target.map(\.id)
+        try dao.delete(ids: ids)
+
+        let events = try dao.getEvents()
+        XCTAssertEqual(events.count, 0)
+    }
+
+    func testDeleteSomeItems() throws {
+        let db = try SQLite(path: path, logger: nil)
+        let dao = EventDaoImpl(db: db)
+        let target: [Event] = [.mockGoal1, .mockEvaluation1, .mockMetrics1, .mockEvaluation2]
+        try dao.add(events: target)
+
+        let ids = [Event.mockEvaluation1.id, Event.mockMetrics1.id]
+        try dao.delete(ids: ids)
+
+        let events = try dao.getEvents()
+        XCTAssertEqual(events.count, 2)
+        XCTAssertEqual(events[0], Event.mockGoal1)
+        XCTAssertEqual(events[1], Event.mockEvaluation2)
     }
 }
