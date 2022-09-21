@@ -8,8 +8,11 @@ final class EventDaoTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let db = try! SQLite(path: path, logger: nil)
-        let migration = Migration1to2(db: db)
-        try! migration.migration()
+
+        let eventTable = SQLite.Table(entity: EventEntity())
+        let eventSql = eventTable.sqlToCreate()
+        try! db.exec(query: eventSql)
+
         let dao = EventDaoImpl(db: db)
         let events = [
             Event(

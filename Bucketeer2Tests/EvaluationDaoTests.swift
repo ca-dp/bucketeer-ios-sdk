@@ -49,8 +49,11 @@ final class EvaluationDaoTests: XCTestCase {
         super.setUp()
 
         let db = try! SQLite(path: path, logger: nil)
-        let migration = Migration1to2(db: db)
-        try! migration.migration()
+
+        let evaluationTable = SQLite.Table(entity: EvaluationEntity())
+        let evaluationSql = evaluationTable.sqlToCreate()
+        try! db.exec(query: evaluationSql)
+
         let dao = EvaluationDaoImpl(db: db)
         try! dao.put(userId: "user1", evaluations: mocks)
     }
