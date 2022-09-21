@@ -29,7 +29,6 @@
 		00696D6628D1C806000068E1 /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6528D1C806000068E1 /* SQLite.swift */; };
 		00696D6928D1CA77000068E1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6828D1CA76000068E1 /* Logger.swift */; };
 		00696D6B28D1D175000068E1 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6A28D1D175000068E1 /* Migration.swift */; };
-		00696D6D28D1D189000068E1 /* Migration1to2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6C28D1D189000068E1 /* Migration1to2.swift */; };
 		00696D7128D1D258000068E1 /* EvaluationDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D7028D1D258000068E1 /* EvaluationDao.swift */; };
 		00696D7328D1D295000068E1 /* EvaluationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D7228D1D295000068E1 /* EvaluationEntity.swift */; };
 		00696D7528D1D2BB000068E1 /* EvaluationDaoImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D7428D1D2BB000068E1 /* EvaluationDaoImpl.swift */; };
@@ -286,7 +285,6 @@
 		00696D6528D1C806000068E1 /* SQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
 		00696D6828D1CA76000068E1 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		00696D6A28D1D175000068E1 /* Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
-		00696D6C28D1D189000068E1 /* Migration1to2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration1to2.swift; sourceTree = "<group>"; };
 		00696D7028D1D258000068E1 /* EvaluationDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationDao.swift; sourceTree = "<group>"; };
 		00696D7228D1D295000068E1 /* EvaluationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationEntity.swift; sourceTree = "<group>"; };
 		00696D7428D1D2BB000068E1 /* EvaluationDaoImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationDaoImpl.swift; sourceTree = "<group>"; };
@@ -579,7 +577,6 @@
 			isa = PBXGroup;
 			children = (
 				00696D6A28D1D175000068E1 /* Migration.swift */,
-				00696D6C28D1D189000068E1 /* Migration1to2.swift */,
 			);
 			path = Migration;
 			sourceTree = "<group>";
@@ -1358,7 +1355,6 @@
 				0065C3DF28C7BD32002D92A2 /* JSON.Variation.swift in Sources */,
 				00696D6928D1CA77000068E1 /* Logger.swift in Sources */,
 				00696D6B28D1D175000068E1 /* Migration.swift in Sources */,
-				00696D6D28D1D189000068E1 /* Migration1to2.swift in Sources */,
 				00696DA528D21B7E000068E1 /* SQLite.Condition.swift in Sources */,
 				00696DA928D21C0E000068E1 /* SQLite.Error.swift in Sources */,
 				00696D9B28D21ADA000068E1 /* SQLite.Statement.swift in Sources */,
