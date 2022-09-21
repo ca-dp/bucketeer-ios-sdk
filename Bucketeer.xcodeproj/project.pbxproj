@@ -41,6 +41,9 @@
 		00696DA728D21B9A000068E1 /* SQLite.Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DA628D21B9A000068E1 /* SQLite.Table.swift */; };
 		00696DA928D21C0E000068E1 /* SQLite.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DA828D21C0E000068E1 /* SQLite.Error.swift */; };
 		00696DAC28D21D02000068E1 /* SQLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DAB28D21D02000068E1 /* SQLiteTests.swift */; };
+		00696DAF28DB5476000068E1 /* MockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DAE28DB5476000068E1 /* MockEvents.swift */; };
+		00696DB128DB54B4000068E1 /* MockUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DB028DB54B4000068E1 /* MockUsers.swift */; };
+		00696DB328DB59CF000068E1 /* MockEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696DB228DB59CF000068E1 /* MockEvaluations.swift */; };
 		1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5320EB63D0004BB277 /* CommonUnitUtil.swift */; };
 		1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5520EB63D0004BB277 /* CurrentEvaluationStoreTest.swift */; };
 		1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5420EB63D0004BB277 /* EventSaverTest.swift */; };
@@ -298,6 +301,9 @@
 		00696DA628D21B9A000068E1 /* SQLite.Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.Table.swift; sourceTree = "<group>"; };
 		00696DA828D21C0E000068E1 /* SQLite.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.Error.swift; sourceTree = "<group>"; };
 		00696DAB28D21D02000068E1 /* SQLiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTests.swift; sourceTree = "<group>"; };
+		00696DAE28DB5476000068E1 /* MockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEvents.swift; sourceTree = "<group>"; };
+		00696DB028DB54B4000068E1 /* MockUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUsers.swift; sourceTree = "<group>"; };
+		00696DB228DB59CF000068E1 /* MockEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEvaluations.swift; sourceTree = "<group>"; };
 		038E7311AB81EF508137B217 /* Pods-BucketeerTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTVOS/Pods-BucketeerTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		09861BB62ADD613222969F0B /* Pods-App-Bucketeer.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Bucketeer.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Bucketeer/Pods-App-Bucketeer.test.xcconfig"; sourceTree = "<group>"; };
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
@@ -497,6 +503,7 @@
 		0065C3C928C7BB76002D92A2 /* Bucketeer2Tests */ = {
 			isa = PBXGroup;
 			children = (
+				00696DAD28DB5430000068E1 /* Mock */,
 				0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */,
 				9340CA0828D9D1DD00E690CC /* EvaluationDaoTests.swift */,
 				9340CA1E28DA106200E690CC /* EventDaoTests.swift */,
@@ -598,6 +605,16 @@
 				00696DA028D21B58000068E1 /* SQLiteValue.swift */,
 			);
 			path = SQLite;
+			sourceTree = "<group>";
+		};
+		00696DAD28DB5430000068E1 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				00696DB228DB59CF000068E1 /* MockEvaluations.swift */,
+				00696DAE28DB5476000068E1 /* MockEvents.swift */,
+				00696DB028DB54B4000068E1 /* MockUsers.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		02CF7E94683CC949DA6982F7 /* Frameworks */ = {
@@ -1378,6 +1395,9 @@
 				9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */,
 				0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */,
 				9340CA2C28DAEA1500E690CC /* MigrationTests.swift in Sources */,
+				00696DB328DB59CF000068E1 /* MockEvaluations.swift in Sources */,
+				00696DAF28DB5476000068E1 /* MockEvents.swift in Sources */,
+				00696DB128DB54B4000068E1 /* MockUsers.swift in Sources */,
 				00696DAC28D21D02000068E1 /* SQLiteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

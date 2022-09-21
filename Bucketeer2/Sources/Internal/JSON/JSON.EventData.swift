@@ -38,6 +38,13 @@ extension JSON {
                 case event
                 case type
             }
+
+            init(timestamp: Int64, event: MetricsEventData, type: MetricsEventType) {
+                self.timestamp = timestamp
+                self.event = event
+                self.type = type
+            }
+
             init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 self.timestamp = try container.decode(Int64.self, forKey: .timestamp)

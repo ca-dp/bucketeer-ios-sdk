@@ -1,9 +1,9 @@
 import Foundation
 
 extension JSON {
-    struct Variation: Codable {
+    struct Variation: Codable, Hashable {
         let id: String
-        let value: String
+        var value: String
         let name: String?
         let description: String?
     }
