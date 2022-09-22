@@ -121,7 +121,7 @@ final class EvaluationDaoTests: XCTestCase {
         XCTAssertEqual(evaluations[1], Evaluation.mock2)
     }
 
-    func testDeleteAllAndInsertToInsert() throws {
+    func testDeleteAllAndInsert() throws {
         let db = try SQLite(path: path, logger: nil)
         let dao = EvaluationDaoImpl(db: db)
         try dao.deleteAllAndInsert(userId: "user1", evaluations: [.mock1])
