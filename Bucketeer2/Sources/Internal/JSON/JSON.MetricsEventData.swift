@@ -7,21 +7,21 @@ extension JSON {
         case timeoutErrorCount(TimeoutErrorCount)
         case internalErrorCount(InternalErrorCount)
 
-        struct GetEvaluationLatency: Decodable, Hashable {
+        struct GetEvaluationLatency: Codable, Hashable {
             let labels: [String: String]
             let duration: Duration
         }
 
-        struct GetEvaluationSize: Decodable, Hashable {
+        struct GetEvaluationSize: Codable, Hashable {
             let labels: [String: String]
             let size_byte: Int
         }
 
-        struct TimeoutErrorCount: Decodable, Hashable {
+        struct TimeoutErrorCount: Codable, Hashable {
             let tag: String
         }
 
-        struct InternalErrorCount: Decodable, Hashable {
+        struct InternalErrorCount: Codable, Hashable {
             let tag: String
         }
     }

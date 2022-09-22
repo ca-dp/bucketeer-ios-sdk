@@ -1,7 +1,7 @@
 import Foundation
 
 extension JSON {
-    enum SourceID: Int, Decodable, Hashable {
+    enum SourceID: Int, Codable, Hashable {
         case unknown = 0
         case android = 1
         case ios = 2

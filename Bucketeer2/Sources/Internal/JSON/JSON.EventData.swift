@@ -6,7 +6,7 @@ extension JSON {
         case evaluation(Evaluation)
         case metrics(Metrics)
 
-        struct Goal: Decodable, Hashable {
+        struct Goal: Codable, Hashable {
             let timestamp: Int64
             let goal_id: String
             let user_id: String
@@ -16,7 +16,7 @@ extension JSON {
             let source_id: SourceID
         }
 
-        struct Evaluation: Decodable, Hashable {
+        struct Evaluation: Codable, Hashable {
             let timestamp: Int64
             let feature_id: String
             let feature_version: Int
@@ -28,16 +28,23 @@ extension JSON {
             let source_id: SourceID
         }
 
-        struct Metrics: Decodable, Hashable {
+        struct Metrics: Codable, Hashable {
             let timestamp: Int64
             let event: MetricsEventData
             let type: MetricsEventType
 
             enum CodingKeys: String, CodingKey {
-                  case timestamp
-                  case event
-                  case type
+                case timestamp
+                case event
+                case type
             }
+
+            init(timestamp: Int64, event: MetricsEventData, type: MetricsEventType) {
+                self.timestamp = timestamp
+                self.event = event
+                self.type = type
+            }
+
             init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 self.timestamp = try container.decode(Int64.self, forKey: .timestamp)
@@ -55,6 +62,22 @@ extension JSON {
                 case .internalErrorCount:
                     let data = try container.decode(MetricsEventData.InternalErrorCount.self, forKey: .event)
                     self.event = .internalErrorCount(data)
+                }
+            }
+
+            func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(timestamp, forKey: .timestamp)
+                try container.encode(type, forKey: .type)
+                switch self.event {
+                case .getEvaluationLatency(let eventData):
+                    try container.encode(eventData, forKey: .event)
+                case .getEvaluationSize(let eventData):
+                    try container.encode(eventData, forKey: .event)
+                case .timeoutErrorCount(let eventData):
+                    try container.encode(eventData, forKey: .event)
+                case .internalErrorCount(let eventData):
+                    try container.encode(eventData, forKey: .event)
                 }
             }
         }

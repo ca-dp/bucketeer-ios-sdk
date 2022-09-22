@@ -1,14 +1,14 @@
 import Foundation
 
 extension JSON {
-    struct Evaluation: Decodable {
+    struct Evaluation: Hashable, Codable {
         let id: String
         let feature_id: String
         let feature_version: Int
         let user_id: String
         let variation_id: String
-        let variation: Variation
+        var variation: Variation
         let reason: Reason
-        let variation_value: String
+        var variation_value: String
     }
 }
