@@ -63,6 +63,9 @@
 		006E85C728DED62700B5D90D /* MockEvaluationDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85C628DED62700B5D90D /* MockEvaluationDao.swift */; };
 		006E85CA28DED75500B5D90D /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85C928DED75500B5D90D /* Defaults.swift */; };
 		006E85CC28DED7B500B5D90D /* MockDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85CB28DED7B500B5D90D /* MockDefaults.swift */; };
+		006E85CE28DEE23100B5D90D /* EventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85CD28DEE23100B5D90D /* EventInteractor.swift */; };
+		006E85D028DEE42E00B5D90D /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85CF28DEE42E00B5D90D /* Clock.swift */; };
+		006E85D228DEF29F00B5D90D /* IdGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85D128DEF29F00B5D90D /* IdGenerator.swift */; };
 		1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5320EB63D0004BB277 /* CommonUnitUtil.swift */; };
 		1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5520EB63D0004BB277 /* CurrentEvaluationStoreTest.swift */; };
 		1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5420EB63D0004BB277 /* EventSaverTest.swift */; };
@@ -342,6 +345,9 @@
 		006E85C628DED62700B5D90D /* MockEvaluationDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEvaluationDao.swift; sourceTree = "<group>"; };
 		006E85C928DED75500B5D90D /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		006E85CB28DED7B500B5D90D /* MockDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDefaults.swift; sourceTree = "<group>"; };
+		006E85CD28DEE23100B5D90D /* EventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInteractor.swift; sourceTree = "<group>"; };
+		006E85CF28DEE42E00B5D90D /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		006E85D128DEF29F00B5D90D /* IdGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdGenerator.swift; sourceTree = "<group>"; };
 		038E7311AB81EF508137B217 /* Pods-BucketeerTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTVOS/Pods-BucketeerTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		09861BB62ADD613222969F0B /* Pods-App-Bucketeer.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Bucketeer.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Bucketeer/Pods-App-Bucketeer.test.xcconfig"; sourceTree = "<group>"; };
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
@@ -701,7 +707,9 @@
 		006E85C828DED74B00B5D90D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				006E85CF28DEE42E00B5D90D /* Clock.swift */,
 				006E85C928DED75500B5D90D /* Defaults.swift */,
+				006E85D128DEF29F00B5D90D /* IdGenerator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -822,6 +830,7 @@
 				9340CA1628DA0F6200E690CC /* EventDao.swift */,
 				9340CA1828DA0F6200E690CC /* EventDaoImpl.swift */,
 				9340CA1728DA0F6200E690CC /* EventEntity.swift */,
+				006E85CD28DEE23100B5D90D /* EventInteractor.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -1444,6 +1453,7 @@
 				006E85AB28DEA2BC00B5D90D /* ApiClient.swift in Sources */,
 				006E85AD28DEA2CD00B5D90D /* ApiClientImpl.swift in Sources */,
 				006E85D628E01B0F00B5D90D /* BKTError.swift in Sources */,
+				006E85D028DEE42E00B5D90D /* Clock.swift in Sources */,
 				006E85CA28DED75500B5D90D /* Defaults.swift in Sources */,
 				006E85B728DEAF1400B5D90D /* ErrorResponse.swift in Sources */,
 				00696D7128D1D258000068E1 /* EvaluationDao.swift in Sources */,
@@ -1453,9 +1463,11 @@
 				9340CA1928DA0F6200E690CC /* EventDao.swift in Sources */,
 				9340CA1B28DA0F6200E690CC /* EventDaoImpl.swift in Sources */,
 				9340CA1A28DA0F6200E690CC /* EventEntity.swift in Sources */,
+				006E85CE28DEE23100B5D90D /* EventInteractor.swift in Sources */,
 				006E85B228DEAEE000B5D90D /* GetEvaluationsRequestBody.swift in Sources */,
 				006E85B928DEAF2600B5D90D /* GetEvaluationsResponse.swift in Sources */,
 				006E85DA28E01BFE00B5D90D /* GetEvaluationsResult.swift in Sources */,
+				006E85D228DEF29F00B5D90D /* IdGenerator.swift in Sources */,
 				0065C3DB28C7BCC0002D92A2 /* JSON.Duration.swift in Sources */,
 				0065C3DD28C7BCFF002D92A2 /* JSON.Evaluation.swift in Sources */,
 				0065C3E328C8136D002D92A2 /* JSON.Event.swift in Sources */,

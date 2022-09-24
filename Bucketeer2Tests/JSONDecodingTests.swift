@@ -143,7 +143,6 @@ class JSONDecodingTests: XCTestCase {
         XCTAssertEqual(metricsData.labels["key_1"], "value_1")
         XCTAssertEqual(metricsData.labels["key_2"], "value_2")
         XCTAssertEqual(metricsData.duration.seconds, 1)
-        XCTAssertEqual(metricsData.duration.nanos, 2)
     }
 
     func testDecodingMetricsGetEvaluationSizeEvent() throws {
