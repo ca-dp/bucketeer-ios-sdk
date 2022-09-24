@@ -57,6 +57,8 @@
 		006E85D628E01B0F00B5D90D /* BKTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85D528E01B0F00B5D90D /* BKTError.swift */; };
 		006E85DA28E01BFE00B5D90D /* GetEvaluationsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85D928E01BFE00B5D90D /* GetEvaluationsResult.swift */; };
 		006E85DC28E026EE00B5D90D /* BKTErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85DB28E026EE00B5D90D /* BKTErrorTests.swift */; };
+		006E85C128DECF2200B5D90D /* EvaluationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85C028DECF2200B5D90D /* EvaluationInteractor.swift */; };
+		006E85CA28DED75500B5D90D /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85C928DED75500B5D90D /* Defaults.swift */; };
 		1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5320EB63D0004BB277 /* CommonUnitUtil.swift */; };
 		1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5520EB63D0004BB277 /* CurrentEvaluationStoreTest.swift */; };
 		1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5420EB63D0004BB277 /* EventSaverTest.swift */; };
@@ -330,6 +332,8 @@
 		006E85D528E01B0F00B5D90D /* BKTError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTError.swift; sourceTree = "<group>"; };
 		006E85D928E01BFE00B5D90D /* GetEvaluationsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEvaluationsResult.swift; sourceTree = "<group>"; };
 		006E85DB28E026EE00B5D90D /* BKTErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTErrorTests.swift; sourceTree = "<group>"; };
+		006E85C028DECF2200B5D90D /* EvaluationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationInteractor.swift; sourceTree = "<group>"; };
+		006E85C928DED75500B5D90D /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		038E7311AB81EF508137B217 /* Pods-BucketeerTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTVOS/Pods-BucketeerTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		09861BB62ADD613222969F0B /* Pods-App-Bucketeer.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Bucketeer.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Bucketeer/Pods-App-Bucketeer.test.xcconfig"; sourceTree = "<group>"; };
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
@@ -559,6 +563,7 @@
 				9340CA1528DA0F6200E690CC /* Event */,
 				0065C3D728C7BC82002D92A2 /* JSON */,
 				006E85A928DEA2B300B5D90D /* Remote */,
+				006E85C828DED74B00B5D90D /* Utils */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -609,6 +614,7 @@
 				00696D7028D1D258000068E1 /* EvaluationDao.swift */,
 				00696D7428D1D2BB000068E1 /* EvaluationDaoImpl.swift */,
 				00696D7228D1D295000068E1 /* EvaluationEntity.swift */,
+				006E85C028DECF2200B5D90D /* EvaluationInteractor.swift */,
 			);
 			path = Evaluation;
 			sourceTree = "<group>";
@@ -678,6 +684,14 @@
 				006E85BA28DEAF3700B5D90D /* RegisterEventsResponse.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		006E85C828DED74B00B5D90D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				006E85C928DED75500B5D90D /* Defaults.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		02CF7E94683CC949DA6982F7 /* Frameworks */ = {
@@ -1418,10 +1432,12 @@
 				006E85AB28DEA2BC00B5D90D /* ApiClient.swift in Sources */,
 				006E85AD28DEA2CD00B5D90D /* ApiClientImpl.swift in Sources */,
 				006E85D628E01B0F00B5D90D /* BKTError.swift in Sources */,
+				006E85CA28DED75500B5D90D /* Defaults.swift in Sources */,
 				006E85B728DEAF1400B5D90D /* ErrorResponse.swift in Sources */,
 				00696D7128D1D258000068E1 /* EvaluationDao.swift in Sources */,
 				00696D7528D1D2BB000068E1 /* EvaluationDaoImpl.swift in Sources */,
 				00696D7328D1D295000068E1 /* EvaluationEntity.swift in Sources */,
+				006E85C128DECF2200B5D90D /* EvaluationInteractor.swift in Sources */,
 				9340CA1928DA0F6200E690CC /* EventDao.swift in Sources */,
 				9340CA1B28DA0F6200E690CC /* EventDaoImpl.swift in Sources */,
 				9340CA1A28DA0F6200E690CC /* EventEntity.swift in Sources */,
