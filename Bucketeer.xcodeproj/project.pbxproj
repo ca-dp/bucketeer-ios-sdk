@@ -52,6 +52,8 @@
 		006E85B728DEAF1400B5D90D /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85B628DEAF1400B5D90D /* ErrorResponse.swift */; };
 		006E85B928DEAF2600B5D90D /* GetEvaluationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85B828DEAF2600B5D90D /* GetEvaluationsResponse.swift */; };
 		006E85BB28DEAF3700B5D90D /* RegisterEventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85BA28DEAF3700B5D90D /* RegisterEventsResponse.swift */; };
+		006E85BD28DEAF7900B5D90D /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85BC28DEAF7900B5D90D /* ApiClientTests.swift */; };
+		006E85BF28DEB0A700B5D90D /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85BE28DEB0A700B5D90D /* MockSession.swift */; };
 		1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5320EB63D0004BB277 /* CommonUnitUtil.swift */; };
 		1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5520EB63D0004BB277 /* CurrentEvaluationStoreTest.swift */; };
 		1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5420EB63D0004BB277 /* EventSaverTest.swift */; };
@@ -320,6 +322,8 @@
 		006E85B628DEAF1400B5D90D /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		006E85B828DEAF2600B5D90D /* GetEvaluationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEvaluationsResponse.swift; sourceTree = "<group>"; };
 		006E85BA28DEAF3700B5D90D /* RegisterEventsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEventsResponse.swift; sourceTree = "<group>"; };
+		006E85BC28DEAF7900B5D90D /* ApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientTests.swift; sourceTree = "<group>"; };
+		006E85BE28DEB0A700B5D90D /* MockSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
 		038E7311AB81EF508137B217 /* Pods-BucketeerTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTVOS/Pods-BucketeerTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		09861BB62ADD613222969F0B /* Pods-App-Bucketeer.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Bucketeer.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Bucketeer/Pods-App-Bucketeer.test.xcconfig"; sourceTree = "<group>"; };
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
@@ -520,6 +524,7 @@
 			isa = PBXGroup;
 			children = (
 				00696DAD28DB5430000068E1 /* Mock */,
+				006E85BC28DEAF7900B5D90D /* ApiClientTests.swift */,
 				0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */,
 				9340CA0828D9D1DD00E690CC /* EvaluationDaoTests.swift */,
 				9340CA1E28DA106200E690CC /* EventDaoTests.swift */,
@@ -629,6 +634,7 @@
 			children = (
 				00696DB228DB59CF000068E1 /* MockEvaluations.swift */,
 				00696DAE28DB5476000068E1 /* MockEvents.swift */,
+				006E85BE28DEB0A700B5D90D /* MockSession.swift */,
 				00696DB028DB54B4000068E1 /* MockUsers.swift */,
 			);
 			path = Mock;
@@ -1446,6 +1452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006E85BD28DEAF7900B5D90D /* ApiClientTests.swift in Sources */,
 				0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */,
 				9340CA0928D9D1DD00E690CC /* EvaluationDaoTests.swift in Sources */,
 				9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */,
@@ -1453,6 +1460,7 @@
 				9340CA2C28DAEA1500E690CC /* MigrationTests.swift in Sources */,
 				00696DB328DB59CF000068E1 /* MockEvaluations.swift in Sources */,
 				00696DAF28DB5476000068E1 /* MockEvents.swift in Sources */,
+				006E85BF28DEB0A700B5D90D /* MockSession.swift in Sources */,
 				00696DB128DB54B4000068E1 /* MockUsers.swift in Sources */,
 				00696DAC28D21D02000068E1 /* SQLiteTests.swift in Sources */,
 			);
