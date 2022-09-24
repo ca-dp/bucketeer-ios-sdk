@@ -1,7 +1,7 @@
 import Foundation
 
 extension JSON {
-    struct UserEvaluations: Decodable {
+    struct UserEvaluations: Codable {
         let id: String
         let evaluations: [Evaluation]
     }
