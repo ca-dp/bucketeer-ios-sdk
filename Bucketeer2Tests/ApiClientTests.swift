@@ -61,7 +61,7 @@ class ApiClientTests: XCTestCase {
                     XCTAssertNotEqual(response.seconds, 0)
                     XCTAssertNotEqual(response.sizeByte, 0)
                     XCTAssertEqual(response.featureTag, "tag1")
-                case .failure(let error):
+                case .failure(let error, _):
                     XCTFail("\(error)")
                 }
                 expectation.fulfill()
@@ -114,15 +114,9 @@ class ApiClientTests: XCTestCase {
                 switch result {
                 case .success:
                     XCTFail()
-                case .failure(let error):
-                    guard
-                        let error = error as? ApiClientImpl.ResponseError,
-                        case .unacceptableCode(let code, let response) = error else {
-                        XCTFail()
-                        return
-                    }
-                    XCTAssertEqual(code, 400)
-                    XCTAssertEqual(response, errorResponse)
+                case .failure(let error, let featureTag):
+                    XCTAssertEqual(error, .badRequest(message: "invalid parameter"))
+                    XCTAssertEqual(featureTag, "tag1")
                 }
                 expectation.fulfill()
             }
@@ -223,13 +217,7 @@ class ApiClientTests: XCTestCase {
             case .success:
                 XCTFail()
             case .failure(let error):
-                guard
-                    let error = error as? ApiClientImpl.ResponseError,
-                    case .unacceptableCode(let code, let response) = error else {
-                    return
-                }
-                XCTAssertEqual(code, 400)
-                XCTAssertEqual(response?.error.code, 400)
+                XCTAssertEqual(error, .badRequest(message: "invalid parameter"))
             }
             expectation.fulfill()
         }
@@ -457,7 +445,7 @@ class ApiClientTests: XCTestCase {
                     XCTFail()
                 case .failure(let error):
                     guard
-                        let error = error as? ApiClientImpl.ResponseError,
+                        let error = error as? ResponseError,
                         case .unknown(let urlResponse) = error else {
                         XCTFail()
                         return
@@ -561,7 +549,7 @@ class ApiClientTests: XCTestCase {
                     XCTFail()
                 case .failure(let error):
                     guard
-                        let error = error as? ApiClientImpl.ResponseError,
+                        let error = error as? ResponseError,
                         case .unknown(let urlResponse) = error else {
                         XCTFail()
                         return

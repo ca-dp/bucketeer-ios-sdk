@@ -54,6 +54,9 @@
 		006E85BB28DEAF3700B5D90D /* RegisterEventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85BA28DEAF3700B5D90D /* RegisterEventsResponse.swift */; };
 		006E85BD28DEAF7900B5D90D /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85BC28DEAF7900B5D90D /* ApiClientTests.swift */; };
 		006E85BF28DEB0A700B5D90D /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85BE28DEB0A700B5D90D /* MockSession.swift */; };
+		006E85D628E01B0F00B5D90D /* BKTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85D528E01B0F00B5D90D /* BKTError.swift */; };
+		006E85DA28E01BFE00B5D90D /* GetEvaluationsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85D928E01BFE00B5D90D /* GetEvaluationsResult.swift */; };
+		006E85DC28E026EE00B5D90D /* BKTErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85DB28E026EE00B5D90D /* BKTErrorTests.swift */; };
 		1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5320EB63D0004BB277 /* CommonUnitUtil.swift */; };
 		1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5520EB63D0004BB277 /* CurrentEvaluationStoreTest.swift */; };
 		1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5420EB63D0004BB277 /* EventSaverTest.swift */; };
@@ -324,6 +327,9 @@
 		006E85BA28DEAF3700B5D90D /* RegisterEventsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEventsResponse.swift; sourceTree = "<group>"; };
 		006E85BC28DEAF7900B5D90D /* ApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientTests.swift; sourceTree = "<group>"; };
 		006E85BE28DEB0A700B5D90D /* MockSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
+		006E85D528E01B0F00B5D90D /* BKTError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTError.swift; sourceTree = "<group>"; };
+		006E85D928E01BFE00B5D90D /* GetEvaluationsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEvaluationsResult.swift; sourceTree = "<group>"; };
+		006E85DB28E026EE00B5D90D /* BKTErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTErrorTests.swift; sourceTree = "<group>"; };
 		038E7311AB81EF508137B217 /* Pods-BucketeerTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTVOS/Pods-BucketeerTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		09861BB62ADD613222969F0B /* Pods-App-Bucketeer.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Bucketeer.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Bucketeer/Pods-App-Bucketeer.test.xcconfig"; sourceTree = "<group>"; };
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
@@ -525,6 +531,7 @@
 			children = (
 				00696DAD28DB5430000068E1 /* Mock */,
 				006E85BC28DEAF7900B5D90D /* ApiClientTests.swift */,
+				006E85DB28E026EE00B5D90D /* BKTErrorTests.swift */,
 				0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */,
 				9340CA0828D9D1DD00E690CC /* EvaluationDaoTests.swift */,
 				9340CA1E28DA106200E690CC /* EventDaoTests.swift */,
@@ -590,6 +597,7 @@
 		00696D6728D1CA6D000068E1 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				006E85D528E01B0F00B5D90D /* BKTError.swift */,
 				00696D6828D1CA76000068E1 /* Logger.swift */,
 			);
 			path = Public;
@@ -666,6 +674,7 @@
 			children = (
 				006E85B628DEAF1400B5D90D /* ErrorResponse.swift */,
 				006E85B828DEAF2600B5D90D /* GetEvaluationsResponse.swift */,
+				006E85D928E01BFE00B5D90D /* GetEvaluationsResult.swift */,
 				006E85BA28DEAF3700B5D90D /* RegisterEventsResponse.swift */,
 			);
 			path = Response;
@@ -1408,6 +1417,7 @@
 				00696D9F28D21B46000068E1 /* AnySQLiteColumn.swift in Sources */,
 				006E85AB28DEA2BC00B5D90D /* ApiClient.swift in Sources */,
 				006E85AD28DEA2CD00B5D90D /* ApiClientImpl.swift in Sources */,
+				006E85D628E01B0F00B5D90D /* BKTError.swift in Sources */,
 				006E85B728DEAF1400B5D90D /* ErrorResponse.swift in Sources */,
 				00696D7128D1D258000068E1 /* EvaluationDao.swift in Sources */,
 				00696D7528D1D2BB000068E1 /* EvaluationDaoImpl.swift in Sources */,
@@ -1417,6 +1427,7 @@
 				9340CA1A28DA0F6200E690CC /* EventEntity.swift in Sources */,
 				006E85B228DEAEE000B5D90D /* GetEvaluationsRequestBody.swift in Sources */,
 				006E85B928DEAF2600B5D90D /* GetEvaluationsResponse.swift in Sources */,
+				006E85DA28E01BFE00B5D90D /* GetEvaluationsResult.swift in Sources */,
 				0065C3DB28C7BCC0002D92A2 /* JSON.Duration.swift in Sources */,
 				0065C3DD28C7BCFF002D92A2 /* JSON.Evaluation.swift in Sources */,
 				0065C3E328C8136D002D92A2 /* JSON.Event.swift in Sources */,
@@ -1453,6 +1464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				006E85BD28DEAF7900B5D90D /* ApiClientTests.swift in Sources */,
+				006E85DC28E026EE00B5D90D /* BKTErrorTests.swift in Sources */,
 				0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */,
 				9340CA0928D9D1DD00E690CC /* EvaluationDaoTests.swift in Sources */,
 				9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */,

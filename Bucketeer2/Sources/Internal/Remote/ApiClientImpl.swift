@@ -11,11 +11,6 @@ final class ApiClientImpl: ApiClient {
     private let defaultRequestTimeoutMills: Int64
     private let logger: Logger?
 
-    enum ResponseError: Error {
-        case unknown(URLResponse?)
-        case unacceptableCode(code: Int, response: ErrorResponse?)
-    }
-
     init(endpoint: URL,
          apiKey: String,
          featureTag: String,
@@ -32,7 +27,7 @@ final class ApiClientImpl: ApiClient {
         self.session.configuration.timeoutIntervalForRequest = TimeInterval(self.defaultRequestTimeoutMills)
     }
 
-    func getEvaluations(user: JSON.User, userEvaluationsId: String, timeoutMillis: Int64?, completion: ((Result<GetEvaluationsResponse, Error>) -> Void)?) {
+    func getEvaluations(user: JSON.User, userEvaluationsId: String, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?) {
         let startAt = Date()
         let requestBody = GetEvaluationsRequestBody(
             tag: self.featureTag,
@@ -57,13 +52,13 @@ final class ApiClientImpl: ApiClient {
                     response.featureTag = featureTag
                     completion?(.success(response))
                 case .failure(let error):
-                    completion?(.failure(error))
+                    completion?(.failure(error: .init(error: error), featureTag: featureTag))
                 }
             }
         )
     }
 
-    func registerEvents(events: [Event], completion: ((Result<RegisterEventsResponse, Error>) -> Void)?) {
+    func registerEvents(events: [Event], completion: ((Result<RegisterEventsResponse, BKTError>) -> Void)?) {
         let requestBody = RegisterEventsRequestBody(
             events: events
         )
@@ -76,7 +71,7 @@ final class ApiClientImpl: ApiClient {
                 case .success((let response, _)):
                     completion?(.success(response))
                 case .failure(let error):
-                    completion?(.failure(error))
+                    completion?(.failure(.init(error: error)))
                 }
             }
         )
@@ -125,4 +120,9 @@ final class ApiClientImpl: ApiClient {
             completion?(.failure(error))
         }
     }
+}
+
+enum ResponseError: Error {
+    case unknown(URLResponse?)
+    case unacceptableCode(code: Int, response: ErrorResponse?)
 }

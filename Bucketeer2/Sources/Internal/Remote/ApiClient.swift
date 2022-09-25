@@ -1,12 +1,12 @@
 import Foundation
 
 protocol ApiClient {
-    func getEvaluations(user: JSON.User, userEvaluationsId: String, timeoutMillis: Int64?, completion: ((Result<GetEvaluationsResponse, Error>) -> Void)?)
-    func registerEvents(events: [Event], completion: ((Result<RegisterEventsResponse, Error>) -> Void)?)
+    func getEvaluations(user: JSON.User, userEvaluationsId: String, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?)
+    func registerEvents(events: [Event], completion: ((Result<RegisterEventsResponse, BKTError>) -> Void)?)
 }
 
 extension ApiClient {
-    func getEvaluations(user: JSON.User, userEvaluationsId: String, completion: ((Result<GetEvaluationsResponse, Error>) -> Void)?) {
+    func getEvaluations(user: JSON.User, userEvaluationsId: String, completion: ((GetEvaluationsResult) -> Void)?) {
         getEvaluations(
             user: user,
             userEvaluationsId: userEvaluationsId,
