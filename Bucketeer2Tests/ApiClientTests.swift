@@ -274,7 +274,7 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.host, endpoint.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
-                XCTAssertEqual(request.timeoutInterval, 30000)
+                XCTAssertEqual(request.timeoutInterval, 30)
                 XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
                 expectation.fulfill()
             },
@@ -327,7 +327,7 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.host, endpoint.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
-                XCTAssertEqual(request.timeoutInterval, 200)
+                XCTAssertEqual(request.timeoutInterval, 0.2)
                 XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
                 expectation.fulfill()
             },
@@ -381,7 +381,7 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.host, endpoint.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
-                XCTAssertEqual(request.timeoutInterval, 100)
+                XCTAssertEqual(request.timeoutInterval, 0.1)
                 XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
                 expectation.fulfill()
             },
@@ -434,7 +434,7 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.host, endpoint.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
-                XCTAssertEqual(request.timeoutInterval, 30000)
+                XCTAssertEqual(request.timeoutInterval, 30)
                 XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
                 expectation.fulfill()
             },
@@ -486,7 +486,7 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.host, endpoint.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
-                XCTAssertEqual(request.timeoutInterval, 30000)
+                XCTAssertEqual(request.timeoutInterval, 30)
                 XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
                 expectation.fulfill()
             },
@@ -538,7 +538,7 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.host, endpoint.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
-                XCTAssertEqual(request.timeoutInterval, 30000)
+                XCTAssertEqual(request.timeoutInterval, 30)
                 XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
                 expectation.fulfill()
             },

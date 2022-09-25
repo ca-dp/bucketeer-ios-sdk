@@ -92,7 +92,7 @@ final class ApiClientImpl: ApiClient {
                 "Authorization": self.apiKey
             ]
             request.httpBody = body
-            request.timeoutInterval = TimeInterval(timeoutMillis ?? defaultRequestTimeoutMills)
+            request.timeoutInterval = TimeInterval(timeoutMillis ?? defaultRequestTimeoutMills) / 1000
 
             session.task(with: request) { data, urlResponse, error in
                 guard let data = data else {
