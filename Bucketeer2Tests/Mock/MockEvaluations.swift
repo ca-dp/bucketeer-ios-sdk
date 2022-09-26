@@ -63,3 +63,10 @@ extension Evaluation {
         variation_value: "variation_value3"
     )
 }
+
+extension JSON.UserEvaluations {
+    static let mock1 = JSON.UserEvaluations(
+        id: "user_evaluation1",
+        evaluations: [.mock1, .mock2]
+    )
+}

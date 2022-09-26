@@ -58,7 +58,11 @@
 		006E85DA28E01BFE00B5D90D /* GetEvaluationsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85D928E01BFE00B5D90D /* GetEvaluationsResult.swift */; };
 		006E85DC28E026EE00B5D90D /* BKTErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85DB28E026EE00B5D90D /* BKTErrorTests.swift */; };
 		006E85C128DECF2200B5D90D /* EvaluationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85C028DECF2200B5D90D /* EvaluationInteractor.swift */; };
+		006E85C328DED24500B5D90D /* EvaluationInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85C228DED24500B5D90D /* EvaluationInteractorTests.swift */; };
+		006E85C528DED2AC00B5D90D /* MockApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85C428DED2AC00B5D90D /* MockApiClient.swift */; };
+		006E85C728DED62700B5D90D /* MockEvaluationDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85C628DED62700B5D90D /* MockEvaluationDao.swift */; };
 		006E85CA28DED75500B5D90D /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85C928DED75500B5D90D /* Defaults.swift */; };
+		006E85CC28DED7B500B5D90D /* MockDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E85CB28DED7B500B5D90D /* MockDefaults.swift */; };
 		1B01C6892372B97B00803FA3 /* CommonUnitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5320EB63D0004BB277 /* CommonUnitUtil.swift */; };
 		1B01C68A2372B98100803FA3 /* CurrentEvaluationStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5520EB63D0004BB277 /* CurrentEvaluationStoreTest.swift */; };
 		1B01C68B2372B9C900803FA3 /* EventSaverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2EFB5420EB63D0004BB277 /* EventSaverTest.swift */; };
@@ -333,7 +337,11 @@
 		006E85D928E01BFE00B5D90D /* GetEvaluationsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEvaluationsResult.swift; sourceTree = "<group>"; };
 		006E85DB28E026EE00B5D90D /* BKTErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTErrorTests.swift; sourceTree = "<group>"; };
 		006E85C028DECF2200B5D90D /* EvaluationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationInteractor.swift; sourceTree = "<group>"; };
+		006E85C228DED24500B5D90D /* EvaluationInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationInteractorTests.swift; sourceTree = "<group>"; };
+		006E85C428DED2AC00B5D90D /* MockApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiClient.swift; sourceTree = "<group>"; };
+		006E85C628DED62700B5D90D /* MockEvaluationDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEvaluationDao.swift; sourceTree = "<group>"; };
 		006E85C928DED75500B5D90D /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		006E85CB28DED7B500B5D90D /* MockDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDefaults.swift; sourceTree = "<group>"; };
 		038E7311AB81EF508137B217 /* Pods-BucketeerTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketeerTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BucketeerTVOS/Pods-BucketeerTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		09861BB62ADD613222969F0B /* Pods-App-Bucketeer.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Bucketeer.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Bucketeer/Pods-App-Bucketeer.test.xcconfig"; sourceTree = "<group>"; };
 		0EE96100EE74B42F5669998E /* Pods-App-Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-App-Example/Pods-App-Example.test.xcconfig"; sourceTree = "<group>"; };
@@ -538,6 +546,7 @@
 				006E85DB28E026EE00B5D90D /* BKTErrorTests.swift */,
 				0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */,
 				9340CA0828D9D1DD00E690CC /* EvaluationDaoTests.swift */,
+				006E85C228DED24500B5D90D /* EvaluationInteractorTests.swift */,
 				9340CA1E28DA106200E690CC /* EventDaoTests.swift */,
 				0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */,
 				9340CA2B28DAEA1500E690CC /* MigrationTests.swift */,
@@ -646,6 +655,9 @@
 		00696DAD28DB5430000068E1 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				006E85C428DED2AC00B5D90D /* MockApiClient.swift */,
+				006E85CB28DED7B500B5D90D /* MockDefaults.swift */,
+				006E85C628DED62700B5D90D /* MockEvaluationDao.swift */,
 				00696DB228DB59CF000068E1 /* MockEvaluations.swift */,
 				00696DAE28DB5476000068E1 /* MockEvents.swift */,
 				006E85BE28DEB0A700B5D90D /* MockSession.swift */,
@@ -1483,9 +1495,13 @@
 				006E85DC28E026EE00B5D90D /* BKTErrorTests.swift in Sources */,
 				0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */,
 				9340CA0928D9D1DD00E690CC /* EvaluationDaoTests.swift in Sources */,
+				006E85C328DED24500B5D90D /* EvaluationInteractorTests.swift in Sources */,
 				9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */,
 				0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */,
 				9340CA2C28DAEA1500E690CC /* MigrationTests.swift in Sources */,
+				006E85C528DED2AC00B5D90D /* MockApiClient.swift in Sources */,
+				006E85CC28DED7B500B5D90D /* MockDefaults.swift in Sources */,
+				006E85C728DED62700B5D90D /* MockEvaluationDao.swift in Sources */,
 				00696DB328DB59CF000068E1 /* MockEvaluations.swift in Sources */,
 				00696DAF28DB5476000068E1 /* MockEvents.swift in Sources */,
 				006E85BF28DEB0A700B5D90D /* MockSession.swift in Sources */,
