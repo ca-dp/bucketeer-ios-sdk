@@ -27,7 +27,7 @@ final class EvaluationInteractor {
         }
     }
 
-    func fetch(user: JSON.User, timeoutMillis: Int64? = nil, completion: ((GetEvaluationsResult) -> Void)?) {
+    func fetch(user: User, timeoutMillis: Int64? = nil, completion: ((GetEvaluationsResult) -> Void)?) {
         let currentEvaluationsId = self.currentEvaluationsId
         let evaluationDao = self.evaluationDao
         let logger = self.logger

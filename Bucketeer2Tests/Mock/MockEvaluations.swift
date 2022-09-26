@@ -8,7 +8,7 @@ extension Evaluation {
         id: "evaluation1",
         feature_id: "feature1",
         feature_version: 1,
-        user_id: JSON.User.mock1.id,
+        user_id: User.mock1.id,
         variation_id: "variation1",
         variation: .init(
             id: "variation1",
@@ -28,7 +28,7 @@ extension Evaluation {
         id: "evaluation2",
         feature_id: "feature2",
         feature_version: 1,
-        user_id: JSON.User.mock1.id,
+        user_id: User.mock1.id,
         variation_id: "variation2",
         variation: .init(
             id: "variation2",
@@ -48,7 +48,7 @@ extension Evaluation {
         id: "evaluation3",
         feature_id: "feature3",
         feature_version: 1,
-        user_id: JSON.User.mock2.id,
+        user_id: User.mock2.id,
         variation_id: "variation3",
         variation: .init(
             id: "variation3",
@@ -64,8 +64,8 @@ extension Evaluation {
     )
 }
 
-extension JSON.UserEvaluations {
-    static let mock1 = JSON.UserEvaluations(
+extension UserEvaluations {
+    static let mock1 = UserEvaluations(
         id: "user_evaluation1",
         evaluations: [.mock1, .mock2]
     )

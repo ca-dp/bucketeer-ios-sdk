@@ -23,7 +23,7 @@ final class EventInteractor {
         self.eventUpdateListener = eventUpdateListener
     }
 
-    func trackEvaluationEvent(featureTag: String, user: JSON.User, evaluation: Evaluation) throws {
+    func trackEvaluationEvent(featureTag: String, user: User, evaluation: Evaluation) throws {
         try eventDao.add(
             event: .init(
                 id: idGenerator.id(),
@@ -44,7 +44,7 @@ final class EventInteractor {
         updateEventsAndNotify()
     }
 
-    func trackDefaultEvaluationEvent(featureTag: String, user: JSON.User, featureId: String) throws {
+    func trackDefaultEvaluationEvent(featureTag: String, user: User, featureId: String) throws {
         try eventDao.add(
             event: .init(
                 id: idGenerator.id(),
@@ -63,7 +63,7 @@ final class EventInteractor {
         updateEventsAndNotify()
     }
 
-    func trackGoalEvent(featureTag: String, user: JSON.User, goalId: String, value: Double) throws {
+    func trackGoalEvent(featureTag: String, user: User, goalId: String, value: Double) throws {
         try eventDao.add(
             event: .init(
                 id: idGenerator.id(),
@@ -115,8 +115,8 @@ final class EventInteractor {
     }
 
     func trackFetchEvaluationsFailure(featureTag: String, error: BKTError) throws {
-        let metricsEventData: JSON.MetricsEventData
-        let metricsEventType: JSON.MetricsEventType
+        let metricsEventData: MetricsEventData
+        let metricsEventType: MetricsEventType
         switch error {
         case .timeout:
             metricsEventData = .timeoutErrorCount(.init(tag: featureTag))

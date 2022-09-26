@@ -10,7 +10,7 @@ class ApiClientTests: XCTestCase {
         expectation.expectedFulfillmentCount = 2
 
         let userEvaluationsId: String = "user_evaluation1"
-        let evaluations: [JSON.Evaluation] = [.mock1, .mock2]
+        let evaluations: [Evaluation] = [.mock1, .mock2]
         let response = GetEvaluationsResponse(data: .init(
             evaluations: .init(
                 id: userEvaluationsId,

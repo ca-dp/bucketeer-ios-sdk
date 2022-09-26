@@ -27,7 +27,7 @@ final class ApiClientImpl: ApiClient {
         self.session.configuration.timeoutIntervalForRequest = TimeInterval(self.defaultRequestTimeoutMills)
     }
 
-    func getEvaluations(user: JSON.User, userEvaluationsId: String, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?) {
+    func getEvaluations(user: User, userEvaluationsId: String, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?) {
         let startAt = Date()
         let requestBody = GetEvaluationsRequestBody(
             tag: self.featureTag,

@@ -10,21 +10,20 @@
 		0065C3C628C7BB76002D92A2 /* Bucketeer2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0065C3BE28C7BB76002D92A2 /* Bucketeer2.framework */; };
 		0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */; };
 		0065C3CC28C7BB76002D92A2 /* Bucketeer2.h in Headers */ = {isa = PBXBuildFile; fileRef = 0065C3C028C7BB76002D92A2 /* Bucketeer2.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0065C3D928C7BC8C002D92A2 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3D828C7BC8C002D92A2 /* JSON.swift */; };
-		0065C3DB28C7BCC0002D92A2 /* JSON.Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DA28C7BCC0002D92A2 /* JSON.Duration.swift */; };
-		0065C3DD28C7BCFF002D92A2 /* JSON.Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DC28C7BCFF002D92A2 /* JSON.Evaluation.swift */; };
-		0065C3DF28C7BD32002D92A2 /* JSON.Variation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DE28C7BD32002D92A2 /* JSON.Variation.swift */; };
-		0065C3E128C7BD4E002D92A2 /* JSON.Reason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E028C7BD4E002D92A2 /* JSON.Reason.swift */; };
-		0065C3E328C8136D002D92A2 /* JSON.Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E228C8136D002D92A2 /* JSON.Event.swift */; };
-		0065C3E528C813D6002D92A2 /* JSON.EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E428C813D6002D92A2 /* JSON.EventData.swift */; };
-		0065C3E728C815EA002D92A2 /* JSON.SourceID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E628C815EA002D92A2 /* JSON.SourceID.swift */; };
-		0065C3E928C815F8002D92A2 /* JSON.User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E828C815F8002D92A2 /* JSON.User.swift */; };
-		0065C3EB28C81620002D92A2 /* JSON.MetricsEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EA28C81620002D92A2 /* JSON.MetricsEventData.swift */; };
-		0065C3ED28C8162D002D92A2 /* JSON.MetricsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EC28C8162D002D92A2 /* JSON.MetricsEventType.swift */; };
-		0065C3EF28C8164E002D92A2 /* JSON.EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EE28C8164E002D92A2 /* JSON.EventType.swift */; };
-		0065C3F128C817E9002D92A2 /* JSON.ReasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F028C817E9002D92A2 /* JSON.ReasonType.swift */; };
-		0065C3F328C818C0002D92A2 /* JSON.UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F228C818C0002D92A2 /* JSON.UserData.swift */; };
-		0065C3F528C818EF002D92A2 /* JSON.UserEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */; };
+		0065C3DB28C7BCC0002D92A2 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DA28C7BCC0002D92A2 /* Duration.swift */; };
+		0065C3DD28C7BCFF002D92A2 /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DC28C7BCFF002D92A2 /* Evaluation.swift */; };
+		0065C3DF28C7BD32002D92A2 /* Variation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DE28C7BD32002D92A2 /* Variation.swift */; };
+		0065C3E128C7BD4E002D92A2 /* Reason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E028C7BD4E002D92A2 /* Reason.swift */; };
+		0065C3E328C8136D002D92A2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E228C8136D002D92A2 /* Event.swift */; };
+		0065C3E528C813D6002D92A2 /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E428C813D6002D92A2 /* EventData.swift */; };
+		0065C3E728C815EA002D92A2 /* SourceID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E628C815EA002D92A2 /* SourceID.swift */; };
+		0065C3E928C815F8002D92A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E828C815F8002D92A2 /* User.swift */; };
+		0065C3EB28C81620002D92A2 /* MetricsEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EA28C81620002D92A2 /* MetricsEventData.swift */; };
+		0065C3ED28C8162D002D92A2 /* MetricsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EC28C8162D002D92A2 /* MetricsEventType.swift */; };
+		0065C3EF28C8164E002D92A2 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EE28C8164E002D92A2 /* EventType.swift */; };
+		0065C3F128C817E9002D92A2 /* ReasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F028C817E9002D92A2 /* ReasonType.swift */; };
+		0065C3F328C818C0002D92A2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F228C818C0002D92A2 /* UserData.swift */; };
+		0065C3F528C818EF002D92A2 /* UserEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F428C818EF002D92A2 /* UserEvaluations.swift */; };
 		0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */; };
 		00696D6628D1C806000068E1 /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6528D1C806000068E1 /* SQLite.swift */; };
 		00696D6928D1CA77000068E1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6828D1CA76000068E1 /* Logger.swift */; };
@@ -300,21 +299,20 @@
 		0065C3C028C7BB76002D92A2 /* Bucketeer2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bucketeer2.h; sourceTree = "<group>"; };
 		0065C3C528C7BB76002D92A2 /* Bucketeer2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bucketeer2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucketeer2Tests.swift; sourceTree = "<group>"; };
-		0065C3D828C7BC8C002D92A2 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		0065C3DA28C7BCC0002D92A2 /* JSON.Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Duration.swift; sourceTree = "<group>"; };
-		0065C3DC28C7BCFF002D92A2 /* JSON.Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Evaluation.swift; sourceTree = "<group>"; };
-		0065C3DE28C7BD32002D92A2 /* JSON.Variation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Variation.swift; sourceTree = "<group>"; };
-		0065C3E028C7BD4E002D92A2 /* JSON.Reason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Reason.swift; sourceTree = "<group>"; };
-		0065C3E228C8136D002D92A2 /* JSON.Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Event.swift; sourceTree = "<group>"; };
-		0065C3E428C813D6002D92A2 /* JSON.EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.EventData.swift; sourceTree = "<group>"; };
-		0065C3E628C815EA002D92A2 /* JSON.SourceID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.SourceID.swift; sourceTree = "<group>"; };
-		0065C3E828C815F8002D92A2 /* JSON.User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.User.swift; sourceTree = "<group>"; };
-		0065C3EA28C81620002D92A2 /* JSON.MetricsEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.MetricsEventData.swift; sourceTree = "<group>"; };
-		0065C3EC28C8162D002D92A2 /* JSON.MetricsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.MetricsEventType.swift; sourceTree = "<group>"; };
-		0065C3EE28C8164E002D92A2 /* JSON.EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.EventType.swift; sourceTree = "<group>"; };
-		0065C3F028C817E9002D92A2 /* JSON.ReasonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.ReasonType.swift; sourceTree = "<group>"; };
-		0065C3F228C818C0002D92A2 /* JSON.UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserData.swift; sourceTree = "<group>"; };
-		0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserEvaluations.swift; sourceTree = "<group>"; };
+		0065C3DA28C7BCC0002D92A2 /* Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		0065C3DC28C7BCFF002D92A2 /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
+		0065C3DE28C7BD32002D92A2 /* Variation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variation.swift; sourceTree = "<group>"; };
+		0065C3E028C7BD4E002D92A2 /* Reason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reason.swift; sourceTree = "<group>"; };
+		0065C3E228C8136D002D92A2 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		0065C3E428C813D6002D92A2 /* EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
+		0065C3E628C815EA002D92A2 /* SourceID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceID.swift; sourceTree = "<group>"; };
+		0065C3E828C815F8002D92A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0065C3EA28C81620002D92A2 /* MetricsEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsEventData.swift; sourceTree = "<group>"; };
+		0065C3EC28C8162D002D92A2 /* MetricsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsEventType.swift; sourceTree = "<group>"; };
+		0065C3EE28C8164E002D92A2 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		0065C3F028C817E9002D92A2 /* ReasonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonType.swift; sourceTree = "<group>"; };
+		0065C3F228C818C0002D92A2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		0065C3F428C818EF002D92A2 /* UserEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEvaluations.swift; sourceTree = "<group>"; };
 		0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingTests.swift; sourceTree = "<group>"; };
 		00696D6528D1C806000068E1 /* SQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
 		00696D6828D1CA76000068E1 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -593,7 +591,7 @@
 				00696D6428D1C7C5000068E1 /* Database */,
 				00696D6E28D1D1EE000068E1 /* Evaluation */,
 				9340CA1528DA0F6200E690CC /* Event */,
-				0065C3D728C7BC82002D92A2 /* JSON */,
+				0065C3D728C7BC82002D92A2 /* Model */,
 				006E85A928DEA2B300B5D90D /* Remote */,
 				9340CA5728E1CD1900E690CC /* User */,
 				006E85C828DED74B00B5D90D /* Utils */,
@@ -601,26 +599,25 @@
 			path = Internal;
 			sourceTree = "<group>";
 		};
-		0065C3D728C7BC82002D92A2 /* JSON */ = {
+		0065C3D728C7BC82002D92A2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0065C3DA28C7BCC0002D92A2 /* JSON.Duration.swift */,
-				0065C3DC28C7BCFF002D92A2 /* JSON.Evaluation.swift */,
-				0065C3E228C8136D002D92A2 /* JSON.Event.swift */,
-				0065C3E428C813D6002D92A2 /* JSON.EventData.swift */,
-				0065C3EE28C8164E002D92A2 /* JSON.EventType.swift */,
-				0065C3EA28C81620002D92A2 /* JSON.MetricsEventData.swift */,
-				0065C3EC28C8162D002D92A2 /* JSON.MetricsEventType.swift */,
-				0065C3E028C7BD4E002D92A2 /* JSON.Reason.swift */,
-				0065C3F028C817E9002D92A2 /* JSON.ReasonType.swift */,
-				0065C3E628C815EA002D92A2 /* JSON.SourceID.swift */,
-				0065C3D828C7BC8C002D92A2 /* JSON.swift */,
-				0065C3E828C815F8002D92A2 /* JSON.User.swift */,
-				0065C3F228C818C0002D92A2 /* JSON.UserData.swift */,
-				0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */,
-				0065C3DE28C7BD32002D92A2 /* JSON.Variation.swift */,
+				0065C3DA28C7BCC0002D92A2 /* Duration.swift */,
+				0065C3DC28C7BCFF002D92A2 /* Evaluation.swift */,
+				0065C3E228C8136D002D92A2 /* Event.swift */,
+				0065C3E428C813D6002D92A2 /* EventData.swift */,
+				0065C3EE28C8164E002D92A2 /* EventType.swift */,
+				0065C3EA28C81620002D92A2 /* MetricsEventData.swift */,
+				0065C3EC28C8162D002D92A2 /* MetricsEventType.swift */,
+				0065C3E028C7BD4E002D92A2 /* Reason.swift */,
+				0065C3F028C817E9002D92A2 /* ReasonType.swift */,
+				0065C3E628C815EA002D92A2 /* SourceID.swift */,
+				0065C3E828C815F8002D92A2 /* User.swift */,
+				0065C3F228C818C0002D92A2 /* UserData.swift */,
+				0065C3F428C818EF002D92A2 /* UserEvaluations.swift */,
+				0065C3DE28C7BD32002D92A2 /* Variation.swift */,
 			);
-			path = JSON;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		00696D6428D1C7C5000068E1 /* Database */ = {
@@ -1501,21 +1498,20 @@
 				006E85B928DEAF2600B5D90D /* GetEvaluationsResponse.swift in Sources */,
 				006E85DA28E01BFE00B5D90D /* GetEvaluationsResult.swift in Sources */,
 				006E85D228DEF29F00B5D90D /* IdGenerator.swift in Sources */,
-				0065C3DB28C7BCC0002D92A2 /* JSON.Duration.swift in Sources */,
-				0065C3DD28C7BCFF002D92A2 /* JSON.Evaluation.swift in Sources */,
-				0065C3E328C8136D002D92A2 /* JSON.Event.swift in Sources */,
-				0065C3E528C813D6002D92A2 /* JSON.EventData.swift in Sources */,
-				0065C3EF28C8164E002D92A2 /* JSON.EventType.swift in Sources */,
-				0065C3EB28C81620002D92A2 /* JSON.MetricsEventData.swift in Sources */,
-				0065C3ED28C8162D002D92A2 /* JSON.MetricsEventType.swift in Sources */,
-				0065C3E128C7BD4E002D92A2 /* JSON.Reason.swift in Sources */,
-				0065C3F128C817E9002D92A2 /* JSON.ReasonType.swift in Sources */,
-				0065C3E728C815EA002D92A2 /* JSON.SourceID.swift in Sources */,
-				0065C3D928C7BC8C002D92A2 /* JSON.swift in Sources */,
-				0065C3E928C815F8002D92A2 /* JSON.User.swift in Sources */,
-				0065C3F328C818C0002D92A2 /* JSON.UserData.swift in Sources */,
-				0065C3F528C818EF002D92A2 /* JSON.UserEvaluations.swift in Sources */,
-				0065C3DF28C7BD32002D92A2 /* JSON.Variation.swift in Sources */,
+				0065C3DB28C7BCC0002D92A2 /* Duration.swift in Sources */,
+				0065C3DD28C7BCFF002D92A2 /* Evaluation.swift in Sources */,
+				0065C3E328C8136D002D92A2 /* Event.swift in Sources */,
+				0065C3E528C813D6002D92A2 /* EventData.swift in Sources */,
+				0065C3EF28C8164E002D92A2 /* EventType.swift in Sources */,
+				0065C3EB28C81620002D92A2 /* MetricsEventData.swift in Sources */,
+				0065C3ED28C8162D002D92A2 /* MetricsEventType.swift in Sources */,
+				0065C3E128C7BD4E002D92A2 /* Reason.swift in Sources */,
+				0065C3F128C817E9002D92A2 /* ReasonType.swift in Sources */,
+				0065C3E728C815EA002D92A2 /* SourceID.swift in Sources */,
+				0065C3E928C815F8002D92A2 /* User.swift in Sources */,
+				0065C3F328C818C0002D92A2 /* UserData.swift in Sources */,
+				0065C3F528C818EF002D92A2 /* UserEvaluations.swift in Sources */,
+				0065C3DF28C7BD32002D92A2 /* Variation.swift in Sources */,
 				00696D6928D1CA77000068E1 /* Logger.swift in Sources */,
 				00696D6B28D1D175000068E1 /* Migration.swift in Sources */,
 				006E85B428DEAEF400B5D90D /* RegisterEventsRequestBody.swift in Sources */,

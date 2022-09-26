@@ -7,7 +7,7 @@ final class EvaluationInteractorTests: XCTestCase {
         let expectation = XCTestExpectation()
         expectation.expectedFulfillmentCount = 2
 
-        let user_evaluations_id = JSON.UserEvaluations.mock1.id
+        let user_evaluations_id = UserEvaluations.mock1.id
         let api = MockApiClient(
             getEvaluationsHandler: { user, userEvaluationsId, timeoutMillis, completion in
 
@@ -42,10 +42,10 @@ final class EvaluationInteractorTests: XCTestCase {
             }
 
             XCTAssertEqual(interactor.currentEvaluationsId, user_evaluations_id)
-            XCTAssertEqual(interactor.evaluations[JSON.User.mock1.id], [.mock1, .mock2])
+            XCTAssertEqual(interactor.evaluations[User.mock1.id], [.mock1, .mock2])
 
             let evaluation = interactor.getLatest(
-                userId: JSON.User.mock1.id,
+                userId: User.mock1.id,
                 featureId: "feature1"
             )
             XCTAssertEqual(evaluation, .mock1)
@@ -65,7 +65,7 @@ final class EvaluationInteractorTests: XCTestCase {
         var updatedEvaluation = initialEvaluation
         updatedEvaluation.variation_value += "_updated"
 
-        let user_evaluations_id = JSON.UserEvaluations.mock1.id
+        let user_evaluations_id = UserEvaluations.mock1.id
         let user_evaluations_id_updated = user_evaluations_id + "_updated"
         let api = MockApiClient(
             getEvaluationsHandler: { user, userEvaluationsId, timeoutMillis, completion in
@@ -81,7 +81,7 @@ final class EvaluationInteractorTests: XCTestCase {
                     completion?(.success(response))
                 } else {
                     // second request
-                    var userEvaluations = JSON.UserEvaluations.mock1
+                    var userEvaluations = UserEvaluations.mock1
                     userEvaluations.evaluations = [updatedEvaluation, .mock2]
                     userEvaluations.id = user_evaluations_id_updated
                     let response = GetEvaluationsResponse(
@@ -118,10 +118,10 @@ final class EvaluationInteractorTests: XCTestCase {
                 }
 
                 XCTAssertEqual(interactor.currentEvaluationsId, user_evaluations_id_updated)
-                XCTAssertEqual(interactor.evaluations[JSON.User.mock1.id], [updatedEvaluation, .mock2])
+                XCTAssertEqual(interactor.evaluations[User.mock1.id], [updatedEvaluation, .mock2])
 
                 let evaluation = interactor.getLatest(
-                    userId: JSON.User.mock1.id,
+                    userId: User.mock1.id,
                     featureId: "feature1"
                 )
                 XCTAssertEqual(evaluation, updatedEvaluation)
@@ -137,7 +137,7 @@ final class EvaluationInteractorTests: XCTestCase {
         expectation.expectedFulfillmentCount = 3
         expectation.assertForOverFulfill = true
 
-        let user_evaluations_id = JSON.UserEvaluations.mock1.id
+        let user_evaluations_id = UserEvaluations.mock1.id
         let api = MockApiClient(
             getEvaluationsHandler: { user, userEvaluationsId, timeoutMillis, completion in
 
@@ -174,10 +174,10 @@ final class EvaluationInteractorTests: XCTestCase {
                 }
 
                 XCTAssertEqual(interactor.currentEvaluationsId, user_evaluations_id)
-                XCTAssertEqual(interactor.evaluations[JSON.User.mock1.id], [.mock1, .mock2])
+                XCTAssertEqual(interactor.evaluations[User.mock1.id], [.mock1, .mock2])
 
                 let evaluation = interactor.getLatest(
-                    userId: JSON.User.mock1.id,
+                    userId: User.mock1.id,
                     featureId: "feature1"
                 )
                 XCTAssertEqual(evaluation, .mock1)
@@ -191,8 +191,8 @@ final class EvaluationInteractorTests: XCTestCase {
     func testRefreshCache() throws {
         let api = MockApiClient()
 
-        let userId1 = JSON.User.mock1.id
-        let userId2 = JSON.User.mock2.id
+        let userId1 = User.mock1.id
+        let userId2 = User.mock2.id
 
         let dao = MockEvaluationDao(getHandler: { userId in
             switch userId {
@@ -225,8 +225,8 @@ final class EvaluationInteractorTests: XCTestCase {
     func testGetLatestWithCache() throws {
         let api = MockApiClient()
 
-        let userId1 = JSON.User.mock1.id
-        let userId2 = JSON.User.mock2.id
+        let userId1 = User.mock1.id
+        let userId2 = User.mock2.id
 
         let dao = MockEvaluationDao(getHandler: { userId in
             switch userId {
@@ -265,7 +265,7 @@ final class EvaluationInteractorTests: XCTestCase {
             defaults: defaults
         )
 
-        XCTAssertEqual(interactor.getLatest(userId: JSON.User.mock1.id, featureId: Evaluation.mock1.feature_id), nil)
+        XCTAssertEqual(interactor.getLatest(userId: User.mock1.id, featureId: Evaluation.mock1.feature_id), nil)
     }
 
     func testGetLatestWithoutCorrespondingEvaluation() {
@@ -273,7 +273,7 @@ final class EvaluationInteractorTests: XCTestCase {
 
         let dao = MockEvaluationDao(getHandler: { userId in
             switch userId {
-            case JSON.User.mock1.id:
+            case User.mock1.id:
                 return [.mock1, .mock2]
             default:
                 return []
@@ -287,6 +287,6 @@ final class EvaluationInteractorTests: XCTestCase {
             defaults: defaults
         )
 
-        XCTAssertEqual(interactor.getLatest(userId: JSON.User.mock1.id, featureId: "invalid_feature_id"), nil)
+        XCTAssertEqual(interactor.getLatest(userId: User.mock1.id, featureId: "invalid_feature_id"), nil)
     }
 }
