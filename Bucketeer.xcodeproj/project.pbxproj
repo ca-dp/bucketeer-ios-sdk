@@ -205,6 +205,8 @@
 		9340CA1B28DA0F6200E690CC /* EventDaoImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1828DA0F6200E690CC /* EventDaoImpl.swift */; };
 		9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1E28DA106200E690CC /* EventDaoTests.swift */; };
 		9340CA2C28DAEA1500E690CC /* MigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA2B28DAEA1500E690CC /* MigrationTests.swift */; };
+		9340CA5928E1CD2600E690CC /* UserHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA5828E1CD2600E690CC /* UserHolder.swift */; };
+		9340CA5B28E1CE7200E690CC /* BKTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA5A28E1CE7200E690CC /* BKTUser.swift */; };
 		AB5FF9DA23D17C1D000B46DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF3C36C23D16E8500B45FB2 /* User.swift */; };
 		AB8CE39C2320E41E000960FF /* user_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3522320E41E000960FF /* user_service.pb.swift */; };
 		AB8CE39E2320E41E000960FF /* user_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3532320E41E000960FF /* user_user.pb.swift */; };
@@ -421,6 +423,8 @@
 		9340CA1828DA0F6200E690CC /* EventDaoImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDaoImpl.swift; sourceTree = "<group>"; };
 		9340CA1E28DA106200E690CC /* EventDaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDaoTests.swift; sourceTree = "<group>"; };
 		9340CA2B28DAEA1500E690CC /* MigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationTests.swift; sourceTree = "<group>"; };
+		9340CA5828E1CD2600E690CC /* UserHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHolder.swift; sourceTree = "<group>"; };
+		9340CA5A28E1CE7200E690CC /* BKTUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTUser.swift; sourceTree = "<group>"; };
 		98C9BE34EAEA31F77EE649B8 /* Pods_ExampleTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CE3522320E41E000960FF /* user_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_service.pb.swift; sourceTree = "<group>"; };
 		AB8CE3532320E41E000960FF /* user_user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_user.pb.swift; sourceTree = "<group>"; };
@@ -591,6 +595,7 @@
 				9340CA1528DA0F6200E690CC /* Event */,
 				0065C3D728C7BC82002D92A2 /* JSON */,
 				006E85A928DEA2B300B5D90D /* Remote */,
+				9340CA5728E1CD1900E690CC /* User */,
 				006E85C828DED74B00B5D90D /* Utils */,
 			);
 			path = Internal;
@@ -631,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				006E85D528E01B0F00B5D90D /* BKTError.swift */,
+				9340CA5A28E1CE7200E690CC /* BKTUser.swift */,
 				00696D6828D1CA76000068E1 /* Logger.swift */,
 			);
 			path = Public;
@@ -851,6 +857,14 @@
 				006E85CD28DEE23100B5D90D /* EventInteractor.swift */,
 			);
 			path = Event;
+			sourceTree = "<group>";
+		};
+		9340CA5728E1CD1900E690CC /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9340CA5828E1CD2600E690CC /* UserHolder.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		AB8CE3412320E41E000960FF /* proto */ = {
@@ -1471,6 +1485,7 @@
 				006E85AB28DEA2BC00B5D90D /* ApiClient.swift in Sources */,
 				006E85AD28DEA2CD00B5D90D /* ApiClientImpl.swift in Sources */,
 				006E85D628E01B0F00B5D90D /* BKTError.swift in Sources */,
+				9340CA5B28E1CE7200E690CC /* BKTUser.swift in Sources */,
 				006E85D028DEE42E00B5D90D /* Clock.swift in Sources */,
 				006E85CA28DED75500B5D90D /* Defaults.swift in Sources */,
 				006E85B728DEAF1400B5D90D /* ErrorResponse.swift in Sources */,
@@ -1514,6 +1529,7 @@
 				00696DA328D21B6C000068E1 /* SQLiteColumn.swift in Sources */,
 				00696D9D28D21B2E000068E1 /* SQLiteEntity.swift in Sources */,
 				00696DA128D21B58000068E1 /* SQLiteValue.swift in Sources */,
+				9340CA5928E1CD2600E690CC /* UserHolder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
