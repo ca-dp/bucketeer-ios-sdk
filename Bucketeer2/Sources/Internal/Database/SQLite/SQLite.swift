@@ -53,6 +53,34 @@ extension SQLite {
 }
 
 extension SQLite {
+    var userVersion: Int32 {
+          get {
+              do {
+                  let statement = try prepareStatement(sql: "PRAGMA user_version")
+                  try statement.step()
+                  let userVersion = statement.int(at: 0)
+                  try statement.reset()
+                  try statement.finalize()
+                  return userVersion
+              } catch let error {
+                  logger?.error(error)
+                  return 0
+              }
+          }
+          set {
+              do {
+                  let statement = try prepareStatement(sql: "PRAGMA user_version = \(newValue)")
+                  repeat {} while try statement.step()
+                  try statement.reset()
+                  try statement.finalize()
+              } catch let error {
+                  logger?.error(error)
+              }
+          }
+      }
+}
+
+extension SQLite {
     func select<Entity: SQLiteEntity>(_ entity: Entity, conditions: [Condition]) throws -> [Entity.Model] {
         let table = Table(entity: entity)
         let sql = table.sqlToSelect(conditions: conditions)

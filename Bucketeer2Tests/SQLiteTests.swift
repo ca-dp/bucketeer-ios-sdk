@@ -36,6 +36,14 @@ class SQLiteTests: XCTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: db.path))
     }
 
+    func testUserVersion() throws {
+        let logger = MockLogger()
+        let db = try SQLite(path: url.path, logger: logger)
+        XCTAssertEqual(db.userVersion, 0)
+        db.userVersion = 2
+        XCTAssertEqual(db.userVersion, 2)
+    }
+
     func testInsert() throws {
         let entities = [
             try MockEntity(model: .init(id: "id100", value: 100)),
