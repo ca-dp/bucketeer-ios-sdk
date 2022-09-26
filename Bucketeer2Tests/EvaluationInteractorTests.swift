@@ -188,7 +188,7 @@ final class EvaluationInteractorTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
-    func testRefrechCache() throws {
+    func testRefreshCache() throws {
         let api = MockApiClient()
 
         let userId1 = JSON.User.mock1.id

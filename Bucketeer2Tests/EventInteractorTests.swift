@@ -484,6 +484,10 @@ final class EventInteractorTests: XCTestCase {
         let addedEvents: [Event] = [.mockEvaluation1, .mockGoal1]
         let dao = MockEventDao()
         try dao.add(events: addedEvents)
+
+        XCTAssertEqual(dao.events.count, 2)
+        XCTAssertEqual(dao.events, addedEvents)
+
         let api = MockApiClient(registerEventsHandler: { events, completion in
             XCTAssertEqual(events.count, 2)
             XCTAssertEqual(events, addedEvents)

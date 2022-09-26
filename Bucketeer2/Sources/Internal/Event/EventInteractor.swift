@@ -115,7 +115,6 @@ final class EventInteractor {
     }
 
     func trackFetchEvaluationsFailure(featureTag: String, error: BKTError) throws {
-
         let metricsEventData: JSON.MetricsEventData
         let metricsEventType: JSON.MetricsEventType
         switch error {
