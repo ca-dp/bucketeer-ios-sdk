@@ -16,17 +16,17 @@ public struct BKTUser {
         private var id: String?
         private var attributes: [String: String] = [:]
 
-        func id(_ id: String) -> Builder {
+        public func id(_ id: String) -> Builder {
             self.id = id
             return self
         }
 
-        func custom(attributes: [String: String]) -> Builder {
+        public func custom(attributes: [String: String]) -> Builder {
             self.attributes = attributes
             return self
         }
 
-        func build() throws -> BKTUser {
+        public func build() throws -> BKTUser {
             guard let id = self.id, !id.isEmpty else {
                 throw BKTError.illegalArgument(message: "The user id is required.")
             }
