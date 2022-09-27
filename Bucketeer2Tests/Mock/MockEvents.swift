@@ -68,7 +68,7 @@ extension Event {
             timestamp: 1,
             event: .getEvaluationLatency(.init(
                 labels: ["tag": "ios", "state": "full"],
-                duration: .init(seconds: 2, nanos: 2)
+                duration: .init(seconds: 2)
             )),
             type: .getEvaluationLatency
         )),

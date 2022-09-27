@@ -19,9 +19,9 @@ extension JSON {
         struct Evaluation: Codable, Hashable {
             let timestamp: Int64
             let feature_id: String
-            let feature_version: Int
+            var feature_version: Int = 0
             let user_id: String
-            let variation_id: String
+            var variation_id: String = ""
             let user: User
             let reason: Reason
             let tag: String

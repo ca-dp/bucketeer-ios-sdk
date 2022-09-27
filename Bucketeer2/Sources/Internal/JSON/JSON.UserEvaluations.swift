@@ -2,7 +2,7 @@ import Foundation
 
 extension JSON {
     struct UserEvaluations: Codable {
-        let id: String
-        let evaluations: [Evaluation]
+        var id: String
+        var evaluations: [Evaluation]
     }
 }
