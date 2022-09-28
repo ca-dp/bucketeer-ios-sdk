@@ -1,6 +1,19 @@
 import Foundation
 
-final class EventInteractor {
+protocol EventInteractor {
+    func set(eventUpdateListener: EventUpdateListener?)
+    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Int64, sizeByte: Int) throws
+    func trackFetchEvaluationsFailure(featureTag: String, error: BKTError) throws
+    func sendEvents(force: Bool, completion: ((Result<Bool, Error>) -> Void)?)
+}
+
+extension EventInteractor {
+    func sendEvents(completion: ((Result<Bool, Error>) -> Void)?) {
+        self.sendEvents(force: false, completion: completion)
+    }
+}
+
+final class EventInteractorImpl: EventInteractor {
     let eventsMaxBatchQueueCount: Int
     let apiClient: ApiClient
     let eventDao: EventDao
@@ -137,7 +150,7 @@ final class EventInteractor {
         updateEventsAndNotify()
     }
 
-    func sendEvents(force: Bool = false, completion: ((Result<Bool, Error>) -> Void)?) {
+    func sendEvents(force: Bool, completion: ((Result<Bool, Error>) -> Void)?) {
         do {
             let currentEvents = try eventDao.getEvents()
             guard !currentEvents.isEmpty else {

@@ -211,6 +211,10 @@
 		9340CA6228E1F35A00E690CC /* BKTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA6128E1F35A00E690CC /* BKTConfig.swift */; };
 		9340CA6428E1F80800E690CC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA6328E1F80800E690CC /* Constant.swift */; };
 		93AC8F7528E3279E00A4719B /* DatabaseOpenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AC8F7428E3279E00A4719B /* DatabaseOpenHelper.swift */; };
+		93AC8F7A28E33EA900A4719B /* EventForegroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AC8F7928E33EA900A4719B /* EventForegroundTask.swift */; };
+		93AC8F7C28E34ADD00A4719B /* Poller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AC8F7B28E34ADD00A4719B /* Poller.swift */; };
+		93AC8F7E28E34B5C00A4719B /* EvaluationForegroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AC8F7D28E34B5C00A4719B /* EvaluationForegroundTask.swift */; };
+		93AC8F8028E351C500A4719B /* ScheduledTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AC8F7F28E351C500A4719B /* ScheduledTask.swift */; };
 		AB5FF9DA23D17C1D000B46DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF3C36C23D16E8500B45FB2 /* User.swift */; };
 		AB8CE39C2320E41E000960FF /* user_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3522320E41E000960FF /* user_service.pb.swift */; };
 		AB8CE39E2320E41E000960FF /* user_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3532320E41E000960FF /* user_user.pb.swift */; };
@@ -433,6 +437,10 @@
 		9340CA6128E1F35A00E690CC /* BKTConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTConfig.swift; sourceTree = "<group>"; };
 		9340CA6328E1F80800E690CC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		93AC8F7428E3279E00A4719B /* DatabaseOpenHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseOpenHelper.swift; sourceTree = "<group>"; };
+		93AC8F7928E33EA900A4719B /* EventForegroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForegroundTask.swift; sourceTree = "<group>"; };
+		93AC8F7B28E34ADD00A4719B /* Poller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poller.swift; sourceTree = "<group>"; };
+		93AC8F7D28E34B5C00A4719B /* EvaluationForegroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationForegroundTask.swift; sourceTree = "<group>"; };
+		93AC8F7F28E351C500A4719B /* ScheduledTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledTask.swift; sourceTree = "<group>"; };
 		98C9BE34EAEA31F77EE649B8 /* Pods_ExampleTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CE3522320E41E000960FF /* user_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_service.pb.swift; sourceTree = "<group>"; };
 		AB8CE3532320E41E000960FF /* user_user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_user.pb.swift; sourceTree = "<group>"; };
@@ -604,6 +612,7 @@
 				9340CA1528DA0F6200E690CC /* Event */,
 				0065C3D728C7BC82002D92A2 /* Model */,
 				006E85A928DEA2B300B5D90D /* Remote */,
+				93AC8F7828E33E9A00A4719B /* Scheduler */,
 				9340CA5728E1CD1900E690CC /* User */,
 				006E85C828DED74B00B5D90D /* Utils */,
 			);
@@ -885,6 +894,17 @@
 				9340CA5F28E1F2D400E690CC /* DataModule.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		93AC8F7828E33E9A00A4719B /* Scheduler */ = {
+			isa = PBXGroup;
+			children = (
+				93AC8F7D28E34B5C00A4719B /* EvaluationForegroundTask.swift */,
+				93AC8F7928E33EA900A4719B /* EventForegroundTask.swift */,
+				93AC8F7B28E34ADD00A4719B /* Poller.swift */,
+				93AC8F7F28E351C500A4719B /* ScheduledTask.swift */,
+			);
+			path = Scheduler;
 			sourceTree = "<group>";
 		};
 		AB8CE3412320E41E000960FF /* proto */ = {
@@ -1520,12 +1540,14 @@
 				00696D7128D1D258000068E1 /* EvaluationDao.swift in Sources */,
 				00696D7528D1D2BB000068E1 /* EvaluationDaoImpl.swift in Sources */,
 				00696D7328D1D295000068E1 /* EvaluationEntity.swift in Sources */,
+				93AC8F7E28E34B5C00A4719B /* EvaluationForegroundTask.swift in Sources */,
 				006E85C128DECF2200B5D90D /* EvaluationInteractor.swift in Sources */,
 				0065C3E328C8136D002D92A2 /* Event.swift in Sources */,
 				9340CA1928DA0F6200E690CC /* EventDao.swift in Sources */,
 				9340CA1B28DA0F6200E690CC /* EventDaoImpl.swift in Sources */,
 				0065C3E528C813D6002D92A2 /* EventData.swift in Sources */,
 				9340CA1A28DA0F6200E690CC /* EventEntity.swift in Sources */,
+				93AC8F7A28E33EA900A4719B /* EventForegroundTask.swift in Sources */,
 				006E85CE28DEE23100B5D90D /* EventInteractor.swift in Sources */,
 				0065C3EF28C8164E002D92A2 /* EventType.swift in Sources */,
 				006E85B228DEAEE000B5D90D /* GetEvaluationsRequestBody.swift in Sources */,
@@ -1535,10 +1557,12 @@
 				0065C3EB28C81620002D92A2 /* MetricsEventData.swift in Sources */,
 				0065C3ED28C8162D002D92A2 /* MetricsEventType.swift in Sources */,
 				00696D6B28D1D175000068E1 /* Migration.swift in Sources */,
+				93AC8F7C28E34ADD00A4719B /* Poller.swift in Sources */,
 				0065C3E128C7BD4E002D92A2 /* Reason.swift in Sources */,
 				0065C3F128C817E9002D92A2 /* ReasonType.swift in Sources */,
 				006E85B428DEAEF400B5D90D /* RegisterEventsRequestBody.swift in Sources */,
 				006E85BB28DEAF3700B5D90D /* RegisterEventsResponse.swift in Sources */,
+				93AC8F8028E351C500A4719B /* ScheduledTask.swift in Sources */,
 				006E85AF28DEAEC600B5D90D /* Session.swift in Sources */,
 				0065C3E728C815EA002D92A2 /* SourceID.swift in Sources */,
 				00696DA528D21B7E000068E1 /* SQLite.Condition.swift in Sources */,

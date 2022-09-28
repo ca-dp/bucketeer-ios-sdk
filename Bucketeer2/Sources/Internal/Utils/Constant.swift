@@ -13,4 +13,7 @@ struct Constant {
         static let FILE_NAME = "bucketeer.db"
         static let VERSION: Int32 = 2
     }
+
+    static let RETRY_POLLING_INTERVAL: Int64 = 1_000 * 60 // 1 minute
+    static let MAX_RETRY_COUNT = 5
 }

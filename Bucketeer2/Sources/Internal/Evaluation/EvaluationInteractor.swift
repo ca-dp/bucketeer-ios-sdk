@@ -1,6 +1,16 @@
 import Foundation
 
-final class EvaluationInteractor {
+protocol EvaluationInteractor {
+    func fetch(user: User, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?)
+}
+
+extension EvaluationInteractor {
+    func fetch(user: User, completion: ((GetEvaluationsResult) -> Void)?) {
+        self.fetch(user: user, timeoutMillis: nil, completion: completion)
+    }
+}
+
+final class EvaluationInteractorImpl: EvaluationInteractor {
 
     private static let userEvaluationsIdKey = "bucketeer_user_evaluations_id"
 
@@ -27,7 +37,7 @@ final class EvaluationInteractor {
         }
     }
 
-    func fetch(user: User, timeoutMillis: Int64? = nil, completion: ((GetEvaluationsResult) -> Void)?) {
+    func fetch(user: User, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?) {
         let currentEvaluationsId = self.currentEvaluationsId
         let evaluationDao = self.evaluationDao
         let logger = self.logger
@@ -38,7 +48,7 @@ final class EvaluationInteractor {
                 switch result {
                 case .success(let response):
                     let newEvaluationsId = response.data.user_evaluations_id
-                    if (currentEvaluationsId == newEvaluationsId) {
+                    if currentEvaluationsId == newEvaluationsId {
                         logger?.debug(message: "Nothing to sync")
                         completion?(result)
                         return
