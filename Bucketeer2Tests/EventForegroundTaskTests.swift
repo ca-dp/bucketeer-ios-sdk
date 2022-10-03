@@ -77,10 +77,10 @@ class EventForegroundTaskTests: XCTestCase {
         expectation.assertForOverFulfill = true
         let dispatchQueue = DispatchQueue(label: "default", qos: .default)
 
-        let interactor = MockEventInteractor { force, completion in
+        let interactor = MockEventInteractor(sendEventsHandler: { force, completion in
             // not called
             expectation.fulfill()
-        }
+        })
         let config = BKTConfig(
             apiKey: "api_key_value",
             endpoint: URL(string: "https://test.bucketeer.jp")!,

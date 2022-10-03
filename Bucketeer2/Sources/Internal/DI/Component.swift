@@ -1,6 +1,6 @@
 import Foundation
 
-protocol Component: class {
+protocol Component: AnyObject {
     var config: BKTConfig { get }
     var userHolder: UserHolder { get }
     var evaluationInteractor: EvaluationInteractor { get }
