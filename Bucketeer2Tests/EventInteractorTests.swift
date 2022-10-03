@@ -11,7 +11,7 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient()
         let dao = MockEventDao()
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -57,7 +57,7 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient()
         let dao = MockEventDao()
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -101,7 +101,7 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient()
         let dao = MockEventDao()
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -146,7 +146,7 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient()
         let dao = MockEventDao()
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -207,7 +207,7 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient()
         let dao = MockEventDao()
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -248,7 +248,7 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient()
         let dao = MockEventDao()
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -298,7 +298,7 @@ final class EventInteractorTests: XCTestCase {
         })
 
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -342,7 +342,7 @@ final class EventInteractorTests: XCTestCase {
         })
 
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -375,7 +375,7 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient()
 
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -410,7 +410,7 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient()
 
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -449,7 +449,7 @@ final class EventInteractorTests: XCTestCase {
         })
 
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -499,7 +499,7 @@ final class EventInteractorTests: XCTestCase {
         })
 
         let logger = MockLogger()
-        let interactor = EventInteractor(
+        let interactor = EventInteractorImpl(
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,

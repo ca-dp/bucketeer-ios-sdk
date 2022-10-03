@@ -27,7 +27,7 @@ final class EvaluationInteractorTests: XCTestCase {
         let dao = MockEvaluationDao()
         let defaults = MockDefaults()
 
-        let interactor = EvaluationInteractor(
+        let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults
@@ -99,7 +99,7 @@ final class EvaluationInteractorTests: XCTestCase {
         let dao = MockEvaluationDao()
         let defaults = MockDefaults()
 
-        let interactor = EvaluationInteractor(
+        let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults
@@ -155,7 +155,7 @@ final class EvaluationInteractorTests: XCTestCase {
         let dao = MockEvaluationDao()
         let defaults = MockDefaults()
 
-        let interactor = EvaluationInteractor(
+        let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults
@@ -206,7 +206,7 @@ final class EvaluationInteractorTests: XCTestCase {
         })
         let defaults = MockDefaults()
 
-        let interactor = EvaluationInteractor(
+        let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults
@@ -240,7 +240,7 @@ final class EvaluationInteractorTests: XCTestCase {
         })
         let defaults = MockDefaults()
 
-        let interactor = EvaluationInteractor(
+        let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults
@@ -259,7 +259,7 @@ final class EvaluationInteractorTests: XCTestCase {
         })
         let defaults = MockDefaults()
 
-        let interactor = EvaluationInteractor(
+        let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults
@@ -281,7 +281,7 @@ final class EvaluationInteractorTests: XCTestCase {
         })
         let defaults = MockDefaults()
 
-        let interactor = EvaluationInteractor(
+        let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults
