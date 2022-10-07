@@ -26,7 +26,7 @@ final class EvaluationForegroundTaskTests: XCTestCase {
         )
         let config = BKTConfig(
             apiKey: "api_key_value",
-            endpoint: URL(string: "https://test.bucketeer.jp")!,
+            apiEndpoint: URL(string: "https://test.bucketeer.jp")!,
             featureTag: "featureTag1",
             eventsFlushInterval: 10,
             eventsMaxBatchQueueCount: 3,
@@ -75,7 +75,7 @@ final class EvaluationForegroundTaskTests: XCTestCase {
         )
         let config = BKTConfig(
             apiKey: "api_key_value",
-            endpoint: URL(string: "https://test.bucketeer.jp")!,
+            apiEndpoint: URL(string: "https://test.bucketeer.jp")!,
             featureTag: "featureTag1",
             eventsFlushInterval: 50,
             eventsMaxBatchQueueCount: 3,
@@ -119,7 +119,7 @@ final class EvaluationForegroundTaskTests: XCTestCase {
         )
         let config = BKTConfig(
             apiKey: "api_key_value",
-            endpoint: URL(string: "https://test.bucketeer.jp")!,
+            apiEndpoint: URL(string: "https://test.bucketeer.jp")!,
             featureTag: "featureTag1",
             eventsFlushInterval: 50,
             eventsMaxBatchQueueCount: 3,

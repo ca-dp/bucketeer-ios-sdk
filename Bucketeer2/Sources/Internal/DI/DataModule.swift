@@ -30,7 +30,7 @@ final class DataModuleImpl: DataModule {
     private(set) lazy var clock: Clock = ClockImpl()
     private(set) lazy var idGenerator: IdGenerator = IdGeneratorImpl()
     private(set) lazy var apiClient: ApiClient = ApiClientImpl(
-        endpoint: config.endpoint,
+        endpoint: config.apiEndpoint,
         apiKey: self.config.apiKey,
         featureTag: self.config.featureTag,
         session: URLSession.shared,

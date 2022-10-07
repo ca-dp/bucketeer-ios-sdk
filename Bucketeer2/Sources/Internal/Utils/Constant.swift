@@ -14,6 +14,6 @@ struct Constant {
         static let VERSION: Int32 = 2
     }
 
-    static let RETRY_POLLING_INTERVAL: Int64 = 1_000 * 60 // 1 minute
+    static let RETRY_POLLING_INTERVAL: Int64 = 60_000 // 60 seconds
     static let MAX_RETRY_COUNT = 5
 }
