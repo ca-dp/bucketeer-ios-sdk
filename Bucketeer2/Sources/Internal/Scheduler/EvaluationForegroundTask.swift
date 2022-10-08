@@ -57,7 +57,7 @@ final class EvaluationForegroundTask: ScheduledTask {
                     try eventInteractor.trackFetchEvaluationsSuccess(
                         featureTag: response.featureTag,
                         seconds: Int64(response.seconds),
-                        sizeByte: Int(response.sizeByte)
+                        sizeByte: response.sizeByte
                     )
                     // reset retry count
                     self?.retryCount = 0

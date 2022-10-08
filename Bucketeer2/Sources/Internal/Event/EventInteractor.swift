@@ -2,13 +2,16 @@ import Foundation
 
 protocol EventInteractor {
     func set(eventUpdateListener: EventUpdateListener?)
-    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Int64, sizeByte: Int) throws
+    func trackEvaluationEvent(featureTag: String, user: User, evaluation: Evaluation) throws
+    func trackDefaultEvaluationEvent(featureTag: String, user: User, featureId: String) throws
+    func trackGoalEvent(featureTag: String, user: User, goalId: String, value: Double) throws
+    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Int64, sizeByte: Int64) throws
     func trackFetchEvaluationsFailure(featureTag: String, error: BKTError) throws
-    func sendEvents(force: Bool, completion: ((Result<Bool, Error>) -> Void)?)
+    func sendEvents(force: Bool, completion: ((Result<Bool, BKTError>) -> Void)?)
 }
 
 extension EventInteractor {
-    func sendEvents(completion: ((Result<Bool, Error>) -> Void)?) {
+    func sendEvents(completion: ((Result<Bool, BKTError>) -> Void)?) {
         self.sendEvents(force: false, completion: completion)
     }
 }
@@ -95,7 +98,7 @@ final class EventInteractorImpl: EventInteractor {
         updateEventsAndNotify()
     }
 
-    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Int64, sizeByte: Int) throws {
+    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Int64, sizeByte: Int64) throws {
         try eventDao.add(
             events: [
                 .init(
@@ -150,7 +153,7 @@ final class EventInteractorImpl: EventInteractor {
         updateEventsAndNotify()
     }
 
-    func sendEvents(force: Bool, completion: ((Result<Bool, Error>) -> Void)?) {
+    func sendEvents(force: Bool, completion: ((Result<Bool, BKTError>) -> Void)?) {
         do {
             let currentEvents = try eventDao.getEvents()
             guard !currentEvents.isEmpty else {
@@ -184,14 +187,14 @@ final class EventInteractorImpl: EventInteractor {
                         self?.updateEventsAndNotify()
                         completion?(.success(true))
                     } catch let error {
-                        completion?(.failure(error))
+                        completion?(.failure(BKTError(error: error)))
                     }
                 case .failure(let error):
-                    completion?(.failure(error))
+                    completion?(.failure(BKTError(error: error)))
                 }
             }
         } catch let error {
-            completion?(.failure(error))
+            completion?(.failure(BKTError(error: error)))
         }
     }
 
