@@ -15,15 +15,19 @@ public protocol BKTClient {
 }
 
 extension BKTClient {
-    public static func initialize(config: BKTConfig, user: BKTUser) {
+    public static func initialize(config: BKTConfig, user: BKTUser, timeoutMillis: Int64 = 5000, completion: ((BKTError?) -> Void)?) {
         guard BKTClientImpl.default == nil else {
             config.logger?.warn(message: "BKTClient is already initialized. not sure if initial fetch has been finished")
             return
         }
         do {
             let dispatchQueue = DispatchQueue(label: "jp.co.cyberagent.bucketeer.taskQueue")
-            let client = try BKTClientImpl(config: config, user: user, dispatchQueue: dispatchQueue)
+            let dataModule = try DataModuleImpl(user: user.toUser(), config: config)
+            let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: dispatchQueue)
             BKTClientImpl.default = client
+            client.scheduleTasks()
+            client.refreshCache()
+            client.fetchEvaluations(timeoutMillis: timeoutMillis, completion: completion)
         } catch let error {
             config.logger?.error(error)
         }
@@ -37,9 +41,8 @@ final class BKTClientImpl {
     let dispatchQueue: DispatchQueue
     private(set) var taskScheduler: TaskScheduler?
 
-    init(config: BKTConfig, user: BKTUser, dispatchQueue: DispatchQueue) throws {
+    init(dataModule: DataModule, dispatchQueue: DispatchQueue) {
         self.dispatchQueue = dispatchQueue
-        let dataModule = try DataModuleImpl(user: user.toUser(), config: config)
         self.component = ComponentImpl(dataModule: dataModule)
     }
 
@@ -74,16 +77,16 @@ final class BKTClientImpl {
         )
     }
 
-    private func scheduleTasks() {
+    fileprivate func scheduleTasks() {
         self.taskScheduler = TaskScheduler(component: component, dispatchQueue: dispatchQueue)
     }
 
-    private func resetTasks() {
+    fileprivate func resetTasks() {
         taskScheduler?.stop()
         taskScheduler = nil
     }
 
-    private func refreshCache() {
+    func refreshCache() {
         do {
             try component.evaluationInteractor.refreshCache(userId: component.userHolder.userId)
         } catch let error {

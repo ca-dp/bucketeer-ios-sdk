@@ -33,7 +33,7 @@ extension Evaluation {
             anyValue = value
         }
         guard let typedValue = anyValue as? T else {
-            logger?.debug(message: "getVariation returns null reason: failed to cast")
+            logger?.debug(message: "getVariation returns null reason: failed to cast \(value)")
             return defaultValue
         }
         return typedValue

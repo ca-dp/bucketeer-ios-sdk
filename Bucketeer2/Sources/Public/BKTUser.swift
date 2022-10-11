@@ -1,6 +1,6 @@
 import Foundation
 
-public struct BKTUser {
+public struct BKTUser: Equatable {
     public let id: String
     public internal(set) var attributes: [String: String]
 

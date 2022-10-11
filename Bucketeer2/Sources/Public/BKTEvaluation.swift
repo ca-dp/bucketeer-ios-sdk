@@ -1,6 +1,6 @@
 import Foundation
 
-public struct BKTEvaluation {
+public struct BKTEvaluation: Equatable {
     public let id: String
     public let featureId: String
     public let featureVersion: Int
