@@ -357,7 +357,7 @@ final class EventInteractorTests: XCTestCase {
             case .success:
                 XCTFail()
             case .failure(let e):
-                XCTAssertEqual(e as? BKTError, error)
+                XCTAssertEqual(e, error)
             }
             expectation.fulfill()
         })

@@ -214,6 +214,7 @@
 		9340CA6228E1F35A00E690CC /* BKTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA6128E1F35A00E690CC /* BKTConfig.swift */; };
 		9340CA6428E1F80800E690CC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA6328E1F80800E690CC /* Constant.swift */; };
 		934889C728EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934889C628EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift */; };
+		935D9AB028F5B0DB007775F5 /* EvaluationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D9AAF28F5B0DB007775F5 /* EvaluationTests.swift */; };
 		937DE95E28E4935600743FDB /* PollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE95D28E4935600743FDB /* PollerTests.swift */; };
 		937DE96028E498E000743FDB /* EventForegroundTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE95F28E498DF00743FDB /* EventForegroundTaskTests.swift */; };
 		937DE96528E49A2C00743FDB /* MockBKTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE96428E49A2C00743FDB /* MockBKTConfig.swift */; };
@@ -451,6 +452,7 @@
 		9340CA6128E1F35A00E690CC /* BKTConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTConfig.swift; sourceTree = "<group>"; };
 		9340CA6328E1F80800E690CC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		934889C628EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationForegroundTaskTests.swift; sourceTree = "<group>"; };
+		935D9AAF28F5B0DB007775F5 /* EvaluationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationTests.swift; sourceTree = "<group>"; };
 		937DE95D28E4935600743FDB /* PollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollerTests.swift; sourceTree = "<group>"; };
 		937DE95F28E498DF00743FDB /* EventForegroundTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForegroundTaskTests.swift; sourceTree = "<group>"; };
 		937DE96428E49A2C00743FDB /* MockBKTConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBKTConfig.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 				9340CA0828D9D1DD00E690CC /* EvaluationDaoTests.swift */,
 				934889C628EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift */,
 				006E85C228DED24500B5D90D /* EvaluationInteractorTests.swift */,
+				935D9AAF28F5B0DB007775F5 /* EvaluationTests.swift */,
 				9340CA1E28DA106200E690CC /* EventDaoTests.swift */,
 				937DE95F28E498DF00743FDB /* EventForegroundTaskTests.swift */,
 				006E85DD28E032E800B5D90D /* EventInteractorTests.swift */,
@@ -1627,6 +1630,7 @@
 				9340CA0928D9D1DD00E690CC /* EvaluationDaoTests.swift in Sources */,
 				934889C728EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift in Sources */,
 				006E85C328DED24500B5D90D /* EvaluationInteractorTests.swift in Sources */,
+				935D9AB028F5B0DB007775F5 /* EvaluationTests.swift in Sources */,
 				9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */,
 				937DE96028E498E000743FDB /* EventForegroundTaskTests.swift in Sources */,
 				006E85DE28E032E800B5D90D /* EventInteractorTests.swift in Sources */,
