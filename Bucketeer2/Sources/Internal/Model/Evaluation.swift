@@ -11,7 +11,6 @@ struct Evaluation: Hashable, Codable {
     var variation_value: String
 }
 
-
 extension Evaluation {
     func getVariationValue<T>(defaultValue: T, logger: Logger?) -> T {
         let value = self.variation_value
