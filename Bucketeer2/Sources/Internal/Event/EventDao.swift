@@ -1,7 +1,5 @@
 import Foundation
 
-typealias Event = JSON.Event
-
 protocol EventDao {
     func add(event: Event) throws
     func add(events: [Event]) throws

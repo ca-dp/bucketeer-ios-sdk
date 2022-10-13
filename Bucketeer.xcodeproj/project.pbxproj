@@ -10,24 +10,23 @@
 		0065C3C628C7BB76002D92A2 /* Bucketeer2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0065C3BE28C7BB76002D92A2 /* Bucketeer2.framework */; };
 		0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */; };
 		0065C3CC28C7BB76002D92A2 /* Bucketeer2.h in Headers */ = {isa = PBXBuildFile; fileRef = 0065C3C028C7BB76002D92A2 /* Bucketeer2.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0065C3D928C7BC8C002D92A2 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3D828C7BC8C002D92A2 /* JSON.swift */; };
-		0065C3DB28C7BCC0002D92A2 /* JSON.Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DA28C7BCC0002D92A2 /* JSON.Duration.swift */; };
-		0065C3DD28C7BCFF002D92A2 /* JSON.Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DC28C7BCFF002D92A2 /* JSON.Evaluation.swift */; };
-		0065C3DF28C7BD32002D92A2 /* JSON.Variation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DE28C7BD32002D92A2 /* JSON.Variation.swift */; };
-		0065C3E128C7BD4E002D92A2 /* JSON.Reason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E028C7BD4E002D92A2 /* JSON.Reason.swift */; };
-		0065C3E328C8136D002D92A2 /* JSON.Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E228C8136D002D92A2 /* JSON.Event.swift */; };
-		0065C3E528C813D6002D92A2 /* JSON.EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E428C813D6002D92A2 /* JSON.EventData.swift */; };
-		0065C3E728C815EA002D92A2 /* JSON.SourceID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E628C815EA002D92A2 /* JSON.SourceID.swift */; };
-		0065C3E928C815F8002D92A2 /* JSON.User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E828C815F8002D92A2 /* JSON.User.swift */; };
-		0065C3EB28C81620002D92A2 /* JSON.MetricsEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EA28C81620002D92A2 /* JSON.MetricsEventData.swift */; };
-		0065C3ED28C8162D002D92A2 /* JSON.MetricsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EC28C8162D002D92A2 /* JSON.MetricsEventType.swift */; };
-		0065C3EF28C8164E002D92A2 /* JSON.EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EE28C8164E002D92A2 /* JSON.EventType.swift */; };
-		0065C3F128C817E9002D92A2 /* JSON.ReasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F028C817E9002D92A2 /* JSON.ReasonType.swift */; };
-		0065C3F328C818C0002D92A2 /* JSON.UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F228C818C0002D92A2 /* JSON.UserData.swift */; };
-		0065C3F528C818EF002D92A2 /* JSON.UserEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */; };
+		0065C3DB28C7BCC0002D92A2 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DA28C7BCC0002D92A2 /* Duration.swift */; };
+		0065C3DD28C7BCFF002D92A2 /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DC28C7BCFF002D92A2 /* Evaluation.swift */; };
+		0065C3DF28C7BD32002D92A2 /* Variation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3DE28C7BD32002D92A2 /* Variation.swift */; };
+		0065C3E128C7BD4E002D92A2 /* Reason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E028C7BD4E002D92A2 /* Reason.swift */; };
+		0065C3E328C8136D002D92A2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E228C8136D002D92A2 /* Event.swift */; };
+		0065C3E528C813D6002D92A2 /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E428C813D6002D92A2 /* EventData.swift */; };
+		0065C3E728C815EA002D92A2 /* SourceID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E628C815EA002D92A2 /* SourceID.swift */; };
+		0065C3E928C815F8002D92A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3E828C815F8002D92A2 /* User.swift */; };
+		0065C3EB28C81620002D92A2 /* MetricsEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EA28C81620002D92A2 /* MetricsEventData.swift */; };
+		0065C3ED28C8162D002D92A2 /* MetricsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EC28C8162D002D92A2 /* MetricsEventType.swift */; };
+		0065C3EF28C8164E002D92A2 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3EE28C8164E002D92A2 /* EventType.swift */; };
+		0065C3F128C817E9002D92A2 /* ReasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F028C817E9002D92A2 /* ReasonType.swift */; };
+		0065C3F328C818C0002D92A2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F228C818C0002D92A2 /* UserData.swift */; };
+		0065C3F528C818EF002D92A2 /* UserEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F428C818EF002D92A2 /* UserEvaluations.swift */; };
 		0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */; };
 		00696D6628D1C806000068E1 /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6528D1C806000068E1 /* SQLite.swift */; };
-		00696D6928D1CA77000068E1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6828D1CA76000068E1 /* Logger.swift */; };
+		00696D6928D1CA77000068E1 /* BKTLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6828D1CA76000068E1 /* BKTLogger.swift */; };
 		00696D6B28D1D175000068E1 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6A28D1D175000068E1 /* Migration.swift */; };
 		00696D7128D1D258000068E1 /* EvaluationDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D7028D1D258000068E1 /* EvaluationDao.swift */; };
 		00696D7328D1D295000068E1 /* EvaluationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D7228D1D295000068E1 /* EvaluationEntity.swift */; };
@@ -205,6 +204,25 @@
 		9340CA1B28DA0F6200E690CC /* EventDaoImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1828DA0F6200E690CC /* EventDaoImpl.swift */; };
 		9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1E28DA106200E690CC /* EventDaoTests.swift */; };
 		9340CA2C28DAEA1500E690CC /* MigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA2B28DAEA1500E690CC /* MigrationTests.swift */; };
+		9340CA5928E1CD2600E690CC /* UserHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA5828E1CD2600E690CC /* UserHolder.swift */; };
+		9340CA5B28E1CE7200E690CC /* BKTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA5A28E1CE7200E690CC /* BKTUser.swift */; };
+		9340CA5E28E1F29000E690CC /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA5D28E1F29000E690CC /* Component.swift */; };
+		9340CA6028E1F2D400E690CC /* DataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA5F28E1F2D400E690CC /* DataModule.swift */; };
+		9340CA6228E1F35A00E690CC /* BKTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA6128E1F35A00E690CC /* BKTConfig.swift */; };
+		9340CA6428E1F80800E690CC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA6328E1F80800E690CC /* Constant.swift */; };
+		934889C728EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934889C628EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift */; };
+		937DE95E28E4935600743FDB /* PollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE95D28E4935600743FDB /* PollerTests.swift */; };
+		937DE96028E498E000743FDB /* EventForegroundTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE95F28E498DF00743FDB /* EventForegroundTaskTests.swift */; };
+		937DE96528E49A2C00743FDB /* MockBKTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE96428E49A2C00743FDB /* MockBKTConfig.swift */; };
+		937DE96728E49CE600743FDB /* MockDataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE96628E49CE600743FDB /* MockDataModule.swift */; };
+		937DE96D28E4A25E00743FDB /* MockComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE96C28E4A25E00743FDB /* MockComponent.swift */; };
+		937DE96F28E4A29000743FDB /* MockEvaluationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE96E28E4A29000743FDB /* MockEvaluationInteractor.swift */; };
+		937DE97128E4A2B700743FDB /* MockEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE97028E4A2B700743FDB /* MockEventInteractor.swift */; };
+		93AC8F7528E3279E00A4719B /* DatabaseOpenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AC8F7428E3279E00A4719B /* DatabaseOpenHelper.swift */; };
+		93AC8F7A28E33EA900A4719B /* EventForegroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AC8F7928E33EA900A4719B /* EventForegroundTask.swift */; };
+		93AC8F7C28E34ADD00A4719B /* Poller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AC8F7B28E34ADD00A4719B /* Poller.swift */; };
+		93AC8F7E28E34B5C00A4719B /* EvaluationForegroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AC8F7D28E34B5C00A4719B /* EvaluationForegroundTask.swift */; };
+		93AC8F8028E351C500A4719B /* ScheduledTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AC8F7F28E351C500A4719B /* ScheduledTask.swift */; };
 		AB5FF9DA23D17C1D000B46DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF3C36C23D16E8500B45FB2 /* User.swift */; };
 		AB8CE39C2320E41E000960FF /* user_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3522320E41E000960FF /* user_service.pb.swift */; };
 		AB8CE39E2320E41E000960FF /* user_user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE3532320E41E000960FF /* user_user.pb.swift */; };
@@ -298,24 +316,23 @@
 		0065C3C028C7BB76002D92A2 /* Bucketeer2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bucketeer2.h; sourceTree = "<group>"; };
 		0065C3C528C7BB76002D92A2 /* Bucketeer2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bucketeer2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucketeer2Tests.swift; sourceTree = "<group>"; };
-		0065C3D828C7BC8C002D92A2 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		0065C3DA28C7BCC0002D92A2 /* JSON.Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Duration.swift; sourceTree = "<group>"; };
-		0065C3DC28C7BCFF002D92A2 /* JSON.Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Evaluation.swift; sourceTree = "<group>"; };
-		0065C3DE28C7BD32002D92A2 /* JSON.Variation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Variation.swift; sourceTree = "<group>"; };
-		0065C3E028C7BD4E002D92A2 /* JSON.Reason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Reason.swift; sourceTree = "<group>"; };
-		0065C3E228C8136D002D92A2 /* JSON.Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.Event.swift; sourceTree = "<group>"; };
-		0065C3E428C813D6002D92A2 /* JSON.EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.EventData.swift; sourceTree = "<group>"; };
-		0065C3E628C815EA002D92A2 /* JSON.SourceID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.SourceID.swift; sourceTree = "<group>"; };
-		0065C3E828C815F8002D92A2 /* JSON.User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.User.swift; sourceTree = "<group>"; };
-		0065C3EA28C81620002D92A2 /* JSON.MetricsEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.MetricsEventData.swift; sourceTree = "<group>"; };
-		0065C3EC28C8162D002D92A2 /* JSON.MetricsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.MetricsEventType.swift; sourceTree = "<group>"; };
-		0065C3EE28C8164E002D92A2 /* JSON.EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.EventType.swift; sourceTree = "<group>"; };
-		0065C3F028C817E9002D92A2 /* JSON.ReasonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.ReasonType.swift; sourceTree = "<group>"; };
-		0065C3F228C818C0002D92A2 /* JSON.UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserData.swift; sourceTree = "<group>"; };
-		0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.UserEvaluations.swift; sourceTree = "<group>"; };
+		0065C3DA28C7BCC0002D92A2 /* Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		0065C3DC28C7BCFF002D92A2 /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
+		0065C3DE28C7BD32002D92A2 /* Variation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variation.swift; sourceTree = "<group>"; };
+		0065C3E028C7BD4E002D92A2 /* Reason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reason.swift; sourceTree = "<group>"; };
+		0065C3E228C8136D002D92A2 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		0065C3E428C813D6002D92A2 /* EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
+		0065C3E628C815EA002D92A2 /* SourceID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceID.swift; sourceTree = "<group>"; };
+		0065C3E828C815F8002D92A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0065C3EA28C81620002D92A2 /* MetricsEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsEventData.swift; sourceTree = "<group>"; };
+		0065C3EC28C8162D002D92A2 /* MetricsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsEventType.swift; sourceTree = "<group>"; };
+		0065C3EE28C8164E002D92A2 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		0065C3F028C817E9002D92A2 /* ReasonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonType.swift; sourceTree = "<group>"; };
+		0065C3F228C818C0002D92A2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		0065C3F428C818EF002D92A2 /* UserEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEvaluations.swift; sourceTree = "<group>"; };
 		0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingTests.swift; sourceTree = "<group>"; };
 		00696D6528D1C806000068E1 /* SQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
-		00696D6828D1CA76000068E1 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		00696D6828D1CA76000068E1 /* BKTLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTLogger.swift; sourceTree = "<group>"; };
 		00696D6A28D1D175000068E1 /* Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
 		00696D7028D1D258000068E1 /* EvaluationDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationDao.swift; sourceTree = "<group>"; };
 		00696D7228D1D295000068E1 /* EvaluationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationEntity.swift; sourceTree = "<group>"; };
@@ -421,6 +438,25 @@
 		9340CA1828DA0F6200E690CC /* EventDaoImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDaoImpl.swift; sourceTree = "<group>"; };
 		9340CA1E28DA106200E690CC /* EventDaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDaoTests.swift; sourceTree = "<group>"; };
 		9340CA2B28DAEA1500E690CC /* MigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationTests.swift; sourceTree = "<group>"; };
+		9340CA5828E1CD2600E690CC /* UserHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHolder.swift; sourceTree = "<group>"; };
+		9340CA5A28E1CE7200E690CC /* BKTUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTUser.swift; sourceTree = "<group>"; };
+		9340CA5D28E1F29000E690CC /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		9340CA5F28E1F2D400E690CC /* DataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModule.swift; sourceTree = "<group>"; };
+		9340CA6128E1F35A00E690CC /* BKTConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTConfig.swift; sourceTree = "<group>"; };
+		9340CA6328E1F80800E690CC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		934889C628EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationForegroundTaskTests.swift; sourceTree = "<group>"; };
+		937DE95D28E4935600743FDB /* PollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollerTests.swift; sourceTree = "<group>"; };
+		937DE95F28E498DF00743FDB /* EventForegroundTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForegroundTaskTests.swift; sourceTree = "<group>"; };
+		937DE96428E49A2C00743FDB /* MockBKTConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBKTConfig.swift; sourceTree = "<group>"; };
+		937DE96628E49CE600743FDB /* MockDataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataModule.swift; sourceTree = "<group>"; };
+		937DE96C28E4A25E00743FDB /* MockComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockComponent.swift; sourceTree = "<group>"; };
+		937DE96E28E4A29000743FDB /* MockEvaluationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEvaluationInteractor.swift; sourceTree = "<group>"; };
+		937DE97028E4A2B700743FDB /* MockEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventInteractor.swift; sourceTree = "<group>"; };
+		93AC8F7428E3279E00A4719B /* DatabaseOpenHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseOpenHelper.swift; sourceTree = "<group>"; };
+		93AC8F7928E33EA900A4719B /* EventForegroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForegroundTask.swift; sourceTree = "<group>"; };
+		93AC8F7B28E34ADD00A4719B /* Poller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poller.swift; sourceTree = "<group>"; };
+		93AC8F7D28E34B5C00A4719B /* EvaluationForegroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationForegroundTask.swift; sourceTree = "<group>"; };
+		93AC8F7F28E351C500A4719B /* ScheduledTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledTask.swift; sourceTree = "<group>"; };
 		98C9BE34EAEA31F77EE649B8 /* Pods_ExampleTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CE3522320E41E000960FF /* user_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_service.pb.swift; sourceTree = "<group>"; };
 		AB8CE3532320E41E000960FF /* user_user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user_user.pb.swift; sourceTree = "<group>"; };
@@ -564,11 +600,14 @@
 				006E85DB28E026EE00B5D90D /* BKTErrorTests.swift */,
 				0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */,
 				9340CA0828D9D1DD00E690CC /* EvaluationDaoTests.swift */,
+				934889C628EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift */,
 				006E85C228DED24500B5D90D /* EvaluationInteractorTests.swift */,
 				9340CA1E28DA106200E690CC /* EventDaoTests.swift */,
+				937DE95F28E498DF00743FDB /* EventForegroundTaskTests.swift */,
 				006E85DD28E032E800B5D90D /* EventInteractorTests.swift */,
 				0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */,
 				9340CA2B28DAEA1500E690CC /* MigrationTests.swift */,
+				937DE95D28E4935600743FDB /* PollerTests.swift */,
 				00696DAB28D21D02000068E1 /* SQLiteTests.swift */,
 			);
 			path = Bucketeer2Tests;
@@ -587,35 +626,37 @@
 			isa = PBXGroup;
 			children = (
 				00696D6428D1C7C5000068E1 /* Database */,
+				9340CA5C28E1F28400E690CC /* DI */,
 				00696D6E28D1D1EE000068E1 /* Evaluation */,
 				9340CA1528DA0F6200E690CC /* Event */,
-				0065C3D728C7BC82002D92A2 /* JSON */,
+				0065C3D728C7BC82002D92A2 /* Model */,
 				006E85A928DEA2B300B5D90D /* Remote */,
+				93AC8F7828E33E9A00A4719B /* Scheduler */,
+				9340CA5728E1CD1900E690CC /* User */,
 				006E85C828DED74B00B5D90D /* Utils */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
 		};
-		0065C3D728C7BC82002D92A2 /* JSON */ = {
+		0065C3D728C7BC82002D92A2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0065C3DA28C7BCC0002D92A2 /* JSON.Duration.swift */,
-				0065C3DC28C7BCFF002D92A2 /* JSON.Evaluation.swift */,
-				0065C3E228C8136D002D92A2 /* JSON.Event.swift */,
-				0065C3E428C813D6002D92A2 /* JSON.EventData.swift */,
-				0065C3EE28C8164E002D92A2 /* JSON.EventType.swift */,
-				0065C3EA28C81620002D92A2 /* JSON.MetricsEventData.swift */,
-				0065C3EC28C8162D002D92A2 /* JSON.MetricsEventType.swift */,
-				0065C3E028C7BD4E002D92A2 /* JSON.Reason.swift */,
-				0065C3F028C817E9002D92A2 /* JSON.ReasonType.swift */,
-				0065C3E628C815EA002D92A2 /* JSON.SourceID.swift */,
-				0065C3D828C7BC8C002D92A2 /* JSON.swift */,
-				0065C3E828C815F8002D92A2 /* JSON.User.swift */,
-				0065C3F228C818C0002D92A2 /* JSON.UserData.swift */,
-				0065C3F428C818EF002D92A2 /* JSON.UserEvaluations.swift */,
-				0065C3DE28C7BD32002D92A2 /* JSON.Variation.swift */,
+				0065C3DA28C7BCC0002D92A2 /* Duration.swift */,
+				0065C3DC28C7BCFF002D92A2 /* Evaluation.swift */,
+				0065C3E228C8136D002D92A2 /* Event.swift */,
+				0065C3E428C813D6002D92A2 /* EventData.swift */,
+				0065C3EE28C8164E002D92A2 /* EventType.swift */,
+				0065C3EA28C81620002D92A2 /* MetricsEventData.swift */,
+				0065C3EC28C8162D002D92A2 /* MetricsEventType.swift */,
+				0065C3E028C7BD4E002D92A2 /* Reason.swift */,
+				0065C3F028C817E9002D92A2 /* ReasonType.swift */,
+				0065C3E628C815EA002D92A2 /* SourceID.swift */,
+				0065C3E828C815F8002D92A2 /* User.swift */,
+				0065C3F228C818C0002D92A2 /* UserData.swift */,
+				0065C3F428C818EF002D92A2 /* UserEvaluations.swift */,
+				0065C3DE28C7BD32002D92A2 /* Variation.swift */,
 			);
-			path = JSON;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		00696D6428D1C7C5000068E1 /* Database */ = {
@@ -623,6 +664,7 @@
 			children = (
 				00696D6F28D1D235000068E1 /* Migration */,
 				00696DAA28D21CD0000068E1 /* SQLite */,
+				93AC8F7428E3279E00A4719B /* DatabaseOpenHelper.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -630,8 +672,10 @@
 		00696D6728D1CA6D000068E1 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				9340CA6128E1F35A00E690CC /* BKTConfig.swift */,
 				006E85D528E01B0F00B5D90D /* BKTError.swift */,
-				00696D6828D1CA76000068E1 /* Logger.swift */,
+				00696D6828D1CA76000068E1 /* BKTLogger.swift */,
+				9340CA5A28E1CE7200E690CC /* BKTUser.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -675,11 +719,16 @@
 			isa = PBXGroup;
 			children = (
 				006E85C428DED2AC00B5D90D /* MockApiClient.swift */,
+				937DE96428E49A2C00743FDB /* MockBKTConfig.swift */,
 				006E85DF28E0333F00B5D90D /* MockClock.swift */,
+				937DE96C28E4A25E00743FDB /* MockComponent.swift */,
+				937DE96628E49CE600743FDB /* MockDataModule.swift */,
 				006E85CB28DED7B500B5D90D /* MockDefaults.swift */,
 				006E85C628DED62700B5D90D /* MockEvaluationDao.swift */,
+				937DE96E28E4A29000743FDB /* MockEvaluationInteractor.swift */,
 				00696DB228DB59CF000068E1 /* MockEvaluations.swift */,
 				006E85E328E034A700B5D90D /* MockEventDao.swift */,
+				937DE97028E4A2B700743FDB /* MockEventInteractor.swift */,
 				00696DAE28DB5476000068E1 /* MockEvents.swift */,
 				006E85E528E035D000B5D90D /* MockEventUpdateListener.swift */,
 				006E85E128E033B000B5D90D /* MockIdGenerator.swift */,
@@ -726,6 +775,7 @@
 			isa = PBXGroup;
 			children = (
 				006E85CF28DEE42E00B5D90D /* Clock.swift */,
+				9340CA6328E1F80800E690CC /* Constant.swift */,
 				006E85C928DED75500B5D90D /* Defaults.swift */,
 				006E85D128DEF29F00B5D90D /* IdGenerator.swift */,
 			);
@@ -851,6 +901,34 @@
 				006E85CD28DEE23100B5D90D /* EventInteractor.swift */,
 			);
 			path = Event;
+			sourceTree = "<group>";
+		};
+		9340CA5728E1CD1900E690CC /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9340CA5828E1CD2600E690CC /* UserHolder.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		9340CA5C28E1F28400E690CC /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				9340CA5D28E1F29000E690CC /* Component.swift */,
+				9340CA5F28E1F2D400E690CC /* DataModule.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		93AC8F7828E33E9A00A4719B /* Scheduler */ = {
+			isa = PBXGroup;
+			children = (
+				93AC8F7D28E34B5C00A4719B /* EvaluationForegroundTask.swift */,
+				93AC8F7928E33EA900A4719B /* EventForegroundTask.swift */,
+				93AC8F7B28E34ADD00A4719B /* Poller.swift */,
+				93AC8F7F28E351C500A4719B /* ScheduledTask.swift */,
+			);
+			path = Scheduler;
 			sourceTree = "<group>";
 		};
 		AB8CE3412320E41E000960FF /* proto */ = {
@@ -1470,42 +1548,47 @@
 				00696D9F28D21B46000068E1 /* AnySQLiteColumn.swift in Sources */,
 				006E85AB28DEA2BC00B5D90D /* ApiClient.swift in Sources */,
 				006E85AD28DEA2CD00B5D90D /* ApiClientImpl.swift in Sources */,
+				9340CA6228E1F35A00E690CC /* BKTConfig.swift in Sources */,
 				006E85D628E01B0F00B5D90D /* BKTError.swift in Sources */,
+				00696D6928D1CA77000068E1 /* BKTLogger.swift in Sources */,
+				9340CA5B28E1CE7200E690CC /* BKTUser.swift in Sources */,
 				006E85D028DEE42E00B5D90D /* Clock.swift in Sources */,
+				9340CA5E28E1F29000E690CC /* Component.swift in Sources */,
+				9340CA6428E1F80800E690CC /* Constant.swift in Sources */,
+				93AC8F7528E3279E00A4719B /* DatabaseOpenHelper.swift in Sources */,
+				9340CA6028E1F2D400E690CC /* DataModule.swift in Sources */,
 				006E85CA28DED75500B5D90D /* Defaults.swift in Sources */,
+				0065C3DB28C7BCC0002D92A2 /* Duration.swift in Sources */,
 				006E85B728DEAF1400B5D90D /* ErrorResponse.swift in Sources */,
+				0065C3DD28C7BCFF002D92A2 /* Evaluation.swift in Sources */,
 				00696D7128D1D258000068E1 /* EvaluationDao.swift in Sources */,
 				00696D7528D1D2BB000068E1 /* EvaluationDaoImpl.swift in Sources */,
 				00696D7328D1D295000068E1 /* EvaluationEntity.swift in Sources */,
+				93AC8F7E28E34B5C00A4719B /* EvaluationForegroundTask.swift in Sources */,
 				006E85C128DECF2200B5D90D /* EvaluationInteractor.swift in Sources */,
+				0065C3E328C8136D002D92A2 /* Event.swift in Sources */,
 				9340CA1928DA0F6200E690CC /* EventDao.swift in Sources */,
 				9340CA1B28DA0F6200E690CC /* EventDaoImpl.swift in Sources */,
+				0065C3E528C813D6002D92A2 /* EventData.swift in Sources */,
 				9340CA1A28DA0F6200E690CC /* EventEntity.swift in Sources */,
+				93AC8F7A28E33EA900A4719B /* EventForegroundTask.swift in Sources */,
 				006E85CE28DEE23100B5D90D /* EventInteractor.swift in Sources */,
+				0065C3EF28C8164E002D92A2 /* EventType.swift in Sources */,
 				006E85B228DEAEE000B5D90D /* GetEvaluationsRequestBody.swift in Sources */,
 				006E85B928DEAF2600B5D90D /* GetEvaluationsResponse.swift in Sources */,
 				006E85DA28E01BFE00B5D90D /* GetEvaluationsResult.swift in Sources */,
 				006E85D228DEF29F00B5D90D /* IdGenerator.swift in Sources */,
-				0065C3DB28C7BCC0002D92A2 /* JSON.Duration.swift in Sources */,
-				0065C3DD28C7BCFF002D92A2 /* JSON.Evaluation.swift in Sources */,
-				0065C3E328C8136D002D92A2 /* JSON.Event.swift in Sources */,
-				0065C3E528C813D6002D92A2 /* JSON.EventData.swift in Sources */,
-				0065C3EF28C8164E002D92A2 /* JSON.EventType.swift in Sources */,
-				0065C3EB28C81620002D92A2 /* JSON.MetricsEventData.swift in Sources */,
-				0065C3ED28C8162D002D92A2 /* JSON.MetricsEventType.swift in Sources */,
-				0065C3E128C7BD4E002D92A2 /* JSON.Reason.swift in Sources */,
-				0065C3F128C817E9002D92A2 /* JSON.ReasonType.swift in Sources */,
-				0065C3E728C815EA002D92A2 /* JSON.SourceID.swift in Sources */,
-				0065C3D928C7BC8C002D92A2 /* JSON.swift in Sources */,
-				0065C3E928C815F8002D92A2 /* JSON.User.swift in Sources */,
-				0065C3F328C818C0002D92A2 /* JSON.UserData.swift in Sources */,
-				0065C3F528C818EF002D92A2 /* JSON.UserEvaluations.swift in Sources */,
-				0065C3DF28C7BD32002D92A2 /* JSON.Variation.swift in Sources */,
-				00696D6928D1CA77000068E1 /* Logger.swift in Sources */,
+				0065C3EB28C81620002D92A2 /* MetricsEventData.swift in Sources */,
+				0065C3ED28C8162D002D92A2 /* MetricsEventType.swift in Sources */,
 				00696D6B28D1D175000068E1 /* Migration.swift in Sources */,
+				93AC8F7C28E34ADD00A4719B /* Poller.swift in Sources */,
+				0065C3E128C7BD4E002D92A2 /* Reason.swift in Sources */,
+				0065C3F128C817E9002D92A2 /* ReasonType.swift in Sources */,
 				006E85B428DEAEF400B5D90D /* RegisterEventsRequestBody.swift in Sources */,
 				006E85BB28DEAF3700B5D90D /* RegisterEventsResponse.swift in Sources */,
+				93AC8F8028E351C500A4719B /* ScheduledTask.swift in Sources */,
 				006E85AF28DEAEC600B5D90D /* Session.swift in Sources */,
+				0065C3E728C815EA002D92A2 /* SourceID.swift in Sources */,
 				00696DA528D21B7E000068E1 /* SQLite.Condition.swift in Sources */,
 				00696DA928D21C0E000068E1 /* SQLite.Error.swift in Sources */,
 				00696D9B28D21ADA000068E1 /* SQLite.Statement.swift in Sources */,
@@ -1514,6 +1597,11 @@
 				00696DA328D21B6C000068E1 /* SQLiteColumn.swift in Sources */,
 				00696D9D28D21B2E000068E1 /* SQLiteEntity.swift in Sources */,
 				00696DA128D21B58000068E1 /* SQLiteValue.swift in Sources */,
+				0065C3E928C815F8002D92A2 /* User.swift in Sources */,
+				0065C3F328C818C0002D92A2 /* UserData.swift in Sources */,
+				0065C3F528C818EF002D92A2 /* UserEvaluations.swift in Sources */,
+				9340CA5928E1CD2600E690CC /* UserHolder.swift in Sources */,
+				0065C3DF28C7BD32002D92A2 /* Variation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1525,23 +1613,31 @@
 				006E85DC28E026EE00B5D90D /* BKTErrorTests.swift in Sources */,
 				0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */,
 				9340CA0928D9D1DD00E690CC /* EvaluationDaoTests.swift in Sources */,
+				934889C728EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift in Sources */,
 				006E85C328DED24500B5D90D /* EvaluationInteractorTests.swift in Sources */,
 				9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */,
+				937DE96028E498E000743FDB /* EventForegroundTaskTests.swift in Sources */,
 				006E85DE28E032E800B5D90D /* EventInteractorTests.swift in Sources */,
 				0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */,
 				9340CA2C28DAEA1500E690CC /* MigrationTests.swift in Sources */,
 				006E85C528DED2AC00B5D90D /* MockApiClient.swift in Sources */,
+				937DE96528E49A2C00743FDB /* MockBKTConfig.swift in Sources */,
 				006E85E028E0333F00B5D90D /* MockClock.swift in Sources */,
+				937DE96D28E4A25E00743FDB /* MockComponent.swift in Sources */,
+				937DE96728E49CE600743FDB /* MockDataModule.swift in Sources */,
 				006E85CC28DED7B500B5D90D /* MockDefaults.swift in Sources */,
 				006E85C728DED62700B5D90D /* MockEvaluationDao.swift in Sources */,
+				937DE96F28E4A29000743FDB /* MockEvaluationInteractor.swift in Sources */,
 				00696DB328DB59CF000068E1 /* MockEvaluations.swift in Sources */,
 				006E85E428E034A700B5D90D /* MockEventDao.swift in Sources */,
+				937DE97128E4A2B700743FDB /* MockEventInteractor.swift in Sources */,
 				00696DAF28DB5476000068E1 /* MockEvents.swift in Sources */,
 				006E85E628E035D000B5D90D /* MockEventUpdateListener.swift in Sources */,
 				006E85E228E033B000B5D90D /* MockIdGenerator.swift in Sources */,
 				006E85E828E038BC00B5D90D /* MockLogger.swift in Sources */,
 				006E85BF28DEB0A700B5D90D /* MockSession.swift in Sources */,
 				00696DB128DB54B4000068E1 /* MockUsers.swift in Sources */,
+				937DE95E28E4935600743FDB /* PollerTests.swift in Sources */,
 				00696DAC28D21D02000068E1 /* SQLiteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,7 @@ struct GetEvaluationsResponse: Codable {
     var featureTag: String = ""
 
     struct GetEvaluationDataResponse: Codable {
-        let evaluations: JSON.UserEvaluations
+        let evaluations: UserEvaluations
         let user_evaluations_id: String
     }
 }

@@ -30,7 +30,7 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         let decoder = JSONDecoder()
-        let decoded = try decoder.decode(JSON.Event.self, from: data)
+        let decoded = try decoder.decode(Event.self, from: data)
         XCTAssertEqual(decoded.id, "event_1")
         XCTAssertEqual(decoded.type, .goal)
         guard case .goal(let eventData) = decoded.event else {
@@ -80,7 +80,7 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         let decoder = JSONDecoder()
-        let decoded = try decoder.decode(JSON.Event.self, from: data)
+        let decoded = try decoder.decode(Event.self, from: data)
         XCTAssertEqual(decoded.id, "event_1")
         XCTAssertEqual(decoded.type, .evaluation)
         guard case .evaluation(let eventData) = decoded.event else {
@@ -127,7 +127,7 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         let decoder = JSONDecoder()
-        let decoded = try decoder.decode(JSON.Event.self, from: data)
+        let decoded = try decoder.decode(Event.self, from: data)
         XCTAssertEqual(decoded.id, "event_1")
         XCTAssertEqual(decoded.type, .metrics)
         guard case .metrics(let eventData) = decoded.event else {
@@ -168,7 +168,7 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         let decoder = JSONDecoder()
-        let decoded = try decoder.decode(JSON.Event.self, from: data)
+        let decoded = try decoder.decode(Event.self, from: data)
         XCTAssertEqual(decoded.id, "event_1")
         XCTAssertEqual(decoded.type, .metrics)
         guard case .metrics(let eventData) = decoded.event else {
@@ -205,7 +205,7 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         let decoder = JSONDecoder()
-        let decoded = try decoder.decode(JSON.Event.self, from: data)
+        let decoded = try decoder.decode(Event.self, from: data)
         XCTAssertEqual(decoded.id, "event_1")
         XCTAssertEqual(decoded.type, .metrics)
         guard case .metrics(let eventData) = decoded.event else {
@@ -240,7 +240,7 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         let decoder = JSONDecoder()
-        let decoded = try decoder.decode(JSON.Event.self, from: data)
+        let decoded = try decoder.decode(Event.self, from: data)
         XCTAssertEqual(decoded.id, "event_1")
         XCTAssertEqual(decoded.type, .metrics)
         guard case .metrics(let eventData) = decoded.event else {
