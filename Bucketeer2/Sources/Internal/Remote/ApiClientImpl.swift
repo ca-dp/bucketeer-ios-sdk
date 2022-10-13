@@ -4,21 +4,21 @@ final class ApiClientImpl: ApiClient {
 
     static let DEFAULT_REQUEST_TIMEOUT_MILLIS: Int64 = 30_000
 
-    private let endpoint: URL
+    private let apiEndpoint: URL
     private let apiKey: String
     private let featureTag: String
     private let session: Session
     private let defaultRequestTimeoutMills: Int64
     private let logger: Logger?
 
-    init(endpoint: URL,
+    init(apiEndpoint: URL,
          apiKey: String,
          featureTag: String,
          defaultRequestTimeoutMills: Int64 = ApiClientImpl.DEFAULT_REQUEST_TIMEOUT_MILLIS,
          session: Session = URLSession.shared,
          logger: Logger?) {
 
-        self.endpoint = endpoint
+        self.apiEndpoint = apiEndpoint
         self.apiKey = apiKey
         self.featureTag = featureTag
         self.defaultRequestTimeoutMills = defaultRequestTimeoutMills
@@ -81,7 +81,7 @@ final class ApiClientImpl: ApiClient {
 
         do {
             let body = try JSONEncoder().encode(requestBody)
-            var request = URLRequest(url: endpoint.appendingPathComponent(path))
+            var request = URLRequest(url: apiEndpoint.appendingPathComponent(path))
             request.httpMethod = "POST"
             request.allHTTPHeaderFields = [
                 "Authorization": self.apiKey

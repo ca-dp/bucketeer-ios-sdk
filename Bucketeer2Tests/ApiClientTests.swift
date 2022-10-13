@@ -44,7 +44,7 @@ class ApiClientTests: XCTestCase {
             )
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -102,7 +102,7 @@ class ApiClientTests: XCTestCase {
             )
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -158,7 +158,7 @@ class ApiClientTests: XCTestCase {
             )
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -206,7 +206,7 @@ class ApiClientTests: XCTestCase {
             )
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -276,7 +276,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -329,7 +329,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             defaultRequestTimeoutMills: 200,
@@ -383,7 +383,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             defaultRequestTimeoutMills: 200,
@@ -431,7 +431,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -483,7 +483,7 @@ class ApiClientTests: XCTestCase {
             error: SomeError.failed
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -535,7 +535,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -593,7 +593,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -636,7 +636,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            endpoint: endpoint,
+            apiEndpoint: endpoint,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
