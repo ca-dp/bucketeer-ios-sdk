@@ -19,7 +19,7 @@ class ApiClientTests: XCTestCase {
             user_evaluations_id: userEvaluationsId
         ))
         let data = try JSONEncoder().encode(response)
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "v1/gateway/evaluations"
         let apiKey = "x:api-key"
         let session = MockSession(
@@ -37,14 +37,14 @@ class ApiClientTests: XCTestCase {
             },
             data: data,
             response: HTTPURLResponse(
-                url: endpoint.appendingPathComponent(path),
+                url: apiEndpointURL.appendingPathComponent(path),
                 statusCode: 201,
                 httpVersion: nil,
                 headerFields: nil
             )
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -76,7 +76,7 @@ class ApiClientTests: XCTestCase {
         let userEvaluationsId: String = "user_evaluation1"
         let errorResponse = ErrorResponse(error: .init(code: 400, message: "invalid parameter"))
         let data = try JSONEncoder().encode(errorResponse)
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "v1/gateway/evaluations"
         let apiKey = "x:api-key"
         let session = MockSession(
@@ -95,14 +95,14 @@ class ApiClientTests: XCTestCase {
             },
             data: data,
             response: HTTPURLResponse(
-                url: endpoint.appendingPathComponent(path),
+                url: apiEndpointURL.appendingPathComponent(path),
                 statusCode: 400,
                 httpVersion: nil,
                 headerFields: nil
             )
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -135,7 +135,7 @@ class ApiClientTests: XCTestCase {
         ]
         let response = RegisterEventsResponse(data: .init(errors: errors))
         let data = try JSONEncoder().encode(response)
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "v1/gateway/events"
         let apiKey = "x:api-key"
         let session = MockSession(
@@ -151,14 +151,14 @@ class ApiClientTests: XCTestCase {
             },
             data: data,
             response: HTTPURLResponse(
-                url: endpoint.appendingPathComponent(path),
+                url: apiEndpointURL.appendingPathComponent(path),
                 statusCode: 201,
                 httpVersion: nil,
                 headerFields: nil
             )
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -183,7 +183,7 @@ class ApiClientTests: XCTestCase {
         let events: [Event] = [.mockGoal1, .mockEvaluation1]
         let errorResponse = ErrorResponse(error: .init(code: 400, message: "invalid parameter"))
         let data = try JSONEncoder().encode(errorResponse)
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "v1/gateway/events"
         let apiKey = "x:api-key"
         let session = MockSession(
@@ -199,14 +199,14 @@ class ApiClientTests: XCTestCase {
             },
             data: data,
             response: HTTPURLResponse(
-                url: endpoint.appendingPathComponent(path),
+                url: apiEndpointURL.appendingPathComponent(path),
                 statusCode: 400,
                 httpVersion: nil,
                 headerFields: nil
             )
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -251,7 +251,7 @@ class ApiClientTests: XCTestCase {
         let mockResponse = MockResponse()
         let data = try JSONEncoder().encode(mockResponse)
 
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "path"
         let apiKey = "x:api-key"
 
@@ -259,7 +259,7 @@ class ApiClientTests: XCTestCase {
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.httpMethod, "POST")
-                XCTAssertEqual(request.url?.host, endpoint.host)
+                XCTAssertEqual(request.url?.host, apiEndpointURL.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 30)
@@ -268,7 +268,7 @@ class ApiClientTests: XCTestCase {
             },
             data: data,
             response: HTTPURLResponse(
-                url: endpoint.appendingPathComponent(path),
+                url: apiEndpointURL.appendingPathComponent(path),
                 statusCode: 200,
                 httpVersion: nil,
                 headerFields: nil
@@ -276,7 +276,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -304,7 +304,7 @@ class ApiClientTests: XCTestCase {
         let mockResponse = MockResponse()
         let data = try JSONEncoder().encode(mockResponse)
 
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "path"
         let apiKey = "x:api-key"
 
@@ -312,7 +312,7 @@ class ApiClientTests: XCTestCase {
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.httpMethod, "POST")
-                XCTAssertEqual(request.url?.host, endpoint.host)
+                XCTAssertEqual(request.url?.host, apiEndpointURL.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 0.2)
@@ -321,7 +321,7 @@ class ApiClientTests: XCTestCase {
             },
             data: data,
             response: HTTPURLResponse(
-                url: endpoint.appendingPathComponent(path),
+                url: apiEndpointURL.appendingPathComponent(path),
                 statusCode: 200,
                 httpVersion: nil,
                 headerFields: nil
@@ -329,7 +329,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             defaultRequestTimeoutMills: 200,
@@ -358,7 +358,7 @@ class ApiClientTests: XCTestCase {
         let mockResponse = MockResponse()
         let data = try JSONEncoder().encode(mockResponse)
 
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "path"
         let apiKey = "x:api-key"
 
@@ -366,7 +366,7 @@ class ApiClientTests: XCTestCase {
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.httpMethod, "POST")
-                XCTAssertEqual(request.url?.host, endpoint.host)
+                XCTAssertEqual(request.url?.host, apiEndpointURL.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 0.1)
@@ -375,7 +375,7 @@ class ApiClientTests: XCTestCase {
             },
             data: data,
             response: HTTPURLResponse(
-                url: endpoint.appendingPathComponent(path),
+                url: apiEndpointURL.appendingPathComponent(path),
                 statusCode: 200,
                 httpVersion: nil,
                 headerFields: nil
@@ -383,7 +383,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             defaultRequestTimeoutMills: 200,
@@ -411,7 +411,7 @@ class ApiClientTests: XCTestCase {
 
         let mockRequestBody = MockRequestBody()
 
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "path"
         let apiKey = "x:api-key"
 
@@ -419,7 +419,7 @@ class ApiClientTests: XCTestCase {
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.httpMethod, "POST")
-                XCTAssertEqual(request.url?.host, endpoint.host)
+                XCTAssertEqual(request.url?.host, apiEndpointURL.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 30)
@@ -431,7 +431,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -463,7 +463,7 @@ class ApiClientTests: XCTestCase {
 
         let mockRequestBody = MockRequestBody()
 
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "path"
         let apiKey = "x:api-key"
 
@@ -471,7 +471,7 @@ class ApiClientTests: XCTestCase {
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.httpMethod, "POST")
-                XCTAssertEqual(request.url?.host, endpoint.host)
+                XCTAssertEqual(request.url?.host, apiEndpointURL.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 30)
@@ -483,7 +483,7 @@ class ApiClientTests: XCTestCase {
             error: SomeError.failed
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -515,7 +515,7 @@ class ApiClientTests: XCTestCase {
         let mockResponse = MockResponse()
         let data = try JSONEncoder().encode(mockResponse)
 
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "path"
         let apiKey = "x:api-key"
 
@@ -523,7 +523,7 @@ class ApiClientTests: XCTestCase {
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.httpMethod, "POST")
-                XCTAssertEqual(request.url?.host, endpoint.host)
+                XCTAssertEqual(request.url?.host, apiEndpointURL.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 30)
@@ -535,7 +535,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -569,7 +569,7 @@ class ApiClientTests: XCTestCase {
         let mockResponse = MockResponse()
         let data = try JSONEncoder().encode(mockResponse)
 
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "path"
         let apiKey = "x:api-key"
 
@@ -577,7 +577,7 @@ class ApiClientTests: XCTestCase {
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.httpMethod, "POST")
-                XCTAssertEqual(request.url?.host, endpoint.host)
+                XCTAssertEqual(request.url?.host, apiEndpointURL.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
@@ -585,7 +585,7 @@ class ApiClientTests: XCTestCase {
             },
             data: data,
             response: .init(
-                url: endpoint.appendingPathComponent(path),
+                url: apiEndpointURL.appendingPathComponent(path),
                 statusCode: 400,
                 httpVersion: nil,
                 headerFields: nil
@@ -593,7 +593,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
@@ -624,7 +624,7 @@ class ApiClientTests: XCTestCase {
 
         let mockRequestBody = MockInvalidRequestBody()
 
-        let endpoint = URL(string: "https://test.bucketeer.jp")!
+        let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
         let path = "path"
         let apiKey = "x:api-key"
 
@@ -636,7 +636,7 @@ class ApiClientTests: XCTestCase {
             error: nil
         )
         let api = ApiClientImpl(
-            apiEndpoint: endpoint,
+            apiEndpoint: apiEndpointURL,
             apiKey: apiKey,
             featureTag: "tag1",
             session: session,
