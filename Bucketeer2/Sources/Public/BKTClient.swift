@@ -17,11 +17,11 @@ public protocol BKTClient {
 extension BKTClient {
     public static func initialize(config: BKTConfig, user: BKTUser, timeoutMillis: Int64 = 5000, completion: ((BKTError?) -> Void)?) {
         guard BKTClientImpl.default == nil else {
-            config.logger?.warn(message: "BKTClient is already initialized. not sure if initial fetch has been finished")
+            config.logger?.warn(message: "BKTClient is already initialized. Not sure if the initial fetch has finished")
             return
         }
         do {
-            let dispatchQueue = DispatchQueue(label: "jp.co.cyberagent.bucketeer.taskQueue")
+            let dispatchQueue = DispatchQueue(label: "io.bucketeer.taskQueue")
             let dataModule = try DataModuleImpl(user: user.toUser(), config: config)
             let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: dispatchQueue)
             BKTClientImpl.default = client
