@@ -7,6 +7,7 @@ protocol Session {
 
 extension URLSession: Session {
     func task(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        dataTask(with: request, completionHandler: completionHandler)
+        let task = dataTask(with: request, completionHandler: completionHandler)
+        task.resume()
     }
 }
