@@ -84,7 +84,8 @@ final class ApiClientImpl: ApiClient {
             var request = URLRequest(url: apiEndpoint.appendingPathComponent(path))
             request.httpMethod = "POST"
             request.allHTTPHeaderFields = [
-                "Authorization": self.apiKey
+                "Authorization": self.apiKey,
+                "Content-Type": "application/json"
             ]
             request.httpBody = body
             request.timeoutInterval = TimeInterval(timeoutMillis ?? defaultRequestTimeoutMills) / 1000
