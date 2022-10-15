@@ -24,7 +24,7 @@ final class ApiClientImpl: ApiClient {
         self.defaultRequestTimeoutMills = defaultRequestTimeoutMills
         self.session = session
         self.logger = logger
-        self.session.configuration.timeoutIntervalForRequest = TimeInterval(self.defaultRequestTimeoutMills)
+        self.session.configuration.timeoutIntervalForRequest = TimeInterval(self.defaultRequestTimeoutMills) / 1000
     }
 
     func getEvaluations(user: User, userEvaluationsId: String, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?) {
