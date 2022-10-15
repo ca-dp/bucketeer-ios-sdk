@@ -1,13 +1,13 @@
 import XCTest
 @testable import Bucketeer2
 
-final class BKTClientImplTests: XCTestCase {
+final class BKTClientTests: XCTestCase {
 
     func testCurrentUser() {
         let dataModule = MockDataModule(
             userHolder: .init(user: .mock1)
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         XCTAssertEqual(client.currentUser(), User.mock1.toBKTUser())
     }
 
@@ -15,7 +15,7 @@ final class BKTClientImplTests: XCTestCase {
         let dataModule = MockDataModule(
             userHolder: .init(user: .mock1)
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         let attributes: [String: String] = ["key": "updated"]
         client.updateUserAttributes(attributes: attributes)
         XCTAssertEqual(client.currentUser()?.attributes, attributes)
@@ -77,7 +77,7 @@ final class BKTClientImplTests: XCTestCase {
             }),
             clock: MockClock(timestamp: 1)
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.fetchEvaluations(timeoutMillis: nil) { error in
             XCTAssertEqual(error, nil)
             expectation.fulfill()
@@ -117,7 +117,7 @@ final class BKTClientImplTests: XCTestCase {
             }),
             clock: MockClock(timestamp: 1)
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.fetchEvaluations(timeoutMillis: nil) { error in
             XCTAssertEqual(error, .timeout(message: "timeout", error: NSError()))
             expectation.fulfill()
@@ -140,7 +140,7 @@ final class BKTClientImplTests: XCTestCase {
                 return [.mockGoal1, .mockEvaluation1]
             })
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.flush { error in
             XCTAssertEqual(error, nil)
             expectation.fulfill()
@@ -163,7 +163,7 @@ final class BKTClientImplTests: XCTestCase {
                 return [.mockGoal1, .mockEvaluation1]
             })
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.flush { error in
             XCTAssertEqual(error, .apiServer(message: "unknown"))
             expectation.fulfill()
@@ -176,7 +176,7 @@ final class BKTClientImplTests: XCTestCase {
         let dataModule = MockDataModule(
             userHolder: .init(user: .mock1)
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.evaluationDetails(featureId: "feature") { evaluation in
             XCTAssertEqual(evaluation, nil)
             expectation.fulfill()
@@ -200,7 +200,7 @@ final class BKTClientImplTests: XCTestCase {
                 expectation.fulfill()
             })
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.fetchEvaluations(timeoutMillis: nil) { _ in
             client.evaluationDetails(featureId: "feature1") { evaluation in
                 let expected = BKTEvaluation(
@@ -243,14 +243,14 @@ final class BKTClientImplTests: XCTestCase {
             idGenerator: MockIdGenerator(identifier: "id"),
             clock: MockClock(timestamp: 1)
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.track(goalId: "goal_id", value: 20)
         wait(for: [expectation], timeout: 0.1)
     }
 
     func testStringVariationAsDefault() {
         let dataModule = MockDataModule()
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         let string = client.stringVariation(featureId: "feature1", defaultValue: "")
         XCTAssertEqual(string, "")
     }
@@ -266,7 +266,7 @@ final class BKTClientImplTests: XCTestCase {
                 expectation.fulfill()
             })
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.fetchEvaluations(timeoutMillis: nil) { _ in
             let string = client.stringVariation(featureId: "feature1", defaultValue: "")
             XCTAssertEqual(string, "variation_value1")
@@ -286,7 +286,7 @@ final class BKTClientImplTests: XCTestCase {
                 expectation.fulfill()
             })
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.fetchEvaluations(timeoutMillis: nil) { _ in
             let value = client.intVariation(featureId: "feature2", defaultValue: 0)
             XCTAssertEqual(value, 2)
@@ -306,7 +306,7 @@ final class BKTClientImplTests: XCTestCase {
                 expectation.fulfill()
             })
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.fetchEvaluations(timeoutMillis: nil) { _ in
             let value = client.doubleVariation(featureId: "feature3", defaultValue: 0)
             XCTAssertEqual(value, 3.0)
@@ -326,7 +326,7 @@ final class BKTClientImplTests: XCTestCase {
                 expectation.fulfill()
             })
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.fetchEvaluations(timeoutMillis: nil) { _ in
             let value = client.boolVariation(featureId: "feature4", defaultValue: false)
             XCTAssertEqual(value, true)
@@ -346,7 +346,7 @@ final class BKTClientImplTests: XCTestCase {
                 expectation.fulfill()
             })
         )
-        let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.fetchEvaluations(timeoutMillis: nil) { _ in
             let value = client.jsonVariation(featureId: "feature5", defaultValue: [:])
             XCTAssertEqual(value, ["key": "value"])
