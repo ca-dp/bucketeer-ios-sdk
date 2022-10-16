@@ -348,10 +348,8 @@ final class BKTClientImplTests: XCTestCase {
         )
         let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: .global())
         client.fetchEvaluations(timeoutMillis: nil) { _ in
-            let value = client.jsonVariation(featureId: "feature5", defaultValue: "") as? String ?? ""
-            let data = value.data(using: .utf8) ?? Data()
-            let object = (try? JSONSerialization.jsonObject(with: data)) as? [String: String]
-            XCTAssertEqual(object, ["key": "value"])
+            let value = client.jsonVariation(featureId: "feature5", defaultValue: [:])
+            XCTAssertEqual(value, ["key": "value"])
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)

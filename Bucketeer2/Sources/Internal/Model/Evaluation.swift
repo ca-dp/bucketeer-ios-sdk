@@ -29,7 +29,12 @@ extension Evaluation {
         case is Bool:
             anyValue = Bool(value)
         default:
-            anyValue = value
+            let data = value.data(using: .utf8) ?? Data()
+            if let json = (try? JSONSerialization.jsonObject(with: data)) as? [String: AnyHashable] {
+                anyValue = json
+            } else {
+                anyValue = value
+            }
         }
         guard let typedValue = anyValue as? T else {
             logger?.debug(message: "getVariation returns null reason: failed to cast \(value)")

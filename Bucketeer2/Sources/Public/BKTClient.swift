@@ -5,7 +5,7 @@ public protocol BKTClient {
     func intVariation(featureId: String, defaultValue: Int) -> Int
     func doubleVariation(featureId: String, defaultValue: Double) -> Double
     func boolVariation(featureId: String, defaultValue: Bool) -> Bool
-    func jsonVariation(featureId: String, defaultValue: Any) -> Any
+    func jsonVariation(featureId: String, defaultValue: [String: AnyHashable]) -> [String: AnyHashable]
     func track(goalId: String, value: Double)
     func currentUser() -> BKTUser?
     func updateUserAttributes(attributes: [String: String])
@@ -121,7 +121,7 @@ extension BKTClientImpl: BKTClient {
         return getVariationValue(featureId: featureId, defaultValue: defaultValue)
     }
 
-    func jsonVariation(featureId: String, defaultValue: Any) -> Any {
+    func jsonVariation(featureId: String, defaultValue: [String: AnyHashable]) -> [String: AnyHashable] {
         return getVariationValue(featureId: featureId, defaultValue: defaultValue)
     }
 
