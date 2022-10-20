@@ -20,10 +20,6 @@ extension Evaluation {
             anyValue = value
         case is Int:
             anyValue = Int(value)
-        case is Int64:
-            anyValue = Int64(value)
-        case is Float:
-            anyValue = Float(value)
         case is Double:
             anyValue = Double(value)
         case is Bool:
