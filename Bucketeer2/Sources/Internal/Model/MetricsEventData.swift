@@ -13,7 +13,7 @@ enum MetricsEventData: Hashable {
 
     struct GetEvaluationSize: Codable, Hashable {
         let labels: [String: String]
-        let size_byte: Int
+        let size_byte: Int64
     }
 
     struct TimeoutErrorCount: Codable, Hashable {

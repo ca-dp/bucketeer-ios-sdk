@@ -1,6 +1,6 @@
 import Foundation
 
-enum ReasonType: Int, Codable, Hashable {
+public enum ReasonType: Int, Codable, Hashable {
     case target = 0
     case rule = 1
     case `default` = 3

@@ -2,6 +2,8 @@ import Foundation
 
 protocol EvaluationInteractor {
     func fetch(user: User, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?)
+    func getLatest(userId: String, featureId: String) -> Evaluation?
+    func refreshCache(userId: String) throws
 }
 
 extension EvaluationInteractor {

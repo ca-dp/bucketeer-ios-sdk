@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		004245B928F12CF000045542 /* BKTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004245B828F12CF000045542 /* BKTClient.swift */; };
+		004245BB28F12D9B00045542 /* BKTEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004245BA28F12D9B00045542 /* BKTEvaluation.swift */; };
+		004245BD28F1382100045542 /* TaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004245BC28F1382100045542 /* TaskScheduler.swift */; };
 		0065C3C628C7BB76002D92A2 /* Bucketeer2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0065C3BE28C7BB76002D92A2 /* Bucketeer2.framework */; };
 		0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */; };
 		0065C3CC28C7BB76002D92A2 /* Bucketeer2.h in Headers */ = {isa = PBXBuildFile; fileRef = 0065C3C028C7BB76002D92A2 /* Bucketeer2.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -211,6 +214,8 @@
 		9340CA6228E1F35A00E690CC /* BKTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA6128E1F35A00E690CC /* BKTConfig.swift */; };
 		9340CA6428E1F80800E690CC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA6328E1F80800E690CC /* Constant.swift */; };
 		934889C728EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934889C628EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift */; };
+		935D9AB028F5B0DB007775F5 /* EvaluationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D9AAF28F5B0DB007775F5 /* EvaluationTests.swift */; };
+		935D9AB228F5B607007775F5 /* BKTClientImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D9AB128F5B607007775F5 /* BKTClientImplTests.swift */; };
 		937DE95E28E4935600743FDB /* PollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE95D28E4935600743FDB /* PollerTests.swift */; };
 		937DE96028E498E000743FDB /* EventForegroundTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE95F28E498DF00743FDB /* EventForegroundTaskTests.swift */; };
 		937DE96528E49A2C00743FDB /* MockBKTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937DE96428E49A2C00743FDB /* MockBKTConfig.swift */; };
@@ -312,6 +317,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		004245B828F12CF000045542 /* BKTClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTClient.swift; sourceTree = "<group>"; };
+		004245BA28F12D9B00045542 /* BKTEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTEvaluation.swift; sourceTree = "<group>"; };
+		004245BC28F1382100045542 /* TaskScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScheduler.swift; sourceTree = "<group>"; };
 		0065C3BE28C7BB76002D92A2 /* Bucketeer2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bucketeer2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0065C3C028C7BB76002D92A2 /* Bucketeer2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bucketeer2.h; sourceTree = "<group>"; };
 		0065C3C528C7BB76002D92A2 /* Bucketeer2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bucketeer2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -445,6 +453,8 @@
 		9340CA6128E1F35A00E690CC /* BKTConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTConfig.swift; sourceTree = "<group>"; };
 		9340CA6328E1F80800E690CC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		934889C628EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationForegroundTaskTests.swift; sourceTree = "<group>"; };
+		935D9AAF28F5B0DB007775F5 /* EvaluationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationTests.swift; sourceTree = "<group>"; };
+		935D9AB128F5B607007775F5 /* BKTClientImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTClientImplTests.swift; sourceTree = "<group>"; };
 		937DE95D28E4935600743FDB /* PollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollerTests.swift; sourceTree = "<group>"; };
 		937DE95F28E498DF00743FDB /* EventForegroundTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForegroundTaskTests.swift; sourceTree = "<group>"; };
 		937DE96428E49A2C00743FDB /* MockBKTConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBKTConfig.swift; sourceTree = "<group>"; };
@@ -597,11 +607,13 @@
 			children = (
 				00696DAD28DB5430000068E1 /* Mock */,
 				006E85BC28DEAF7900B5D90D /* ApiClientTests.swift */,
+				935D9AB128F5B607007775F5 /* BKTClientImplTests.swift */,
 				006E85DB28E026EE00B5D90D /* BKTErrorTests.swift */,
 				0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */,
 				9340CA0828D9D1DD00E690CC /* EvaluationDaoTests.swift */,
 				934889C628EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift */,
 				006E85C228DED24500B5D90D /* EvaluationInteractorTests.swift */,
+				935D9AAF28F5B0DB007775F5 /* EvaluationTests.swift */,
 				9340CA1E28DA106200E690CC /* EventDaoTests.swift */,
 				937DE95F28E498DF00743FDB /* EventForegroundTaskTests.swift */,
 				006E85DD28E032E800B5D90D /* EventInteractorTests.swift */,
@@ -672,8 +684,10 @@
 		00696D6728D1CA6D000068E1 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				004245B828F12CF000045542 /* BKTClient.swift */,
 				9340CA6128E1F35A00E690CC /* BKTConfig.swift */,
 				006E85D528E01B0F00B5D90D /* BKTError.swift */,
+				004245BA28F12D9B00045542 /* BKTEvaluation.swift */,
 				00696D6828D1CA76000068E1 /* BKTLogger.swift */,
 				9340CA5A28E1CE7200E690CC /* BKTUser.swift */,
 			);
@@ -927,6 +941,7 @@
 				93AC8F7928E33EA900A4719B /* EventForegroundTask.swift */,
 				93AC8F7B28E34ADD00A4719B /* Poller.swift */,
 				93AC8F7F28E351C500A4719B /* ScheduledTask.swift */,
+				004245BC28F1382100045542 /* TaskScheduler.swift */,
 			);
 			path = Scheduler;
 			sourceTree = "<group>";
@@ -1548,8 +1563,10 @@
 				00696D9F28D21B46000068E1 /* AnySQLiteColumn.swift in Sources */,
 				006E85AB28DEA2BC00B5D90D /* ApiClient.swift in Sources */,
 				006E85AD28DEA2CD00B5D90D /* ApiClientImpl.swift in Sources */,
+				004245B928F12CF000045542 /* BKTClient.swift in Sources */,
 				9340CA6228E1F35A00E690CC /* BKTConfig.swift in Sources */,
 				006E85D628E01B0F00B5D90D /* BKTError.swift in Sources */,
+				004245BB28F12D9B00045542 /* BKTEvaluation.swift in Sources */,
 				00696D6928D1CA77000068E1 /* BKTLogger.swift in Sources */,
 				9340CA5B28E1CE7200E690CC /* BKTUser.swift in Sources */,
 				006E85D028DEE42E00B5D90D /* Clock.swift in Sources */,
@@ -1597,6 +1614,7 @@
 				00696DA328D21B6C000068E1 /* SQLiteColumn.swift in Sources */,
 				00696D9D28D21B2E000068E1 /* SQLiteEntity.swift in Sources */,
 				00696DA128D21B58000068E1 /* SQLiteValue.swift in Sources */,
+				004245BD28F1382100045542 /* TaskScheduler.swift in Sources */,
 				0065C3E928C815F8002D92A2 /* User.swift in Sources */,
 				0065C3F328C818C0002D92A2 /* UserData.swift in Sources */,
 				0065C3F528C818EF002D92A2 /* UserEvaluations.swift in Sources */,
@@ -1610,11 +1628,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				006E85BD28DEAF7900B5D90D /* ApiClientTests.swift in Sources */,
+				935D9AB228F5B607007775F5 /* BKTClientImplTests.swift in Sources */,
 				006E85DC28E026EE00B5D90D /* BKTErrorTests.swift in Sources */,
 				0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */,
 				9340CA0928D9D1DD00E690CC /* EvaluationDaoTests.swift in Sources */,
 				934889C728EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift in Sources */,
 				006E85C328DED24500B5D90D /* EvaluationInteractorTests.swift in Sources */,
+				935D9AB028F5B0DB007775F5 /* EvaluationTests.swift in Sources */,
 				9340CA1F28DA106200E690CC /* EventDaoTests.swift in Sources */,
 				937DE96028E498E000743FDB /* EventForegroundTaskTests.swift in Sources */,
 				006E85DE28E032E800B5D90D /* EventInteractorTests.swift in Sources */,

@@ -2,8 +2,8 @@ import Foundation
 @testable import Bucketeer2
 
 final class MockEventInteractor: EventInteractor {
-    typealias SendEventsHandler = (_ force: Bool, _ completion: ((Result<Bool, Error>) -> Void)?) -> Void
-    typealias TrackEvaluationSuccessHandler = (_ featureTag: String, _ seconds: Int64, _ sizeByte: Int) throws -> Void
+    typealias SendEventsHandler = (_ force: Bool, _ completion: ((Result<Bool, BKTError>) -> Void)?) -> Void
+    typealias TrackEvaluationSuccessHandler = (_ featureTag: String, _ seconds: Int64, _ sizeByte: Int64) throws -> Void
     typealias TrackEvaluationFailureHandler = (_ featureTag: String, _ error: BKTError) throws -> Void
 
     var eventUpdateListener: EventUpdateListener?
@@ -24,13 +24,22 @@ final class MockEventInteractor: EventInteractor {
     func set(eventUpdateListener: EventUpdateListener?) {
         self.eventUpdateListener = eventUpdateListener
     }
-    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Int64, sizeByte: Int) throws {
+    func trackEvaluationEvent(featureTag: String, user: User, evaluation: Evaluation) throws {
+
+    }
+    func trackDefaultEvaluationEvent(featureTag: String, user: User, featureId: String) throws {
+
+    }
+    func trackGoalEvent(featureTag: String, user: User, goalId: String, value: Double) throws {
+
+    }
+    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Int64, sizeByte: Int64) throws {
         try trackEvaluationSuccessHandler?(featureTag, seconds, sizeByte)
     }
     func trackFetchEvaluationsFailure(featureTag: String, error: BKTError) throws {
         try trackEvaluationFailureHandler?(featureTag, error)
     }
-    func sendEvents(force: Bool, completion: ((Result<Bool, Error>) -> Void)?) {
+    func sendEvents(force: Bool, completion: ((Result<Bool, BKTError>) -> Void)?) {
         sendEventsHandler?(force, completion)
     }
 }
