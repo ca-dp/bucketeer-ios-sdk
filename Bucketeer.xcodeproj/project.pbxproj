@@ -28,6 +28,9 @@
 		0065C3F328C818C0002D92A2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F228C818C0002D92A2 /* UserData.swift */; };
 		0065C3F528C818EF002D92A2 /* UserEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F428C818EF002D92A2 /* UserEvaluations.swift */; };
 		0065C3F928C81A0D002D92A2 /* JSONDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */; };
+		00664C0628F9340700AB4995 /* BucketeerE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00664C0528F9340700AB4995 /* BucketeerE2ETests.swift */; };
+		00664C0728FA9DFC00AB4995 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B14E11923DEC90800A6F657 /* environment.plist */; };
+		00664C0928FAE79100AB4995 /* E2ETestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00664C0828FAE79100AB4995 /* E2ETestHelpers.swift */; };
 		00696D6628D1C806000068E1 /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6528D1C806000068E1 /* SQLite.swift */; };
 		00696D6928D1CA77000068E1 /* BKTLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6828D1CA76000068E1 /* BKTLogger.swift */; };
 		00696D6B28D1D175000068E1 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00696D6A28D1D175000068E1 /* Migration.swift */; };
@@ -339,6 +342,8 @@
 		0065C3F228C818C0002D92A2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		0065C3F428C818EF002D92A2 /* UserEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEvaluations.swift; sourceTree = "<group>"; };
 		0065C3F828C81A0D002D92A2 /* JSONDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingTests.swift; sourceTree = "<group>"; };
+		00664C0528F9340700AB4995 /* BucketeerE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketeerE2ETests.swift; sourceTree = "<group>"; };
+		00664C0828FAE79100AB4995 /* E2ETestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E2ETestHelpers.swift; sourceTree = "<group>"; };
 		00696D6528D1C806000068E1 /* SQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
 		00696D6828D1CA76000068E1 /* BKTLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTLogger.swift; sourceTree = "<group>"; };
 		00696D6A28D1D175000068E1 /* Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
@@ -605,6 +610,7 @@
 		0065C3C928C7BB76002D92A2 /* Bucketeer2Tests */ = {
 			isa = PBXGroup;
 			children = (
+				00664C0428F933E900AB4995 /* E2E */,
 				00696DAD28DB5430000068E1 /* Mock */,
 				006E85BC28DEAF7900B5D90D /* ApiClientTests.swift */,
 				935D9AB128F5B607007775F5 /* BKTClientImplTests.swift */,
@@ -669,6 +675,15 @@
 				0065C3DE28C7BD32002D92A2 /* Variation.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		00664C0428F933E900AB4995 /* E2E */ = {
+			isa = PBXGroup;
+			children = (
+				00664C0528F9340700AB4995 /* BucketeerE2ETests.swift */,
+				00664C0828FAE79100AB4995 /* E2ETestHelpers.swift */,
+			);
+			path = E2E;
 			sourceTree = "<group>";
 		};
 		00696D6428D1C7C5000068E1 /* Database */ = {
@@ -1362,6 +1377,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00664C0728FA9DFC00AB4995 /* environment.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1631,6 +1647,8 @@
 				935D9AB228F5B607007775F5 /* BKTClientImplTests.swift in Sources */,
 				006E85DC28E026EE00B5D90D /* BKTErrorTests.swift in Sources */,
 				0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */,
+				00664C0628F9340700AB4995 /* BucketeerE2ETests.swift in Sources */,
+				00664C0928FAE79100AB4995 /* E2ETestHelpers.swift in Sources */,
 				9340CA0928D9D1DD00E690CC /* EvaluationDaoTests.swift in Sources */,
 				934889C728EB0ADB007BA05C /* EvaluationForegroundTaskTests.swift in Sources */,
 				006E85C328DED24500B5D90D /* EvaluationInteractorTests.swift in Sources */,
