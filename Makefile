@@ -7,13 +7,17 @@ APP_NAME=Bucketeer
 
 CONFIGURATION ?= Debug
 SCHEME ?= $(APP_NAME)
-DEVICE ?= "iPhone\ 11"
+DEVICE ?= "iPhone\ 13"
 
 XCODEBUILD=xcodebuild
 
 OPTIONS=\
 	-workspace $(APP_NAME).xcworkspace \
 	-scheme $(SCHEME)
+
+OPTIONS_V2=\
+	-workspace $(APP_NAME).xcworkspace \
+	-scheme $(SCHEME)2
 
 EXAMPLE_OPTIONS=\
 	-workspace $(APP_NAME).xcworkspace \
@@ -31,15 +35,29 @@ BUILD=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
 BUILD_FOR_TESTING=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
 	-configuration Test \
 	build-for-testing
+BUILD_FOR_TESTING_V2=$(XCODEBUILD) $(OPTIONS_V2) $(DESTINATION) \
+	-configuration Test \
+	build-for-testing
 TEST_WITHOUT_BUILDING=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
 	-configuration Test \
 	-skip-testing:BucketeerTests/BucketeerE2ETest \
+	test-without-building
+TEST_WITHOUT_BUILDING_V2=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
+	-configuration Test \
+	-skip-testing:BucketeerTests/E2E \
 	test-without-building
 E2E_WITHOUT_BUILDING=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
 	-configuration Test \
 	-only-testing:BucketeerTests/BucketeerE2ETest \
 	test-without-building
+E2E_WITHOUT_BUILDING_V2=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
+	-configuration Test \
+	-only-testing:BucketeerTests/E2E \
+	test-without-building
 ALL_TEST_WITHOUT_BUILDING=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
+	-configuration Test \
+	test-without-building
+ALL_TEST_WITHOUT_BUILDING_V2=$(XCODEBUILD) $(OPTIONS_V2) $(DESTINATION) \
 	-configuration Test \
 	test-without-building
 BUILD_EXAMPLE=$(XCODEBUILD) $(EXAMPLE_OPTIONS) $(DESTINATION) \
@@ -61,18 +79,22 @@ build:
 .PHONY: build-for-testing
 build-for-testing:
 	$(BUILD_FOR_TESTING)
+	$(BUILD_FOR_TESTING_V2)
 
 .PHONY: test-without-building
 test-without-building:
 	$(TEST_WITHOUT_BUILDING)
+	$(TEST_WITHOUT_BUILDING_V2)
 
 .PHONY: e2e-without-building
 e2e-without-building:
 	$(E2E_WITHOUT_BUILDING)
+	$(E2E_WITHOUT_BUILDING_V2)
 
 .PHONY: all-test-without-building
 all-test-without-building:
 	$(ALL_TEST_WITHOUT_BUILDING)
+	$(ALL_TEST_WITHOUT_BUILDING_V2)
 
 .PHONY: build-example
 build-example:
