@@ -7,7 +7,7 @@ APP_NAME=Bucketeer
 
 CONFIGURATION ?= Debug
 SCHEME ?= $(APP_NAME)
-DEVICE ?= "iPhone\ 13"
+DEVICE ?= "iPhone\ 11"
 
 XCODEBUILD=xcodebuild
 
@@ -99,6 +99,11 @@ all-test-without-building:
 .PHONY: build-example
 build-example:
 	$(BUILD_EXAMPLE)
+
+.PHONY: all-test-v2
+all-test-v2:
+	$(BUILD_FOR_TESTING_V2)
+	$(ALL_TEST_WITHOUT_BUILDING_V2)
 
 .PHONY: deps
 deps:
