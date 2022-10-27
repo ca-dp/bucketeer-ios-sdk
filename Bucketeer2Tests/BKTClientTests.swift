@@ -172,21 +172,17 @@ final class BKTClientTests: XCTestCase {
     }
 
     func testEvaluationDetailsEmpty() {
-        let expectation = self.expectation(description: "")
         let dataModule = MockDataModule(
             userHolder: .init(user: .mock1)
         )
         let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
-        client.evaluationDetails(featureId: "feature") { evaluation in
-            XCTAssertEqual(evaluation, nil)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 0.1)
+        let evaluation = client.evaluationDetails(featureId: "feature")
+        XCTAssertEqual(evaluation, nil)
     }
 
     func testEvaluationDetails() {
         let expectation = self.expectation(description: "")
-        expectation.expectedFulfillmentCount = 3
+        expectation.expectedFulfillmentCount = 2
         let dataModule = MockDataModule(
             userHolder: .init(user: .mock1),
             apiClient: MockApiClient(getEvaluationsHandler: { (user, _, _, handler) in
@@ -202,19 +198,17 @@ final class BKTClientTests: XCTestCase {
         )
         let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
         client.fetchEvaluations(timeoutMillis: nil) { _ in
-            client.evaluationDetails(featureId: "feature1") { evaluation in
-                let expected = BKTEvaluation(
-                    id: "evaluation1",
-                    featureId: "feature1",
-                    featureVersion: 1,
-                    userId: User.mock1.id,
-                    variationId: "variation1",
-                    variationValue: "variation_value1",
-                    reason: .rule
-                )
-                XCTAssertEqual(evaluation, expected)
-                expectation.fulfill()
-            }
+            let evaluation = client.evaluationDetails(featureId: "feature1")
+            let expected = BKTEvaluation(
+                id: "evaluation1",
+                featureId: "feature1",
+                featureVersion: 1,
+                userId: User.mock1.id,
+                variationId: "variation1",
+                variationValue: "variation_value1",
+                reason: .rule
+            )
+            XCTAssertEqual(evaluation, expected)
         }
         wait(for: [expectation], timeout: 0.1)
     }

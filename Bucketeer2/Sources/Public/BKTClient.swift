@@ -163,25 +163,21 @@ extension BKTClient {
         }
     }
 
-    public func evaluationDetails(featureId: String, completion: ((BKTEvaluation?) -> Void)?) {
+    public func evaluationDetails(featureId: String) -> BKTEvaluation? {
         let userId = self.component.userHolder.userId
-        execute {
-            let evaluation = self.component.evaluationInteractor.getLatest(userId: userId, featureId: featureId)
-            guard let evaluation = evaluation else {
-                completion?(nil)
-                return
-            }
-            let bktEvaluation = BKTEvaluation(
-                id: evaluation.id,
-                featureId: evaluation.feature_id,
-                featureVersion: evaluation.feature_version,
-                userId: evaluation.user_id,
-                variationId: evaluation.variation_id,
-                variationValue: evaluation.variation_value,
-                reason: evaluation.reason.type
-            )
-            completion?(bktEvaluation)
+        let evaluation = self.component.evaluationInteractor.getLatest(userId: userId, featureId: featureId)
+        guard let evaluation = evaluation else {
+            return nil
         }
+        return BKTEvaluation(
+            id: evaluation.id,
+            featureId: evaluation.feature_id,
+            featureVersion: evaluation.feature_version,
+            userId: evaluation.user_id,
+            variationId: evaluation.variation_id,
+            variationValue: evaluation.variation_value,
+            reason: evaluation.reason.type
+        )
     }
 }
 

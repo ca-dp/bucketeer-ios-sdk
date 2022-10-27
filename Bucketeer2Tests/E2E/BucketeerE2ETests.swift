@@ -35,9 +35,9 @@ final class BucketeerE2ETests: XCTestCase {
         XCTAssertEqual(client.stringVariation(featureId: FEATURE_ID_STRING, defaultValue: ""), "value-1")
     }
 
-    func testStringVariationDetail() async throws {
+    func testStringVariationDetail() {
         let client = BKTClient.shared
-        let actual = await client.evaluationDetails(featureId: FEATURE_ID_STRING)
+        let actual = client.evaluationDetails(featureId: FEATURE_ID_STRING)
 
         assertEvaluation(actual: actual, expected: .init(
             id: "feature-ios-e2e-string:2:bucketeer-ios-user-id-1",
@@ -54,9 +54,9 @@ final class BucketeerE2ETests: XCTestCase {
         XCTAssertEqual(client.intVariation(featureId: FEATURE_ID_INT, defaultValue: 0), 10)
     }
 
-    func testIntVariationDetail() async throws {
+    func testIntVariationDetail() {
         let client = BKTClient.shared
-        let actual = await client.evaluationDetails(featureId: FEATURE_ID_INT)
+        let actual = client.evaluationDetails(featureId: FEATURE_ID_INT)
 
         assertEvaluation(actual: actual, expected: .init(
             id: "feature-ios-e2e-int:2:bucketeer-ios-user-id-1",
@@ -75,7 +75,7 @@ final class BucketeerE2ETests: XCTestCase {
 
     func testDoubleVariationDetail() async throws {
         let client = BKTClient.shared
-        let actual = await client.evaluationDetails(featureId: FEATURE_ID_DOUBLE)
+        let actual = client.evaluationDetails(featureId: FEATURE_ID_DOUBLE)
 
         assertEvaluation(actual: actual, expected: .init(
             id: "feature-ios-e2e-double:2:bucketeer-ios-user-id-1",
@@ -92,9 +92,9 @@ final class BucketeerE2ETests: XCTestCase {
         XCTAssertEqual(client.boolVariation(featureId: FEATURE_ID_BOOLEAN, defaultValue: false), true)
     }
 
-    func testBoolVariationDetail() async throws {
+    func testBoolVariationDetail() {
         let client = BKTClient.shared
-        let actual = await client.evaluationDetails(featureId: FEATURE_ID_BOOLEAN)
+        let actual = client.evaluationDetails(featureId: FEATURE_ID_BOOLEAN)
 
         assertEvaluation(actual: actual, expected: .init(
             id: "feature-ios-e2e-bool:2:bucketeer-ios-user-id-1",
@@ -112,9 +112,9 @@ final class BucketeerE2ETests: XCTestCase {
         XCTAssertEqual(json as? [String: String], ["key": "value-1"])
     }
 
-    func testJSONVariationDetail() async throws {
+    func testJSONVariationDetail() {
         let client = BKTClient.shared
-        let actual = await client.evaluationDetails(featureId: FEATURE_ID_JSON)
+        let actual = client.evaluationDetails(featureId: FEATURE_ID_JSON)
 
         assertEvaluation(actual: actual, expected: .init(
             id: "feature-ios-e2e-json:2:bucketeer-ios-user-id-1",
@@ -135,7 +135,7 @@ final class BucketeerE2ETests: XCTestCase {
         try await client.fetchEvaluations(timeoutMillis: nil)
         XCTAssertEqual(client.stringVariation(featureId: FEATURE_ID_STRING, defaultValue: ""), "value-2")
 
-        let details = await client.evaluationDetails(featureId: FEATURE_ID_STRING)
+        let details = client.evaluationDetails(featureId: FEATURE_ID_STRING)
         assertEvaluation(actual: details, expected: .init(
             id: "feature-ios-e2e-string:2:bucketeer-ios-user-id-1",
             featureId: FEATURE_ID_STRING,

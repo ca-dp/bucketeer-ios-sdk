@@ -55,14 +55,6 @@ extension BKTClient {
         }
     }
 
-    func evaluationDetails(featureId: String) async -> BKTEvaluation? {
-        await withCheckedContinuation { continuation in
-            self.evaluationDetails(featureId: featureId) { evaluation in
-                continuation.resume(returning: evaluation)
-            }
-        }
-    }
-
     func flush() async throws {
         return try await withCheckedThrowingContinuation({ continuation in
             self.flush { error in
