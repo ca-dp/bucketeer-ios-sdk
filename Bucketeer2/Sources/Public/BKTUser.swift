@@ -16,7 +16,7 @@ public struct BKTUser: Equatable {
         self.attributes = attributes
     }
 
-    public mutating func custom(attributes: [String: String]) {
+    public mutating func customAttributes(_ attributes: [String: String]) {
         self.attributes = attributes
     }
 }
