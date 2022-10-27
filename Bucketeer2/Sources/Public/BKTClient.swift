@@ -75,7 +75,7 @@ public class BKTClient {
 extension BKTClient {
     public static func initialize(config: BKTConfig, user: BKTUser, timeoutMillis: Int64 = 5000, completion: ((BKTError?) -> Void)?) {
         guard BKTClient.default == nil else {
-            config.logger?.warn(message: "BKTClient is already initialized. not sure if initial fetch has been finished")
+            config.logger?.warn(message: "BKTClient is already initialized. Not sure if the initial fetch has finished")
             return
         }
         do {
