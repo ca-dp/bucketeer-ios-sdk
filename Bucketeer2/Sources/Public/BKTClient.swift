@@ -84,8 +84,10 @@ extension BKTClient {
             let client = BKTClient(dataModule: dataModule, dispatchQueue: dispatchQueue)
             BKTClient.default = client
             client.scheduleTasks()
-            client.refreshCache()
-            client.fetchEvaluations(timeoutMillis: timeoutMillis, completion: completion)
+            client.execute {
+                client.refreshCache()
+                client.fetchEvaluations(timeoutMillis: timeoutMillis, completion: completion)
+            }
         } catch let error {
             config.logger?.error(error)
         }
