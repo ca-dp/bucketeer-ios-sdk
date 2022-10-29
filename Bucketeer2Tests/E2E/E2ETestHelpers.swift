@@ -7,7 +7,7 @@ let USER_ID = "bucketeer-ios-user-id-1"
 
 let FEATURE_ID_BOOLEAN = "feature-ios-e2e-bool"
 let FEATURE_ID_STRING = "feature-ios-e2e-string"
-let FEATURE_ID_INT = "feature-ios-e2e-int"
+let FEATURE_ID_INT = "feature-ios-e2e-integer"
 let FEATURE_ID_DOUBLE = "feature-ios-e2e-double"
 let FEATURE_ID_JSON = "feature-ios-e2e-json"
 
