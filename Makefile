@@ -78,22 +78,22 @@ build:
 
 .PHONY: build-for-testing
 build-for-testing:
-	$(BUILD_FOR_TESTING)
+	# $(BUILD_FOR_TESTING)
 	$(BUILD_FOR_TESTING_V2)
 
 .PHONY: test-without-building
 test-without-building:
-	$(TEST_WITHOUT_BUILDING)
+	# $(TEST_WITHOUT_BUILDING)
 	$(TEST_WITHOUT_BUILDING_V2)
 
 .PHONY: e2e-without-building
 e2e-without-building:
-	$(E2E_WITHOUT_BUILDING)
+	# $(E2E_WITHOUT_BUILDING)
 	$(E2E_WITHOUT_BUILDING_V2)
 
 .PHONY: all-test-without-building
 all-test-without-building:
-	$(ALL_TEST_WITHOUT_BUILDING)
+	# $(ALL_TEST_WITHOUT_BUILDING)
 	$(ALL_TEST_WITHOUT_BUILDING_V2)
 
 .PHONY: build-example
