@@ -7,7 +7,7 @@ APP_NAME=Bucketeer
 
 CONFIGURATION ?= Debug
 SCHEME ?= $(APP_NAME)
-DEVICE ?= "iPhone\ 13"
+DEVICE ?= "iPhone\ 14"
 
 XCODEBUILD=xcodebuild
 
