@@ -42,7 +42,7 @@ TEST_WITHOUT_BUILDING=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
 	-configuration Test \
 	-skip-testing:BucketeerTests/BucketeerE2ETest \
 	test-without-building
-TEST_WITHOUT_BUILDING_V2=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
+TEST_WITHOUT_BUILDING_V2=$(XCODEBUILD) $(OPTIONS_V2) $(DESTINATION) \
 	-configuration Test \
 	-skip-testing:Bucketeer2Tests/E2E \
 	test-without-building
@@ -50,7 +50,7 @@ E2E_WITHOUT_BUILDING=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
 	-configuration Test \
 	-only-testing:BucketeerTests/BucketeerE2ETest \
 	test-without-building
-E2E_WITHOUT_BUILDING_V2=$(XCODEBUILD) $(OPTIONS) $(DESTINATION) \
+E2E_WITHOUT_BUILDING_V2=$(XCODEBUILD) $(OPTIONS_V2) $(DESTINATION) \
 	-configuration Test \
 	-only-testing:Bucketeer2Tests/E2E \
 	test-without-building
