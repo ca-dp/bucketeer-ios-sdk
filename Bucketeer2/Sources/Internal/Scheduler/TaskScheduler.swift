@@ -9,9 +9,16 @@ final class TaskScheduler {
         EventForegroundTask(component: component, queue: dispatchQueue)
     ]
 
-    private lazy var backgroundSchedulers: [ScheduledTask] = [
-        // TODO: Add background scheduler
-    ]
+    private lazy var backgroundSchedulers: [ScheduledTask] = {
+
+        guard #available(iOS 13.0, *) else {
+            return []
+        }
+        return [
+            EvaluationBackgroundTask(component: component, queue: dispatchQueue),
+            EventBackgroundTask(component: component, queue: dispatchQueue)
+        ]
+    }()
 
     init(component: Component, dispatchQueue: DispatchQueue) {
         self.component = component

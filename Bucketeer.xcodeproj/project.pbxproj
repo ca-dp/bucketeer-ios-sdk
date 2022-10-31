@@ -10,6 +10,8 @@
 		004245B928F12CF000045542 /* BKTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004245B828F12CF000045542 /* BKTClient.swift */; };
 		004245BB28F12D9B00045542 /* BKTEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004245BA28F12D9B00045542 /* BKTEvaluation.swift */; };
 		004245BD28F1382100045542 /* TaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004245BC28F1382100045542 /* TaskScheduler.swift */; };
+		004B15FB290FBF79007F5357 /* EvaluationBackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004B15FA290FBF79007F5357 /* EvaluationBackgroundTask.swift */; };
+		004CF1F32929C9E500CCC3DF /* EventBackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CF1F22929C9E500CCC3DF /* EventBackgroundTask.swift */; };
 		0065C3C628C7BB76002D92A2 /* Bucketeer2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0065C3BE28C7BB76002D92A2 /* Bucketeer2.framework */; };
 		0065C3CB28C7BB76002D92A2 /* Bucketeer2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3CA28C7BB76002D92A2 /* Bucketeer2Tests.swift */; };
 		0065C3CC28C7BB76002D92A2 /* Bucketeer2.h in Headers */ = {isa = PBXBuildFile; fileRef = 0065C3C028C7BB76002D92A2 /* Bucketeer2.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -323,6 +325,8 @@
 		004245B828F12CF000045542 /* BKTClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTClient.swift; sourceTree = "<group>"; };
 		004245BA28F12D9B00045542 /* BKTEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BKTEvaluation.swift; sourceTree = "<group>"; };
 		004245BC28F1382100045542 /* TaskScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScheduler.swift; sourceTree = "<group>"; };
+		004B15FA290FBF79007F5357 /* EvaluationBackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationBackgroundTask.swift; sourceTree = "<group>"; };
+		004CF1F22929C9E500CCC3DF /* EventBackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBackgroundTask.swift; sourceTree = "<group>"; };
 		0065C3BE28C7BB76002D92A2 /* Bucketeer2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bucketeer2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0065C3C028C7BB76002D92A2 /* Bucketeer2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bucketeer2.h; sourceTree = "<group>"; };
 		0065C3C528C7BB76002D92A2 /* Bucketeer2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bucketeer2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -954,7 +958,9 @@
 		93AC8F7828E33E9A00A4719B /* Scheduler */ = {
 			isa = PBXGroup;
 			children = (
+				004B15FA290FBF79007F5357 /* EvaluationBackgroundTask.swift */,
 				93AC8F7D28E34B5C00A4719B /* EvaluationForegroundTask.swift */,
+				004CF1F22929C9E500CCC3DF /* EventBackgroundTask.swift */,
 				93AC8F7928E33EA900A4719B /* EventForegroundTask.swift */,
 				93AC8F7B28E34ADD00A4719B /* Poller.swift */,
 				93AC8F7F28E351C500A4719B /* ScheduledTask.swift */,
@@ -1596,12 +1602,14 @@
 				0065C3DB28C7BCC0002D92A2 /* Duration.swift in Sources */,
 				006E85B728DEAF1400B5D90D /* ErrorResponse.swift in Sources */,
 				0065C3DD28C7BCFF002D92A2 /* Evaluation.swift in Sources */,
+				004B15FB290FBF79007F5357 /* EvaluationBackgroundTask.swift in Sources */,
 				00696D7128D1D258000068E1 /* EvaluationDao.swift in Sources */,
 				00696D7528D1D2BB000068E1 /* EvaluationDaoImpl.swift in Sources */,
 				00696D7328D1D295000068E1 /* EvaluationEntity.swift in Sources */,
 				93AC8F7E28E34B5C00A4719B /* EvaluationForegroundTask.swift in Sources */,
 				006E85C128DECF2200B5D90D /* EvaluationInteractor.swift in Sources */,
 				0065C3E328C8136D002D92A2 /* Event.swift in Sources */,
+				004CF1F32929C9E500CCC3DF /* EventBackgroundTask.swift in Sources */,
 				9340CA1928DA0F6200E690CC /* EventDao.swift in Sources */,
 				9340CA1B28DA0F6200E690CC /* EventDaoImpl.swift in Sources */,
 				0065C3E528C813D6002D92A2 /* EventData.swift in Sources */,
