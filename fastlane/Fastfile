@@ -1,5 +1,5 @@
 lane :setup do
-  ["BucketeerTests", "Example", "ExampleTVOS"].each do |dir|
+  ["BucketeerTests", "Example", "ExampleTVOS", "Bucketeer2Tests"].each do |dir|
     sh "cp ./environment.plist ../#{dir}/environment.plist"
     ["apiURL", "sdkKey"].each do |key|
       set_info_plist_value(

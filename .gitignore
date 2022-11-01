@@ -24,6 +24,7 @@ xcuserdata/
 Example/environment.plist
 ExampleTVOS/environment.plist
 BucketeerTests/environment.plist
+Bucketeer2Tests/environment.plist
 
 ## Obj-C/Swift specific
 *.hmap
