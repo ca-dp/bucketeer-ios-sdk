@@ -24,7 +24,7 @@ final class ApiClientImpl: ApiClient {
         self.defaultRequestTimeoutMills = defaultRequestTimeoutMills
         self.session = session
         self.logger = logger
-        self.session.configuration.timeoutIntervalForRequest = TimeInterval(self.defaultRequestTimeoutMills)
+        self.session.configuration.timeoutIntervalForRequest = TimeInterval(self.defaultRequestTimeoutMills) / 1000
     }
 
     func getEvaluations(user: User, userEvaluationsId: String, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?) {
@@ -84,7 +84,8 @@ final class ApiClientImpl: ApiClient {
             var request = URLRequest(url: apiEndpoint.appendingPathComponent(path))
             request.httpMethod = "POST"
             request.allHTTPHeaderFields = [
-                "Authorization": self.apiKey
+                "Authorization": self.apiKey,
+                "Content-Type": "application/json"
             ]
             request.httpBody = body
             request.timeoutInterval = TimeInterval(timeoutMillis ?? defaultRequestTimeoutMills) / 1000

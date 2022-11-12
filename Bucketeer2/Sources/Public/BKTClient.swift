@@ -1,41 +1,8 @@
 import Foundation
 
-public protocol BKTClient {
-    func stringVariation(featureId: String, defaultValue: String) -> String
-    func intVariation(featureId: String, defaultValue: Int) -> Int
-    func doubleVariation(featureId: String, defaultValue: Double) -> Double
-    func boolVariation(featureId: String, defaultValue: Bool) -> Bool
-    func jsonVariation(featureId: String, defaultValue: [String: AnyHashable]) -> [String: AnyHashable]
-    func track(goalId: String, value: Double)
-    func currentUser() -> BKTUser?
-    func updateUserAttributes(attributes: [String: String])
-    func fetchEvaluations(timeoutMillis: Int64?, completion: ((BKTError?) -> Void)?)
-    func flush(completion: ((BKTError?) -> Void)?)
-    func evaluationDetails(featureId: String, completion: ((BKTEvaluation?) -> Void)?)
-}
 
-extension BKTClient {
-    public static func initialize(config: BKTConfig, user: BKTUser, timeoutMillis: Int64 = 5000, completion: ((BKTError?) -> Void)?) {
-        guard BKTClientImpl.default == nil else {
-            config.logger?.warn(message: "BKTClient is already initialized. Not sure if the initial fetch has finished")
-            return
-        }
-        do {
-            let dispatchQueue = DispatchQueue(label: "io.bucketeer.taskQueue")
-            let dataModule = try DataModuleImpl(user: user.toUser(), config: config)
-            let client = BKTClientImpl(dataModule: dataModule, dispatchQueue: dispatchQueue)
-            BKTClientImpl.default = client
-            client.scheduleTasks()
-            client.refreshCache()
-            client.fetchEvaluations(timeoutMillis: timeoutMillis, completion: completion)
-        } catch let error {
-            config.logger?.error(error)
-        }
-    }
-}
-
-final class BKTClientImpl {
-    static var `default`: BKTClientImpl!
+public class BKTClient {
+    static var `default`: BKTClient!
 
     let component: Component
     let dispatchQueue: DispatchQueue
@@ -104,28 +71,58 @@ final class BKTClientImpl {
         }
     }
 }
-extension BKTClientImpl: BKTClient {
-    func stringVariation(featureId: String, defaultValue: String) -> String {
+
+extension BKTClient {
+    public static func initialize(config: BKTConfig, user: BKTUser, timeoutMillis: Int64 = 5000, completion: ((BKTError?) -> Void)?) {
+        guard BKTClient.default == nil else {
+            config.logger?.warn(message: "BKTClient is already initialized. Not sure if the initial fetch has finished")
+            return
+        }
+        do {
+            let dispatchQueue = DispatchQueue(label: "io.bucketeer.taskQueue")
+            let dataModule = try DataModuleImpl(user: user.toUser(), config: config)
+            let client = BKTClient(dataModule: dataModule, dispatchQueue: dispatchQueue)
+            BKTClient.default = client
+            client.scheduleTasks()
+            client.execute {
+                client.refreshCache()
+                client.fetchEvaluations(timeoutMillis: timeoutMillis, completion: completion)
+            }
+        } catch let error {
+            config.logger?.error(error)
+        }
+    }
+
+    public static func destroy() {
+        self.default?.resetTasks()
+        self.default = nil
+    }
+
+    public static var shared: BKTClient {
+        return BKTClient.default ?? { fatalError("BKTClient is already initialized. Not sure if the initial fetch has finished") }()
+    }
+
+    public func stringVariation(featureId: String, defaultValue: String) -> String {
         return getVariationValue(featureId: featureId, defaultValue: defaultValue)
     }
 
-    func intVariation(featureId: String, defaultValue: Int) -> Int {
+    public func intVariation(featureId: String, defaultValue: Int) -> Int {
         return getVariationValue(featureId: featureId, defaultValue: defaultValue)
     }
 
-    func doubleVariation(featureId: String, defaultValue: Double) -> Double {
+    public func doubleVariation(featureId: String, defaultValue: Double) -> Double {
         return getVariationValue(featureId: featureId, defaultValue: defaultValue)
     }
 
-    func boolVariation(featureId: String, defaultValue: Bool) -> Bool {
+    public func boolVariation(featureId: String, defaultValue: Bool) -> Bool {
         return getVariationValue(featureId: featureId, defaultValue: defaultValue)
     }
 
-    func jsonVariation(featureId: String, defaultValue: [String: AnyHashable]) -> [String: AnyHashable] {
+    public func jsonVariation(featureId: String, defaultValue: [String: AnyHashable]) -> [String: AnyHashable] {
         return getVariationValue(featureId: featureId, defaultValue: defaultValue)
     }
 
-    func track(goalId: String, value: Double) {
+    public func track(goalId: String, value: Double) {
         let user = component.userHolder.user
         let featureTag = component.config.featureTag
         execute {
@@ -138,17 +135,17 @@ extension BKTClientImpl: BKTClient {
         }
     }
 
-    func currentUser() -> BKTUser? {
+    public func currentUser() -> BKTUser? {
         component.userHolder.user.toBKTUser()
     }
 
-    func updateUserAttributes(attributes: [String : String]) {
+    public func updateUserAttributes(attributes: [String : String]) {
         component.userHolder.updateAttributes { _ in
             attributes
         }
     }
 
-    func fetchEvaluations(timeoutMillis: Int64?, completion: ((BKTError?) -> Void)?) {
+    public func fetchEvaluations(timeoutMillis: Int64?, completion: ((BKTError?) -> Void)?) {
         execute {
             Self.fetchEvaluationsSync(
                 component: self.component,
@@ -159,7 +156,7 @@ extension BKTClientImpl: BKTClient {
         }
     }
 
-    func flush(completion: ((BKTError?) -> Void)?) {
+    public func flush(completion: ((BKTError?) -> Void)?) {
         execute {
             Self.flushSync(
                 component: self.component,
@@ -168,27 +165,25 @@ extension BKTClientImpl: BKTClient {
         }
     }
 
-    func evaluationDetails(featureId: String, completion: ((BKTEvaluation?) -> Void)?) {
+    public func evaluationDetails(featureId: String) -> BKTEvaluation? {
         let userId = self.component.userHolder.userId
-        execute {
-            let evaluation = self.component.evaluationInteractor.getLatest(userId: userId, featureId: featureId)
-            guard let evaluation = evaluation else {
-                completion?(nil)
-                return
-            }
-            let bktEvaluation = BKTEvaluation(
-                id: evaluation.id,
-                featureId: evaluation.feature_id,
-                featureVersion: evaluation.feature_version,
-                userId: evaluation.user_id,
-                variationId: evaluation.variation_id,
-                variationValue: evaluation.variation_value,
-                reason: evaluation.reason.type
-            )
-            completion?(bktEvaluation)
+        let evaluation = self.component.evaluationInteractor.getLatest(userId: userId, featureId: featureId)
+        guard let evaluation = evaluation else {
+            return nil
         }
+        return BKTEvaluation(
+            id: evaluation.id,
+            featureId: evaluation.feature_id,
+            featureVersion: evaluation.feature_version,
+            userId: evaluation.user_id,
+            variationId: evaluation.variation_id,
+            variationValue: evaluation.variation_value,
+            reason: evaluation.reason.type
+        )
     }
+}
 
+extension BKTClient {
     static func fetchEvaluationsSync(
         component: Component,
         dispatchQueue: DispatchQueue,

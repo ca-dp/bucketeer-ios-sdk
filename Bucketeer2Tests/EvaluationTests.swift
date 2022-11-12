@@ -35,24 +35,6 @@ final class EvaluationTests: XCTestCase {
         XCTAssertEqual(value3, 0)
     }
 
-    func testGetVariationValueAsInt64() {
-        let value1: Int64 = mockEvaluation(value: "100").getVariationValue(defaultValue: 0, logger: nil)
-        XCTAssertEqual(value1, 100)
-        let value2: Int64 = mockEvaluation(value: "200.1").getVariationValue(defaultValue: 0, logger: nil)
-        XCTAssertEqual(value2, 0)
-        let value3: Int64 = mockEvaluation(value: "text").getVariationValue(defaultValue: 0, logger: nil)
-        XCTAssertEqual(value3, 0)
-    }
-
-    func testGetVariationValueAsFloat() {
-        let value1: Float = mockEvaluation(value: "100.1").getVariationValue(defaultValue: 0.0, logger: nil)
-        XCTAssertEqual(value1, 100.1)
-        let value2: Float = mockEvaluation(value: "200").getVariationValue(defaultValue: 0.0, logger: nil)
-        XCTAssertEqual(value2, 200)
-        let value3: Float = mockEvaluation(value: "text").getVariationValue(defaultValue: 0.0, logger: nil)
-        XCTAssertEqual(value3, 0)
-    }
-
     func testGetVariationValueAsDouble() {
         let value1: Double = mockEvaluation(value: "100.1").getVariationValue(defaultValue: 0.0, logger: nil)
         XCTAssertEqual(value1, 100.1)

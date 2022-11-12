@@ -16,10 +16,10 @@ extension BKTConfig {
         apiKey: String,
         apiEndpoint: String,
         featureTag: String,
-        eventsFlushInterval: Int64,
-        eventsMaxBatchQueueCount: Int,
-        pollingInterval: Int64,
-        backgroundPollingInterval: Int64,
+        eventsFlushInterval: Int64 = Constant.DEFAULT_FLUSH_INTERVAL_MILLIS,
+        eventsMaxBatchQueueCount: Int = Constant.DEFAULT_MAX_QUEUE_SIZE,
+        pollingInterval: Int64 = Constant.DEFAULT_POLLING_INTERVAL_MILLIS,
+        backgroundPollingInterval: Int64 = Constant.DEFAULT_BACKGROUND_POLLING_INTERVAL_MILLIS,
         logger: BKTLogger?
     ) throws {
         guard !apiKey.isEmpty else {
