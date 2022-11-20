@@ -4,6 +4,10 @@ protocol EvaluationInteractor {
     func fetch(user: User, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?)
     func getLatest(userId: String, featureId: String) -> Evaluation?
     func refreshCache(userId: String) throws
+    @discardableResult
+    func addUpdateListener(listener: EvaluationUpdateListener) -> String
+    func removeUpdateListener(key: String)
+    func clearUpdateListeners()
 }
 
 extension EvaluationInteractor {
@@ -19,12 +23,14 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
     let apiClient: ApiClient
     let evaluationDao: EvaluationDao
     let defaults: Defaults
+    let idGenerator: IdGenerator
     let logger: Logger?
 
-    init(apiClient: ApiClient, evaluationDao: EvaluationDao, defaults: Defaults, logger: Logger? = nil) {
+    init(apiClient: ApiClient, evaluationDao: EvaluationDao, defaults: Defaults, idGenerator: IdGenerator, logger: Logger? = nil) {
         self.apiClient = apiClient
         self.evaluationDao = evaluationDao
         self.defaults = defaults
+        self.idGenerator = idGenerator
         self.logger = logger
     }
 
@@ -38,6 +44,7 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
             defaults.set(newValue, forKey: Self.userEvaluationsIdKey)
         }
     }
+    var updateListeners: [String: EvaluationUpdateListener] = [:]
 
     func fetch(user: User, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?) {
         let currentEvaluationsId = self.currentEvaluationsId
@@ -65,6 +72,15 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
                     }
                     self?.currentEvaluationsId = newEvaluationsId
                     self?.evaluations[user.id] = newEvaluations
+
+                    // Update listeners should be called on the main thread
+                    // to avoid unintentional lock on Interactor's execution thread.
+                    DispatchQueue.main.async {
+                        self?.updateListeners.forEach({ _, listener in
+                            listener.onUpdate()
+                        })
+                    }
+
                     completion?(result)
                 case .failure:
                     completion?(result)
@@ -79,5 +95,19 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
     func getLatest(userId: String, featureId: String) -> Evaluation? {
         let evaluations = evaluations[userId] ?? []
         return evaluations.first(where: { $0.feature_id == featureId })
+    }
+
+    func addUpdateListener(listener: EvaluationUpdateListener) -> String {
+        let key = idGenerator.id()
+        updateListeners[key] = listener
+        return key
+    }
+
+    func removeUpdateListener(key: String) {
+        updateListeners.removeValue(forKey: key)
+    }
+
+    func clearUpdateListeners() {
+        updateListeners.removeAll()
     }
 }

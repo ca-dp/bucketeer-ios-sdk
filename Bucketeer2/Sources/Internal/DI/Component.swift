@@ -17,7 +17,8 @@ final class ComponentImpl: Component {
         self.evaluationInteractor = EvaluationInteractorImpl(
             apiClient: dataModule.apiClient,
             evaluationDao: dataModule.evaluationDao,
-            defaults: dataModule.defaults
+            defaults: dataModule.defaults,
+            idGenerator: dataModule.idGenerator
         )
         self.eventInteractor = EventInteractorImpl(
             eventsMaxBatchQueueCount: dataModule.config.eventsMaxBatchQueueCount,

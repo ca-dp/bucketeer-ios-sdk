@@ -14,4 +14,15 @@ struct MockEvaluationInteractor: EvaluationInteractor {
     func refreshCache(userId: String) throws {
 
     }
+    func addUpdateListener(listener: Bucketeer2.EvaluationUpdateListener) -> String {
+        return ""
+    }
+
+    func removeUpdateListener(key: String) {
+
+    }
+
+    func clearUpdateListeners() {
+
+    }
 }

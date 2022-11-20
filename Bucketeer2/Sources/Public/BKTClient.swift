@@ -185,6 +185,23 @@ extension BKTClient {
             reason: evaluation.reason.type
         )
     }
+
+    @discardableResult
+    public func addEvaluationUpdateListener(listener: EvaluationUpdateListener) -> String {
+        component.evaluationInteractor.addUpdateListener(listener: listener)
+    }
+
+    public func removeEvaluationUpdateListener(key: String) {
+        component.evaluationInteractor.removeUpdateListener(key: key)
+    }
+
+    public func clearEvaluationUpdateListeners() {
+        component.evaluationInteractor.clearUpdateListeners()
+    }
+}
+
+public protocol EvaluationUpdateListener {
+    func onUpdate()
 }
 
 extension BKTClient {
