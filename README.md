@@ -7,26 +7,18 @@
 Install prerequisite tools.
 
 - Xcode
-- Ruby
 
-Then, you need to create `fastlane/.env`.
+Setup environments.
 
-```
-apiURL=<API_URL> # e.g. api-media.bucketeer.jp
-sdkKey=<SDK_KEY>
-```
-
-Install dependencies.
-
-```
-make deps
+```sh
+make setup
 ```
 
 ## Development
 
 ### Development with Xcode
 
-Open `Bucketeer.xcworkspace` with Xcode.
+Open `Bucketeer.xcodeproj` with Xcode.
 
 ### Development with command line
 
@@ -34,25 +26,25 @@ Open `Bucketeer.xcworkspace` with Xcode.
 
 Build SDK.
 
-```
+```sh
 make build
 ```
 
 Build SDK for testing.
 
-```
+```sh
 make build-for-testing
 ```
 
 Run unit tests without build.
 
-```
+```sh
 make test-without-building
 ```
 
 Run e2e tests without build.
 
-```
+```sh
 make e2e-without-building
 ```
 
@@ -60,7 +52,7 @@ make e2e-without-building
 
 Build Example.
 
-```
+```sh
 make build-example
 ```
 
