@@ -7,11 +7,11 @@ DEVICE ?= "iPhone\ 14"
 XCODEBUILD=xcodebuild
 
 OPTIONS=\
-	-workspace $(APP_NAME).xcworkspace \
+	-project $(APP_NAME).xcodeproj \
 	-scheme $(SCHEME)
 
 EXAMPLE_OPTIONS=\
-	-workspace $(APP_NAME).xcworkspace \
+	-project $(APP_NAME).xcodeproj \
 	-scheme Example
 
 DESTINATION=-destination "name=$(DEVICE)"
