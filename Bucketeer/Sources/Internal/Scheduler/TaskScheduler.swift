@@ -11,7 +11,7 @@ final class TaskScheduler {
 
     private lazy var backgroundSchedulers: [ScheduledTask] = {
 
-        guard #available(iOS 13.0, *) else {
+        guard #available(iOS 13.0, tvOS 13.0, *) else {
             return []
         }
         return [
@@ -23,7 +23,7 @@ final class TaskScheduler {
     init(component: Component, dispatchQueue: DispatchQueue) {
         self.component = component
         self.dispatchQueue = dispatchQueue
-        if #available(iOS 13.0, *) {
+        if #available(iOS 13.0, tvOS 13.0, *) {
             NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(onForeground),

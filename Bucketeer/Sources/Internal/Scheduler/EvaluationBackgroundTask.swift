@@ -53,7 +53,7 @@ final class EvaluationBackgroundTask {
     }
 }
 
-@available(iOS 13.0, *)
+@available(iOS 13.0, tvOS 13.0, *)
 extension EvaluationBackgroundTask: ScheduledTask {
     func start() {
         scheduleAppRefresh()

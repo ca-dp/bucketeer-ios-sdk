@@ -12,6 +12,7 @@
 		004245BD28F1382100045542 /* TaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004245BC28F1382100045542 /* TaskScheduler.swift */; };
 		004B15FB290FBF79007F5357 /* EvaluationBackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004B15FA290FBF79007F5357 /* EvaluationBackgroundTask.swift */; };
 		004CF1F32929C9E500CCC3DF /* EventBackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CF1F22929C9E500CCC3DF /* EventBackgroundTask.swift */; };
+		004CF1F52929EBE500CCC3DF /* Bucketeer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0065C3BE28C7BB76002D92A2 /* Bucketeer.framework */; };
 		0065C3C628C7BB76002D92A2 /* Bucketeer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0065C3BE28C7BB76002D92A2 /* Bucketeer.framework */; };
 		0065C3CB28C7BB76002D92A2 /* BucketeerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065C3CA28C7BB76002D92A2 /* BucketeerTests.swift */; };
 		0065C3CC28C7BB76002D92A2 /* Bucketeer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0065C3C028C7BB76002D92A2 /* Bucketeer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -86,11 +87,9 @@
 		6B6ACD7C234DD60700BD6069 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6ACD7B234DD60700BD6069 /* Preview Assets.xcassets */; };
 		6B6ACD7F234DD60700BD6069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B6ACD7D234DD60700BD6069 /* LaunchScreen.storyboard */; };
 		6B6ACE1F234DDA0100BD6069 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE19234DDA0000BD6069 /* ThirdViewController.swift */; };
-		6B6ACE20234DDA0100BD6069 /* CustomFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1A234DDA0000BD6069 /* CustomFeature.swift */; };
 		6B6ACE21234DDA0100BD6069 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1B234DDA0000BD6069 /* FirstViewController.swift */; };
 		6B6ACE22234DDA0100BD6069 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1C234DDA0000BD6069 /* SplashViewController.swift */; };
 		6B6ACE24234DDA0100BD6069 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1E234DDA0100BD6069 /* SecondViewController.swift */; };
-		6B6ACE25234DDA5B00BD6069 /* BucketeerTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6ACD65234DD5E700BD6069 /* BucketeerTVOS.framework */; };
 		9340CA0928D9D1DD00E690CC /* EvaluationDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA0828D9D1DD00E690CC /* EvaluationDaoTests.swift */; };
 		9340CA1928DA0F6200E690CC /* EventDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1628DA0F6200E690CC /* EventDao.swift */; };
 		9340CA1A28DA0F6200E690CC /* EventEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1728DA0F6200E690CC /* EventEntity.swift */; };
@@ -130,6 +129,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		004CF1F72929EBE500CCC3DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB5A93A22072500600A196C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0065C3BD28C7BB76002D92A2;
+			remoteInfo = Bucketeer;
+		};
 		0065C3C728C7BB76002D92A2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EB5A93A22072500600A196C3 /* Project object */;
@@ -237,7 +243,6 @@
 		6B6ACD7E234DD60700BD6069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B6ACD80234DD60700BD6069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B6ACE19234DDA0000BD6069 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
-		6B6ACE1A234DDA0000BD6069 /* CustomFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFeature.swift; sourceTree = "<group>"; };
 		6B6ACE1B234DDA0000BD6069 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		6B6ACE1C234DDA0000BD6069 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		6B6ACE1E234DDA0100BD6069 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -308,7 +313,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B6ACE25234DDA5B00BD6069 /* BucketeerTVOS.framework in Frameworks */,
+				004CF1F52929EBE500CCC3DF /* Bucketeer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +327,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		004CF1F42929EBE500CCC3DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0065C3BF28C7BB76002D92A2 /* Bucketeer */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,7 +563,6 @@
 				6B6ACD7A234DD60700BD6069 /* Preview Content */,
 				6B6ACD74234DD60600BD6069 /* AppDelegate.swift */,
 				6B6ACD78234DD60700BD6069 /* Assets.xcassets */,
-				6B6ACE1A234DDA0000BD6069 /* CustomFeature.swift */,
 				1D9A0AD92366D220008A2A53 /* environment.plist */,
 				6B6ACE1B234DDA0000BD6069 /* FirstViewController.swift */,
 				6B6ACD80234DD60700BD6069 /* Info.plist */,
@@ -622,6 +633,7 @@
 				EB7867F7209722050071D524 /* Example */,
 				6B6ACD73234DD60600BD6069 /* ExampleTVOS */,
 				EB5A93AC2072500600A196C3 /* Products */,
+				004CF1F42929EBE500CCC3DF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -741,6 +753,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				004CF1F82929EBE500CCC3DF /* PBXTargetDependency */,
 			);
 			name = ExampleTVOS;
 			productName = ExampleTVOS;
@@ -990,7 +1003,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B6ACD75234DD60600BD6069 /* AppDelegate.swift in Sources */,
-				6B6ACE20234DDA0100BD6069 /* CustomFeature.swift in Sources */,
 				6B6ACE21234DDA0100BD6069 /* FirstViewController.swift in Sources */,
 				6B6ACE24234DDA0100BD6069 /* SecondViewController.swift in Sources */,
 				6B6ACE22234DDA0100BD6069 /* SplashViewController.swift in Sources */,
@@ -1013,6 +1025,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		004CF1F82929EBE500CCC3DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0065C3BD28C7BB76002D92A2 /* Bucketeer */;
+			targetProxy = 004CF1F72929EBE500CCC3DF /* PBXContainerItemProxy */;
+		};
 		0065C3C828C7BB76002D92A2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0065C3BD28C7BB76002D92A2 /* Bucketeer */;
@@ -1073,10 +1090,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.bucketeer.Bucketeer2;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -1104,10 +1125,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.bucketeer.Bucketeer2;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Test;
 		};
@@ -1135,9 +1160,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.bucketeer.Bucketeer2;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
