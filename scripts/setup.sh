@@ -1,8 +1,5 @@
 #!/bin/bash
 
-API_URL=""
-SDK_KEY=""
-
 confirm_api_url () {
     echo "Please input your API_URL. e.g. https://api-media.bucketeer.jp"
     read input
@@ -23,8 +20,11 @@ confirm_sdk_key () {
     SDK_KEY=$input
 }
 
-confirm_api_url
-confirm_sdk_key
+if [ $CI = false ]; then
+    confirm_api_url
+    confirm_sdk_key
+fi
+
 
 plist=$(cat << EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -41,5 +41,10 @@ EOF
 )
 
 echo "$plist" > ./BucketeerTests/environment.plist
+echo "Updated ./BucketeerTests/environment.plist"
+
 echo "$plist" > ./Example/environment.plist
+echo "Updated ./Example/environment.plist"
+
 echo "$plist" > ./ExampleTVOS/environment.plist
+echo "Updated ./ExampleTVOS/environment.plist"
