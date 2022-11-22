@@ -90,6 +90,8 @@
 		6B6ACE21234DDA0100BD6069 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1B234DDA0000BD6069 /* FirstViewController.swift */; };
 		6B6ACE22234DDA0100BD6069 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1C234DDA0000BD6069 /* SplashViewController.swift */; };
 		6B6ACE24234DDA0100BD6069 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6ACE1E234DDA0100BD6069 /* SecondViewController.swift */; };
+		9322C794292CF6050040178F /* Bucketeer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0065C3BE28C7BB76002D92A2 /* Bucketeer.framework */; };
+		9322C795292CF6050040178F /* Bucketeer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0065C3BE28C7BB76002D92A2 /* Bucketeer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9340CA0928D9D1DD00E690CC /* EvaluationDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA0828D9D1DD00E690CC /* EvaluationDaoTests.swift */; };
 		9340CA1928DA0F6200E690CC /* EventDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1628DA0F6200E690CC /* EventDao.swift */; };
 		9340CA1A28DA0F6200E690CC /* EventEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340CA1728DA0F6200E690CC /* EventEntity.swift */; };
@@ -143,6 +145,13 @@
 			remoteGlobalIDString = 0065C3BD28C7BB76002D92A2;
 			remoteInfo = Bucketeer2;
 		};
+		9322C796292CF6050040178F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB5A93A22072500600A196C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0065C3BD28C7BB76002D92A2;
+			remoteInfo = Bucketeer;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -152,6 +161,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9322C795292CF6050040178F /* Bucketeer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,6 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9322C794292CF6050040178F /* Bucketeer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,6 +783,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9322C797292CF6050040178F /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -1034,6 +1046,11 @@
 			isa = PBXTargetDependency;
 			target = 0065C3BD28C7BB76002D92A2 /* Bucketeer */;
 			targetProxy = 0065C3C728C7BB76002D92A2 /* PBXContainerItemProxy */;
+		};
+		9322C797292CF6050040178F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0065C3BD28C7BB76002D92A2 /* Bucketeer */;
+			targetProxy = 9322C796292CF6050040178F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
