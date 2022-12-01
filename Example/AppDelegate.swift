@@ -9,23 +9,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        BucketeerSDK.setup(config: makeBucketeerConfig())
-        BucketeerSDK.shared.setUser(userID: "001") { result in
-            print("ios_test_001 =", BucketeerSDK.shared.boolVariation(featureID: "ios_test_001", defaultValue: false))
-            print("ios_test_002 =", BucketeerSDK.shared.stringVariation(featureID: "ios_test_002", defaultValue: "002 not found..."))
-            print("ios_test_003 =", BucketeerSDK.shared.stringVariation(featureID: "ios_test_003", defaultValue: "003 not found..."))
-            print("ios_test_004 =", BucketeerSDK.shared.variation(for: .customStringFeature))
-            print("ios_test_005 =", BucketeerSDK.shared.variation(for: .customIntFeature))
-
-            guard case .success = result else {
-                DispatchQueue.main.async() {
-                    self.setSingleViewController()
-                }
-                return
+        let user = try! BKTUser.create(id: "001", attributes: [:])
+        BKTClient.initialize(
+            config: self.makeConfig(),
+            user: user
+        ) { error in
+            if let error {
+                print(error)
             }
 
-            DispatchQueue.main.async() {
-                let isTabMode = BucketeerSDK.shared.boolVariation(featureID: "ios_test_001", defaultValue: false)
+            print("ios_test_001 =", BKTClient.shared.boolVariation(featureId: "ios_test_001", defaultValue: false))
+            print("ios_test_002 =", BKTClient.shared.stringVariation(featureId: "ios_test_002", defaultValue: "002 not found..."))
+            print("ios_test_003 =", BKTClient.shared.stringVariation(featureId: "ios_test_003", defaultValue: "003 not found..."))
+            print("ios_test_004 =", BKTClient.shared.stringVariation(featureId: "ios_test_004", defaultValue: "004 not found..."))
+            print("ios_test_005 =", BKTClient.shared.intVariation(featureId: "ios_test_005", defaultValue: 0))
+
+            DispatchQueue.main.async {
+                self.setSingleViewController()
+            }
+
+            DispatchQueue.main.async {
+                let isTabMode = BKTClient.shared.boolVariation(featureId: "ios_test_001", defaultValue: false)
                 if isTabMode {
                     self.setTabBarController()
                 } else {
@@ -37,19 +41,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    private func makeBucketeerConfig() -> Config {
+    private func makeConfig() -> BKTConfig {
         let bundle = Bundle(for: type(of: self))
         let path = bundle.path(forResource: "environment", ofType: "plist")!
         let dic = NSDictionary(contentsOfFile: path) as! [String: Any]
         let sdkKey = dic["sdkKey"] as! String
         let apiURL = dic["apiURL"] as! String
 
-        var config = Config(sdkKey: sdkKey, apiURL: apiURL, tag: "ios")
-        config.getEvaluationsPollingInterval = 5_000
-        config.registerEventsPollingInterval = 10_000
-
-        config.logLevel = .debug
-        return config
+        return try! BKTConfig(
+            apiKey: sdkKey,
+            apiEndpoint: apiURL,
+            featureTag: "ios",
+            pollingInterval: 5_000,
+            logger: nil
+        )
     }
 
     private func setSingleViewController() {

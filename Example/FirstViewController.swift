@@ -6,13 +6,13 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
-        messageLabel.text = BucketeerSDK.shared.stringVariation(featureID: "ios_test_002", defaultValue: "not found...")
+        messageLabel.text = BKTClient.shared.stringVariation(featureId: "ios_test_002", defaultValue: "not found...")
 
-        let colorCode = BucketeerSDK.shared.stringVariation(featureID: "ios_test_003", defaultValue: "#999999")
+        let colorCode = BKTClient.shared.stringVariation(featureId: "ios_test_003", defaultValue: "#999999")
         view.backgroundColor = UIColor(hex: colorCode)
     }
     @IBAction func trackButtonAction(_ sender: Any) {
-        BucketeerSDK.shared.track(goalID: "ios_test_002", value: 1)
+        BKTClient.shared.track(goalId: "ios_test_002", value: 1)
     }
 }
 
