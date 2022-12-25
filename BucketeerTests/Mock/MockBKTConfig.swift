@@ -10,6 +10,7 @@ extension BKTConfig {
         eventsMaxBatchQueueCount: Constant.DEFAULT_MAX_QUEUE_SIZE,
         pollingInterval: Constant.DEFAULT_POLLING_INTERVAL_MILLIS,
         backgroundPollingInterval: Constant.DEFAULT_BACKGROUND_POLLING_INTERVAL_MILLIS,
+        sdkVersion: "0.0.2",
         logger: MockLogger()
     )
 }

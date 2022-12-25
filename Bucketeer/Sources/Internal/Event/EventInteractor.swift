@@ -17,6 +17,7 @@ extension EventInteractor {
 }
 
 final class EventInteractorImpl: EventInteractor {
+    let sdkVersion: String
     let eventsMaxBatchQueueCount: Int
     let apiClient: ApiClient
     let eventDao: EventDao
@@ -26,7 +27,8 @@ final class EventInteractorImpl: EventInteractor {
 
     private var eventUpdateListener: EventUpdateListener?
 
-    init(eventsMaxBatchQueueCount: Int, apiClient: ApiClient, eventDao: EventDao, clock: Clock, idGenerator: IdGenerator, logger: Logger?) {
+    init(sdkVersion: String, eventsMaxBatchQueueCount: Int, apiClient: ApiClient, eventDao: EventDao, clock: Clock, idGenerator: IdGenerator, logger: Logger?) {
+        self.sdkVersion = sdkVersion
         self.eventsMaxBatchQueueCount = eventsMaxBatchQueueCount
         self.apiClient = apiClient
         self.eventDao = eventDao
@@ -52,7 +54,8 @@ final class EventInteractorImpl: EventInteractor {
                     user: user,
                     reason: evaluation.reason,
                     tag: featureTag,
-                    source_id: .ios
+                    source_id: .ios,
+                    sdk_version: sdkVersion
                 )),
                 type: .evaluation
             )
@@ -71,7 +74,8 @@ final class EventInteractorImpl: EventInteractor {
                     user: user,
                     reason: .init(type: .client),
                     tag: featureTag,
-                    source_id: .ios
+                    source_id: .ios,
+                    sdk_version: sdkVersion
                 )),
                 type: .evaluation
             )
@@ -90,7 +94,8 @@ final class EventInteractorImpl: EventInteractor {
                     value: value,
                     user: user,
                     tag: featureTag,
-                    source_id: .ios
+                    source_id: .ios,
+                    sdk_version: sdkVersion
                 )),
                 type: .goal
             )
@@ -109,7 +114,8 @@ final class EventInteractorImpl: EventInteractor {
                             labels: ["tag": featureTag],
                             duration: .init(seconds: seconds)
                         )),
-                        type: .getEvaluationLatency
+                        type: .getEvaluationLatency,
+                        sdk_version: sdkVersion
                     )),
                     type: .metrics
                 ),
@@ -121,7 +127,8 @@ final class EventInteractorImpl: EventInteractor {
                             labels: ["tag": featureTag],
                             size_byte: sizeByte
                         )),
-                        type: .getEvaluationSize
+                        type: .getEvaluationSize,
+                        sdk_version: sdkVersion
                     )),
                     type: .metrics
                 ),
@@ -146,7 +153,8 @@ final class EventInteractorImpl: EventInteractor {
             event: .metrics(.init(
                 timestamp: clock.currentTimeSeconds,
                 event: metricsEventData,
-                type: metricsEventType
+                type: metricsEventType,
+                sdk_version: sdkVersion
             )),
             type: .metrics
         ))

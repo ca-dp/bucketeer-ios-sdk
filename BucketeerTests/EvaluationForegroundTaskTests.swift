@@ -32,6 +32,7 @@ final class EvaluationForegroundTaskTests: XCTestCase {
             eventsMaxBatchQueueCount: 3,
             pollingInterval: 100,
             backgroundPollingInterval: 1000,
+            sdkVersion: "0.0.2",
             logger: MockLogger()
         )
         let component = MockComponent(
@@ -81,6 +82,7 @@ final class EvaluationForegroundTaskTests: XCTestCase {
             eventsMaxBatchQueueCount: 3,
             pollingInterval: 100,
             backgroundPollingInterval: 1000,
+            sdkVersion: "0.0.2",
             logger: MockLogger()
         )
         let component = MockComponent(
@@ -125,6 +127,7 @@ final class EvaluationForegroundTaskTests: XCTestCase {
             eventsMaxBatchQueueCount: 3,
             pollingInterval: 100,
             backgroundPollingInterval: 1000,
+            sdkVersion: "0.0.2",
             logger: MockLogger()
         )
         let component = MockComponent(

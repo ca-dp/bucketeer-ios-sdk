@@ -8,6 +8,7 @@ public struct BKTConfig {
     let eventsMaxBatchQueueCount: Int
     let pollingInterval: Int64
     let backgroundPollingInterval: Int64
+    let sdkVersion: String
     let logger: BKTLogger?
 }
 
@@ -56,6 +57,7 @@ extension BKTConfig {
             eventsMaxBatchQueueCount: eventsMaxBatchQueueCount,
             pollingInterval: pollingInterval,
             backgroundPollingInterval: backgroundPollingInterval,
+            sdkVersion: Bundle.init(for: BKTClient.self).infoDictionary?["CFBundleShortVersionString"] as! String,
             logger: logger
         )
     }

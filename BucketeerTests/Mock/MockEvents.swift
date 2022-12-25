@@ -11,7 +11,8 @@ extension Event {
             value: 1,
             user: .mock1,
             tag: "tag1",
-            source_id: .ios
+            source_id: .ios,
+            sdk_version: "0.0.1"
         )),
         type: .goal
     )
@@ -25,7 +26,8 @@ extension Event {
             value: 1,
             user: .mock1,
             tag: "tag2",
-            source_id: .ios
+            source_id: .ios,
+            sdk_version: "0.0.1"
         )),
         type: .goal
     )
@@ -41,7 +43,8 @@ extension Event {
             user: .mock1,
             reason: .init(type: .rule, rule_id: "rule1"),
             tag: "tag1",
-            source_id: .ios
+            source_id: .ios,
+            sdk_version: "0.0.1"
         )),
         type: .evaluation
     )
@@ -57,7 +60,8 @@ extension Event {
             user: .mock1,
             reason: .init(type: .rule, rule_id: "rule2"),
             tag: "tag2",
-            source_id: .ios
+            source_id: .ios,
+            sdk_version: "0.0.1"
         )),
         type: .evaluation
     )
@@ -70,7 +74,8 @@ extension Event {
                 labels: ["tag": "ios", "state": "full"],
                 duration: .init(seconds: 2)
             )),
-            type: .getEvaluationLatency
+            type: .getEvaluationLatency,
+            sdk_version: "0.0.1"
         )),
         type: .metrics
     )

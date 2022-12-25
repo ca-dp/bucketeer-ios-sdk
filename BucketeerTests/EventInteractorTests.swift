@@ -12,6 +12,7 @@ final class EventInteractorTests: XCTestCase {
         let dao = MockEventDao()
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -32,7 +33,8 @@ final class EventInteractorTests: XCTestCase {
                     user: .mock1,
                     reason: Evaluation.mock1.reason,
                     tag: "featureTag1",
-                    source_id: .ios
+                    source_id: .ios,
+                    sdk_version: "0.0.2"
                 )),
                 type: .evaluation
             )
@@ -58,6 +60,7 @@ final class EventInteractorTests: XCTestCase {
         let dao = MockEventDao()
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -76,7 +79,8 @@ final class EventInteractorTests: XCTestCase {
                     user: .mock1,
                     reason: .init(type: .client),
                     tag: "featureTag1",
-                    source_id: .ios
+                    source_id: .ios,
+                    sdk_version: "0.0.2"
                 )),
                 type: .evaluation
             )
@@ -102,6 +106,7 @@ final class EventInteractorTests: XCTestCase {
         let dao = MockEventDao()
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -120,7 +125,8 @@ final class EventInteractorTests: XCTestCase {
                     value: 1,
                     user: .mock1,
                     tag: "featureTag1",
-                    source_id: .ios
+                    source_id: .ios,
+                    sdk_version: "0.0.2"
                 )),
                 type: .goal
             )
@@ -147,6 +153,7 @@ final class EventInteractorTests: XCTestCase {
         let dao = MockEventDao()
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -165,7 +172,8 @@ final class EventInteractorTests: XCTestCase {
                             labels: ["tag": "featureTag1"],
                             duration: .init(seconds: 10)
                         )),
-                        type: .getEvaluationLatency
+                        type: .getEvaluationLatency,
+                        sdk_version: "0.0.2"
                     )),
                     type: .metrics
                 ),
@@ -177,7 +185,8 @@ final class EventInteractorTests: XCTestCase {
                             labels: ["tag": "featureTag1"],
                             size_byte: 100
                         )),
-                        type: .getEvaluationSize
+                        type: .getEvaluationSize,
+                        sdk_version: "0.0.2"
                     )),
                     type: .metrics
                 )
@@ -208,6 +217,7 @@ final class EventInteractorTests: XCTestCase {
         let dao = MockEventDao()
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -223,7 +233,8 @@ final class EventInteractorTests: XCTestCase {
                     event: .metrics(.init(
                         timestamp: 1,
                         event: .timeoutErrorCount(.init(tag: "featureTag1")),
-                        type: .timeoutErrorCount
+                        type: .timeoutErrorCount,
+                        sdk_version: "0.0.2"
                     )),
                     type: .metrics
                 )
@@ -249,6 +260,7 @@ final class EventInteractorTests: XCTestCase {
         let dao = MockEventDao()
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -264,7 +276,8 @@ final class EventInteractorTests: XCTestCase {
                     event: .metrics(.init(
                         timestamp: 1,
                         event: .internalErrorCount(.init(tag: "featureTag1")),
-                        type: .internalErrorCount
+                        type: .internalErrorCount,
+                        sdk_version: "0.0.2"
                     )),
                     type: .metrics
                 )
@@ -299,6 +312,7 @@ final class EventInteractorTests: XCTestCase {
 
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -343,6 +357,7 @@ final class EventInteractorTests: XCTestCase {
 
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -376,6 +391,7 @@ final class EventInteractorTests: XCTestCase {
 
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -411,6 +427,7 @@ final class EventInteractorTests: XCTestCase {
 
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -450,6 +467,7 @@ final class EventInteractorTests: XCTestCase {
 
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -500,6 +518,7 @@ final class EventInteractorTests: XCTestCase {
 
         let logger = MockLogger()
         let interactor = EventInteractorImpl(
+            sdkVersion: "0.0.2",
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
