@@ -25,9 +25,11 @@ final class EventInteractorImpl: EventInteractor {
     let idGenerator: IdGenerator
     let logger: Logger?
 
+    private let metadata: [String: String]
+
     private var eventUpdateListener: EventUpdateListener?
 
-    init(sdkVersion: String, eventsMaxBatchQueueCount: Int, apiClient: ApiClient, eventDao: EventDao, clock: Clock, idGenerator: IdGenerator, logger: Logger?) {
+    init(sdkVersion: String, appVersion: String, device: Device, eventsMaxBatchQueueCount: Int, apiClient: ApiClient, eventDao: EventDao, clock: Clock, idGenerator: IdGenerator, logger: Logger?) {
         self.sdkVersion = sdkVersion
         self.eventsMaxBatchQueueCount = eventsMaxBatchQueueCount
         self.apiClient = apiClient
@@ -35,6 +37,11 @@ final class EventInteractorImpl: EventInteractor {
         self.clock = clock
         self.idGenerator = idGenerator
         self.logger = logger
+        self.metadata = [
+            "app_version": appVersion,
+            "os_version": device.osVersion,
+            "device_model": device.model
+        ]
     }
 
     func set(eventUpdateListener: EventUpdateListener?) {
@@ -55,7 +62,8 @@ final class EventInteractorImpl: EventInteractor {
                     reason: evaluation.reason,
                     tag: featureTag,
                     source_id: .ios,
-                    sdk_version: sdkVersion
+                    sdk_version: sdkVersion,
+                    metadata: metadata
                 )),
                 type: .evaluation
             )
@@ -75,7 +83,8 @@ final class EventInteractorImpl: EventInteractor {
                     reason: .init(type: .client),
                     tag: featureTag,
                     source_id: .ios,
-                    sdk_version: sdkVersion
+                    sdk_version: sdkVersion,
+                    metadata: metadata
                 )),
                 type: .evaluation
             )
@@ -95,7 +104,8 @@ final class EventInteractorImpl: EventInteractor {
                     user: user,
                     tag: featureTag,
                     source_id: .ios,
-                    sdk_version: sdkVersion
+                    sdk_version: sdkVersion,
+                    metadata: metadata
                 )),
                 type: .goal
             )
@@ -115,7 +125,8 @@ final class EventInteractorImpl: EventInteractor {
                             duration: .init(seconds: seconds)
                         )),
                         type: .getEvaluationLatency,
-                        sdk_version: sdkVersion
+                        sdk_version: sdkVersion,
+                        metadata: metadata
                     )),
                     type: .metrics
                 ),
@@ -128,7 +139,8 @@ final class EventInteractorImpl: EventInteractor {
                             size_byte: sizeByte
                         )),
                         type: .getEvaluationSize,
-                        sdk_version: sdkVersion
+                        sdk_version: sdkVersion,
+                        metadata: metadata
                     )),
                     type: .metrics
                 ),
@@ -154,7 +166,8 @@ final class EventInteractorImpl: EventInteractor {
                 timestamp: clock.currentTimeSeconds,
                 event: metricsEventData,
                 type: metricsEventType,
-                sdk_version: sdkVersion
+                sdk_version: sdkVersion,
+                metadata: metadata
             )),
             type: .metrics
         ))

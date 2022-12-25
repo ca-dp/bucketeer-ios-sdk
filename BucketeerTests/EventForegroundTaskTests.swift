@@ -15,16 +15,11 @@ class EventForegroundTaskTests: XCTestCase {
             count += 1
             expectation.fulfill()
         }
-        let config = BKTConfig(
-            apiKey: "api_key_value",
-            apiEndpoint: URL(string: "https://test.bucketeer.jp")!,
-            featureTag: "featureTag1",
+        let config = BKTConfig.mock(
             eventsFlushInterval: 10,
             eventsMaxBatchQueueCount: 3,
             pollingInterval: 100,
-            backgroundPollingInterval: 1000,
-            sdkVersion: "0.0.2",
-            logger: MockLogger()
+            backgroundPollingInterval: 1000
         )
         let component = MockComponent(
             config: config,
@@ -49,16 +44,11 @@ class EventForegroundTaskTests: XCTestCase {
             completion?(.success(true))
             expectation.fulfill()
         }
-        let config = BKTConfig(
-            apiKey: "api_key_value",
-            apiEndpoint: URL(string: "https://test.bucketeer.jp")!,
-            featureTag: "featureTag1",
+        let config = BKTConfig.mock(
             eventsFlushInterval: 10,
             eventsMaxBatchQueueCount: 3,
             pollingInterval: 2000,
-            backgroundPollingInterval: 1000,
-            sdkVersion: "0.0.2",
-            logger: MockLogger()
+            backgroundPollingInterval: 1000
         )
         let component = MockComponent(
             config: config,
@@ -83,16 +73,11 @@ class EventForegroundTaskTests: XCTestCase {
             // not called
             expectation.fulfill()
         })
-        let config = BKTConfig(
-            apiKey: "api_key_value",
-            apiEndpoint: URL(string: "https://test.bucketeer.jp")!,
-            featureTag: "featureTag1",
+        let config = BKTConfig.mock(
             eventsFlushInterval: 10,
             eventsMaxBatchQueueCount: 3,
             pollingInterval: 10,
-            backgroundPollingInterval: 1000,
-            sdkVersion: "0.0.2",
-            logger: MockLogger()
+            backgroundPollingInterval: 1000
         )
         let component = MockComponent(
             config: config,

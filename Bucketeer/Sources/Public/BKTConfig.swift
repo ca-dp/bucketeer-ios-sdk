@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 public struct BKTConfig {
     let apiKey: String
@@ -9,6 +9,7 @@ public struct BKTConfig {
     let pollingInterval: Int64
     let backgroundPollingInterval: Int64
     let sdkVersion: String
+    let appVersion: String
     let logger: BKTLogger?
 }
 
@@ -21,6 +22,7 @@ extension BKTConfig {
         eventsMaxBatchQueueCount: Int = Constant.DEFAULT_MAX_QUEUE_SIZE,
         pollingInterval: Int64 = Constant.DEFAULT_POLLING_INTERVAL_MILLIS,
         backgroundPollingInterval: Int64 = Constant.DEFAULT_BACKGROUND_POLLING_INTERVAL_MILLIS,
+        appVersion: String,
         logger: BKTLogger?
     ) throws {
         guard !apiKey.isEmpty else {
@@ -31,6 +33,9 @@ extension BKTConfig {
         }
         guard !featureTag.isEmpty else {
             throw BKTError.illegalArgument(message: "featureTag is required")
+        }
+        guard !appVersion.isEmpty else {
+            throw BKTError.illegalArgument(message: "appVersion is required")
         }
 
         var pollingInterval = pollingInterval
@@ -58,6 +63,7 @@ extension BKTConfig {
             pollingInterval: pollingInterval,
             backgroundPollingInterval: backgroundPollingInterval,
             sdkVersion: Bundle.init(for: BKTClient.self).infoDictionary?["CFBundleShortVersionString"] as! String,
+            appVersion: appVersion,
             logger: logger
         )
     }

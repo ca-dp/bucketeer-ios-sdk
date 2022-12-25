@@ -26,6 +26,7 @@ extension BKTConfig {
             apiKey: sdkKey,
             apiEndpoint: apiURL,
             featureTag: FEATURE_TAG,
+            appVersion: "1.2.3",
             logger: E2ELogger()
         )
     }

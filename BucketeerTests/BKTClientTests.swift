@@ -53,7 +53,12 @@ final class BKTClientTests: XCTestCase {
                                 duration: .init(seconds: 2)
                             )),
                             type: .getEvaluationLatency,
-                            sdk_version: "0.0.2"
+                            sdk_version: "0.0.2",
+                            metadata: [
+                                "app_version": "1.2.3",
+                                "os_version": "16.0",
+                                "device_model": "iPhone14,7",
+                            ]
                         )),
                         type: .metrics
                     ),
@@ -66,7 +71,12 @@ final class BKTClientTests: XCTestCase {
                                 size_byte: 3
                             )),
                             type: .getEvaluationSize,
-                            sdk_version: "0.0.2"
+                            sdk_version: "0.0.2",
+                            metadata: [
+                                "app_version": "1.2.3",
+                                "os_version": "16.0",
+                                "device_model": "iPhone14,7",
+                            ]
                         )),
                         type: .metrics
                     )
@@ -107,7 +117,12 @@ final class BKTClientTests: XCTestCase {
                         timestamp: 1,
                         event: .timeoutErrorCount(.init(tag: "feature")),
                         type: .timeoutErrorCount,
-                        sdk_version: "0.0.2"
+                        sdk_version: "0.0.2",
+                        metadata: [
+                            "app_version": "1.2.3",
+                            "os_version": "16.0",
+                            "device_model": "iPhone14,7",
+                        ]
                     )),
                     type: .metrics
                 )
@@ -232,7 +247,12 @@ final class BKTClientTests: XCTestCase {
                         user: .mock1,
                         tag: "featureTag1",
                         source_id: .ios,
-                        sdk_version: "0.0.2"
+                        sdk_version: "0.0.2",
+                        metadata: [
+                            "app_version": "1.2.3",
+                            "os_version": "16.0",
+                            "device_model": "iPhone14,7",
+                        ]
                     )),
                     type: .goal
                 ))

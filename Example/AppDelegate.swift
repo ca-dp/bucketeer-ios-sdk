@@ -53,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             apiEndpoint: apiURL,
             featureTag: "ios",
             pollingInterval: 5_000,
+            appVersion: bundle.infoDictionary?["CFBundleShortVersionString"] as! String,
             logger: nil
         )
     }
