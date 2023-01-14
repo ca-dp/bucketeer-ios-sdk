@@ -40,7 +40,8 @@ final class EventInteractorImpl: EventInteractor {
         self.metadata = [
             "app_version": appVersion,
             "os_version": device.osVersion,
-            "device_model": device.model
+            "device_model": device.model,
+            "device_type": device.type
         ]
     }
 

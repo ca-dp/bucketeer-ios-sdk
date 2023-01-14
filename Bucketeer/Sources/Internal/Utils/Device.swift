@@ -3,6 +3,7 @@ import UIKit
 protocol Device {
     var osVersion: String { get }
     var model: String { get }
+    var type: String { get }
 }
 
 final class DeviceImpl: Device {
@@ -21,4 +22,8 @@ final class DeviceImpl: Device {
         }
         return identifier
     }()
+
+    var type: String {
+        model.contains("TV") ? "tv" : "mobile"
+    }
 }

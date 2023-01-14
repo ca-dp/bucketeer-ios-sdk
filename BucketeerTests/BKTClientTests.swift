@@ -58,6 +58,7 @@ final class BKTClientTests: XCTestCase {
                                 "app_version": "1.2.3",
                                 "os_version": "16.0",
                                 "device_model": "iPhone14,7",
+                                "device_type": "mobile"
                             ]
                         )),
                         type: .metrics
@@ -76,6 +77,7 @@ final class BKTClientTests: XCTestCase {
                                 "app_version": "1.2.3",
                                 "os_version": "16.0",
                                 "device_model": "iPhone14,7",
+                                "device_type": "mobile"
                             ]
                         )),
                         type: .metrics
@@ -122,6 +124,7 @@ final class BKTClientTests: XCTestCase {
                             "app_version": "1.2.3",
                             "os_version": "16.0",
                             "device_model": "iPhone14,7",
+                            "device_type": "mobile"
                         ]
                     )),
                     type: .metrics
@@ -252,6 +255,7 @@ final class BKTClientTests: XCTestCase {
                             "app_version": "1.2.3",
                             "os_version": "16.0",
                             "device_model": "iPhone14,7",
+                            "device_type": "mobile"
                         ]
                     )),
                     type: .goal
