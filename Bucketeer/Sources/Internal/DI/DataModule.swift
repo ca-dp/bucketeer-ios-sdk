@@ -9,6 +9,7 @@ protocol DataModule {
     var defaults: Defaults { get }
     var idGenerator: IdGenerator { get }
     var clock: Clock { get }
+    var device: Device { get }
 }
 
 final class DataModuleImpl: DataModule {
@@ -38,4 +39,5 @@ final class DataModuleImpl: DataModule {
     )
     private(set) lazy var userHolder: UserHolder = UserHolder(user: self.user)
     private(set) lazy var defaults: Defaults = UserDefaults.standard
+    private(set) lazy var device: Device = DeviceImpl()
 }

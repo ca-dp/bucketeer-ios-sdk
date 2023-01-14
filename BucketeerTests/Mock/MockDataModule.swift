@@ -10,4 +10,5 @@ struct MockDataModule: DataModule {
     var defaults: Defaults = MockDefaults()
     var idGenerator: IdGenerator = MockIdGenerator(identifier: "id")
     var clock: Clock = MockClock(timestamp: 1)
+    var device: Device = MockDevice()
 }

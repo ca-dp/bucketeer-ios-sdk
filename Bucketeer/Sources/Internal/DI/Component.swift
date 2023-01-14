@@ -21,6 +21,9 @@ final class ComponentImpl: Component {
             idGenerator: dataModule.idGenerator
         )
         self.eventInteractor = EventInteractorImpl(
+            sdkVersion: dataModule.config.sdkVersion,
+            appVersion: dataModule.config.appVersion,
+            device: dataModule.device,
             eventsMaxBatchQueueCount: dataModule.config.eventsMaxBatchQueueCount,
             apiClient: dataModule.apiClient,
             eventDao: dataModule.eventDao,

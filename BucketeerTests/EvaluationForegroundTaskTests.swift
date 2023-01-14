@@ -24,15 +24,11 @@ final class EvaluationForegroundTaskTests: XCTestCase {
                 expectation.fulfill()
             }
         )
-        let config = BKTConfig(
-            apiKey: "api_key_value",
-            apiEndpoint: URL(string: "https://test.bucketeer.jp")!,
-            featureTag: "featureTag1",
+        let config = BKTConfig.mock(
             eventsFlushInterval: 10,
             eventsMaxBatchQueueCount: 3,
             pollingInterval: 100,
-            backgroundPollingInterval: 1000,
-            logger: MockLogger()
+            backgroundPollingInterval: 1000
         )
         let component = MockComponent(
             config: config,
@@ -81,6 +77,8 @@ final class EvaluationForegroundTaskTests: XCTestCase {
             eventsMaxBatchQueueCount: 3,
             pollingInterval: 100,
             backgroundPollingInterval: 1000,
+            sdkVersion: "0.0.2",
+            appVersion: "1.2.3",
             logger: MockLogger()
         )
         let component = MockComponent(
@@ -117,15 +115,11 @@ final class EvaluationForegroundTaskTests: XCTestCase {
                 expectation.fulfill()
             }
         )
-        let config = BKTConfig(
-            apiKey: "api_key_value",
-            apiEndpoint: URL(string: "https://test.bucketeer.jp")!,
-            featureTag: "featureTag1",
+        let config = BKTConfig.mock(
             eventsFlushInterval: 50,
             eventsMaxBatchQueueCount: 3,
             pollingInterval: 100,
-            backgroundPollingInterval: 1000,
-            logger: MockLogger()
+            backgroundPollingInterval: 1000
         )
         let component = MockComponent(
             config: config,

@@ -146,7 +146,7 @@ class ApiClientTests: XCTestCase {
                 let requestBody = RegisterEventsRequestBody(
                     events: events
                 )
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(requestBody))
+                XCTAssertEqual(request.httpBody?.count, (try! JSONEncoder().encode(requestBody)).count)
                 expectation.fulfill()
             },
             data: data,

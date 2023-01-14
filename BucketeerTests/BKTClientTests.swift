@@ -52,7 +52,13 @@ final class BKTClientTests: XCTestCase {
                                 labels: ["tag": "feature"],
                                 duration: .init(seconds: 2)
                             )),
-                            type: .getEvaluationLatency
+                            type: .getEvaluationLatency,
+                            sdk_version: "0.0.2",
+                            metadata: [
+                                "app_version": "1.2.3",
+                                "os_version": "16.0",
+                                "device_model": "iPhone14,7",
+                            ]
                         )),
                         type: .metrics
                     ),
@@ -64,7 +70,13 @@ final class BKTClientTests: XCTestCase {
                                 labels: ["tag": "feature"],
                                 size_byte: 3
                             )),
-                            type: .getEvaluationSize
+                            type: .getEvaluationSize,
+                            sdk_version: "0.0.2",
+                            metadata: [
+                                "app_version": "1.2.3",
+                                "os_version": "16.0",
+                                "device_model": "iPhone14,7",
+                            ]
                         )),
                         type: .metrics
                     )
@@ -104,7 +116,13 @@ final class BKTClientTests: XCTestCase {
                     event: .metrics(.init(
                         timestamp: 1,
                         event: .timeoutErrorCount(.init(tag: "feature")),
-                        type: .timeoutErrorCount
+                        type: .timeoutErrorCount,
+                        sdk_version: "0.0.2",
+                        metadata: [
+                            "app_version": "1.2.3",
+                            "os_version": "16.0",
+                            "device_model": "iPhone14,7",
+                        ]
                     )),
                     type: .metrics
                 )
@@ -228,7 +246,13 @@ final class BKTClientTests: XCTestCase {
                         value: 20,
                         user: .mock1,
                         tag: "featureTag1",
-                        source_id: .ios
+                        source_id: .ios,
+                        sdk_version: "0.0.2",
+                        metadata: [
+                            "app_version": "1.2.3",
+                            "os_version": "16.0",
+                            "device_model": "iPhone14,7",
+                        ]
                     )),
                     type: .goal
                 ))

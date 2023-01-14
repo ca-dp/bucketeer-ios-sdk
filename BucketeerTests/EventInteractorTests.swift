@@ -3,15 +3,14 @@ import XCTest
 
 final class EventInteractorTests: XCTestCase {
 
-    func testTrackEvaluationEvent() throws {
-        let expectation = XCTestExpectation()
-        expectation.assertForOverFulfill = true
+    private func eventInteractor(api: ApiClient = MockApiClient(), dao: EventDao = MockEventDao()) -> EventInteractor {
         let clock = MockClock(timestamp: 1)
         let idGenerator = MockIdGenerator(identifier: "id")
-        let api = MockApiClient()
-        let dao = MockEventDao()
         let logger = MockLogger()
-        let interactor = EventInteractorImpl(
+        return EventInteractorImpl(
+            sdkVersion: "0.0.2",
+            appVersion: "1.2.3",
+            device: MockDevice(),
             eventsMaxBatchQueueCount: 3,
             apiClient: api,
             eventDao: dao,
@@ -19,6 +18,12 @@ final class EventInteractorTests: XCTestCase {
             idGenerator: idGenerator,
             logger: logger
         )
+    }
+
+    func testTrackEvaluationEvent() throws {
+        let expectation = XCTestExpectation()
+        expectation.assertForOverFulfill = true
+        let interactor = self.eventInteractor()
         let listener = MockEventUpdateListener { events in
             XCTAssertEqual(events.count, 1)
             let expected = Event(
@@ -32,7 +37,13 @@ final class EventInteractorTests: XCTestCase {
                     user: .mock1,
                     reason: Evaluation.mock1.reason,
                     tag: "featureTag1",
-                    source_id: .ios
+                    source_id: .ios,
+                    sdk_version: "0.0.2",
+                    metadata: [
+                        "app_version": "1.2.3",
+                        "os_version": "16.0",
+                        "device_model": "iPhone14,7",
+                    ]
                 )),
                 type: .evaluation
             )
@@ -52,19 +63,7 @@ final class EventInteractorTests: XCTestCase {
         let expectation = XCTestExpectation()
         expectation.assertForOverFulfill = true
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
-        let api = MockApiClient()
-        let dao = MockEventDao()
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor()
         let listener = MockEventUpdateListener { events in
             XCTAssertEqual(events.count, 1)
             let expected = Event(
@@ -76,7 +75,13 @@ final class EventInteractorTests: XCTestCase {
                     user: .mock1,
                     reason: .init(type: .client),
                     tag: "featureTag1",
-                    source_id: .ios
+                    source_id: .ios,
+                    sdk_version: "0.0.2",
+                    metadata: [
+                        "app_version": "1.2.3",
+                        "os_version": "16.0",
+                        "device_model": "iPhone14,7",
+                    ]
                 )),
                 type: .evaluation
             )
@@ -96,19 +101,7 @@ final class EventInteractorTests: XCTestCase {
         let expectation = XCTestExpectation()
         expectation.assertForOverFulfill = true
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
-        let api = MockApiClient()
-        let dao = MockEventDao()
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor()
         let listener = MockEventUpdateListener { events in
             XCTAssertEqual(events.count, 1)
             let expected = Event(
@@ -120,7 +113,13 @@ final class EventInteractorTests: XCTestCase {
                     value: 1,
                     user: .mock1,
                     tag: "featureTag1",
-                    source_id: .ios
+                    source_id: .ios,
+                    sdk_version: "0.0.2",
+                    metadata: [
+                        "app_version": "1.2.3",
+                        "os_version": "16.0",
+                        "device_model": "iPhone14,7",
+                    ]
                 )),
                 type: .goal
             )
@@ -141,19 +140,7 @@ final class EventInteractorTests: XCTestCase {
         let expectation = XCTestExpectation()
         expectation.assertForOverFulfill = true
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
-        let api = MockApiClient()
-        let dao = MockEventDao()
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor()
         let listener = MockEventUpdateListener { events in
             XCTAssertEqual(events.count, 2)
             let expected: [Event] = [
@@ -165,7 +152,13 @@ final class EventInteractorTests: XCTestCase {
                             labels: ["tag": "featureTag1"],
                             duration: .init(seconds: 10)
                         )),
-                        type: .getEvaluationLatency
+                        type: .getEvaluationLatency,
+                        sdk_version: "0.0.2",
+                        metadata: [
+                            "app_version": "1.2.3",
+                            "os_version": "16.0",
+                            "device_model": "iPhone14,7",
+                        ]
                     )),
                     type: .metrics
                 ),
@@ -177,7 +170,13 @@ final class EventInteractorTests: XCTestCase {
                             labels: ["tag": "featureTag1"],
                             size_byte: 100
                         )),
-                        type: .getEvaluationSize
+                        type: .getEvaluationSize,
+                        sdk_version: "0.0.2",
+                        metadata: [
+                            "app_version": "1.2.3",
+                            "os_version": "16.0",
+                            "device_model": "iPhone14,7",
+                        ]
                     )),
                     type: .metrics
                 )
@@ -202,19 +201,7 @@ final class EventInteractorTests: XCTestCase {
         let expectation = XCTestExpectation()
         expectation.assertForOverFulfill = true
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
-        let api = MockApiClient()
-        let dao = MockEventDao()
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor()
         let listener = MockEventUpdateListener { events in
             XCTAssertEqual(events.count, 1)
             let expected: [Event] = [
@@ -223,7 +210,13 @@ final class EventInteractorTests: XCTestCase {
                     event: .metrics(.init(
                         timestamp: 1,
                         event: .timeoutErrorCount(.init(tag: "featureTag1")),
-                        type: .timeoutErrorCount
+                        type: .timeoutErrorCount,
+                        sdk_version: "0.0.2",
+                        metadata: [
+                            "app_version": "1.2.3",
+                            "os_version": "16.0",
+                            "device_model": "iPhone14,7",
+                        ]
                     )),
                     type: .metrics
                 )
@@ -243,19 +236,7 @@ final class EventInteractorTests: XCTestCase {
         let expectation = XCTestExpectation()
         expectation.assertForOverFulfill = true
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
-        let api = MockApiClient()
-        let dao = MockEventDao()
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor()
         let listener = MockEventUpdateListener { events in
             XCTAssertEqual(events.count, 1)
             let expected: [Event] = [
@@ -264,7 +245,13 @@ final class EventInteractorTests: XCTestCase {
                     event: .metrics(.init(
                         timestamp: 1,
                         event: .internalErrorCount(.init(tag: "featureTag1")),
-                        type: .internalErrorCount
+                        type: .internalErrorCount,
+                        sdk_version: "0.0.2",
+                        metadata: [
+                            "app_version": "1.2.3",
+                            "os_version": "16.0",
+                            "device_model": "iPhone14,7",
+                        ]
                     )),
                     type: .metrics
                 )
@@ -285,8 +272,6 @@ final class EventInteractorTests: XCTestCase {
         expectation.assertForOverFulfill = true
         expectation.expectedFulfillmentCount = 3
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
         let addedEvents: [Event] = [.mockEvaluation1, .mockGoal1]
         let dao = MockEventDao()
         try dao.add(events: addedEvents)
@@ -296,16 +281,7 @@ final class EventInteractorTests: XCTestCase {
             completion?(.success(.init(data: .init(errors: [:]))))
             expectation.fulfill()
         })
-
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor(api: api, dao: dao)
         let listener = MockEventUpdateListener { events in
             XCTAssertEqual(events.count, 0)
             expectation.fulfill()
@@ -328,8 +304,6 @@ final class EventInteractorTests: XCTestCase {
         expectation.assertForOverFulfill = true
         expectation.expectedFulfillmentCount = 2
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
         let addedEvents: [Event] = [.mockEvaluation1, .mockGoal1, .mockGoal2]
         let dao = MockEventDao()
         try dao.add(events: addedEvents)
@@ -341,15 +315,7 @@ final class EventInteractorTests: XCTestCase {
             expectation.fulfill()
         })
 
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor(api: api, dao: dao)
         let listener = MockEventUpdateListener()
         interactor.set(eventUpdateListener: listener)
         interactor.sendEvents(completion: { result in
@@ -369,20 +335,7 @@ final class EventInteractorTests: XCTestCase {
         expectation.assertForOverFulfill = true
         expectation.expectedFulfillmentCount = 1
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
-        let dao = MockEventDao()
-        let api = MockApiClient()
-
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor()
         let listener = MockEventUpdateListener()
         interactor.set(eventUpdateListener: listener)
         interactor.sendEvents(completion: { result in
@@ -402,22 +355,11 @@ final class EventInteractorTests: XCTestCase {
         expectation.assertForOverFulfill = true
         expectation.expectedFulfillmentCount = 1
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
         let addedEvents: [Event] = [.mockEvaluation1, .mockGoal1]
         let dao = MockEventDao()
         try dao.add(events: addedEvents)
-        let api = MockApiClient()
 
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor(dao: dao)
         let listener = MockEventUpdateListener()
         interactor.set(eventUpdateListener: listener)
         interactor.sendEvents(completion: { result in
@@ -436,8 +378,6 @@ final class EventInteractorTests: XCTestCase {
         expectation.assertForOverFulfill = true
         expectation.expectedFulfillmentCount = 3
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
         let addedEvents: [Event] = [.mockEvaluation1]
         let dao = MockEventDao()
         try dao.add(events: addedEvents)
@@ -448,15 +388,7 @@ final class EventInteractorTests: XCTestCase {
             expectation.fulfill()
         })
 
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor(api: api, dao: dao)
         let listener = MockEventUpdateListener { events in
             XCTAssertEqual(events.count, 0)
             expectation.fulfill()
@@ -479,8 +411,6 @@ final class EventInteractorTests: XCTestCase {
         expectation.assertForOverFulfill = true
         expectation.expectedFulfillmentCount = 3
 
-        let clock = MockClock(timestamp: 1)
-        let idGenerator = MockIdGenerator(identifier: "id")
         let addedEvents: [Event] = [.mockEvaluation1, .mockGoal1]
         let dao = MockEventDao()
         try dao.add(events: addedEvents)
@@ -498,15 +428,7 @@ final class EventInteractorTests: XCTestCase {
             expectation.fulfill()
         })
 
-        let logger = MockLogger()
-        let interactor = EventInteractorImpl(
-            eventsMaxBatchQueueCount: 3,
-            apiClient: api,
-            eventDao: dao,
-            clock: clock,
-            idGenerator: idGenerator,
-            logger: logger
-        )
+        let interactor = self.eventInteractor(api: api, dao: dao)
         let listener = MockEventUpdateListener { events in
             XCTAssertEqual(events.count, 1)
             XCTAssertEqual(events, [.mockEvaluation1])

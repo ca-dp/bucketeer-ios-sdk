@@ -2,14 +2,24 @@ import Foundation
 @testable import Bucketeer
 
 extension BKTConfig {
-    static let mock1 = BKTConfig(
-        apiKey: "api_key_value",
-        apiEndpoint: URL(string: "https://test.bucketeer.jp")!,
-        featureTag: "featureTag1",
-        eventsFlushInterval: Constant.DEFAULT_FLUSH_INTERVAL_MILLIS,
-        eventsMaxBatchQueueCount: Constant.DEFAULT_MAX_QUEUE_SIZE,
-        pollingInterval: Constant.DEFAULT_POLLING_INTERVAL_MILLIS,
-        backgroundPollingInterval: Constant.DEFAULT_BACKGROUND_POLLING_INTERVAL_MILLIS,
-        logger: MockLogger()
-    )
+    static let mock1 = mock()
+
+    static func mock(
+        eventsFlushInterval: Int64 = Constant.DEFAULT_FLUSH_INTERVAL_MILLIS,
+        eventsMaxBatchQueueCount: Int = Constant.DEFAULT_MAX_QUEUE_SIZE,
+        pollingInterval: Int64 = Constant.DEFAULT_POLLING_INTERVAL_MILLIS,
+        backgroundPollingInterval: Int64 = Constant.DEFAULT_BACKGROUND_POLLING_INTERVAL_MILLIS) -> BKTConfig {
+            return BKTConfig(
+                apiKey: "api_key_value",
+                apiEndpoint: URL(string: "https://test.bucketeer.jp")!,
+                featureTag: "featureTag1",
+                eventsFlushInterval: eventsFlushInterval,
+                eventsMaxBatchQueueCount: eventsMaxBatchQueueCount,
+                pollingInterval: pollingInterval,
+                backgroundPollingInterval: backgroundPollingInterval,
+                sdkVersion: "0.0.2",
+                appVersion: "1.2.3",
+                logger: MockLogger()
+            )
+        }
 }

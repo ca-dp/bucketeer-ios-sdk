@@ -11,7 +11,13 @@ extension Event {
             value: 1,
             user: .mock1,
             tag: "tag1",
-            source_id: .ios
+            source_id: .ios,
+            sdk_version: "0.0.1",
+            metadata: [
+                "app_version": "1.2.3",
+                "os_version": "16.0",
+                "device_model": "iPhone14,7",
+            ]
         )),
         type: .goal
     )
@@ -25,7 +31,13 @@ extension Event {
             value: 1,
             user: .mock1,
             tag: "tag2",
-            source_id: .ios
+            source_id: .ios,
+            sdk_version: "0.0.1",
+            metadata: [
+                "app_version": "1.2.3",
+                "os_version": "16.0",
+                "device_model": "iPhone14,7",
+            ]
         )),
         type: .goal
     )
@@ -41,7 +53,13 @@ extension Event {
             user: .mock1,
             reason: .init(type: .rule, rule_id: "rule1"),
             tag: "tag1",
-            source_id: .ios
+            source_id: .ios,
+            sdk_version: "0.0.1",
+            metadata: [
+                "app_version": "1.2.3",
+                "os_version": "16.0",
+                "device_model": "iPhone14,7",
+            ]
         )),
         type: .evaluation
     )
@@ -57,7 +75,13 @@ extension Event {
             user: .mock1,
             reason: .init(type: .rule, rule_id: "rule2"),
             tag: "tag2",
-            source_id: .ios
+            source_id: .ios,
+            sdk_version: "0.0.1",
+            metadata: [
+                "app_version": "1.2.3",
+                "os_version": "16.0",
+                "device_model": "iPhone14,7",
+            ]
         )),
         type: .evaluation
     )
@@ -70,7 +94,13 @@ extension Event {
                 labels: ["tag": "ios", "state": "full"],
                 duration: .init(seconds: 2)
             )),
-            type: .getEvaluationLatency
+            type: .getEvaluationLatency,
+            sdk_version: "0.0.1",
+            metadata: [
+                "app_version": "1.2.3",
+                "os_version": "16.0",
+                "device_model": "iPhone14,7",
+            ]
         )),
         type: .metrics
     )
