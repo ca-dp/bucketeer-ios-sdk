@@ -9,11 +9,13 @@ enum MetricsEventData: Hashable {
     struct GetEvaluationLatency: Codable, Hashable {
         let labels: [String: String]
         let duration: Duration
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.GetEvaluationLatencyMetricsEvent"
     }
 
     struct GetEvaluationSize: Codable, Hashable {
         let labels: [String: String]
         let size_byte: Int64
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.GetEvaluationSizeMetricsEvent"
     }
 
     struct TimeoutErrorCount: Codable, Hashable {

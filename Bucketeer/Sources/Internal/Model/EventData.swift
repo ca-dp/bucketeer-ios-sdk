@@ -15,6 +15,7 @@ enum EventData: Hashable {
         let source_id: SourceID
         var sdk_version: String? = nil
         var metadata: [String: String]?
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.GoalEvent"
     }
 
     struct Evaluation: Codable, Hashable {
@@ -29,6 +30,7 @@ enum EventData: Hashable {
         let source_id: SourceID
         var sdk_version: String? = nil
         var metadata: [String: String]?
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.EvaluationEvent"
     }
 
     struct Metrics: Codable, Hashable {
@@ -37,6 +39,7 @@ enum EventData: Hashable {
         let type: MetricsEventType
         var sdk_version: String? = nil
         var metadata: [String: String]? = nil
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.MetricsEvent"
 
         enum CodingKeys: String, CodingKey {
             case timestamp
@@ -44,6 +47,7 @@ enum EventData: Hashable {
             case type
             case sdk_version
             case metadata
+            case protobufType
         }
 
         init(timestamp: Int64, event: MetricsEventData, type: MetricsEventType, sdk_version: String, metadata: [String: String]?) {
@@ -93,6 +97,9 @@ enum EventData: Hashable {
                 try container.encode(eventData, forKey: .event)
             case .internalErrorCount(let eventData):
                 try container.encode(eventData, forKey: .event)
+            }
+            if let protobufType {
+                try container.encode(protobufType, forKey: .protobufType)
             }
         }
     }

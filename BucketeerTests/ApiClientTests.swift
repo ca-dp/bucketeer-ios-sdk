@@ -166,6 +166,7 @@ class ApiClientTests: XCTestCase {
   "events" : [
     {
       "event" : {
+        "@type" : "type.googleapis.com/bucketeer.event.client.GoalEvent",
         "goal_id" : "goal1",
         "metadata" : {
           "app_version" : "1.2.3",
@@ -191,6 +192,7 @@ class ApiClientTests: XCTestCase {
     },
     {
       "event" : {
+        "@type" : "type.googleapis.com/bucketeer.event.client.EvaluationEvent",
         "feature_id" : "feature1",
         "feature_version" : 1,
         "metadata" : {
@@ -273,6 +275,7 @@ class ApiClientTests: XCTestCase {
   "events" : [
     {
       "event" : {
+        "@type" : "type.googleapis.com/bucketeer.event.client.GoalEvent",
         "goal_id" : "goal1",
         "metadata" : {
           "app_version" : "1.2.3",
@@ -298,6 +301,7 @@ class ApiClientTests: XCTestCase {
     },
     {
       "event" : {
+        "@type" : "type.googleapis.com/bucketeer.event.client.EvaluationEvent",
         "feature_id" : "feature1",
         "feature_version" : 1,
         "metadata" : {

@@ -63,9 +63,21 @@ final class ApiClientImpl: ApiClient {
             events: events
         )
         logger?.debug(message: "[API] Register events: \(requestBody)")
+        let encoder = JSONEncoder()
+        if #available(iOS 13.0, *) {
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+        }
+        encoder.keyEncodingStrategy = .custom({ keys in
+            if keys.last?.stringValue == "protobufType", let key = AnyKey(stringValue: "@type") {
+                return key
+            }
+            return keys.last ?? keys[0]
+        })
+
         send(
             requestBody: requestBody,
             path: "v1/gateway/events",
+            encoder: encoder,
             completion: { (result: Result<(RegisterEventsResponse, URLResponse), Error>) in
                 switch result {
                 case .success((let response, _)):
@@ -77,13 +89,13 @@ final class ApiClientImpl: ApiClient {
         )
     }
 
-    func send<RequestBody: Encodable, Response: Decodable>(requestBody: RequestBody, path: String, timeoutMillis: Int64? = nil, completion: ((Result<(Response, URLResponse), Error>) -> Void)?) {
+    func send<RequestBody: Encodable, Response: Decodable>(requestBody: RequestBody, path: String, timeoutMillis: Int64? = nil, encoder: JSONEncoder = JSONEncoder(), completion: ((Result<(Response, URLResponse), Error>) -> Void)?) {
 
         do {
-            let encoder = JSONEncoder()
             if #available(iOS 11.0, *) {
-                encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+                encoder.outputFormatting = [encoder.outputFormatting, .prettyPrinted, .sortedKeys]
             }
+
             let body = try encoder.encode(requestBody)
             var request = URLRequest(url: apiEndpoint.appendingPathComponent(path))
             request.httpMethod = "POST"
@@ -130,4 +142,19 @@ final class ApiClientImpl: ApiClient {
 enum ResponseError: Error {
     case unknown(URLResponse?)
     case unacceptableCode(code: Int, response: ErrorResponse?)
+}
+
+private struct AnyKey: CodingKey {
+    var stringValue: String
+    var intValue: Int?
+
+    init?(stringValue: String) {
+        self.stringValue = stringValue
+        self.intValue = nil
+    }
+
+    init?(intValue: Int) {
+        self.stringValue = String(intValue)
+        self.intValue = intValue
+    }
 }
