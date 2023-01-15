@@ -80,7 +80,11 @@ final class ApiClientImpl: ApiClient {
     func send<RequestBody: Encodable, Response: Decodable>(requestBody: RequestBody, path: String, timeoutMillis: Int64? = nil, completion: ((Result<(Response, URLResponse), Error>) -> Void)?) {
 
         do {
-            let body = try JSONEncoder().encode(requestBody)
+            let encoder = JSONEncoder()
+            if #available(iOS 11.0, *) {
+                encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+            }
+            let body = try encoder.encode(requestBody)
             var request = URLRequest(url: apiEndpoint.appendingPathComponent(path))
             request.httpMethod = "POST"
             request.allHTTPHeaderFields = [
