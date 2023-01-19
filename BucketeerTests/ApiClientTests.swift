@@ -11,16 +11,16 @@ class ApiClientTests: XCTestCase {
 
         let userEvaluationsId: String = "user_evaluation1"
         let evaluations: [Evaluation] = [.mock1, .mock2]
-        let response = GetEvaluationsResponse(data: .init(
+        let response = GetEvaluationsResponse(
             evaluations: .init(
                 id: userEvaluationsId,
                 evaluations: evaluations
             ),
-            user_evaluations_id: userEvaluationsId
-        ))
+            userEvaluationsId: userEvaluationsId
+        )
         let data = try JSONEncoder().encode(response)
         let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
-        let path = "v1/gateway/evaluations"
+        let path = "get_evaluations"
         let apiKey = "x:api-key"
         let session = MockSession(
             configuration: .default,
@@ -30,7 +30,7 @@ class ApiClientTests: XCTestCase {
                 let jsonString = String(data: data, encoding: .utf8) ?? ""
                 let expected = """
 {
-  "source_id" : 2,
+  "sourceId" : 2,
   "tag" : "tag1",
   "user" : {
     "data" : {
@@ -38,7 +38,7 @@ class ApiClientTests: XCTestCase {
     },
     "id" : "user1"
   },
-  "user_evaluations_id" : "user_evaluation1"
+  "userEvaluationsId" : "user_evaluation1"
 }
 """
                 XCTAssertEqual(jsonString, expected)
@@ -64,9 +64,9 @@ class ApiClientTests: XCTestCase {
             userEvaluationsId: userEvaluationsId) { result in
                 switch result {
                 case .success(let response):
-                    XCTAssertEqual(response.data.evaluations.evaluations, evaluations)
-                    XCTAssertEqual(response.data.evaluations.id, userEvaluationsId)
-                    XCTAssertEqual(response.data.user_evaluations_id, userEvaluationsId)
+                    XCTAssertEqual(response.evaluations.evaluations, evaluations)
+                    XCTAssertEqual(response.evaluations.id, userEvaluationsId)
+                    XCTAssertEqual(response.userEvaluationsId, userEvaluationsId)
                     XCTAssertNotEqual(response.seconds, 0)
                     XCTAssertNotEqual(response.sizeByte, 0)
                     XCTAssertEqual(response.featureTag, "tag1")
@@ -86,7 +86,7 @@ class ApiClientTests: XCTestCase {
         let errorResponse = ErrorResponse(error: .init(code: 400, message: "invalid parameter"))
         let data = try JSONEncoder().encode(errorResponse)
         let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
-        let path = "v1/gateway/evaluations"
+        let path = "get_evaluations"
         let apiKey = "x:api-key"
         let session = MockSession(
             configuration: .default,
@@ -96,7 +96,7 @@ class ApiClientTests: XCTestCase {
                 let jsonString = String(data: data, encoding: .utf8) ?? ""
                 let expected = """
 {
-  "source_id" : 2,
+  "sourceId" : 2,
   "tag" : "tag1",
   "user" : {
     "data" : {
@@ -104,7 +104,7 @@ class ApiClientTests: XCTestCase {
     },
     "id" : "user1"
   },
-  "user_evaluations_id" : "user_evaluation1"
+  "userEvaluationsId" : "user_evaluation1"
 }
 """
                 XCTAssertEqual(jsonString, expected)
@@ -150,10 +150,10 @@ class ApiClientTests: XCTestCase {
         let errors: [String: RegisterEventsResponse.ErrorResponse] = [
             Event.mockEvaluation1.id: .init(retriable: true, message: "error")
         ]
-        let response = RegisterEventsResponse(data: .init(errors: errors))
+        let response = RegisterEventsResponse(errors: errors)
         let data = try JSONEncoder().encode(response)
         let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
-        let path = "v1/gateway/events"
+        let path = "register_events"
         let apiKey = "x:api-key"
         let session = MockSession(
             configuration: .default,
@@ -167,15 +167,15 @@ class ApiClientTests: XCTestCase {
     {
       "event" : {
         "@type" : "type.googleapis.com/bucketeer.event.client.GoalEvent",
-        "goal_id" : "goal1",
+        "goalId" : "goal1",
         "metadata" : {
           "app_version" : "1.2.3",
           "device_model" : "iPhone14,7",
           "device_type" : "mobile",
           "os_version" : "16.0"
         },
-        "sdk_version" : "0.0.1",
-        "source_id" : 2,
+        "sdkVersion" : "0.0.1",
+        "sourceId" : 2,
         "tag" : "tag1",
         "timestamp" : 1,
         "user" : {
@@ -184,7 +184,7 @@ class ApiClientTests: XCTestCase {
           },
           "id" : "user1"
         },
-        "user_id" : "user1",
+        "userId" : "user1",
         "value" : 1
       },
       "id" : "goal_event1",
@@ -193,8 +193,8 @@ class ApiClientTests: XCTestCase {
     {
       "event" : {
         "@type" : "type.googleapis.com/bucketeer.event.client.EvaluationEvent",
-        "feature_id" : "feature1",
-        "feature_version" : 1,
+        "featureId" : "feature1",
+        "featureVersion" : 1,
         "metadata" : {
           "app_version" : "1.2.3",
           "device_model" : "iPhone14,7",
@@ -202,11 +202,11 @@ class ApiClientTests: XCTestCase {
           "os_version" : "16.0"
         },
         "reason" : {
-          "rule_id" : "rule1",
-          "type" : 1
+          "ruleId" : "rule1",
+          "type" : "RULE"
         },
-        "sdk_version" : "0.0.1",
-        "source_id" : 2,
+        "sdkVersion" : "0.0.1",
+        "sourceId" : 2,
         "tag" : "tag1",
         "timestamp" : 1,
         "user" : {
@@ -215,8 +215,8 @@ class ApiClientTests: XCTestCase {
           },
           "id" : "user1"
         },
-        "user_id" : "user1",
-        "variation_id" : "variation1"
+        "userId" : "user1",
+        "variationId" : "variation1"
       },
       "id" : "evaluation_event1",
       "type" : 3
@@ -245,7 +245,7 @@ class ApiClientTests: XCTestCase {
         api.registerEvents(events: events) { result in
             switch result {
             case .success(let response):
-                XCTAssertEqual(response.data.errors, errors)
+                XCTAssertEqual(response.errors, errors)
             case .failure(let error):
                 XCTFail("\(error)")
             }
@@ -262,7 +262,7 @@ class ApiClientTests: XCTestCase {
         let errorResponse = ErrorResponse(error: .init(code: 400, message: "invalid parameter"))
         let data = try JSONEncoder().encode(errorResponse)
         let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
-        let path = "v1/gateway/events"
+        let path = "register_events"
         let apiKey = "x:api-key"
         let session = MockSession(
             configuration: .default,
@@ -276,15 +276,15 @@ class ApiClientTests: XCTestCase {
     {
       "event" : {
         "@type" : "type.googleapis.com/bucketeer.event.client.GoalEvent",
-        "goal_id" : "goal1",
+        "goalId" : "goal1",
         "metadata" : {
           "app_version" : "1.2.3",
           "device_model" : "iPhone14,7",
           "device_type" : "mobile",
           "os_version" : "16.0"
         },
-        "sdk_version" : "0.0.1",
-        "source_id" : 2,
+        "sdkVersion" : "0.0.1",
+        "sourceId" : 2,
         "tag" : "tag1",
         "timestamp" : 1,
         "user" : {
@@ -293,7 +293,7 @@ class ApiClientTests: XCTestCase {
           },
           "id" : "user1"
         },
-        "user_id" : "user1",
+        "userId" : "user1",
         "value" : 1
       },
       "id" : "goal_event1",
@@ -302,8 +302,8 @@ class ApiClientTests: XCTestCase {
     {
       "event" : {
         "@type" : "type.googleapis.com/bucketeer.event.client.EvaluationEvent",
-        "feature_id" : "feature1",
-        "feature_version" : 1,
+        "featureId" : "feature1",
+        "featureVersion" : 1,
         "metadata" : {
           "app_version" : "1.2.3",
           "device_model" : "iPhone14,7",
@@ -311,11 +311,11 @@ class ApiClientTests: XCTestCase {
           "os_version" : "16.0"
         },
         "reason" : {
-          "rule_id" : "rule1",
-          "type" : 1
+          "ruleId" : "rule1",
+          "type" : "RULE"
         },
-        "sdk_version" : "0.0.1",
-        "source_id" : 2,
+        "sdkVersion" : "0.0.1",
+        "sourceId" : 2,
         "tag" : "tag1",
         "timestamp" : 1,
         "user" : {
@@ -324,8 +324,8 @@ class ApiClientTests: XCTestCase {
           },
           "id" : "user1"
         },
-        "user_id" : "user1",
-        "variation_id" : "variation1"
+        "userId" : "user1",
+        "variationId" : "variation1"
       },
       "id" : "evaluation_event1",
       "type" : 3

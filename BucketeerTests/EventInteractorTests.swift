@@ -30,15 +30,15 @@ final class EventInteractorTests: XCTestCase {
                 id: "id",
                 event: .evaluation(.init(
                     timestamp: 1,
-                    feature_id: Evaluation.mock1.feature_id,
-                    feature_version: Evaluation.mock1.feature_version,
-                    user_id: User.mock1.id,
-                    variation_id: Evaluation.mock1.variation_id,
+                    featureId: Evaluation.mock1.featureId,
+                    featureVersion: Evaluation.mock1.featureVersion,
+                    userId: User.mock1.id,
+                    variationId: Evaluation.mock1.variationId,
                     user: .mock1,
                     reason: Evaluation.mock1.reason,
                     tag: "featureTag1",
-                    source_id: .ios,
-                    sdk_version: "0.0.2",
+                    sourceId: .ios,
+                    sdkVersion: "0.0.2",
                     metadata: [
                         "app_version": "1.2.3",
                         "os_version": "16.0",
@@ -71,13 +71,13 @@ final class EventInteractorTests: XCTestCase {
                 id: "id",
                 event: .evaluation(.init(
                     timestamp: 1,
-                    feature_id: "featureId1",
-                    user_id: User.mock1.id,
+                    featureId: "featureId1",
+                    userId: User.mock1.id,
                     user: .mock1,
                     reason: .init(type: .client),
                     tag: "featureTag1",
-                    source_id: .ios,
-                    sdk_version: "0.0.2",
+                    sourceId: .ios,
+                    sdkVersion: "0.0.2",
                     metadata: [
                         "app_version": "1.2.3",
                         "os_version": "16.0",
@@ -110,13 +110,13 @@ final class EventInteractorTests: XCTestCase {
                 id: "id",
                 event: .goal(.init(
                     timestamp: 1,
-                    goal_id: "goalId1",
-                    user_id: User.mock1.id,
+                    goalId: "goalId1",
+                    userId: User.mock1.id,
                     value: 1,
                     user: .mock1,
                     tag: "featureTag1",
-                    source_id: .ios,
-                    sdk_version: "0.0.2",
+                    sourceId: .ios,
+                    sdkVersion: "0.0.2",
                     metadata: [
                         "app_version": "1.2.3",
                         "os_version": "16.0",
@@ -152,6 +152,7 @@ final class EventInteractorTests: XCTestCase {
                     event: .metrics(.init(
                         timestamp: 1,
                         event: .getEvaluationLatency(.init(
+                            apiId: .getEvaluations,
                             labels: ["tag": "featureTag1"],
                             duration: .init(seconds: 10)
                         )),
@@ -171,6 +172,7 @@ final class EventInteractorTests: XCTestCase {
                     event: .metrics(.init(
                         timestamp: 1,
                         event: .getEvaluationSize(.init(
+                            apiId: .getEvaluations,
                             labels: ["tag": "featureTag1"],
                             size_byte: 100
                         )),
@@ -214,8 +216,8 @@ final class EventInteractorTests: XCTestCase {
                     id: "id",
                     event: .metrics(.init(
                         timestamp: 1,
-                        event: .timeoutErrorCount(.init(tag: "featureTag1")),
-                        type: .timeoutErrorCount,
+                        event: .timeoutError(.init(apiId: .getEvaluations, labels: ["tag": "featureTag1"])),
+                        type: .timeoutError,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
@@ -250,8 +252,8 @@ final class EventInteractorTests: XCTestCase {
                     id: "id",
                     event: .metrics(.init(
                         timestamp: 1,
-                        event: .internalErrorCount(.init(tag: "featureTag1")),
-                        type: .internalErrorCount,
+                        event: .internalSdkError(.init(apiId: .getEvaluations, labels: ["tag": "featureTag1"])),
+                        type: .internalError,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
@@ -285,7 +287,7 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient(registerEventsHandler: { events, completion in
             XCTAssertEqual(events.count, 2)
             XCTAssertEqual(events, addedEvents)
-            completion?(.success(.init(data: .init(errors: [:]))))
+            completion?(.success(.init(errors: [:])))
             expectation.fulfill()
         })
         let interactor = self.eventInteractor(api: api, dao: dao)
@@ -391,7 +393,7 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient(registerEventsHandler: { events, completion in
             XCTAssertEqual(events.count, 1)
             XCTAssertEqual(events, addedEvents)
-            completion?(.success(.init(data: .init(errors: [:]))))
+            completion?(.success(.init(errors: [:])))
             expectation.fulfill()
         })
 
@@ -428,10 +430,11 @@ final class EventInteractorTests: XCTestCase {
         let api = MockApiClient(registerEventsHandler: { events, completion in
             XCTAssertEqual(events.count, 2)
             XCTAssertEqual(events, addedEvents)
-            completion?(.success(.init(data: .init(
+            completion?(.success(.init(
                 errors: [
                     Event.mockEvaluation1.id: .init(retriable: true, message: "message")
-                ]))))
+                ]
+            )))
             expectation.fulfill()
         })
 

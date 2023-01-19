@@ -1,10 +1,10 @@
 import Foundation
 
-public enum ReasonType: Int, Codable, Hashable {
-    case target = 0
-    case rule = 1
-    case `default` = 3
-    case client = 4
-    case offVariation = 5
-    case prerequisite = 6
+public enum ReasonType: String, Codable, Hashable {
+    case target = "TARGET"
+    case rule = "RULE"
+    case `default` = "DEFAULT"
+    case client = "CLIENT"
+    case offVariation = "OFF_VARIATION"
+    case prerequisite = "PREREQUISITE"
 }

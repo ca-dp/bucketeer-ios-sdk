@@ -32,10 +32,8 @@ final class BKTClientTests: XCTestCase {
                 XCTAssertEqual(userEvaluationsId, "")
                 XCTAssertEqual(timeoutMillis, nil)
                 handler?(.success(.init(
-                    data: .init(
-                        evaluations: .mock1,
-                        user_evaluations_id: "id"
-                    ),
+                    evaluations: .mock1,
+                    userEvaluationsId: "id",
                     seconds: 2,
                     sizeByte: 3,
                     featureTag: "feature"
@@ -49,6 +47,7 @@ final class BKTClientTests: XCTestCase {
                         event: .metrics(.init(
                             timestamp: 1,
                             event: .getEvaluationLatency(.init(
+                                apiId: .getEvaluations,
                                 labels: ["tag": "feature"],
                                 duration: .init(seconds: 2)
                             )),
@@ -68,6 +67,7 @@ final class BKTClientTests: XCTestCase {
                         event: .metrics(.init(
                             timestamp: 1,
                             event: .getEvaluationSize(.init(
+                                apiId: .getEvaluations,
                                 labels: ["tag": "feature"],
                                 size_byte: 3
                             )),
@@ -117,8 +117,8 @@ final class BKTClientTests: XCTestCase {
                     id: "mock1",
                     event: .metrics(.init(
                         timestamp: 1,
-                        event: .timeoutErrorCount(.init(tag: "feature")),
-                        type: .timeoutErrorCount,
+                        event: .timeoutError(.init(apiId: .getEvaluations, labels: ["tag": "feature"])),
+                        type: .timeoutError,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
@@ -153,7 +153,7 @@ final class BKTClientTests: XCTestCase {
             userHolder: .init(user: .mock1),
             apiClient: MockApiClient(registerEventsHandler: { events, handler in
                 XCTAssertEqual(events, [.mockGoal1, .mockEvaluation1])
-                handler?(.success(.init(data: .init(errors: [:]))))
+                handler?(.success(.init(errors: [:])))
                 expectation.fulfill()
             }),
             eventDao: MockEventDao(getEventsHandler: {
@@ -208,7 +208,7 @@ final class BKTClientTests: XCTestCase {
             userHolder: .init(user: .mock1),
             apiClient: MockApiClient(getEvaluationsHandler: { (user, _, _, handler) in
                 XCTAssertEqual(user, .mock1)
-                handler?(.success(.init(data: .init(evaluations: .mock1, user_evaluations_id: "new"))))
+                handler?(.success(.init(evaluations: .mock1, userEvaluationsId: "new")))
                 expectation.fulfill()
             }),
             evaluationDao: MockEvaluationDao(deleteAllAndInsertHandler: { id, evaluations in
@@ -244,13 +244,13 @@ final class BKTClientTests: XCTestCase {
                     id: "id",
                     event: .goal(.init(
                         timestamp: 1,
-                        goal_id: "goal_id",
-                        user_id: User.mock1.id,
+                        goalId: "goalId",
+                        userId: User.mock1.id,
                         value: 20,
                         user: .mock1,
                         tag: "featureTag1",
-                        source_id: .ios,
-                        sdk_version: "0.0.2",
+                        sourceId: .ios,
+                        sdkVersion: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
                             "os_version": "16.0",
@@ -266,7 +266,7 @@ final class BKTClientTests: XCTestCase {
             clock: MockClock(timestamp: 1)
         )
         let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
-        client.track(goalId: "goal_id", value: 20)
+        client.track(goalId: "goalId", value: 20)
         wait(for: [expectation], timeout: 0.1)
     }
 
@@ -284,7 +284,7 @@ final class BKTClientTests: XCTestCase {
             userHolder: .init(user: .mock1),
             apiClient: MockApiClient(getEvaluationsHandler: { (user, _, _, handler) in
                 XCTAssertEqual(user, .mock1)
-                handler?(.success(.init(data: .init(evaluations: .mock1, user_evaluations_id: "new"))))
+                handler?(.success(.init(evaluations: .mock1, userEvaluationsId: "new")))
                 expectation.fulfill()
             })
         )
@@ -304,7 +304,7 @@ final class BKTClientTests: XCTestCase {
             userHolder: .init(user: .mock1),
             apiClient: MockApiClient(getEvaluationsHandler: { (user, _, _, handler) in
                 XCTAssertEqual(user, .mock1)
-                handler?(.success(.init(data: .init(evaluations: .mock1, user_evaluations_id: "new"))))
+                handler?(.success(.init(evaluations: .mock1, userEvaluationsId: "new")))
                 expectation.fulfill()
             })
         )
@@ -324,7 +324,7 @@ final class BKTClientTests: XCTestCase {
             userHolder: .init(user: .mock1),
             apiClient: MockApiClient(getEvaluationsHandler: { (user, _, _, handler) in
                 XCTAssertEqual(user, .mock1)
-                handler?(.success(.init(data: .init(evaluations: .mock2, user_evaluations_id: "new"))))
+                handler?(.success(.init(evaluations: .mock2, userEvaluationsId: "new")))
                 expectation.fulfill()
             })
         )
@@ -344,7 +344,7 @@ final class BKTClientTests: XCTestCase {
             userHolder: .init(user: .mock2),
             apiClient: MockApiClient(getEvaluationsHandler: { (user, _, _, handler) in
                 XCTAssertEqual(user, .mock2)
-                handler?(.success(.init(data: .init(evaluations: .mock2, user_evaluations_id: "new"))))
+                handler?(.success(.init(evaluations: .mock2, userEvaluationsId: "new")))
                 expectation.fulfill()
             })
         )
@@ -364,7 +364,7 @@ final class BKTClientTests: XCTestCase {
             userHolder: .init(user: .mock2),
             apiClient: MockApiClient(getEvaluationsHandler: { (user, _, _, handler) in
                 XCTAssertEqual(user, .mock2)
-                handler?(.success(.init(data: .init(evaluations: .mock2, user_evaluations_id: "new"))))
+                handler?(.success(.init(evaluations: .mock2, userEvaluationsId: "new")))
                 expectation.fulfill()
             })
         )

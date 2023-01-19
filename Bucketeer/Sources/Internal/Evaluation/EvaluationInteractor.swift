@@ -56,13 +56,13 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
             timeoutMillis: timeoutMillis) { [weak self] result in
                 switch result {
                 case .success(let response):
-                    let newEvaluationsId = response.data.user_evaluations_id
+                    let newEvaluationsId = response.userEvaluationsId
                     if currentEvaluationsId == newEvaluationsId {
                         logger?.debug(message: "Nothing to sync")
                         completion?(result)
                         return
                     }
-                    let newEvaluations = response.data.evaluations.evaluations
+                    let newEvaluations = response.evaluations.evaluations
                     do {
                         try evaluationDao.deleteAllAndInsert(userId: user.id, evaluations: newEvaluations)
                     } catch let error {
@@ -94,7 +94,7 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
 
     func getLatest(userId: String, featureId: String) -> Evaluation? {
         let evaluations = evaluations[userId] ?? []
-        return evaluations.first(where: { $0.feature_id == featureId })
+        return evaluations.first(where: { $0.featureId == featureId })
     }
 
     func addUpdateListener(listener: EvaluationUpdateListener) -> String {

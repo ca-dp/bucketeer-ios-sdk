@@ -177,11 +177,11 @@ extension BKTClient {
         }
         return BKTEvaluation(
             id: evaluation.id,
-            featureId: evaluation.feature_id,
-            featureVersion: evaluation.feature_version,
-            userId: evaluation.user_id,
-            variationId: evaluation.variation_id,
-            variationValue: evaluation.variation_value,
+            featureId: evaluation.featureId,
+            featureVersion: evaluation.featureVersion,
+            userId: evaluation.userId,
+            variationId: evaluation.variationId,
+            variationValue: evaluation.variationValue,
             reason: evaluation.reason.type
         )
     }

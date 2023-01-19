@@ -21,8 +21,8 @@ struct EvaluationEntity: SQLiteEntity {
 extension EvaluationEntity {
     init(model: Model) throws {
         self.id.value = model.id
-        self.userId.value = model.user_id
-        self.featureId.value = model.feature_id
+        self.userId.value = model.userId
+        self.featureId.value = model.featureId
         let data = try JSONEncoder().encode(model)
         self.data.value = data
     }

@@ -2,18 +2,18 @@ import Foundation
 
 struct Evaluation: Hashable, Codable {
     let id: String
-    let feature_id: String
-    let feature_version: Int
-    let user_id: String
-    let variation_id: String
+    let featureId: String
+    let featureVersion: Int
+    let userId: String
+    let variationId: String
     var variation: Variation
     let reason: Reason
-    var variation_value: String
+    var variationValue: String
 }
 
 extension Evaluation {
     func getVariationValue<T>(defaultValue: T, logger: Logger?) -> T {
-        let value = self.variation_value
+        let value = self.variationValue
         let anyValue: Any?
         switch defaultValue {
         case is String:

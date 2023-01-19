@@ -6,10 +6,10 @@ final class EvaluationTests: XCTestCase {
     func mockEvaluation(value: String) -> Evaluation {
         return Evaluation(
             id: "id",
-            feature_id: "feature",
-            feature_version: 1,
-            user_id: "user",
-            variation_id: "variation",
+            featureId: "feature",
+            featureVersion: 1,
+            userId: "user",
+            variationId: "variation",
             variation: .init(
                 id: "variation",
                 value: value,
@@ -17,7 +17,7 @@ final class EvaluationTests: XCTestCase {
                 description: nil
             ),
             reason: .init(type: .default),
-            variation_value: value
+            variationValue: value
         )
     }
 

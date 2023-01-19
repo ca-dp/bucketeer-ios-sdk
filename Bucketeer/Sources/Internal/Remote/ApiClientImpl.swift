@@ -32,14 +32,14 @@ final class ApiClientImpl: ApiClient {
         let requestBody = GetEvaluationsRequestBody(
             tag: self.featureTag,
             user: user,
-            user_evaluations_id: userEvaluationsId,
-            source_id: .ios
+            userEvaluationsId: userEvaluationsId,
+            sourceId: .ios
         )
         let featureTag = self.featureTag
         logger?.debug(message: "[API] Fetch Evaluation: \(requestBody)")
         send(
             requestBody: requestBody,
-            path: "v1/gateway/evaluations",
+            path: "get_evaluations",
             timeoutMillis: timeoutMillis,
             completion: { (result: Result<(GetEvaluationsResponse, URLResponse), Error>) in
                 switch result {
@@ -76,7 +76,7 @@ final class ApiClientImpl: ApiClient {
 
         send(
             requestBody: requestBody,
-            path: "v1/gateway/events",
+            path: "register_events",
             encoder: encoder,
             completion: { (result: Result<(RegisterEventsResponse, URLResponse), Error>) in
                 switch result {
