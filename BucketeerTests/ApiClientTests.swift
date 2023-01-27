@@ -11,28 +11,37 @@ class ApiClientTests: XCTestCase {
 
         let userEvaluationsId: String = "user_evaluation1"
         let evaluations: [Evaluation] = [.mock1, .mock2]
-        let response = GetEvaluationsResponse(data: .init(
+        let response = GetEvaluationsResponse(
             evaluations: .init(
                 id: userEvaluationsId,
                 evaluations: evaluations
             ),
-            user_evaluations_id: userEvaluationsId
-        ))
+            userEvaluationsId: userEvaluationsId
+        )
         let data = try JSONEncoder().encode(response)
         let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
-        let path = "v1/gateway/evaluations"
+        let path = "get_evaluations"
         let apiKey = "x:api-key"
         let session = MockSession(
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.url?.path, "/\(path)")
-                let requestBody = GetEvaluationsRequestBody(
-                    tag: "tag1",
-                    user: .mock1,
-                    user_evaluations_id: userEvaluationsId,
-                    source_id: .ios
-                )
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(requestBody))
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "sourceId" : 2,
+  "tag" : "tag1",
+  "user" : {
+    "data" : {
+      "age" : "28"
+    },
+    "id" : "user1"
+  },
+  "userEvaluationsId" : "user_evaluation1"
+}
+"""
+                XCTAssertEqual(jsonString, expected)
                 expectation.fulfill()
             },
             data: data,
@@ -55,9 +64,9 @@ class ApiClientTests: XCTestCase {
             userEvaluationsId: userEvaluationsId) { result in
                 switch result {
                 case .success(let response):
-                    XCTAssertEqual(response.data.evaluations.evaluations, evaluations)
-                    XCTAssertEqual(response.data.evaluations.id, userEvaluationsId)
-                    XCTAssertEqual(response.data.user_evaluations_id, userEvaluationsId)
+                    XCTAssertEqual(response.evaluations.evaluations, evaluations)
+                    XCTAssertEqual(response.evaluations.id, userEvaluationsId)
+                    XCTAssertEqual(response.userEvaluationsId, userEvaluationsId)
                     XCTAssertNotEqual(response.seconds, 0)
                     XCTAssertNotEqual(response.sizeByte, 0)
                     XCTAssertEqual(response.featureTag, "tag1")
@@ -77,20 +86,28 @@ class ApiClientTests: XCTestCase {
         let errorResponse = ErrorResponse(error: .init(code: 400, message: "invalid parameter"))
         let data = try JSONEncoder().encode(errorResponse)
         let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
-        let path = "v1/gateway/evaluations"
+        let path = "get_evaluations"
         let apiKey = "x:api-key"
         let session = MockSession(
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.url?.path, "/\(path)")
-
-                let requestBody = GetEvaluationsRequestBody(
-                    tag: "tag1",
-                    user: .mock1,
-                    user_evaluations_id: userEvaluationsId,
-                    source_id: .ios
-                )
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(requestBody))
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "sourceId" : 2,
+  "tag" : "tag1",
+  "user" : {
+    "data" : {
+      "age" : "28"
+    },
+    "id" : "user1"
+  },
+  "userEvaluationsId" : "user_evaluation1"
+}
+"""
+                XCTAssertEqual(jsonString, expected)
                 expectation.fulfill()
             },
             data: data,
@@ -133,20 +150,81 @@ class ApiClientTests: XCTestCase {
         let errors: [String: RegisterEventsResponse.ErrorResponse] = [
             Event.mockEvaluation1.id: .init(retriable: true, message: "error")
         ]
-        let response = RegisterEventsResponse(data: .init(errors: errors))
+        let response = RegisterEventsResponse(errors: errors)
         let data = try JSONEncoder().encode(response)
         let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
-        let path = "v1/gateway/events"
+        let path = "register_events"
         let apiKey = "x:api-key"
         let session = MockSession(
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.url?.path, "/\(path)")
-
-                let requestBody = RegisterEventsRequestBody(
-                    events: events
-                )
-                XCTAssertEqual(request.httpBody?.count, (try! JSONEncoder().encode(requestBody)).count)
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "events" : [
+    {
+      "event" : {
+        "@type" : "type.googleapis.com/bucketeer.event.client.GoalEvent",
+        "goalId" : "goal1",
+        "metadata" : {
+          "app_version" : "1.2.3",
+          "device_model" : "iPhone14,7",
+          "device_type" : "mobile",
+          "os_version" : "16.0"
+        },
+        "sdkVersion" : "0.0.1",
+        "sourceId" : 2,
+        "tag" : "tag1",
+        "timestamp" : 1,
+        "user" : {
+          "data" : {
+            "age" : "28"
+          },
+          "id" : "user1"
+        },
+        "userId" : "user1",
+        "value" : 1
+      },
+      "id" : "goal_event1",
+      "type" : 1
+    },
+    {
+      "event" : {
+        "@type" : "type.googleapis.com/bucketeer.event.client.EvaluationEvent",
+        "featureId" : "feature1",
+        "featureVersion" : 1,
+        "metadata" : {
+          "app_version" : "1.2.3",
+          "device_model" : "iPhone14,7",
+          "device_type" : "mobile",
+          "os_version" : "16.0"
+        },
+        "reason" : {
+          "ruleId" : "rule1",
+          "type" : "RULE"
+        },
+        "sdkVersion" : "0.0.1",
+        "sourceId" : 2,
+        "tag" : "tag1",
+        "timestamp" : 1,
+        "user" : {
+          "data" : {
+            "age" : "28"
+          },
+          "id" : "user1"
+        },
+        "userId" : "user1",
+        "variationId" : "variation1"
+      },
+      "id" : "evaluation_event1",
+      "type" : 3
+    }
+  ]
+}
+"""
+                XCTAssertEqual(jsonString, expected)
                 expectation.fulfill()
             },
             data: data,
@@ -167,7 +245,7 @@ class ApiClientTests: XCTestCase {
         api.registerEvents(events: events) { result in
             switch result {
             case .success(let response):
-                XCTAssertEqual(response.data.errors, errors)
+                XCTAssertEqual(response.errors, errors)
             case .failure(let error):
                 XCTFail("\(error)")
             }
@@ -184,17 +262,78 @@ class ApiClientTests: XCTestCase {
         let errorResponse = ErrorResponse(error: .init(code: 400, message: "invalid parameter"))
         let data = try JSONEncoder().encode(errorResponse)
         let apiEndpointURL = URL(string: "https://test.bucketeer.jp")!
-        let path = "v1/gateway/events"
+        let path = "register_events"
         let apiKey = "x:api-key"
         let session = MockSession(
             configuration: .default,
             requestHandler: { request in
                 XCTAssertEqual(request.url?.path, "/\(path)")
-
-                let requestBody = RegisterEventsRequestBody(
-                    events: events
-                )
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(requestBody))
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "events" : [
+    {
+      "event" : {
+        "@type" : "type.googleapis.com/bucketeer.event.client.GoalEvent",
+        "goalId" : "goal1",
+        "metadata" : {
+          "app_version" : "1.2.3",
+          "device_model" : "iPhone14,7",
+          "device_type" : "mobile",
+          "os_version" : "16.0"
+        },
+        "sdkVersion" : "0.0.1",
+        "sourceId" : 2,
+        "tag" : "tag1",
+        "timestamp" : 1,
+        "user" : {
+          "data" : {
+            "age" : "28"
+          },
+          "id" : "user1"
+        },
+        "userId" : "user1",
+        "value" : 1
+      },
+      "id" : "goal_event1",
+      "type" : 1
+    },
+    {
+      "event" : {
+        "@type" : "type.googleapis.com/bucketeer.event.client.EvaluationEvent",
+        "featureId" : "feature1",
+        "featureVersion" : 1,
+        "metadata" : {
+          "app_version" : "1.2.3",
+          "device_model" : "iPhone14,7",
+          "device_type" : "mobile",
+          "os_version" : "16.0"
+        },
+        "reason" : {
+          "ruleId" : "rule1",
+          "type" : "RULE"
+        },
+        "sdkVersion" : "0.0.1",
+        "sourceId" : 2,
+        "tag" : "tag1",
+        "timestamp" : 1,
+        "user" : {
+          "data" : {
+            "age" : "28"
+          },
+          "id" : "user1"
+        },
+        "userId" : "user1",
+        "variationId" : "variation1"
+      },
+      "id" : "evaluation_event1",
+      "type" : 3
+    }
+  ]
+}
+"""
+                XCTAssertEqual(jsonString, expected)
                 expectation.fulfill()
             },
             data: data,
@@ -263,7 +402,14 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 30)
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "value" : "body"
+}
+"""
+                XCTAssertEqual(jsonString, expected)
                 expectation.fulfill()
             },
             data: data,
@@ -316,7 +462,14 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 0.2)
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "value" : "body"
+}
+"""
+                XCTAssertEqual(jsonString, expected)
                 expectation.fulfill()
             },
             data: data,
@@ -370,7 +523,13 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 0.1)
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "value" : "body"
+}
+"""
                 expectation.fulfill()
             },
             data: data,
@@ -423,7 +582,13 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 30)
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "value" : "body"
+}
+"""
                 expectation.fulfill()
             },
             data: nil,
@@ -475,7 +640,13 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 30)
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "value" : "body"
+}
+"""
                 expectation.fulfill()
             },
             data: nil,
@@ -527,7 +698,13 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
                 XCTAssertEqual(request.timeoutInterval, 30)
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "value" : "body"
+}
+"""
                 expectation.fulfill()
             },
             data: data,
@@ -580,7 +757,13 @@ class ApiClientTests: XCTestCase {
                 XCTAssertEqual(request.url?.host, apiEndpointURL.host)
                 XCTAssertEqual(request.url?.path, "/\(path)")
                 XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], apiKey)
-                XCTAssertEqual(request.httpBody, try! JSONEncoder().encode(mockRequestBody))
+                let data = request.httpBody ?? Data()
+                let jsonString = String(data: data, encoding: .utf8) ?? ""
+                let expected = """
+{
+  "value" : "body"
+}
+"""
                 expectation.fulfill()
             },
             data: data,

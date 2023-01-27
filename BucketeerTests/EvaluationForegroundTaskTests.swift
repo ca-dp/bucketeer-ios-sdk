@@ -13,7 +13,13 @@ final class EvaluationForegroundTaskTests: XCTestCase {
             fetchHandler: { user, timeoutMillis, completion in
                 XCTAssertEqual(user, .mock1)
                 XCTAssertNil(timeoutMillis)
-                completion?(.success(.init(data: .init(evaluations: .mock1, user_evaluations_id: "user_evaluation"), seconds: 1, sizeByte: 2, featureTag: featureTag)))
+                completion?(.success(.init(
+                    evaluations: .mock1,
+                    userEvaluationsId: "user_evaluation",
+                    seconds: 1,
+                    sizeByte: 2,
+                    featureTag: featureTag
+                )))
             }
         )
         let eventInteractor = MockEventInteractor(

@@ -40,7 +40,8 @@ final class EventInteractorImpl: EventInteractor {
         self.metadata = [
             "app_version": appVersion,
             "os_version": device.osVersion,
-            "device_model": device.model
+            "device_model": device.model,
+            "device_type": device.type
         ]
     }
 
@@ -54,15 +55,15 @@ final class EventInteractorImpl: EventInteractor {
                 id: idGenerator.id(),
                 event: .evaluation(.init(
                     timestamp: clock.currentTimeSeconds,
-                    feature_id: evaluation.feature_id,
-                    feature_version: evaluation.feature_version,
-                    user_id: user.id,
-                    variation_id: evaluation.variation_id,
+                    featureId: evaluation.featureId,
+                    featureVersion: evaluation.featureVersion,
+                    userId: user.id,
+                    variationId: evaluation.variationId,
                     user: user,
                     reason: evaluation.reason,
                     tag: featureTag,
-                    source_id: .ios,
-                    sdk_version: sdkVersion,
+                    sourceId: .ios,
+                    sdkVersion: sdkVersion,
                     metadata: metadata
                 )),
                 type: .evaluation
@@ -77,13 +78,13 @@ final class EventInteractorImpl: EventInteractor {
                 id: idGenerator.id(),
                 event: .evaluation(.init(
                     timestamp: clock.currentTimeSeconds,
-                    feature_id: featureId,
-                    user_id: user.id,
+                    featureId: featureId,
+                    userId: user.id,
                     user: user,
                     reason: .init(type: .client),
                     tag: featureTag,
-                    source_id: .ios,
-                    sdk_version: sdkVersion,
+                    sourceId: .ios,
+                    sdkVersion: sdkVersion,
                     metadata: metadata
                 )),
                 type: .evaluation
@@ -98,13 +99,13 @@ final class EventInteractorImpl: EventInteractor {
                 id: idGenerator.id(),
                 event: .goal(.init(
                     timestamp: clock.currentTimeSeconds,
-                    goal_id: goalId,
-                    user_id: user.id,
+                    goalId: goalId,
+                    userId: user.id,
                     value: value,
                     user: user,
                     tag: featureTag,
-                    source_id: .ios,
-                    sdk_version: sdkVersion,
+                    sourceId: .ios,
+                    sdkVersion: sdkVersion,
                     metadata: metadata
                 )),
                 type: .goal
@@ -121,6 +122,7 @@ final class EventInteractorImpl: EventInteractor {
                     event: .metrics(.init(
                         timestamp: clock.currentTimeSeconds,
                         event: .getEvaluationLatency(.init(
+                            apiId: .getEvaluations,
                             labels: ["tag": featureTag],
                             duration: .init(seconds: seconds)
                         )),
@@ -135,6 +137,7 @@ final class EventInteractorImpl: EventInteractor {
                     event: .metrics(.init(
                         timestamp: clock.currentTimeSeconds,
                         event: .getEvaluationSize(.init(
+                            apiId: .getEvaluations,
                             labels: ["tag": featureTag],
                             size_byte: sizeByte
                         )),
@@ -154,11 +157,14 @@ final class EventInteractorImpl: EventInteractor {
         let metricsEventType: MetricsEventType
         switch error {
         case .timeout:
-            metricsEventData = .timeoutErrorCount(.init(tag: featureTag))
-            metricsEventType = .timeoutErrorCount
+            metricsEventData = .timeoutError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
+            metricsEventType = .timeoutError
+        case .network:
+            metricsEventData = .networkError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
+            metricsEventType = .networkError
         default:
-            metricsEventData = .internalErrorCount(.init(tag: featureTag))
-            metricsEventType = .internalErrorCount
+            metricsEventData = .internalSdkError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
+            metricsEventType = .internalError
         }
         try eventDao.add(event: .init(
             id: idGenerator.id(),
@@ -192,7 +198,7 @@ final class EventInteractorImpl: EventInteractor {
             apiClient.registerEvents(events: sendingEvents) { [weak self] result in
                 switch result {
                 case .success(let response):
-                    let errors = response.data.errors
+                    let errors = response.errors
                     let deletedIds: [String] = sendingEvents
                         .map { $0.id }
                         .filter({ eventId -> Bool in

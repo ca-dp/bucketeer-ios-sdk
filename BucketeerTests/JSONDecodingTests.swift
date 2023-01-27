@@ -10,8 +10,8 @@ class JSONDecodingTests: XCTestCase {
     "type": 1,
     "event": {
         "timestamp": 1,
-        "goal_id": "goal_1",
-        "user_id": "user_1",
+        "goalId": "goal_1",
+        "userId": "user_1",
         "value": 2,
         "user": {
             "id": "user_1",
@@ -21,7 +21,7 @@ class JSONDecodingTests: XCTestCase {
             }
         },
         "tag": "tag_1",
-        "source_id": 2
+        "sourceId": 2
     }
 }
 """
@@ -38,14 +38,14 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         XCTAssertEqual(eventData.timestamp, 1)
-        XCTAssertEqual(eventData.goal_id, "goal_1")
-        XCTAssertEqual(eventData.user_id, "user_1")
+        XCTAssertEqual(eventData.goalId, "goal_1")
+        XCTAssertEqual(eventData.userId, "user_1")
         XCTAssertEqual(eventData.value, 2)
         XCTAssertEqual(eventData.user.id, "user_1")
         XCTAssertEqual(eventData.user.data["key_1"], "value_1")
         XCTAssertEqual(eventData.user.data["key_2"], "value_2")
         XCTAssertEqual(eventData.tag, "tag_1")
-        XCTAssertEqual(eventData.source_id, .ios)
+        XCTAssertEqual(eventData.sourceId, .ios)
     }
 
     func testDecodingEvaluationEvent() throws {
@@ -55,10 +55,10 @@ class JSONDecodingTests: XCTestCase {
     "type": 3,
     "event": {
         "timestamp": 1,
-        "feature_id": "feature_1",
-        "feature_version": 2,
-        "user_id": "user_1",
-        "variation_id": "variation_1",
+        "featureId": "feature_1",
+        "featureVersion": 2,
+        "userId": "user_1",
+        "variationId": "variation_1",
         "user": {
             "id": "user_1",
             "data": {
@@ -67,11 +67,11 @@ class JSONDecodingTests: XCTestCase {
             }
         },
         "reason": {
-            "type": 3,
-            "rule_id": "rule_1"
+            "type": "DEFAULT",
+            "ruleId": "rule_1"
         },
         "tag": "tag_1",
-        "source_id": 2
+        "sourceId": 2
     }
 }
 """
@@ -88,17 +88,17 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         XCTAssertEqual(eventData.timestamp, 1)
-        XCTAssertEqual(eventData.feature_id, "feature_1")
-        XCTAssertEqual(eventData.feature_version, 2)
-        XCTAssertEqual(eventData.user_id, "user_1")
-        XCTAssertEqual(eventData.variation_id, "variation_1")
+        XCTAssertEqual(eventData.featureId, "feature_1")
+        XCTAssertEqual(eventData.featureVersion, 2)
+        XCTAssertEqual(eventData.userId, "user_1")
+        XCTAssertEqual(eventData.variationId, "variation_1")
         XCTAssertEqual(eventData.user.id, "user_1")
         XCTAssertEqual(eventData.user.data["key_1"], "value_1")
         XCTAssertEqual(eventData.user.data["key_2"], "value_2")
         XCTAssertEqual(eventData.reason.type, .default)
-        XCTAssertEqual(eventData.reason.rule_id, "rule_1")
+        XCTAssertEqual(eventData.reason.ruleId, "rule_1")
         XCTAssertEqual(eventData.tag, "tag_1")
-        XCTAssertEqual(eventData.source_id, .ios)
+        XCTAssertEqual(eventData.sourceId, .ios)
     }
 
     func testDecodingMetricsGetEvaluationLatencyEvent() throws {
@@ -110,6 +110,7 @@ class JSONDecodingTests: XCTestCase {
         "timestamp": 1,
         "type": 1,
         "event": {
+            "apiId": 2,
             "labels": {
                 "key_1": "value_1",
                 "key_2": "value_2",
@@ -154,6 +155,7 @@ class JSONDecodingTests: XCTestCase {
         "timestamp": 1,
         "type": 2,
         "event": {
+            "apiId": 2,
             "labels": {
                 "key_1": "value_1",
                 "key_2": "value_2",
@@ -186,16 +188,19 @@ class JSONDecodingTests: XCTestCase {
         XCTAssertEqual(metricsData.size_byte, 1)
     }
 
-    func testDecodingMetricsTimeoutErrorCountEvent() throws {
+    func testDecodingMetricsTimeoutErrorEvent() throws {
         let json = """
 {
     "id": "event_1",
     "type": 4,
     "event": {
         "timestamp": 1,
-        "type": 3,
+        "type": 5,
         "event": {
-            "tag": "tag_1"
+            "apiId": 2,
+            "labels": {
+                "tag": "tag_1"
+            }
         }
     }
 }
@@ -213,24 +218,27 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         XCTAssertEqual(eventData.timestamp, 1)
-        XCTAssertEqual(eventData.type, .timeoutErrorCount)
-        guard case .timeoutErrorCount(let metricsData) = eventData.event else {
+        XCTAssertEqual(eventData.type, .timeoutError)
+        guard case .timeoutError(let metricsData) = eventData.event else {
             XCTFail("metricsData is invalid")
             return
         }
-        XCTAssertEqual(metricsData.tag, "tag_1")
+        XCTAssertEqual(metricsData.labels, ["tag": "tag_1"])
     }
 
-    func testDecodingMetricsInternalErrorCountEvent() throws {
+    func testDecodingMetricsInternalErrorEvent() throws {
         let json = """
 {
     "id": "event_1",
     "type": 4,
     "event": {
         "timestamp": 1,
-        "type": 4,
+        "type": 7,
         "event": {
-            "tag": "tag_1"
+            "apiId": 2,
+            "labels": {
+                "tag": "tag_1"
+            }
         }
     }
 }
@@ -248,11 +256,11 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         XCTAssertEqual(eventData.timestamp, 1)
-        XCTAssertEqual(eventData.type, .internalErrorCount)
-        guard case .internalErrorCount(let metricsData) = eventData.event else {
+        XCTAssertEqual(eventData.type, .internalError)
+        guard case .internalSdkError(let metricsData) = eventData.event else {
             XCTFail("metricsData is invalid")
             return
         }
-        XCTAssertEqual(metricsData.tag, "tag_1")
+        XCTAssertEqual(metricsData.labels, ["tag": "tag_1"])
     }
 }

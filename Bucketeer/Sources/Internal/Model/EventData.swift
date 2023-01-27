@@ -7,50 +7,54 @@ enum EventData: Hashable {
 
     struct Goal: Codable, Hashable {
         let timestamp: Int64
-        let goal_id: String
-        let user_id: String
+        let goalId: String
+        let userId: String
         let value: Double
         let user: User
         let tag: String
-        let source_id: SourceID
-        var sdk_version: String? = nil
+        let sourceId: SourceID
+        var sdkVersion: String? = nil
         var metadata: [String: String]?
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.GoalEvent"
     }
 
     struct Evaluation: Codable, Hashable {
         let timestamp: Int64
-        let feature_id: String
-        var feature_version: Int = 0
-        let user_id: String
-        var variation_id: String = ""
+        let featureId: String
+        var featureVersion: Int = 0
+        let userId: String
+        var variationId: String = ""
         let user: User
         let reason: Reason
         let tag: String
-        let source_id: SourceID
-        var sdk_version: String? = nil
+        let sourceId: SourceID
+        var sdkVersion: String? = nil
         var metadata: [String: String]?
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.EvaluationEvent"
     }
 
     struct Metrics: Codable, Hashable {
         let timestamp: Int64
         let event: MetricsEventData
         let type: MetricsEventType
-        var sdk_version: String? = nil
+        var sdkVersion: String? = nil
         var metadata: [String: String]? = nil
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.MetricsEvent"
 
         enum CodingKeys: String, CodingKey {
             case timestamp
             case event
             case type
-            case sdk_version
+            case sdkVersion
             case metadata
+            case protobufType
         }
 
         init(timestamp: Int64, event: MetricsEventData, type: MetricsEventType, sdk_version: String, metadata: [String: String]?) {
             self.timestamp = timestamp
             self.event = event
             self.type = type
-            self.sdk_version = sdk_version
+            self.sdkVersion = sdk_version
             self.metadata = metadata
         }
 
@@ -58,7 +62,7 @@ enum EventData: Hashable {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.timestamp = try container.decode(Int64.self, forKey: .timestamp)
             self.type = try container.decode(MetricsEventType.self, forKey: .type)
-            self.sdk_version = try container.decodeIfPresent(String.self, forKey: .sdk_version)
+            self.sdkVersion = try container.decodeIfPresent(String.self, forKey: .sdkVersion)
             self.metadata = try container.decodeIfPresent([String: String].self, forKey: .metadata)
             switch self.type {
             case .getEvaluationLatency:
@@ -67,12 +71,15 @@ enum EventData: Hashable {
             case .getEvaluationSize:
                 let data = try container.decode(MetricsEventData.GetEvaluationSize.self, forKey: .event)
                 self.event = .getEvaluationSize(data)
-            case .timeoutErrorCount:
-                let data = try container.decode(MetricsEventData.TimeoutErrorCount.self, forKey: .event)
-                self.event = .timeoutErrorCount(data)
-            case .internalErrorCount:
-                let data = try container.decode(MetricsEventData.InternalErrorCount.self, forKey: .event)
-                self.event = .internalErrorCount(data)
+            case .timeoutError:
+                let data = try container.decode(MetricsEventData.TimeoutError.self, forKey: .event)
+                self.event = .timeoutError(data)
+            case .networkError:
+                let data = try container.decode(MetricsEventData.NetworkError.self, forKey: .event)
+                self.event = .networkError(data)
+            case .internalError:
+                let data = try container.decode(MetricsEventData.InternalSdkError.self, forKey: .event)
+                self.event = .internalSdkError(data)
             }
         }
 
@@ -80,8 +87,8 @@ enum EventData: Hashable {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(timestamp, forKey: .timestamp)
             try container.encode(type, forKey: .type)
-            if let sdk_version {
-                try container.encode(sdk_version, forKey: .sdk_version)
+            if let sdkVersion {
+                try container.encode(sdkVersion, forKey: .sdkVersion)
             }
             try container.encode(metadata, forKey: .metadata)
             switch self.event {
@@ -89,10 +96,15 @@ enum EventData: Hashable {
                 try container.encode(eventData, forKey: .event)
             case .getEvaluationSize(let eventData):
                 try container.encode(eventData, forKey: .event)
-            case .timeoutErrorCount(let eventData):
+            case .timeoutError(let eventData):
                 try container.encode(eventData, forKey: .event)
-            case .internalErrorCount(let eventData):
+            case .networkError(let eventData):
                 try container.encode(eventData, forKey: .event)
+            case .internalSdkError(let eventData):
+                try container.encode(eventData, forKey: .event)
+            }
+            if let protobufType {
+                try container.encode(protobufType, forKey: .protobufType)
             }
         }
     }
