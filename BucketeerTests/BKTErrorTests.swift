@@ -96,6 +96,10 @@ class BKTErrorTests: XCTestCase {
             .init(error: ResponseError.unacceptableCode(code: 500, response: nil)),
             .apiServer(message: "InternalServer error")
         )
+        assertEqual(
+            .init(error: ResponseError.unacceptableCode(code: 599, response: nil)),
+            .apiServer(message: "InternalServer error")
+        )
         let errorResponse = ErrorResponse(error: .init(code: 499, message: "some error"))
         assertEqual(
             .init(error: ResponseError.unacceptableCode(code: 499, response: errorResponse)),

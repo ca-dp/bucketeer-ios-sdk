@@ -53,7 +53,7 @@ extension BKTError {
                     self = .unauthorized(message: errorResponse?.error.message ?? "Unauthorized error")
                 case 405:
                     self = .invalidHttpMethod(message: errorResponse?.error.message ?? "MethodNotAllowed error")
-                case 500:
+                case 500..<600:
                     self = .apiServer(message: errorResponse?.error.message ?? "InternalServer error")
                 default:
                     var message: String = "no error body"
