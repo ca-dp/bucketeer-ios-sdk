@@ -18,6 +18,7 @@ class BKTErrorTests: XCTestCase {
         // equal
         assertEqual(.badRequest(message: "1"), .badRequest(message: "1"))
         assertEqual(.unauthorized(message: "1"), .unauthorized(message: "1"))
+        assertEqual(.forbidden(message: "1"), .forbidden(message: "1"))
         assertEqual(.invalidHttpMethod(message: "1"), .invalidHttpMethod(message: "1"))
         assertEqual(.apiServer(message: "1"), .apiServer(message: "1"))
         assertEqual(
@@ -52,6 +53,7 @@ class BKTErrorTests: XCTestCase {
         // not equal
         assertNotEqual(.badRequest(message: "1"), .badRequest(message: "2"))
         assertNotEqual(.unauthorized(message: "1"), .unauthorized(message: "2"))
+        assertNotEqual(.forbidden(message: "1"), .forbidden(message: "2"))
         assertNotEqual(.invalidHttpMethod(message: "1"), .invalidHttpMethod(message: "2"))
         assertNotEqual(.apiServer(message: "1"), .apiServer(message: "2"))
         assertNotEqual(
@@ -81,12 +83,12 @@ class BKTErrorTests: XCTestCase {
             .badRequest(message: "BadRequest error")
         )
         assertEqual(
-            .init(error: ResponseError.unacceptableCode(code: 400, response: nil)),
-            .badRequest(message: "BadRequest error")
-        )
-        assertEqual(
             .init(error: ResponseError.unacceptableCode(code: 401, response: nil)),
             .unauthorized(message: "Unauthorized error")
+        )
+        assertEqual(
+            .init(error: ResponseError.unacceptableCode(code: 403, response: nil)),
+            .forbidden(message: "Forbidden error")
         )
         assertEqual(
             .init(error: ResponseError.unacceptableCode(code: 405, response: nil)),

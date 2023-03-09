@@ -77,9 +77,24 @@ enum EventData: Hashable {
             case .networkError:
                 let data = try container.decode(MetricsEventData.NetworkError.self, forKey: .event)
                 self.event = .networkError(data)
+            case .badRequestError:
+                let data = try container.decode(MetricsEventData.BadRequestError.self, forKey: .event)
+                self.event = .badRequestError(data)
+            case .unauthorizedError:
+                let data = try container.decode(MetricsEventData.UnauthorizedError.self, forKey: .event)
+                self.event = .unauthorizedError(data)
+            case .forbiddenError:
+                let data = try container.decode(MetricsEventData.ForbiddenError.self, forKey: .event)
+                self.event = .forbiddenError(data)
             case .internalError:
                 let data = try container.decode(MetricsEventData.InternalSdkError.self, forKey: .event)
                 self.event = .internalSdkError(data)
+            case .internalServerError:
+                let data = try container.decode(MetricsEventData.InternalServerError.self, forKey: .event)
+                self.event = .internalServerError(data)
+            case .unknownError:
+                let data = try container.decode(MetricsEventData.UnknownError.self, forKey: .event)
+                self.event = .unknownError(data)
             }
         }
 
@@ -100,7 +115,17 @@ enum EventData: Hashable {
                 try container.encode(eventData, forKey: .event)
             case .networkError(let eventData):
                 try container.encode(eventData, forKey: .event)
+            case .badRequestError(let eventData):
+                try container.encode(eventData, forKey: .event)
+            case .unauthorizedError(let eventData):
+                try container.encode(eventData, forKey: .event)
+            case .forbiddenError(let eventData):
+                try container.encode(eventData, forKey: .event)
             case .internalSdkError(let eventData):
+                try container.encode(eventData, forKey: .event)
+            case .internalServerError(let eventData):
+                try container.encode(eventData, forKey: .event)
+            case .unknownError(let eventData):
                 try container.encode(eventData, forKey: .event)
             }
             if let protobufType {

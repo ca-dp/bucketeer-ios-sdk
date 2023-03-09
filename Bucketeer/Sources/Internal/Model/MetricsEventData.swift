@@ -5,7 +5,12 @@ enum MetricsEventData: Hashable {
     case getEvaluationSize(GetEvaluationSize)
     case timeoutError(TimeoutError)
     case networkError(NetworkError)
+    case badRequestError(BadRequestError)
+    case unauthorizedError(UnauthorizedError)
+    case forbiddenError(ForbiddenError)
     case internalSdkError(InternalSdkError)
+    case internalServerError(InternalServerError)
+    case unknownError(UnknownError)
 
     struct GetEvaluationLatency: Codable, Hashable {
         let apiId: ApiId
@@ -33,9 +38,39 @@ enum MetricsEventData: Hashable {
         var protobufType: String? = "type.googleapis.com/bucketeer.event.client.NetworkErrorMetricsEvent"
     }
 
+    struct BadRequestError: Codable, Hashable {
+        let apiId: ApiId
+        let labels: [String: String]
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.BadRequestErrorMetricsEvent"
+    }
+
+    struct UnauthorizedError: Codable, Hashable {
+        let apiId: ApiId
+        let labels: [String: String]
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.UnauthorizedErrorMetricsEvent"
+    }
+
+    struct ForbiddenError: Codable, Hashable {
+        let apiId: ApiId
+        let labels: [String: String]
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.ForbiddenErrorMetricsEvent"
+    }
+
     struct InternalSdkError: Codable, Hashable {
         let apiId: ApiId
         let labels: [String: String]
         var protobufType: String? = "type.googleapis.com/bucketeer.event.client.InternalSdkErrorMetricsEvent"
+    }
+
+    struct InternalServerError: Codable, Hashable {
+        let apiId: ApiId
+        let labels: [String: String]
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.InternalServerErrorMetricsEvent"
+    }
+
+    struct UnknownError: Codable, Hashable {
+        let apiId: ApiId
+        let labels: [String: String]
+        var protobufType: String? = "type.googleapis.com/bucketeer.event.client.UnknownErrorMetricsEvent"
     }
 }

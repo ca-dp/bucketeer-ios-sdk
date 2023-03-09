@@ -162,6 +162,21 @@ final class EventInteractorImpl: EventInteractor {
         case .network:
             metricsEventData = .networkError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
             metricsEventType = .networkError
+        case .badRequest:
+            metricsEventData = .badRequestError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
+            metricsEventType = .badRequestError
+        case .unauthorized:
+            metricsEventData = .unauthorizedError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
+            metricsEventType = .unauthorizedError
+        case .forbidden:
+            metricsEventData = .forbiddenError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
+            metricsEventType = .forbiddenError
+        case .apiServer:
+            metricsEventData = .internalServerError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
+            metricsEventType = .internalServerError
+        case .unknown:
+            metricsEventData = .unknownError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
+            metricsEventType = .unknownError
         default:
             metricsEventData = .internalSdkError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
             metricsEventType = .internalError

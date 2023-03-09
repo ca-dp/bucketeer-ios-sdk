@@ -3,6 +3,7 @@ import Foundation
 public enum BKTError: Error, Equatable {
     case badRequest(message: String)
     case unauthorized(message: String)
+    case forbidden(message: String)
     case invalidHttpMethod(message: String)
     case apiServer(message: String)
 
@@ -21,6 +22,7 @@ public enum BKTError: Error, Equatable {
         switch (lhs, rhs) {
         case (.badRequest(let m1), .badRequest(let m2)),
             (.unauthorized(let m1), .unauthorized(let m2)),
+            (.forbidden(let m1), .forbidden(let m2)),
             (.invalidHttpMethod(let m1), .invalidHttpMethod(let m2)),
             (.apiServer(let m1), .apiServer(let m2)),
             (.illegalArgument(let m1), .illegalArgument(let m2)),
@@ -51,6 +53,8 @@ extension BKTError {
                     self = .badRequest(message: errorResponse?.error.message ?? "BadRequest error")
                 case 401:
                     self = .unauthorized(message: errorResponse?.error.message ?? "Unauthorized error")
+                case 403:
+                    self = .forbidden(message: errorResponse?.error.message ?? "Forbidden error")
                 case 405:
                     self = .invalidHttpMethod(message: errorResponse?.error.message ?? "MethodNotAllowed error")
                 case 500..<600:

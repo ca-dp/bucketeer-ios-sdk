@@ -252,8 +252,8 @@ final class EventInteractorTests: XCTestCase {
                     id: "id",
                     event: .metrics(.init(
                         timestamp: 1,
-                        event: .internalSdkError(.init(apiId: .getEvaluations, labels: ["tag": "featureTag1"])),
-                        type: .internalError,
+                        event: .badRequestError(.init(apiId: .getEvaluations, labels: ["tag": "featureTag1"])),
+                        type: .badRequestError,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
