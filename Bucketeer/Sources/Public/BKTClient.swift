@@ -147,6 +147,7 @@ extension BKTClient {
         component.userHolder.updateAttributes { _ in
             attributes
         }
+        component.evaluationInteractor.resetCurrentEvaluationsId()
     }
 
     public func fetchEvaluations(timeoutMillis: Int64?, completion: ((BKTError?) -> Void)?) {

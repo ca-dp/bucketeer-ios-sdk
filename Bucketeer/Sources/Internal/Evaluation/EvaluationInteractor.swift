@@ -4,6 +4,8 @@ protocol EvaluationInteractor {
     func fetch(user: User, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?)
     func getLatest(userId: String, featureId: String) -> Evaluation?
     func refreshCache(userId: String) throws
+    var currentEvaluationsId: String { get }
+    func resetCurrentEvaluationsId()
     @discardableResult
     func addUpdateListener(listener: EvaluationUpdateListener) -> String
     func removeUpdateListener(key: String)
@@ -90,6 +92,10 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
 
     func refreshCache(userId: String) throws {
         evaluations[userId] = try evaluationDao.get(userId: userId)
+    }
+
+    func resetCurrentEvaluationsId() {
+        currentEvaluationsId = ""
     }
 
     func getLatest(userId: String, featureId: String) -> Evaluation? {

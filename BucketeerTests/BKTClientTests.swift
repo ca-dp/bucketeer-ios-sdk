@@ -21,6 +21,32 @@ final class BKTClientTests: XCTestCase {
         XCTAssertEqual(client.currentUser()?.attributes, attributes)
     }
 
+    func testUpdateUserAttributesAndResetEvaluationId() {
+        let expectation = self.expectation(description: "")
+        let dataModule = MockDataModule(
+            userHolder: .init(user: .mock1),
+            apiClient: MockApiClient(getEvaluationsHandler: { (user, userEvaluationsId, timeoutMillis, handler) in
+                handler?(.success(.init(
+                    evaluations: .mock1,
+                    userEvaluationsId: "id",
+                    seconds: 2,
+                    sizeByte: 3,
+                    featureTag: "feature"
+                )))
+            })
+        )
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
+        client.fetchEvaluations(timeoutMillis: nil) { error in
+            XCTAssertEqual(error, nil)
+            XCTAssertEqual(client.component.evaluationInteractor.currentEvaluationsId, "id")
+            let attributes: [String: String] = ["key": "updated"]
+            client.updateUserAttributes(attributes: attributes)
+            XCTAssertEqual(client.component.evaluationInteractor.currentEvaluationsId, "")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+
     func testFetchEvaluationsSuccess() {
         let expectation = self.expectation(description: "")
         expectation.expectedFulfillmentCount = 3
