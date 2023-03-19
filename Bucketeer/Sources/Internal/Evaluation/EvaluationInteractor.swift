@@ -5,7 +5,7 @@ protocol EvaluationInteractor {
     func getLatest(userId: String, featureId: String) -> Evaluation?
     func refreshCache(userId: String) throws
     var currentEvaluationsId: String { get }
-    func resetCurrentEvaluationsId()
+    func clearCurrentEvaluationsId()
     @discardableResult
     func addUpdateListener(listener: EvaluationUpdateListener) -> String
     func removeUpdateListener(key: String)
@@ -94,7 +94,7 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
         evaluations[userId] = try evaluationDao.get(userId: userId)
     }
 
-    func resetCurrentEvaluationsId() {
+    func clearCurrentEvaluationsId() {
         currentEvaluationsId = ""
     }
 
