@@ -140,8 +140,8 @@ public extension BucketeerSDK {
         return _getUser()
     }
     
-    func syncEvaluations() {
-        return _syncEvaluations()
+    func syncEvaluations(completion: ((Result<Void, BucketeerError>) -> Void)? = nil) {
+        return _syncEvaluations(completion: completion)
     }
     
     // MARK: Feature
