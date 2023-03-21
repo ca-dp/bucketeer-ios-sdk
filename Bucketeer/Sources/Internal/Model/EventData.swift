@@ -132,5 +132,10 @@ enum EventData: Hashable {
                 try container.encode(protobufType, forKey: .protobufType)
             }
         }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(event)
+            hasher.combine(type)
+        }
     }
 }
