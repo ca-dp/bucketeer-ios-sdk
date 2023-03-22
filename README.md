@@ -9,11 +9,13 @@ Install prerequisite tools.
 - Xcode
 - Ruby
 
-Then, you need to create `fastlane/.env`.
+Set the dev environment endpoint
 
 ```
-apiURL=<API_URL> # e.g. api-media.bucketeer.jp
-sdkKey=<SDK_KEY>
+export apiURL=<API_URL> # e.g. api.bucketeer.io
+export sdkKey=<SDK_KEY>
+
+make setup
 ```
 
 Install dependencies.

@@ -78,11 +78,14 @@ all-test-without-building:
 build-example:
 	$(BUILD_EXAMPLE)
 
+.PHONY: setup
+setup:
+	./scripts/setup.sh
+
 .PHONY: deps
 deps:
 	bundle install
 	bundle exec pod install
-	bundle exec fastlane setup
 
 .PHONY: copy-protos
 copy-protos: .gen-protos
