@@ -56,7 +56,7 @@ class BucketeerE2ETest: XCTestCase {
                     XCTAssertEqual(callResult.code, .ok)
                     XCTAssertNotNil(response)
                     XCTAssertEqual(response?.state, Bucketeer_Feature_UserEvaluations.State.full)
-                    XCTAssertGreaterThanOrEqual(response!.evaluations.evaluations.count, 1)
+                    XCTAssertGreaterThanOrEqual(response!.evaluations.evaluations.count, 6)
                     XCTAssertNotEqual(response?.userEvaluationsID, "")
                     asyncExpectation.fulfill()
                 case .failure:
