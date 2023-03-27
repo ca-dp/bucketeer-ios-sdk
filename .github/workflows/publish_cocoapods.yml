@@ -1,0 +1,27 @@
+name: Publish to cocoapods
+
+on:
+  push:
+    tags:
+      - v*
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: setup-cocoapods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          version: latest
+
+      - name: Push to cocoapods
+        run: |
+          pod trunk push --allow-warnings Bucketeer.podspec
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}

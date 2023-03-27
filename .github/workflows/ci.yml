@@ -1,0 +1,30 @@
+name: Pull Request
+
+on:
+  pull_request:
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup
+        run: make setup
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          SDK_KEY: ${{ secrets.SDK_KEY }}
+
+      - name: Build
+        run: make build-for-testing
+
+      - name: Unit Test
+        run: make test-without-building
+
+      - name: E2E Test
+        run: make e2e-without-building
+
+      - name: Build example
+        run: make build-example
