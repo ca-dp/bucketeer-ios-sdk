@@ -19,6 +19,7 @@ class BKTErrorTests: XCTestCase {
         assertEqual(.badRequest(message: "1"), .badRequest(message: "1"))
         assertEqual(.unauthorized(message: "1"), .unauthorized(message: "1"))
         assertEqual(.forbidden(message: "1"), .forbidden(message: "1"))
+        assertEqual(.featureNotFound(message: "1"), .featureNotFound(message: "1"))
         assertEqual(.invalidHttpMethod(message: "1"), .invalidHttpMethod(message: "1"))
         assertEqual(.apiServer(message: "1"), .apiServer(message: "1"))
         assertEqual(
@@ -54,6 +55,7 @@ class BKTErrorTests: XCTestCase {
         assertNotEqual(.badRequest(message: "1"), .badRequest(message: "2"))
         assertNotEqual(.unauthorized(message: "1"), .unauthorized(message: "2"))
         assertNotEqual(.forbidden(message: "1"), .forbidden(message: "2"))
+        assertNotEqual(.featureNotFound(message: "1"), .featureNotFound(message: "2"))
         assertNotEqual(.invalidHttpMethod(message: "1"), .invalidHttpMethod(message: "2"))
         assertNotEqual(.apiServer(message: "1"), .apiServer(message: "2"))
         assertNotEqual(
@@ -89,6 +91,10 @@ class BKTErrorTests: XCTestCase {
         assertEqual(
             .init(error: ResponseError.unacceptableCode(code: 403, response: nil)),
             .forbidden(message: "Forbidden error")
+        )
+        assertEqual(
+            .init(error: ResponseError.unacceptableCode(code: 404, response: nil)),
+            .featureNotFound(message: "NotFound error")
         )
         assertEqual(
             .init(error: ResponseError.unacceptableCode(code: 405, response: nil)),
