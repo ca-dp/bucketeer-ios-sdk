@@ -5,7 +5,6 @@ public enum BKTError: Error, Equatable {
     case unauthorized(message: String)
     case forbidden(message: String)
     case notFound(message: String)
-    case invalidHttpMethod(message: String)
     case clientClosed(message: String)
     case unavailable(message: String)
     case apiServer(message: String)
@@ -27,7 +26,6 @@ public enum BKTError: Error, Equatable {
             (.unauthorized(let m1), .unauthorized(let m2)),
             (.forbidden(let m1), .forbidden(let m2)),
             (.notFound(let m1), .notFound(let m2)),
-            (.invalidHttpMethod(let m1), .invalidHttpMethod(let m2)),
             (.clientClosed(let m1), .clientClosed(let m2)),
             (.unavailable(let m1), .unavailable(let m2)),
             (.apiServer(let m1), .apiServer(let m2)),
@@ -63,8 +61,6 @@ extension BKTError {
                     self = .forbidden(message: errorResponse?.error.message ?? "Forbidden error")
                 case 404:
                     self = .notFound(message: errorResponse?.error.message ?? "NotFound error")
-                case 405:
-                    self = .invalidHttpMethod(message: errorResponse?.error.message ?? "MethodNotAllowed error")
                 case 499:
                     self = .clientClosed(message: errorResponse?.error.message ?? "Client Closed Request error")
                 case 500:
