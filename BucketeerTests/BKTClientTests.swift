@@ -75,7 +75,7 @@ final class BKTClientTests: XCTestCase {
                             event: .getEvaluationLatency(.init(
                                 apiId: .getEvaluations,
                                 labels: ["tag": "feature"],
-                                duration: .init(seconds: 2)
+                                duration: .init(2)
                             )),
                             type: .getEvaluationLatency,
                             sdk_version: "0.0.2",

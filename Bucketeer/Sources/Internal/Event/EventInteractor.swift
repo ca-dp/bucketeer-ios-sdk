@@ -125,7 +125,7 @@ final class EventInteractorImpl: EventInteractor {
                         event: .getEvaluationLatency(.init(
                             apiId: .getEvaluations,
                             labels: ["tag": featureTag],
-                            duration: .init(seconds: seconds)
+                            duration: .init(seconds)
                         )),
                         type: .getEvaluationLatency,
                         sdk_version: sdkVersion,

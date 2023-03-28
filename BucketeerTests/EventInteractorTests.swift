@@ -154,7 +154,7 @@ final class EventInteractorTests: XCTestCase {
                         event: .getEvaluationLatency(.init(
                             apiId: .getEvaluations,
                             labels: ["tag": "featureTag1"],
-                            duration: .init(seconds: 10)
+                            duration: .init(10)
                         )),
                         type: .getEvaluationLatency,
                         sdk_version: "0.0.2",

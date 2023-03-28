@@ -97,7 +97,7 @@ extension Event {
             event: .getEvaluationLatency(.init(
                 apiId: .getEvaluations,
                 labels: ["tag": "ios", "state": "full"],
-                duration: .init(seconds: 2)
+                duration: .init(2)
             )),
             type: .getEvaluationLatency,
             sdk_version: "0.0.1",
