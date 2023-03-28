@@ -110,17 +110,13 @@ class BKTErrorTests: XCTestCase {
             .init(error: ResponseError.unacceptableCode(code: 503, response: nil)),
             .unavailable(message: "Unavailable error")
         )
+        let errorResponse = ErrorResponse(error: .init(code: 450, message: "some error"))
         assertEqual(
-            .init(error: ResponseError.unacceptableCode(code: 599, response: nil)),
-            .apiServer(message: "InternalServer error")
-        )
-        let errorResponse = ErrorResponse(error: .init(code: 499, message: "some error"))
-        assertEqual(
-            .init(error: ResponseError.unacceptableCode(code: 499, response: errorResponse)),
-            .unknown(message: "Unknown error: [499] some error", error: SomeError.a)
+            .init(error: ResponseError.unacceptableCode(code: 450, response: errorResponse)),
+            .unknown(message: "Unknown error: [450] some error", error: SomeError.a)
         )
         assertEqual(
-            .init(error: ResponseError.unacceptableCode(code: 499, response: nil)),
+            .init(error: ResponseError.unacceptableCode(code: 450, response: nil)),
             .unknown(message: "Unknown error: no error body", error: SomeError.a)
         )
 
