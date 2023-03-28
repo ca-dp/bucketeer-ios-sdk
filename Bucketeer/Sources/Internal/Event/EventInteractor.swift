@@ -137,12 +137,12 @@ final class EventInteractorImpl: EventInteractor {
                     id: idGenerator.id(),
                     event: .metrics(.init(
                         timestamp: clock.currentTimeSeconds,
-                        event: .getEvaluationSize(.init(
+                        event: .responseSize(.init(
                             apiId: .getEvaluations,
                             labels: ["tag": featureTag],
                             size_byte: sizeByte
                         )),
-                        type: .getEvaluationSize,
+                        type: .responseSize,
                         sdk_version: sdkVersion,
                         metadata: metadata
                     )),

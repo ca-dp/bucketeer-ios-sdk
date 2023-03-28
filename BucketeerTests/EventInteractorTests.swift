@@ -171,12 +171,12 @@ final class EventInteractorTests: XCTestCase {
                     id: "id",
                     event: .metrics(.init(
                         timestamp: 1,
-                        event: .getEvaluationSize(.init(
+                        event: .responseSize(.init(
                             apiId: .getEvaluations,
                             labels: ["tag": "featureTag1"],
                             size_byte: 100
                         )),
-                        type: .getEvaluationSize,
+                        type: .responseSize,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",

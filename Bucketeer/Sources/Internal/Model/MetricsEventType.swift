@@ -2,7 +2,7 @@ import Foundation
 
 enum MetricsEventType: Int, Codable, Hashable {
     case responseLatency = 1
-    case getEvaluationSize = 2
+    case responseSize = 2
 //    case timeoutErrorCount = 3 // deprecated
 //    case internalErrorCount = 4 // deprecated
     case timeoutError = 5

@@ -68,9 +68,9 @@ enum EventData: Hashable {
             case .responseLatency:
                 let data = try container.decode(MetricsEventData.ResponseLatency.self, forKey: .event)
                 self.event = .responseLatency(data)
-            case .getEvaluationSize:
-                let data = try container.decode(MetricsEventData.GetEvaluationSize.self, forKey: .event)
-                self.event = .getEvaluationSize(data)
+            case .responseSize:
+                let data = try container.decode(MetricsEventData.ResponseSize.self, forKey: .event)
+                self.event = .responseSize(data)
             case .timeoutError:
                 let data = try container.decode(MetricsEventData.TimeoutError.self, forKey: .event)
                 self.event = .timeoutError(data)
@@ -118,7 +118,7 @@ enum EventData: Hashable {
             switch self.event {
             case .responseLatency(let eventData):
                 try container.encode(eventData, forKey: .event)
-            case .getEvaluationSize(let eventData):
+            case .responseSize(let eventData):
                 try container.encode(eventData, forKey: .event)
             case .timeoutError(let eventData):
                 try container.encode(eventData, forKey: .event)

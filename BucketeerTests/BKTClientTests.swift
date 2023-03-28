@@ -92,12 +92,12 @@ final class BKTClientTests: XCTestCase {
                         id: "mock2",
                         event: .metrics(.init(
                             timestamp: 1,
-                            event: .getEvaluationSize(.init(
+                            event: .responseSize(.init(
                                 apiId: .getEvaluations,
                                 labels: ["tag": "feature"],
                                 size_byte: 3
                             )),
-                            type: .getEvaluationSize,
+                            type: .responseSize,
                             sdk_version: "0.0.2",
                             metadata: [
                                 "app_version": "1.2.3",
