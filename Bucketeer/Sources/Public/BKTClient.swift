@@ -77,6 +77,7 @@ extension BKTClient {
         precondition(Thread.isMainThread, "the initialize method must be called on main thread")
         guard BKTClient.default == nil else {
             config.logger?.warn(message: "BKTClient is already initialized. Not sure if the initial fetch has finished")
+            completion?(nil)
             return
         }
         do {
@@ -91,6 +92,7 @@ extension BKTClient {
             }
         } catch let error {
             config.logger?.error(error)
+            completion?(error as? BKTError)
         }
     }
 
