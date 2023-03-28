@@ -1,7 +1,7 @@
 #!/bin/bash
 
 confirm_api_url () {
-    echo "Please input your API_URL. e.g. Please change this to https://api.bucketeer.io"
+    echo "Please input your API_URL. e.g. https://api.bucketeer.io"
     read input
 
     if [ -z $input ]; then
