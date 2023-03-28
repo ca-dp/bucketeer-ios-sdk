@@ -122,12 +122,12 @@ final class EventInteractorImpl: EventInteractor {
                     id: idGenerator.id(),
                     event: .metrics(.init(
                         timestamp: clock.currentTimeSeconds,
-                        event: .getEvaluationLatency(.init(
+                        event: .responseLatency(.init(
                             apiId: .getEvaluations,
                             labels: ["tag": featureTag],
                             latencySecond: .init(seconds)
                         )),
-                        type: .getEvaluationLatency,
+                        type: .responseLatency,
                         sdk_version: sdkVersion,
                         metadata: metadata
                     )),

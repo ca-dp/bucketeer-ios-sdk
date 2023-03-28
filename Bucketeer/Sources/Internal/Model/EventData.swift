@@ -65,9 +65,9 @@ enum EventData: Hashable {
             self.sdkVersion = try container.decodeIfPresent(String.self, forKey: .sdkVersion)
             self.metadata = try container.decodeIfPresent([String: String].self, forKey: .metadata)
             switch self.type {
-            case .getEvaluationLatency:
-                let data = try container.decode(MetricsEventData.GetEvaluationLatency.self, forKey: .event)
-                self.event = .getEvaluationLatency(data)
+            case .responseLatency:
+                let data = try container.decode(MetricsEventData.ResponseLatency.self, forKey: .event)
+                self.event = .responseLatency(data)
             case .getEvaluationSize:
                 let data = try container.decode(MetricsEventData.GetEvaluationSize.self, forKey: .event)
                 self.event = .getEvaluationSize(data)
@@ -116,7 +116,7 @@ enum EventData: Hashable {
             }
             try container.encode(metadata, forKey: .metadata)
             switch self.event {
-            case .getEvaluationLatency(let eventData):
+            case .responseLatency(let eventData):
                 try container.encode(eventData, forKey: .event)
             case .getEvaluationSize(let eventData):
                 try container.encode(eventData, forKey: .event)

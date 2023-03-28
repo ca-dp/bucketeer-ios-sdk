@@ -1,7 +1,7 @@
 import Foundation
 
 enum MetricsEventData: Hashable {
-    case getEvaluationLatency(GetEvaluationLatency)
+    case responseLatency(ResponseLatency)
     case getEvaluationSize(GetEvaluationSize)
     case timeoutError(TimeoutError)
     case networkError(NetworkError)
@@ -15,7 +15,7 @@ enum MetricsEventData: Hashable {
     case internalServerError(InternalServerError)
     case unknownError(UnknownError)
 
-    struct GetEvaluationLatency: Codable, Hashable {
+    struct ResponseLatency: Codable, Hashable {
         let apiId: ApiId
         let labels: [String: String]
         let latencySecond: Float64

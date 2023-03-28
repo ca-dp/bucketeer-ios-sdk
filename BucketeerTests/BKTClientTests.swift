@@ -72,12 +72,12 @@ final class BKTClientTests: XCTestCase {
                         id: "mock1",
                         event: .metrics(.init(
                             timestamp: 1,
-                            event: .getEvaluationLatency(.init(
+                            event: .responseLatency(.init(
                                 apiId: .getEvaluations,
                                 labels: ["tag": "feature"],
                                 latencySecond: .init(2)
                             )),
-                            type: .getEvaluationLatency,
+                            type: .responseLatency,
                             sdk_version: "0.0.2",
                             metadata: [
                                 "app_version": "1.2.3",

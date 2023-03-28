@@ -101,7 +101,7 @@ class JSONDecodingTests: XCTestCase {
         XCTAssertEqual(eventData.sourceId, .ios)
     }
 
-    func testDecodingMetricsGetEvaluationLatencyEvent() throws {
+    func testDecodingMetricsResponseLatencyEvent() throws {
         let json = """
 {
     "id": "event_1",
@@ -133,8 +133,8 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         XCTAssertEqual(eventData.timestamp, 1)
-        XCTAssertEqual(eventData.type, .getEvaluationLatency)
-        guard case .getEvaluationLatency(let metricsData) = eventData.event else {
+        XCTAssertEqual(eventData.type, .responseLatency)
+        guard case .responseLatency(let metricsData) = eventData.event else {
             XCTFail("metricsData is invalid")
             return
         }
