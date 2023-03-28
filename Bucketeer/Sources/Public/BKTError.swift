@@ -67,10 +67,10 @@ extension BKTError {
                     self = .invalidHttpMethod(message: errorResponse?.error.message ?? "MethodNotAllowed error")
                 case 409:
                     self = .clientClosed(message: errorResponse?.error.message ?? "Client Closed Request error")
+                case 500:
+                    self = .apiServer(message: errorResponse?.error.message ?? "InternalServer error")
                 case 503:
                     self = .unavailable(message: errorResponse?.error.message ?? "Unavailable error")
-                case 500..<600:
-                    self = .apiServer(message: errorResponse?.error.message ?? "InternalServer error")
                 default:
                     var message: String = "no error body"
                     if let errorResponse = errorResponse {
