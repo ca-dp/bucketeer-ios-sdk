@@ -105,7 +105,7 @@ class BKTErrorTests: XCTestCase {
             .invalidHttpMethod(message: "MethodNotAllowed error")
         )
         assertEqual(
-            .init(error: ResponseError.unacceptableCode(code: 409, response: nil)),
+            .init(error: ResponseError.unacceptableCode(code: 499, response: nil)),
             .clientClosed(message: "Client Closed Request error")
         )
         assertEqual(

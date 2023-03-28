@@ -65,7 +65,7 @@ extension BKTError {
                     self = .notFound(message: errorResponse?.error.message ?? "NotFound error")
                 case 405:
                     self = .invalidHttpMethod(message: errorResponse?.error.message ?? "MethodNotAllowed error")
-                case 409:
+                case 499:
                     self = .clientClosed(message: errorResponse?.error.message ?? "Client Closed Request error")
                 case 500:
                     self = .apiServer(message: errorResponse?.error.message ?? "InternalServer error")
