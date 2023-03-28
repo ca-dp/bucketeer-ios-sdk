@@ -115,7 +115,7 @@ class JSONDecodingTests: XCTestCase {
                 "key_1": "value_1",
                 "key_2": "value_2",
             },
-            "duration": 1
+            "latencySecond": 1
         }
     }
 }
@@ -140,7 +140,7 @@ class JSONDecodingTests: XCTestCase {
         }
         XCTAssertEqual(metricsData.labels["key_1"], "value_1")
         XCTAssertEqual(metricsData.labels["key_2"], "value_2")
-        XCTAssertEqual(metricsData.duration, 1)
+        XCTAssertEqual(metricsData.latencySecond, 1)
     }
 
     func testDecodingMetricsGetEvaluationSizeEvent() throws {
