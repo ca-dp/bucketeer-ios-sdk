@@ -11,6 +11,9 @@ enum MetricsEventType: Int, Codable, Hashable {
     case badRequestError = 8
     case unauthorizedError = 9
     case forbiddenError = 10
-    case internalServerError = 11
-    case unknownError = 12
+    case notFoundError = 11
+    case clientClosedError = 12
+    case unavailableError = 13
+    case internalServerError = 14
+    case unknownError = 15
 }

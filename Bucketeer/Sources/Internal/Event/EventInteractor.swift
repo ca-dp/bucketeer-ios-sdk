@@ -242,6 +242,15 @@ final class EventInteractorImpl: EventInteractor {
         case .forbidden:
             metricsEventData = .forbiddenError(.init(apiId: apiId, labels: labels))
             metricsEventType = .forbiddenError
+        case .notFound:
+            metricsEventData = .notFoundError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .notFoundError
+        case .clientClosed:
+            metricsEventData = .clientClosedError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .clientClosedError
+        case .unavailable:
+            metricsEventData = .unavailableError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .unavailableError
         case .apiServer:
             metricsEventData = .internalServerError(.init(apiId: apiId, labels: labels))
             metricsEventType = .internalServerError

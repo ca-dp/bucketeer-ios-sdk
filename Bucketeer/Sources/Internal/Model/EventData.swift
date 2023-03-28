@@ -86,6 +86,15 @@ enum EventData: Hashable {
             case .forbiddenError:
                 let data = try container.decode(MetricsEventData.ForbiddenError.self, forKey: .event)
                 self.event = .forbiddenError(data)
+            case .notFoundError:
+                let data = try container.decode(MetricsEventData.NotFoundError.self, forKey: .event)
+                self.event = .notFoundError(data)
+            case .clientClosedError:
+                let data = try container.decode(MetricsEventData.ClientClosedError.self, forKey: .event)
+                self.event = .clientClosedError(data)
+            case .unavailableError:
+                let data = try container.decode(MetricsEventData.UnavailableError.self, forKey: .event)
+                self.event = .unavailableError(data)
             case .internalError:
                 let data = try container.decode(MetricsEventData.InternalSdkError.self, forKey: .event)
                 self.event = .internalSdkError(data)
@@ -120,6 +129,12 @@ enum EventData: Hashable {
             case .unauthorizedError(let eventData):
                 try container.encode(eventData, forKey: .event)
             case .forbiddenError(let eventData):
+                try container.encode(eventData, forKey: .event)
+            case .notFoundError(let eventData):
+                try container.encode(eventData, forKey: .event)
+            case .clientClosedError(let eventData):
+                try container.encode(eventData, forKey: .event)
+            case .unavailableError(let eventData):
                 try container.encode(eventData, forKey: .event)
             case .internalSdkError(let eventData):
                 try container.encode(eventData, forKey: .event)
