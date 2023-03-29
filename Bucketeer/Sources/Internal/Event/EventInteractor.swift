@@ -128,6 +128,7 @@ final class EventInteractorImpl: EventInteractor {
                             latencySecond: .init(seconds)
                         )),
                         type: .responseLatency,
+                        sourceId: .ios,
                         sdk_version: sdkVersion,
                         metadata: metadata
                     )),
@@ -143,6 +144,7 @@ final class EventInteractorImpl: EventInteractor {
                             size_byte: sizeByte
                         )),
                         type: .responseSize,
+                        sourceId: .ios,
                         sdk_version: sdkVersion,
                         metadata: metadata
                     )),
@@ -265,6 +267,7 @@ final class EventInteractorImpl: EventInteractor {
             timestamp: clock.currentTimeSeconds,
             event: metricsEventData,
             type: metricsEventType,
+            sourceId: .ios,
             sdk_version: sdkVersion,
             metadata: metadata
         ))

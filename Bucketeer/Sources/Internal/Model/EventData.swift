@@ -37,6 +37,7 @@ enum EventData: Hashable {
         let timestamp: Int64
         let event: MetricsEventData
         let type: MetricsEventType
+        let sourceId: SourceID
         var sdkVersion: String? = nil
         var metadata: [String: String]? = nil
         var protobufType: String? = "type.googleapis.com/bucketeer.event.client.MetricsEvent"
@@ -45,15 +46,17 @@ enum EventData: Hashable {
             case timestamp
             case event
             case type
+            case sourceId
             case sdkVersion
             case metadata
             case protobufType
         }
 
-        init(timestamp: Int64, event: MetricsEventData, type: MetricsEventType, sdk_version: String, metadata: [String: String]?) {
+        init(timestamp: Int64, event: MetricsEventData, type: MetricsEventType, sourceId: SourceID, sdk_version: String, metadata: [String: String]?) {
             self.timestamp = timestamp
             self.event = event
             self.type = type
+            self.sourceId = sourceId
             self.sdkVersion = sdk_version
             self.metadata = metadata
         }
@@ -63,6 +66,7 @@ enum EventData: Hashable {
             self.timestamp = try container.decode(Int64.self, forKey: .timestamp)
             self.type = try container.decode(MetricsEventType.self, forKey: .type)
             self.sdkVersion = try container.decodeIfPresent(String.self, forKey: .sdkVersion)
+            self.sourceId = try container.decode(SourceID.self, forKey: .sourceId)
             self.metadata = try container.decodeIfPresent([String: String].self, forKey: .metadata)
             switch self.type {
             case .responseLatency:
@@ -111,6 +115,7 @@ enum EventData: Hashable {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(timestamp, forKey: .timestamp)
             try container.encode(type, forKey: .type)
+            try container.encode(sourceId, forKey: .sourceId)
             if let sdkVersion {
                 try container.encode(sdkVersion, forKey: .sdkVersion)
             }

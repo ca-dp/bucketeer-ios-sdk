@@ -78,6 +78,7 @@ final class BKTClientTests: XCTestCase {
                                 latencySecond: .init(2)
                             )),
                             type: .responseLatency,
+                            sourceId: .ios,
                             sdk_version: "0.0.2",
                             metadata: [
                                 "app_version": "1.2.3",
@@ -98,6 +99,7 @@ final class BKTClientTests: XCTestCase {
                                 size_byte: 3
                             )),
                             type: .responseSize,
+                            sourceId: .ios,
                             sdk_version: "0.0.2",
                             metadata: [
                                 "app_version": "1.2.3",
@@ -145,6 +147,7 @@ final class BKTClientTests: XCTestCase {
                         timestamp: 1,
                         event: .timeoutError(.init(apiId: .getEvaluations, labels: ["tag": "feature"])),
                         type: .timeoutError,
+                        sourceId: .ios,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",

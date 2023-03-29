@@ -157,6 +157,7 @@ final class EventInteractorTests: XCTestCase {
                             latencySecond: .init(10)
                         )),
                         type: .responseLatency,
+                        sourceId: .ios,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
@@ -177,6 +178,7 @@ final class EventInteractorTests: XCTestCase {
                             size_byte: 100
                         )),
                         type: .responseSize,
+                        sourceId: .ios,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
@@ -218,6 +220,7 @@ final class EventInteractorTests: XCTestCase {
                         timestamp: 1,
                         event: .timeoutError(.init(apiId: .getEvaluations, labels: ["tag": "featureTag1"])),
                         type: .timeoutError,
+                        sourceId: .ios,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
@@ -254,6 +257,7 @@ final class EventInteractorTests: XCTestCase {
                         timestamp: 1,
                         event: .badRequestError(.init(apiId: .getEvaluations, labels: ["tag": "featureTag1"])),
                         type: .badRequestError,
+                        sourceId: .ios,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",

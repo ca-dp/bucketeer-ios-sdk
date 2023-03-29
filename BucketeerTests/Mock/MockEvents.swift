@@ -100,6 +100,7 @@ extension Event {
                 latencySecond: .init(2)
             )),
             type: .responseLatency,
+            sourceId: .ios,
             sdk_version: "0.0.1",
             metadata: [
                 "app_version": "1.2.3",
@@ -120,6 +121,7 @@ extension Event {
                 labels: [:]
             )),
             type: .internalServerError,
+            sourceId: .ios,
             sdk_version: "0.0.1",
             metadata: [
                 "app_version": "1.2.3",
@@ -140,6 +142,7 @@ extension Event {
                 labels: [:]
             )),
             type: .internalServerError,
+            sourceId: .ios,
             sdk_version: "0.0.1",
             metadata: [
                 "app_version": "1.2.3",
