@@ -109,6 +109,7 @@ class JSONDecodingTests: XCTestCase {
     "event": {
         "timestamp": 1,
         "type": 1,
+        "sourceId": 2,
         "event": {
             "apiId": 2,
             "labels": {
@@ -151,6 +152,7 @@ class JSONDecodingTests: XCTestCase {
     "event": {
         "timestamp": 1,
         "type": 2,
+        "sourceId": 2,
         "event": {
             "apiId": 2,
             "labels": {
@@ -193,6 +195,7 @@ class JSONDecodingTests: XCTestCase {
     "event": {
         "timestamp": 1,
         "type": 3,
+        "sourceId": 2,
         "event": {
             "apiId": 2,
             "labels": {
@@ -231,6 +234,7 @@ class JSONDecodingTests: XCTestCase {
     "event": {
         "timestamp": 1,
         "type": 5,
+        "sourceId": 2,
         "event": {
             "apiId": 2,
             "labels": {
