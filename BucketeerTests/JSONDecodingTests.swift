@@ -192,7 +192,7 @@ class JSONDecodingTests: XCTestCase {
     "type": 4,
     "event": {
         "timestamp": 1,
-        "type": 5,
+        "type": 3,
         "event": {
             "apiId": 2,
             "labels": {
@@ -230,7 +230,7 @@ class JSONDecodingTests: XCTestCase {
     "type": 4,
     "event": {
         "timestamp": 1,
-        "type": 7,
+        "type": 5,
         "event": {
             "apiId": 2,
             "labels": {
