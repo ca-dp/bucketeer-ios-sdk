@@ -6,7 +6,12 @@ on:
       - '*.md'
 
 jobs:
-  build:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: norio-nomura/action-swiftlint@3.2.1
+  test:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,8 +21,6 @@ jobs:
         env:
           API_URL: ${{ secrets.API_URL }}
           SDK_KEY: ${{ secrets.SDK_KEY }}
-
-      - uses: norio-nomura/action-swiftlint@3.2.1
 
       - name: Build
         run: make build-for-testing
