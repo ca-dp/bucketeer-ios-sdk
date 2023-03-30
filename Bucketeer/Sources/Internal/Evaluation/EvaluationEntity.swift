@@ -4,6 +4,7 @@ struct EvaluationEntity: SQLiteEntity {
     static var tableName: String {
         return "Evaluations"
     }
+
     typealias Model = Evaluation
 
     var id = SQLiteColumn<String>(value: "", isPrimaryKey: true)
@@ -15,7 +16,6 @@ struct EvaluationEntity: SQLiteEntity {
         let data = statement.data(at: 3)
         return try JSONDecoder().decode(Evaluation.self, from: data)
     }
-
 }
 
 extension EvaluationEntity {

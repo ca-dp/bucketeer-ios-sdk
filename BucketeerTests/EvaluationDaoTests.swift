@@ -13,7 +13,6 @@ final class EvaluationDaoTests: XCTestCase {
         let evaluationTable = SQLite.Table(entity: EvaluationEntity())
         let evaluationSql = evaluationTable.sqlToCreate()
         try db.exec(query: evaluationSql)
-
     }
 
     override func tearDown() async throws {

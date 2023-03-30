@@ -111,6 +111,7 @@ private struct MockEntity: SQLiteEntity {
         var id: String = "some_id"
         var value: Int = 100
     }
+
     static var tableName: String { "Mock" }
 
     var id = SQLiteColumn<String>(value: "", isPrimaryKey: true)
@@ -127,6 +128,7 @@ private struct MockMultiPrimaryKeyEntity: SQLiteEntity {
     struct Model: Codable {
         var id: String = "some_id"
     }
+
     static var tableName: String { "Mock" }
 
     var id = SQLiteColumn<String>(value: "", isPrimaryKey: true)

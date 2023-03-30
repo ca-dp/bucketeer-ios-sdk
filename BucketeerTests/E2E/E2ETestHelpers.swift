@@ -74,7 +74,6 @@ extension BKTClient {
         let component = self.component as? ComponentImpl
         let count = try? component?.dataModule.eventDao.getEvents().count
         XCTAssertEqual(expectedEventCount, count, file: file, line: line)
-
     }
 }
 
@@ -127,6 +126,7 @@ final class E2ELogger: BKTLogger {
     private var prefix: String {
         "Bucketeer E2E "
     }
+
     func debug(message: String) {
         print("\(prefix)[DEBUG] \(message)")
     }

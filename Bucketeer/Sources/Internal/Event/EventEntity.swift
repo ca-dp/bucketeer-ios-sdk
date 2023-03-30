@@ -4,6 +4,7 @@ struct EventEntity: SQLiteEntity {
     static var tableName: String {
         return "Events"
     }
+
     typealias Model = Event
 
     var id = SQLiteColumn<String>(value: "", isPrimaryKey: true)
@@ -13,7 +14,6 @@ struct EventEntity: SQLiteEntity {
         let data = statement.data(at: 1)
         return try JSONDecoder().decode(Event.self, from: data)
     }
-
 }
 
 extension EventEntity {

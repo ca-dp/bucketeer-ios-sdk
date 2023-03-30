@@ -8,6 +8,12 @@ disabled_rules: # rule identifiers turned on by default to exclude from running
   - nesting
   - discouraged_direct_init
 
+opt_in_rules:
+  - let_var_whitespace
+  - unused_declaration
+  - unused_import
+  - vertical_whitespace_closing_braces
+
 excluded:
   - Example
   - ExampleTVOS

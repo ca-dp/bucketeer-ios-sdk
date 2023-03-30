@@ -65,6 +65,7 @@ extension SQLite {
 }
 
 let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+
 private extension OpaquePointer {
     func bind(value: Int, name: String) -> Int32 {
         return sqlite3_bind_int(self, sqlite3_bind_parameter_index(self, name), Int32(value))
