@@ -117,7 +117,7 @@ final class EvaluationForegroundTaskTests: XCTestCase {
             }
         )
         let eventInteractor = MockEventInteractor(
-            trackEvaluationFailureHandler: { featureTag, e in
+            trackEvaluationFailureHandler: { _, _ in
                 expectation.fulfill()
             }
         )

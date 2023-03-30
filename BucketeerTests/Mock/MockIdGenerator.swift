@@ -14,4 +14,3 @@ final class MockIdGenerator: IdGenerator {
         return identifier()
     }
 }
-

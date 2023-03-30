@@ -69,7 +69,7 @@ class EventForegroundTaskTests: XCTestCase {
         expectation.assertForOverFulfill = true
         let dispatchQueue = DispatchQueue(label: "default", qos: .default)
 
-        let interactor = MockEventInteractor(sendEventsHandler: { force, completion in
+        let interactor = MockEventInteractor(sendEventsHandler: { _, _ in
             // not called
             expectation.fulfill()
         })

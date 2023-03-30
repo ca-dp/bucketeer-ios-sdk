@@ -17,6 +17,8 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
           SDK_KEY: ${{ secrets.SDK_KEY }}
 
+      - uses: norio-nomura/action-swiftlint@3.2.1
+
       - name: Build
         run: make build-for-testing
 

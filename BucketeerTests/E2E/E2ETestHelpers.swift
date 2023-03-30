@@ -37,7 +37,7 @@ extension BKTClient {
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.main.async {
                 self.initialize(config: config, user: user) { error in
-                    if let error = error{
+                    if let error = error {
                         continuation.resume(throwing: error)
                     } else {
                         continuation.resume(returning: ())
@@ -49,7 +49,7 @@ extension BKTClient {
     func fetchEvaluations(timeoutMillis: Int64?) async throws {
         return try await withCheckedThrowingContinuation { continuation in
             self.fetchEvaluations(timeoutMillis: timeoutMillis) { error in
-                if let error = error{
+                if let error = error {
                     continuation.resume(throwing: error)
                 } else {
                     continuation.resume(returning: ())
@@ -61,7 +61,7 @@ extension BKTClient {
     func flush() async throws {
         return try await withCheckedThrowingContinuation({ continuation in
             self.flush { error in
-                if let error = error{
+                if let error = error {
                     continuation.resume(throwing: error)
                 } else {
                     continuation.resume(returning: ())

@@ -9,7 +9,7 @@ final class EvaluationInteractorTests: XCTestCase {
 
         let baseUserEvaluationsId = UserEvaluations.mock1.id
         let api = MockApiClient(
-            getEvaluationsHandler: { user, userEvaluationsId, timeoutMillis, completion in
+            getEvaluationsHandler: { user, userEvaluationsId, _, completion in
 
                 XCTAssertEqual(user, .mock1)
                 XCTAssertEqual(userEvaluationsId, "")
@@ -69,7 +69,7 @@ final class EvaluationInteractorTests: XCTestCase {
         let baseUserEvaluationsId = UserEvaluations.mock1.id
         let baseUserEvaluationsId_updated = baseUserEvaluationsId + "_updated"
         let api = MockApiClient(
-            getEvaluationsHandler: { user, userEvaluationsId, timeoutMillis, completion in
+            getEvaluationsHandler: { user, userEvaluationsId, _, completion in
 
                 XCTAssertEqual(user, .mock1)
                 if userEvaluationsId == "" {
@@ -140,7 +140,7 @@ final class EvaluationInteractorTests: XCTestCase {
 
         let baseUserEvaluationsId = UserEvaluations.mock1.id
         let api = MockApiClient(
-            getEvaluationsHandler: { user, userEvaluationsId, timeoutMillis, completion in
+            getEvaluationsHandler: { user, _, _, completion in
 
                 XCTAssertEqual(user, .mock1)
                 let response = GetEvaluationsResponse(
@@ -260,7 +260,7 @@ final class EvaluationInteractorTests: XCTestCase {
     func testGetLatestWithoutCache() {
         let api = MockApiClient()
 
-        let dao = MockEvaluationDao(getHandler: { userId in
+        let dao = MockEvaluationDao(getHandler: { _ in
             return []
         })
         let defaults = MockDefaults()

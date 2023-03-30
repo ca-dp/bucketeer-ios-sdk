@@ -17,7 +17,7 @@ final class EventForegroundTask {
             intervalMillis: component.config.eventsFlushInterval,
             queue: queue,
             logger: component.config.logger,
-            handler: { [weak self] poller in
+            handler: { [weak self] _ in
                 self?.component?.eventInteractor.sendEvents(force: true, completion: nil)
             }
         )
@@ -48,4 +48,3 @@ extension EventForegroundTask: EventUpdateListener {
         }
     }
 }
-

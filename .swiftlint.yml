@@ -1,0 +1,31 @@
+disabled_rules: # rule identifiers turned on by default to exclude from running
+  - colon
+  - comma
+  - control_statement
+  - identifier_name
+  - cyclomatic_complexity
+opt_in_rules:
+  - empty_count
+
+allow_zero_lintable_files: false
+
+force_try:
+  severity: warning
+
+line_length: 250
+
+type_body_length:
+  warning: 300
+  error: 400
+
+file_length:
+  warning: 500
+  error: 1200
+
+type_name:
+  min_length: 4
+  max_length:
+    warning: 40
+    error: 50
+  excluded: iPhone
+  allowed_symbols: ["_"]
