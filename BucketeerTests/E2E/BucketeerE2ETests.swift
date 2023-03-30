@@ -22,12 +22,14 @@ final class BucketeerE2ETests: XCTestCase {
         )
     }
 
-    override func tearDown() {
-        super.tearDown()
+    @MainActor
+    override func tearDown() async throws {
+        try await super.tearDown()
 
+        try await BKTClient.shared.flush()
         BKTClient.destroy()
         UserDefaults.standard.removeObject(forKey: "bucketeer_user_evaluations_id")
-        try? FileManager.default.removeItem(at: .database)
+        try FileManager.default.removeItem(at: .database)
     }
 
     func testStringVariation() {
