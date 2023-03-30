@@ -3,7 +3,7 @@ import Foundation
 
 final class MockEventInteractor: EventInteractor {
     typealias SendEventsHandler = (_ force: Bool, _ completion: ((Result<Bool, BKTError>) -> Void)?) -> Void
-    typealias TrackEvaluationSuccessHandler = (_ featureTag: String, _ seconds: Int64, _ sizeByte: Int64) throws -> Void
+    typealias TrackEvaluationSuccessHandler = (_ featureTag: String, _ seconds: Float64, _ sizeByte: Int64) throws -> Void
     typealias TrackEvaluationFailureHandler = (_ featureTag: String, _ error: BKTError) throws -> Void
     typealias TrackRegisterEventFailureHandler = (_ error: BKTError) throws -> Void
 
@@ -37,7 +37,7 @@ final class MockEventInteractor: EventInteractor {
     func trackGoalEvent(featureTag: String, user: User, goalId: String, value: Double) throws {
 
     }
-    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Int64, sizeByte: Int64) throws {
+    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Float64, sizeByte: Int64) throws {
         try trackEvaluationSuccessHandler?(featureTag, seconds, sizeByte)
     }
     func trackFetchEvaluationsFailure(featureTag: String, error: BKTError) throws {

@@ -222,7 +222,7 @@ extension BKTClient {
                       case .success(let response):
                           try interactor.trackFetchEvaluationsSuccess(
                             featureTag: response.featureTag,
-                            seconds: Int64(response.seconds),
+                            seconds: response.seconds,
                             sizeByte: response.sizeByte
                           )
                           completion?(nil)

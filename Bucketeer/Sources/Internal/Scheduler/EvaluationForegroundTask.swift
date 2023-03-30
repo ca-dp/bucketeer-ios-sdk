@@ -56,7 +56,7 @@ final class EvaluationForegroundTask: ScheduledTask {
                 case .success(let response):
                     try eventInteractor.trackFetchEvaluationsSuccess(
                         featureTag: response.featureTag,
-                        seconds: Int64(response.seconds),
+                        seconds: response.seconds,
                         sizeByte: response.sizeByte
                     )
                     // reset retry count
