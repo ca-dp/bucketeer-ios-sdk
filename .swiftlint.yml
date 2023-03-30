@@ -26,7 +26,7 @@ type_body_length:
   warning: 300
   error: 800
 
-function_body_length: 150
+function_body_length: 120
 
 file_length:
   warning: 500
