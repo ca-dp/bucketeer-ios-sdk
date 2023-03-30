@@ -34,6 +34,10 @@ class BKTErrorTests: XCTestCase {
         assertEqual(.illegalArgument(message: "1"), .illegalArgument(message: "1"))
         assertEqual(.illegalState(message: "1"), .illegalState(message: "1"))
         assertEqual(
+            .unknownServer(message: "1", error: SomeError.a),
+            .unknownServer(message: "1", error: SomeError.a)
+        )
+        assertEqual(
             .unknown(message: "1", error: SomeError.a),
             .unknown(message: "1", error: SomeError.a)
         )
@@ -46,6 +50,10 @@ class BKTErrorTests: XCTestCase {
         assertEqual(
             .network(message: "1", error: SomeError.a),
             .network(message: "1", error: SomeError.b)
+        )
+        assertEqual(
+            .unknownServer(message: "1", error: SomeError.a),
+            .unknownServer(message: "1", error: SomeError.b)
         )
         assertEqual(
             .unknown(message: "1", error: SomeError.a),
@@ -70,6 +78,10 @@ class BKTErrorTests: XCTestCase {
         )
         assertNotEqual(.illegalArgument(message: "1"), .illegalArgument(message: "2"))
         assertNotEqual(.illegalState(message: "1"), .illegalState(message: "2"))
+        assertNotEqual(
+            .unknownServer(message: "1", error: SomeError.a),
+            .unknownServer(message: "2", error: SomeError.a)
+        )
         assertNotEqual(
             .unknown(message: "1", error: SomeError.a),
             .unknown(message: "2", error: SomeError.a)
@@ -113,11 +125,11 @@ class BKTErrorTests: XCTestCase {
         let errorResponse = ErrorResponse(error: .init(code: 450, message: "some error"))
         assertEqual(
             .init(error: ResponseError.unacceptableCode(code: 450, response: errorResponse)),
-            .unknown(message: "Unknown error: [450] some error", error: SomeError.a)
+            .unknownServer(message: "Unknown server error: [450] some error", error: SomeError.a)
         )
         assertEqual(
             .init(error: ResponseError.unacceptableCode(code: 450, response: nil)),
-            .unknown(message: "Unknown error: no error body", error: SomeError.a)
+            .unknownServer(message: "Unknown server error: no error body", error: SomeError.a)
         )
 
         assertEqual(

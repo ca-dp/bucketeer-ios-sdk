@@ -256,7 +256,7 @@ final class EventInteractorImpl: EventInteractor {
         case .apiServer:
             metricsEventData = .internalServerError(.init(apiId: apiId, labels: labels))
             metricsEventType = .internalServerError
-        case .unknown:
+        case .unknownServer:
             metricsEventData = .unknownError(.init(apiId: apiId, labels: labels))
             metricsEventType = .unknownError
         default:

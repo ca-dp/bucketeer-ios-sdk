@@ -18,6 +18,7 @@ public enum BKTError: Error, Equatable {
     case illegalState(message: String)
 
     // unknown errors
+    case unknownServer(message: String, error: Error)
     case unknown(message: String, error: Error)
 
     public static func == (lhs: BKTError, rhs: BKTError) -> Bool {
@@ -34,6 +35,7 @@ public enum BKTError: Error, Equatable {
             return m1 == m2
         case (.timeout(let m1, _), .timeout(let m2, _)),
             (.network(let m1, _), .network(let m2, _)),
+            (.unknownServer(let m1, _), .unknownServer(let m2, _)),
             (.unknown(let m1, _), .unknown(let m2, _)):
             return m1 == m2
         default:
@@ -72,7 +74,7 @@ extension BKTError {
                     if let errorResponse = errorResponse {
                         message = "[\(errorResponse.error.code)] \(errorResponse.error.message)"
                     }
-                    self = .unknown(message: "Unknown error: \(message)", error: error)
+                    self = .unknownServer(message: "Unknown server error: \(message)", error: error)
                 }
             case .unknown(let urlResponse):
                 var message: String = "no response"
