@@ -5,7 +5,7 @@ protocol EventInteractor {
     func trackEvaluationEvent(featureTag: String, user: User, evaluation: Evaluation) throws
     func trackDefaultEvaluationEvent(featureTag: String, user: User, featureId: String) throws
     func trackGoalEvent(featureTag: String, user: User, goalId: String, value: Double) throws
-    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Float64, sizeByte: Int64) throws
+    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Double, sizeByte: Int64) throws
     func trackFetchEvaluationsFailure(featureTag: String, error: BKTError) throws
     func trackRegisterEventsFailure(error: BKTError) throws
     func sendEvents(force: Bool, completion: ((Result<Bool, BKTError>) -> Void)?)
@@ -115,7 +115,7 @@ final class EventInteractorImpl: EventInteractor {
         updateEventsAndNotify()
     }
 
-    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Float64, sizeByte: Int64) throws {
+    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Double, sizeByte: Int64) throws {
         try eventDao.add(
             events: [
                 .init(

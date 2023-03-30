@@ -18,7 +18,7 @@ enum MetricsEventData: Hashable {
     struct ResponseLatency: Codable, Hashable {
         let apiId: ApiId
         let labels: [String: String]
-        let latencySecond: Float64
+        let latencySecond: Double
         var protobufType: String? = "type.googleapis.com/bucketeer.event.client.LatencyMetricsEvent"
 
         func hash(into hasher: inout Hasher) {
