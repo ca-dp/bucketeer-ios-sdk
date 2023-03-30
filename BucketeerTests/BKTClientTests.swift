@@ -1,6 +1,7 @@
 import XCTest
 @testable import Bucketeer
 
+// swiftlint:disable type_body_length
 final class BKTClientTests: XCTestCase {
 
     func testCurrentUser() {
@@ -377,3 +378,4 @@ final class BKTClientTests: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
 }
+// swiftlint:enable type_body_length

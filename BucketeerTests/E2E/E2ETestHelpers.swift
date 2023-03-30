@@ -142,8 +142,10 @@ final class E2ELogger: BKTLogger {
 
 extension URL {
     static var database: URL {
+        // swiftlint:disable force_try
         let directoryURL = try! FileManager.default
             .url(for: DatabaseOpenHelper.directory, in: .userDomainMask, appropriateFor: nil, create: true)
         return directoryURL.appendingPathComponent(Constant.DB.FILE_NAME)
+        // swiftlint:enable force_try
     }
 }

@@ -1,6 +1,8 @@
 import XCTest
 @testable import Bucketeer
 
+// swiftlint:disable file_length
+// swiftlint:disable type_body_length
 class ApiClientTests: XCTestCase {
 
     // MARK: - getEvaluations
@@ -843,3 +845,5 @@ class ApiClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
     }
 }
+// swiftlint:enable type_body_length
+// swiftlint:enable file_length

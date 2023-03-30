@@ -5,19 +5,19 @@ class MigrationTests: XCTestCase {
     let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("test.db")
     var path: String { url.path }
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
 
-        let db = try! SQLite(path: path, logger: nil)
-        try! db.exec(query: currentEvaluationSQL)
-        try! db.exec(query: latestEvaluationSQL)
-        try! db.exec(query: eventSQL)
+        let db = try SQLite(path: path, logger: nil)
+        try db.exec(query: currentEvaluationSQL)
+        try db.exec(query: latestEvaluationSQL)
+        try db.exec(query: eventSQL)
     }
 
-    override func tearDown() {
-        try! FileManager.default.removeItem(at: url)
+    override func tearDown() async throws {
+        try FileManager.default.removeItem(at: url)
 
-        super.tearDown()
+        try await super.tearDown()
     }
 
     func testMigration1to2() throws {
