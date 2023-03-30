@@ -1,6 +1,11 @@
 name: Publish to cocoapods
 
 on:
+  workflow_dispatch:
+    inputs:
+      bucketeer_version:
+        description: "Bucketeer version"
+        required: true
   push:
     tags:
       - v*

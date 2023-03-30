@@ -1,9 +1,10 @@
-name: Pull Request
+name: Build & Integration tests
 
 on:
-  pull_request:
-    paths-ignore:
-      - '*.md'
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
