@@ -18,9 +18,6 @@ jobs:
 
       - name: Setup
         run: make setup
-        env:
-          API_URL: ${{ secrets.API_URL }}
-          SDK_KEY: ${{ secrets.SDK_KEY }}
 
       - name: Build
         run: make build-for-testing
