@@ -26,15 +26,15 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
     let evaluationDao: EvaluationDao
     let defaults: Defaults
     let idGenerator: IdGenerator
-    let config: BKTConfig
+    let featureTag: String
     let logger: Logger?
 
-    init(apiClient: ApiClient, evaluationDao: EvaluationDao, defaults: Defaults, idGenerator: IdGenerator, config: BKTConfig, logger: Logger? = nil) {
+    init(apiClient: ApiClient, evaluationDao: EvaluationDao, defaults: Defaults, idGenerator: IdGenerator, featureTag: String, logger: Logger? = nil) {
         self.apiClient = apiClient
         self.evaluationDao = evaluationDao
         self.defaults = defaults
         self.idGenerator = idGenerator
-        self.config = config
+        self.featureTag = featureTag
         self.logger = logger
     }
 
@@ -54,7 +54,7 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
         let currentEvaluationsId = self.currentEvaluationsId
         let evaluationDao = self.evaluationDao
         let logger = self.logger
-        let featureTag = self.config.featureTag
+        let featureTag = self.featureTag
         apiClient.getEvaluations(
             user: user,
             userEvaluationsId: currentEvaluationsId,

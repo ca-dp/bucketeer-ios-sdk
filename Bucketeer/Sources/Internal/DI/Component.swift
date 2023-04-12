@@ -19,7 +19,7 @@ final class ComponentImpl: Component {
             evaluationDao: dataModule.evaluationDao,
             defaults: dataModule.defaults,
             idGenerator: dataModule.idGenerator,
-            config: dataModule.config
+            featureTag: dataModule.config.featureTag
         )
         self.eventInteractor = EventInteractorImpl(
             sdkVersion: dataModule.config.sdkVersion,

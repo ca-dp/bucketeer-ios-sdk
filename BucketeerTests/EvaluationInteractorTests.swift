@@ -33,7 +33,7 @@ final class EvaluationInteractorTests: XCTestCase {
             evaluationDao: dao,
             defaults: defaults,
             idGenerator: idGenerator,
-            config: config
+            featureTag: config.featureTag
         )
         XCTAssertEqual(interactor.currentEvaluationsId, "")
         interactor.fetch(user: .mock1) { result in
@@ -107,7 +107,7 @@ final class EvaluationInteractorTests: XCTestCase {
             evaluationDao: dao,
             defaults: defaults,
             idGenerator: idGenerator,
-            config: config
+            featureTag: config.featureTag
         )
         XCTAssertEqual(interactor.currentEvaluationsId, "")
         // 1st
@@ -166,7 +166,7 @@ final class EvaluationInteractorTests: XCTestCase {
             evaluationDao: dao,
             defaults: defaults,
             idGenerator: idGenerator,
-            config: config
+            featureTag: config.featureTag
         )
         XCTAssertEqual(interactor.currentEvaluationsId, "")
         // 1st
@@ -221,7 +221,7 @@ final class EvaluationInteractorTests: XCTestCase {
             evaluationDao: dao,
             defaults: defaults,
             idGenerator: idGenerator,
-            config: config
+            featureTag: config.featureTag
         )
 
         XCTAssertEqual(interactor.evaluations[userId1], nil)
@@ -259,7 +259,7 @@ final class EvaluationInteractorTests: XCTestCase {
             evaluationDao: dao,
             defaults: defaults,
             idGenerator: idGenerator,
-            config: config
+            featureTag: config.featureTag
         )
 
         try interactor.refreshCache(userId: userId1)
@@ -282,7 +282,7 @@ final class EvaluationInteractorTests: XCTestCase {
             evaluationDao: dao,
             defaults: defaults,
             idGenerator: idGenerator,
-            config: config
+            featureTag: config.featureTag
         )
 
         XCTAssertEqual(interactor.getLatest(userId: User.mock1.id, featureId: Evaluation.mock1.featureId), nil)
@@ -308,7 +308,7 @@ final class EvaluationInteractorTests: XCTestCase {
             evaluationDao: dao,
             defaults: defaults,
             idGenerator: idGenerator,
-            config: config
+            featureTag: config.featureTag
         )
 
         XCTAssertEqual(interactor.getLatest(userId: User.mock1.id, featureId: "invalid_feature_id"), nil)
