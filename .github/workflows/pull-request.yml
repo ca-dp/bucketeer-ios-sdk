@@ -11,6 +11,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: norio-nomura/action-swiftlint@3.2.1
+
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup
+        run: make setup
+
+      - name: Build
+        run: make build
+
   test:
     runs-on: macos-latest
     steps:
