@@ -152,12 +152,13 @@ final class EventInteractorTests: XCTestCase {
                     id: "id",
                     event: .metrics(.init(
                         timestamp: 1,
-                        event: .getEvaluationLatency(.init(
+                        event: .responseLatency(.init(
                             apiId: .getEvaluations,
                             labels: ["tag": "featureTag1"],
-                            duration: .init(seconds: 10)
+                            latencySecond: .init(10)
                         )),
-                        type: .getEvaluationLatency,
+                        type: .responseLatency,
+                        sourceId: .ios,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
@@ -172,12 +173,13 @@ final class EventInteractorTests: XCTestCase {
                     id: "id",
                     event: .metrics(.init(
                         timestamp: 1,
-                        event: .getEvaluationSize(.init(
+                        event: .responseSize(.init(
                             apiId: .getEvaluations,
                             labels: ["tag": "featureTag1"],
                             size_byte: 100
                         )),
-                        type: .getEvaluationSize,
+                        type: .responseSize,
+                        sourceId: .ios,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
@@ -219,6 +221,7 @@ final class EventInteractorTests: XCTestCase {
                         timestamp: 1,
                         event: .timeoutError(.init(apiId: .getEvaluations, labels: ["tag": "featureTag1"])),
                         type: .timeoutError,
+                        sourceId: .ios,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",
@@ -253,8 +256,9 @@ final class EventInteractorTests: XCTestCase {
                     id: "id",
                     event: .metrics(.init(
                         timestamp: 1,
-                        event: .internalSdkError(.init(apiId: .getEvaluations, labels: ["tag": "featureTag1"])),
-                        type: .internalError,
+                        event: .badRequestError(.init(apiId: .getEvaluations, labels: ["tag": "featureTag1"])),
+                        type: .badRequestError,
+                        sourceId: .ios,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",

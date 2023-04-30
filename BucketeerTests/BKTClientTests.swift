@@ -22,6 +22,32 @@ final class BKTClientTests: XCTestCase {
         XCTAssertEqual(client.currentUser()?.attributes, attributes)
     }
 
+    func testUpdateUserAttributesAndResetEvaluationId() {
+        let expectation = self.expectation(description: "")
+        let dataModule = MockDataModule(
+            userHolder: .init(user: .mock1),
+            apiClient: MockApiClient(getEvaluationsHandler: { (user, userEvaluationsId, timeoutMillis, handler) in
+                handler?(.success(.init(
+                    evaluations: .mock1,
+                    userEvaluationsId: "id",
+                    seconds: 2,
+                    sizeByte: 3,
+                    featureTag: "feature"
+                )))
+            })
+        )
+        let client = BKTClient(dataModule: dataModule, dispatchQueue: .global())
+        client.fetchEvaluations(timeoutMillis: nil) { error in
+            XCTAssertEqual(error, nil)
+            XCTAssertEqual(client.component.evaluationInteractor.currentEvaluationsId, "id")
+            let attributes: [String: String] = ["key": "updated"]
+            client.updateUserAttributes(attributes: attributes)
+            XCTAssertEqual(client.component.evaluationInteractor.currentEvaluationsId, "")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+
     func testFetchEvaluationsSuccess() {
         let expectation = self.expectation(description: "")
         expectation.expectedFulfillmentCount = 3
@@ -47,12 +73,13 @@ final class BKTClientTests: XCTestCase {
                         id: "mock1",
                         event: .metrics(.init(
                             timestamp: 1,
-                            event: .getEvaluationLatency(.init(
+                            event: .responseLatency(.init(
                                 apiId: .getEvaluations,
                                 labels: ["tag": "feature"],
-                                duration: .init(seconds: 2)
+                                latencySecond: .init(2)
                             )),
-                            type: .getEvaluationLatency,
+                            type: .responseLatency,
+                            sourceId: .ios,
                             sdk_version: "0.0.2",
                             metadata: [
                                 "app_version": "1.2.3",
@@ -67,12 +94,13 @@ final class BKTClientTests: XCTestCase {
                         id: "mock2",
                         event: .metrics(.init(
                             timestamp: 1,
-                            event: .getEvaluationSize(.init(
+                            event: .responseSize(.init(
                                 apiId: .getEvaluations,
                                 labels: ["tag": "feature"],
                                 size_byte: 3
                             )),
-                            type: .getEvaluationSize,
+                            type: .responseSize,
+                            sourceId: .ios,
                             sdk_version: "0.0.2",
                             metadata: [
                                 "app_version": "1.2.3",
@@ -120,6 +148,7 @@ final class BKTClientTests: XCTestCase {
                         timestamp: 1,
                         event: .timeoutError(.init(apiId: .getEvaluations, labels: ["tag": "feature"])),
                         type: .timeoutError,
+                        sourceId: .ios,
                         sdk_version: "0.0.2",
                         metadata: [
                             "app_version": "1.2.3",

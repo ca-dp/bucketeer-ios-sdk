@@ -11,9 +11,11 @@ final class EventDaoImpl: EventDao {
     }
 
     func add(events: [Event]) throws {
-        let entities = try events.map {
-            try EventEntity(model: $0)
-        }
+        let storedEvents = try getEvents()
+        let storedEventHashSet = Set(storedEvents.map(\.eventHash))
+        let entities = try events
+            .filter { !storedEventHashSet.contains($0.eventHash) }
+            .map { try EventEntity(model: $0) }
         try db.insert(entities)
     }
 
@@ -23,5 +25,11 @@ final class EventDaoImpl: EventDao {
 
     func delete(ids: [String]) throws {
         try db.delete(EventEntity(), condition: .in(column: "id", values: ids))
+    }
+}
+
+private extension Event {
+    var eventHash: Int {
+        return self.event.hashValue
     }
 }

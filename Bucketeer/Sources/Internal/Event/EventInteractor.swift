@@ -5,8 +5,9 @@ protocol EventInteractor {
     func trackEvaluationEvent(featureTag: String, user: User, evaluation: Evaluation) throws
     func trackDefaultEvaluationEvent(featureTag: String, user: User, featureId: String) throws
     func trackGoalEvent(featureTag: String, user: User, goalId: String, value: Double) throws
-    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Int64, sizeByte: Int64) throws
+    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Double, sizeByte: Int64) throws
     func trackFetchEvaluationsFailure(featureTag: String, error: BKTError) throws
+    func trackRegisterEventsFailure(error: BKTError) throws
     func sendEvents(force: Bool, completion: ((Result<Bool, BKTError>) -> Void)?)
 }
 
@@ -114,19 +115,20 @@ final class EventInteractorImpl: EventInteractor {
         updateEventsAndNotify()
     }
 
-    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Int64, sizeByte: Int64) throws {
+    func trackFetchEvaluationsSuccess(featureTag: String, seconds: Double, sizeByte: Int64) throws {
         try eventDao.add(
             events: [
                 .init(
                     id: idGenerator.id(),
                     event: .metrics(.init(
                         timestamp: clock.currentTimeSeconds,
-                        event: .getEvaluationLatency(.init(
+                        event: .responseLatency(.init(
                             apiId: .getEvaluations,
                             labels: ["tag": featureTag],
-                            duration: .init(seconds: seconds)
+                            latencySecond: seconds
                         )),
-                        type: .getEvaluationLatency,
+                        type: .responseLatency,
+                        sourceId: .ios,
                         sdk_version: sdkVersion,
                         metadata: metadata
                     )),
@@ -136,12 +138,13 @@ final class EventInteractorImpl: EventInteractor {
                     id: idGenerator.id(),
                     event: .metrics(.init(
                         timestamp: clock.currentTimeSeconds,
-                        event: .getEvaluationSize(.init(
+                        event: .responseSize(.init(
                             apiId: .getEvaluations,
                             labels: ["tag": featureTag],
                             size_byte: sizeByte
                         )),
-                        type: .getEvaluationSize,
+                        type: .responseSize,
+                        sourceId: .ios,
                         sdk_version: sdkVersion,
                         metadata: metadata
                     )),
@@ -153,28 +156,20 @@ final class EventInteractorImpl: EventInteractor {
     }
 
     func trackFetchEvaluationsFailure(featureTag: String, error: BKTError) throws {
-        let metricsEventData: MetricsEventData
-        let metricsEventType: MetricsEventType
-        switch error {
-        case .timeout:
-            metricsEventData = .timeoutError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
-            metricsEventType = .timeoutError
-        case .network:
-            metricsEventData = .networkError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
-            metricsEventType = .networkError
-        default:
-            metricsEventData = .internalSdkError(.init(apiId: .getEvaluations, labels: ["tag": featureTag]))
-            metricsEventType = .internalError
-        }
+        let metrics = metricsEvent(apiId: .getEvaluations, labels: ["tag": featureTag], error: error)
         try eventDao.add(event: .init(
             id: idGenerator.id(),
-            event: .metrics(.init(
-                timestamp: clock.currentTimeSeconds,
-                event: metricsEventData,
-                type: metricsEventType,
-                sdk_version: sdkVersion,
-                metadata: metadata
-            )),
+            event: metrics,
+            type: .metrics
+        ))
+        updateEventsAndNotify()
+    }
+
+    func trackRegisterEventsFailure(error: BKTError) throws {
+        let metrics = metricsEvent(apiId: .registerEvents, labels: [:], error: error)
+        try eventDao.add(event: .init(
+            id: idGenerator.id(),
+            event: metrics,
             type: .metrics
         ))
         updateEventsAndNotify()
@@ -217,12 +212,65 @@ final class EventInteractorImpl: EventInteractor {
                         completion?(.failure(BKTError(error: error)))
                     }
                 case .failure(let error):
+                    do {
+                        try self?.trackRegisterEventsFailure(error: error)
+                    } catch let error {
+                        self?.logger?.error(error)
+                    }
                     completion?(.failure(BKTError(error: error)))
                 }
             }
         } catch let error {
             completion?(.failure(BKTError(error: error)))
         }
+    }
+
+    private func metricsEvent(apiId: ApiId, labels: [String: String], error: BKTError) -> EventData {
+        let metricsEventData: MetricsEventData
+        let metricsEventType: MetricsEventType
+        switch error {
+        case .timeout:
+            metricsEventData = .timeoutError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .timeoutError
+        case .network:
+            metricsEventData = .networkError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .networkError
+        case .badRequest:
+            metricsEventData = .badRequestError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .badRequestError
+        case .unauthorized:
+            metricsEventData = .unauthorizedError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .unauthorizedError
+        case .forbidden:
+            metricsEventData = .forbiddenError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .forbiddenError
+        case .notFound:
+            metricsEventData = .notFoundError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .notFoundError
+        case .clientClosed:
+            metricsEventData = .clientClosedError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .clientClosedError
+        case .unavailable:
+            metricsEventData = .unavailableError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .unavailableError
+        case .apiServer:
+            metricsEventData = .internalServerError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .internalServerError
+        case .unknownServer:
+            metricsEventData = .unknownError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .unknownError
+        default:
+            metricsEventData = .internalSdkError(.init(apiId: apiId, labels: labels))
+            metricsEventType = .internalError
+        }
+        return .metrics(.init(
+            timestamp: clock.currentTimeSeconds,
+            event: metricsEventData,
+            type: metricsEventType,
+            sourceId: .ios,
+            sdk_version: sdkVersion,
+            metadata: metadata
+        ))
     }
 
     private func updateEventsAndNotify() {

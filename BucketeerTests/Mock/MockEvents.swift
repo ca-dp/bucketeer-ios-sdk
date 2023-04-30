@@ -94,12 +94,55 @@ extension Event {
         id: "metrics_event1",
         event: .metrics(.init(
             timestamp: 1,
-            event: .getEvaluationLatency(.init(
+            event: .responseLatency(.init(
                 apiId: .getEvaluations,
                 labels: ["tag": "ios", "state": "full"],
-                duration: .init(seconds: 2)
+                latencySecond: .init(2)
             )),
-            type: .getEvaluationLatency,
+            type: .responseLatency,
+            sourceId: .ios,
+            sdk_version: "0.0.1",
+            metadata: [
+                "app_version": "1.2.3",
+                "os_version": "16.0",
+                "device_model": "iPhone14,7",
+                "device_type": "mobile"
+            ]
+        )),
+        type: .metrics
+    )
+
+    static let mockMetrics2 = Event(
+        id: "metrics_event2",
+        event: .metrics(.init(
+            timestamp: 1,
+            event: .internalServerError(.init(
+                apiId: .registerEvents,
+                labels: [:]
+            )),
+            type: .internalServerError,
+            sourceId: .ios,
+            sdk_version: "0.0.1",
+            metadata: [
+                "app_version": "1.2.3",
+                "os_version": "16.0",
+                "device_model": "iPhone14,7",
+                "device_type": "mobile"
+            ]
+        )),
+        type: .metrics
+    )
+
+    static let mockMetrics3 = Event(
+        id: "metrics_event3",
+        event: .metrics(.init(
+            timestamp: 2,
+            event: .internalServerError(.init(
+                apiId: .registerEvents,
+                labels: [:]
+            )),
+            type: .internalServerError,
+            sourceId: .ios,
             sdk_version: "0.0.1",
             metadata: [
                 "app_version": "1.2.3",

@@ -1,11 +1,17 @@
 import Foundation
 
 enum MetricsEventType: Int, Codable, Hashable {
-    case getEvaluationLatency = 1
-    case getEvaluationSize = 2
-//    case timeoutErrorCount = 3 // deprecated
-//    case internalErrorCount = 4 // deprecated
-    case timeoutError = 5
-    case networkError = 6
-    case internalError = 7
+    case unknownError = 0
+    case responseLatency
+    case responseSize
+    case timeoutError
+    case networkError
+    case internalError
+    case badRequestError
+    case unauthorizedError
+    case forbiddenError
+    case notFoundError
+    case clientClosedError
+    case unavailableError
+    case internalServerError
 }

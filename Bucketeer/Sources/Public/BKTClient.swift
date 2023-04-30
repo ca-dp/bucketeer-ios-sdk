@@ -148,6 +148,7 @@ extension BKTClient {
         component.userHolder.updateAttributes { _ in
             attributes
         }
+        component.evaluationInteractor.clearCurrentEvaluationsId()
     }
 
     public func fetchEvaluations(timeoutMillis: Int64?, completion: ((BKTError?) -> Void)?) {
@@ -220,7 +221,7 @@ extension BKTClient {
                       case .success(let response):
                           try interactor.trackFetchEvaluationsSuccess(
                             featureTag: response.featureTag,
-                            seconds: Int64(response.seconds),
+                            seconds: response.seconds,
                             sizeByte: response.sizeByte
                           )
                           completion?(nil)

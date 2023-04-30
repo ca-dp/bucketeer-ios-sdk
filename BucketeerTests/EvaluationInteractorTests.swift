@@ -26,12 +26,14 @@ final class EvaluationInteractorTests: XCTestCase {
         let dao = MockEvaluationDao()
         let defaults = MockDefaults()
         let idGenerator = MockIdGenerator(identifier: "")
+        let config = BKTConfig.mock1
 
         let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults,
-            idGenerator: idGenerator
+            idGenerator: idGenerator,
+            featureTag: config.featureTag
         )
         XCTAssertEqual(interactor.currentEvaluationsId, "")
         interactor.fetch(user: .mock1) { result in
@@ -99,11 +101,13 @@ final class EvaluationInteractorTests: XCTestCase {
         let defaults = MockDefaults()
 
         let idGenerator = MockIdGenerator(identifier: "")
+        let config = BKTConfig.mock1
         let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults,
-            idGenerator: idGenerator
+            idGenerator: idGenerator,
+            featureTag: config.featureTag
         )
         XCTAssertEqual(interactor.currentEvaluationsId, "")
         // 1st
@@ -155,12 +159,14 @@ final class EvaluationInteractorTests: XCTestCase {
         let dao = MockEvaluationDao()
         let defaults = MockDefaults()
         let idGenerator = MockIdGenerator(identifier: "")
+        let config = BKTConfig.mock1
 
         let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults,
-            idGenerator: idGenerator
+            idGenerator: idGenerator,
+            featureTag: config.featureTag
         )
         XCTAssertEqual(interactor.currentEvaluationsId, "")
         // 1st
@@ -190,6 +196,52 @@ final class EvaluationInteractorTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
+    func testFetchAndFailWithDBError() {
+        let expectation = XCTestExpectation()
+
+        let baseUserEvaluationsId = UserEvaluations.mock1.id
+        let api = MockApiClient(
+            getEvaluationsHandler: { user, userEvaluationsId, timeoutMillis, completion in
+
+                XCTAssertEqual(user, .mock1)
+                let response = GetEvaluationsResponse(
+                    evaluations: .mock1,
+                    userEvaluationsId: baseUserEvaluationsId
+                )
+                completion?(.success(response))
+                expectation.fulfill()
+            }
+        )
+
+        let dao = MockEvaluationDao(deleteAllAndInsertHandler: { _, _ in
+            throw NSError(domain: "db", code: 100, userInfo: [:])
+        })
+        let defaults = MockDefaults()
+        let idGenerator = MockIdGenerator(identifier: "")
+        let config = BKTConfig.mock1
+
+        let interactor = EvaluationInteractorImpl(
+            apiClient: api,
+            evaluationDao: dao,
+            defaults: defaults,
+            idGenerator: idGenerator,
+            featureTag: config.featureTag
+        )
+        XCTAssertEqual(interactor.currentEvaluationsId, "")
+        // 1st
+        interactor.fetch(user: .mock1) { result in
+            switch result {
+            case .failure(let error, let featureTag):
+                XCTAssertEqual(error, BKTError.unknown(message: "Unknown error: Error Domain=db Code=100 \"(null)\"", error: NSError(domain: "db", code: 100, userInfo: [:])))
+                XCTAssertEqual(featureTag, "featureTag1")
+                expectation.fulfill()
+            case .success:
+                XCTFail()
+            }
+        }
+        wait(for: [expectation], timeout: 1)
+    }
+
     func testRefreshCache() throws {
         let api = MockApiClient()
 
@@ -208,12 +260,14 @@ final class EvaluationInteractorTests: XCTestCase {
         })
         let defaults = MockDefaults()
         let idGenerator = MockIdGenerator(identifier: "")
+        let config = BKTConfig.mock1
 
         let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults,
-            idGenerator: idGenerator
+            idGenerator: idGenerator,
+            featureTag: config.featureTag
         )
 
         XCTAssertEqual(interactor.evaluations[userId1], nil)
@@ -244,12 +298,14 @@ final class EvaluationInteractorTests: XCTestCase {
         })
         let defaults = MockDefaults()
         let idGenerator = MockIdGenerator(identifier: "")
+        let config = BKTConfig.mock1
 
         let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults,
-            idGenerator: idGenerator
+            idGenerator: idGenerator,
+            featureTag: config.featureTag
         )
 
         try interactor.refreshCache(userId: userId1)
@@ -265,12 +321,14 @@ final class EvaluationInteractorTests: XCTestCase {
         })
         let defaults = MockDefaults()
         let idGenerator = MockIdGenerator(identifier: "")
+        let config = BKTConfig.mock1
 
         let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults,
-            idGenerator: idGenerator
+            idGenerator: idGenerator,
+            featureTag: config.featureTag
         )
 
         XCTAssertEqual(interactor.getLatest(userId: User.mock1.id, featureId: Evaluation.mock1.featureId), nil)
@@ -289,12 +347,14 @@ final class EvaluationInteractorTests: XCTestCase {
         })
         let defaults = MockDefaults()
         let idGenerator = MockIdGenerator(identifier: "")
+        let config = BKTConfig.mock1
 
         let interactor = EvaluationInteractorImpl(
             apiClient: api,
             evaluationDao: dao,
             defaults: defaults,
-            idGenerator: idGenerator
+            idGenerator: idGenerator,
+            featureTag: config.featureTag
         )
 
         XCTAssertEqual(interactor.getLatest(userId: User.mock1.id, featureId: "invalid_feature_id"), nil)
