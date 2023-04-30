@@ -45,8 +45,8 @@ final class ApiClientImpl: ApiClient {
                 switch result {
                 case .success((var response, let urlResponse)):
                     let endAt = Date()
-                    let duration = endAt.timeIntervalSince(startAt)
-                    response.seconds = duration
+                    let latencySecond = endAt.timeIntervalSince(startAt)
+                    response.seconds = latencySecond
                     let contentLength = urlResponse.expectedContentLength
                     response.sizeByte = contentLength
                     response.featureTag = featureTag

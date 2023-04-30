@@ -77,6 +77,7 @@ extension BKTClient {
         precondition(Thread.isMainThread, "the initialize method must be called on main thread")
         guard BKTClient.default == nil else {
             config.logger?.warn(message: "BKTClient is already initialized. Not sure if the initial fetch has finished")
+            completion?(nil)
             return
         }
         do {
@@ -91,6 +92,7 @@ extension BKTClient {
             }
         } catch let error {
             config.logger?.error(error)
+            completion?(error as? BKTError)
         }
     }
 
@@ -147,6 +149,7 @@ extension BKTClient {
         component.userHolder.updateAttributes { _ in
             attributes
         }
+        component.evaluationInteractor.clearCurrentEvaluationsId()
     }
 
     public func fetchEvaluations(timeoutMillis: Int64?, completion: ((BKTError?) -> Void)?) {
@@ -219,7 +222,7 @@ extension BKTClient {
                       case .success(let response):
                           try interactor.trackFetchEvaluationsSuccess(
                             featureTag: response.featureTag,
-                            seconds: Int64(response.seconds),
+                            seconds: response.seconds,
                             sizeByte: response.sizeByte
                           )
                           completion?(nil)

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 confirm_api_url () {
-    echo "Please input your API_URL. e.g. https://api-media.bucketeer.jp"
+    echo "Please input your API_URL. e.g. https://api.bucketeer.io"
     read input
 
     if [ -z $input ]; then
@@ -20,7 +20,7 @@ confirm_sdk_key () {
     SDK_KEY=$input
 }
 
-if [ $CI = false ]; then
+if [ "$CI" = "" ]; then
     confirm_api_url
     confirm_sdk_key
 fi

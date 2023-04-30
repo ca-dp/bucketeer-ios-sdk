@@ -101,7 +101,7 @@ class JSONDecodingTests: XCTestCase {
         XCTAssertEqual(eventData.sourceId, .ios)
     }
 
-    func testDecodingMetricsGetEvaluationLatencyEvent() throws {
+    func testDecodingMetricsResponseLatencyEvent() throws {
         let json = """
 {
     "id": "event_1",
@@ -109,16 +109,14 @@ class JSONDecodingTests: XCTestCase {
     "event": {
         "timestamp": 1,
         "type": 1,
+        "sourceId": 2,
         "event": {
             "apiId": 2,
             "labels": {
                 "key_1": "value_1",
                 "key_2": "value_2",
             },
-            "duration": {
-                "seconds": 1,
-                "nanos": 2
-            }
+            "latencySecond": 1
         }
     }
 }
@@ -136,17 +134,17 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         XCTAssertEqual(eventData.timestamp, 1)
-        XCTAssertEqual(eventData.type, .getEvaluationLatency)
-        guard case .getEvaluationLatency(let metricsData) = eventData.event else {
+        XCTAssertEqual(eventData.type, .responseLatency)
+        guard case .responseLatency(let metricsData) = eventData.event else {
             XCTFail("metricsData is invalid")
             return
         }
         XCTAssertEqual(metricsData.labels["key_1"], "value_1")
         XCTAssertEqual(metricsData.labels["key_2"], "value_2")
-        XCTAssertEqual(metricsData.duration.seconds, 1)
+        XCTAssertEqual(metricsData.latencySecond, 1)
     }
 
-    func testDecodingMetricsGetEvaluationSizeEvent() throws {
+    func testDecodingMetricsResponseSizeEvent() throws {
         let json = """
 {
     "id": "event_1",
@@ -154,6 +152,7 @@ class JSONDecodingTests: XCTestCase {
     "event": {
         "timestamp": 1,
         "type": 2,
+        "sourceId": 2,
         "event": {
             "apiId": 2,
             "labels": {
@@ -178,8 +177,8 @@ class JSONDecodingTests: XCTestCase {
             return
         }
         XCTAssertEqual(eventData.timestamp, 1)
-        XCTAssertEqual(eventData.type, .getEvaluationSize)
-        guard case .getEvaluationSize(let metricsData) = eventData.event else {
+        XCTAssertEqual(eventData.type, .responseSize)
+        guard case .responseSize(let metricsData) = eventData.event else {
             XCTFail("metricsData is invalid")
             return
         }
@@ -195,7 +194,8 @@ class JSONDecodingTests: XCTestCase {
     "type": 4,
     "event": {
         "timestamp": 1,
-        "type": 5,
+        "type": 3,
+        "sourceId": 2,
         "event": {
             "apiId": 2,
             "labels": {
@@ -233,7 +233,8 @@ class JSONDecodingTests: XCTestCase {
     "type": 4,
     "event": {
         "timestamp": 1,
-        "type": 7,
+        "type": 5,
+        "sourceId": 2,
         "event": {
             "apiId": 2,
             "labels": {

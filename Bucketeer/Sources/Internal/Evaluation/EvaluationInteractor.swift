@@ -4,6 +4,8 @@ protocol EvaluationInteractor {
     func fetch(user: User, timeoutMillis: Int64?, completion: ((GetEvaluationsResult) -> Void)?)
     func getLatest(userId: String, featureId: String) -> Evaluation?
     func refreshCache(userId: String) throws
+    var currentEvaluationsId: String { get }
+    func clearCurrentEvaluationsId()
     @discardableResult
     func addUpdateListener(listener: EvaluationUpdateListener) -> String
     func removeUpdateListener(key: String)
@@ -24,13 +26,15 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
     let evaluationDao: EvaluationDao
     let defaults: Defaults
     let idGenerator: IdGenerator
+    let featureTag: String
     let logger: Logger?
 
-    init(apiClient: ApiClient, evaluationDao: EvaluationDao, defaults: Defaults, idGenerator: IdGenerator, logger: Logger? = nil) {
+    init(apiClient: ApiClient, evaluationDao: EvaluationDao, defaults: Defaults, idGenerator: IdGenerator, featureTag: String, logger: Logger? = nil) {
         self.apiClient = apiClient
         self.evaluationDao = evaluationDao
         self.defaults = defaults
         self.idGenerator = idGenerator
+        self.featureTag = featureTag
         self.logger = logger
     }
 
@@ -50,6 +54,7 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
         let currentEvaluationsId = self.currentEvaluationsId
         let evaluationDao = self.evaluationDao
         let logger = self.logger
+        let featureTag = self.featureTag
         apiClient.getEvaluations(
             user: user,
             userEvaluationsId: currentEvaluationsId,
@@ -67,7 +72,7 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
                         try evaluationDao.deleteAllAndInsert(userId: user.id, evaluations: newEvaluations)
                     } catch let error {
                         logger?.error(error)
-                        completion?(result)
+                        completion?(.failure(error: .init(error: error), featureTag: featureTag))
                         return
                     }
                     self?.currentEvaluationsId = newEvaluationsId
@@ -90,6 +95,10 @@ final class EvaluationInteractorImpl: EvaluationInteractor {
 
     func refreshCache(userId: String) throws {
         evaluations[userId] = try evaluationDao.get(userId: userId)
+    }
+
+    func clearCurrentEvaluationsId() {
+        currentEvaluationsId = ""
     }
 
     func getLatest(userId: String, featureId: String) -> Evaluation? {

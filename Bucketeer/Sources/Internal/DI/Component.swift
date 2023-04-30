@@ -18,7 +18,8 @@ final class ComponentImpl: Component {
             apiClient: dataModule.apiClient,
             evaluationDao: dataModule.evaluationDao,
             defaults: dataModule.defaults,
-            idGenerator: dataModule.idGenerator
+            idGenerator: dataModule.idGenerator,
+            featureTag: dataModule.config.featureTag
         )
         self.eventInteractor = EventInteractorImpl(
             sdkVersion: dataModule.config.sdkVersion,
