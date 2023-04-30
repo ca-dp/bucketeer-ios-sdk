@@ -13,7 +13,7 @@ enum EventData: Hashable {
         let user: User
         let tag: String
         let sourceId: SourceID
-        var sdkVersion: String? = nil
+        var sdkVersion: String?
         var metadata: [String: String]?
         var protobufType: String? = "type.googleapis.com/bucketeer.event.client.GoalEvent"
     }
@@ -28,7 +28,7 @@ enum EventData: Hashable {
         let reason: Reason
         let tag: String
         let sourceId: SourceID
-        var sdkVersion: String? = nil
+        var sdkVersion: String?
         var metadata: [String: String]?
         var protobufType: String? = "type.googleapis.com/bucketeer.event.client.EvaluationEvent"
     }
@@ -38,8 +38,8 @@ enum EventData: Hashable {
         let event: MetricsEventData
         let type: MetricsEventType
         let sourceId: SourceID
-        var sdkVersion: String? = nil
-        var metadata: [String: String]? = nil
+        var sdkVersion: String?
+        var metadata: [String: String]?
         var protobufType: String? = "type.googleapis.com/bucketeer.event.client.MetricsEvent"
 
         enum CodingKeys: String, CodingKey {

@@ -14,7 +14,6 @@ struct MockEvaluationInteractor: EvaluationInteractor {
         fatalError()
     }
     func refreshCache(userId: String) throws {
-
     }
     func clearCurrentEvaluationsId() {
 
@@ -24,10 +23,8 @@ struct MockEvaluationInteractor: EvaluationInteractor {
     }
 
     func removeUpdateListener(key: String) {
-
     }
 
     func clearUpdateListeners() {
-
     }
 }

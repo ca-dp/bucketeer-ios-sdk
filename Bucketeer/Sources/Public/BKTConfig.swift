@@ -62,7 +62,7 @@ extension BKTConfig {
             eventsMaxBatchQueueCount: eventsMaxBatchQueueCount,
             pollingInterval: pollingInterval,
             backgroundPollingInterval: backgroundPollingInterval,
-            sdkVersion: Bundle.init(for: BKTClient.self).infoDictionary?["CFBundleShortVersionString"] as! String,
+            sdkVersion: (Bundle.init(for: BKTClient.self).infoDictionary?["CFBundleShortVersionString"] as? String) ?? "",
             appVersion: appVersion,
             logger: logger
         )

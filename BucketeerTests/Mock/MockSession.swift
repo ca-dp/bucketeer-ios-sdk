@@ -3,7 +3,7 @@ import Foundation
 
 struct MockSession: Session {
     var configuration: URLSessionConfiguration = .default
-    var requestHandler: ((URLRequest) -> Void)? = nil
+    var requestHandler: ((URLRequest) -> Void)?
     var data: Data?
     var response: HTTPURLResponse?
     var error: Error?

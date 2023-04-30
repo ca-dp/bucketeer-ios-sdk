@@ -63,4 +63,3 @@ extension EventBackgroundTask: ScheduledTask {
 }
 
 #endif
-

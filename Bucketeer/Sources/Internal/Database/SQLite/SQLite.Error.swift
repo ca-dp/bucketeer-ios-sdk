@@ -61,4 +61,3 @@ extension SQLite {
         }
     }
 }
-

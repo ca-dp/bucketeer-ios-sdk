@@ -8,25 +8,25 @@ class SQLiteTests: XCTestCase {
         url.path
     }
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
 
-        let db = try! SQLite(path: path, logger: nil)
+        let db = try SQLite(path: path, logger: nil)
         let table = SQLite.Table(entity: MockEntity())
         let sql = table.sqlToCreate()
-        try! db.exec(query: sql)
+        try db.exec(query: sql)
 
         let entities = [
-            try! MockEntity(model: .init(id: "id1", value: 1)),
-            try! MockEntity(model: .init(id: "id2", value: 2))
+            try MockEntity(model: .init(id: "id1", value: 1)),
+            try MockEntity(model: .init(id: "id2", value: 2))
         ]
-        try! db.insert(entities)
+        try db.insert(entities)
     }
 
-    override func tearDown() {
-        try! FileManager.default.removeItem(at: url)
+    override func tearDown() async throws {
+        try FileManager.default.removeItem(at: url)
 
-        super.tearDown()
+        try await super.tearDown()
     }
 
     func testInit() throws {
@@ -111,6 +111,7 @@ private struct MockEntity: SQLiteEntity {
         var id: String = "some_id"
         var value: Int = 100
     }
+
     static var tableName: String { "Mock" }
 
     var id = SQLiteColumn<String>(value: "", isPrimaryKey: true)
@@ -127,6 +128,7 @@ private struct MockMultiPrimaryKeyEntity: SQLiteEntity {
     struct Model: Codable {
         var id: String = "some_id"
     }
+
     static var tableName: String { "Mock" }
 
     var id = SQLiteColumn<String>(value: "", isPrimaryKey: true)

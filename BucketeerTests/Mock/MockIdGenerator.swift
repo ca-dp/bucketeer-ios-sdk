@@ -3,6 +3,7 @@ import Foundation
 
 final class MockIdGenerator: IdGenerator {
     let identifier: () -> String
+
     init(identifier: @escaping () -> String) {
         self.identifier = identifier
     }
@@ -14,4 +15,3 @@ final class MockIdGenerator: IdGenerator {
         return identifier()
     }
 }
-

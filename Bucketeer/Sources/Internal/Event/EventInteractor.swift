@@ -149,7 +149,7 @@ final class EventInteractorImpl: EventInteractor {
                         metadata: metadata
                     )),
                     type: .metrics
-                ),
+                )
             ]
         )
         updateEventsAndNotify()

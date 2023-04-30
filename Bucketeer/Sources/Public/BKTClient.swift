@@ -1,6 +1,5 @@
 import Foundation
 
-
 public class BKTClient {
     static var `default`: BKTClient!
 
@@ -241,7 +240,7 @@ extension BKTClient {
           })
       }
 
-    static func flushSync(component: Component, completion: ((BKTError?) -> Void)?){
+    static func flushSync(component: Component, completion: ((BKTError?) -> Void)?) {
         component.eventInteractor.sendEvents(force: true) { result in
             switch result {
             case .success:

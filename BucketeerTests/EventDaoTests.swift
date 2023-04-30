@@ -5,19 +5,19 @@ final class EventDaoTests: XCTestCase {
     let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("event_test.db")
     var path: String { url.path }
 
-    override func setUp() {
-        super.setUp()
-        let db = try! SQLite(path: path, logger: nil)
+    override func setUp() async throws {
+        try await super.setUp()
+        let db = try SQLite(path: path, logger: nil)
 
         let eventTable = SQLite.Table(entity: EventEntity())
         let eventSql = eventTable.sqlToCreate()
-        try! db.exec(query: eventSql)
+        try db.exec(query: eventSql)
     }
 
-    override func tearDown() {
-        try! FileManager.default.removeItem(at: url)
+    override func tearDown() async throws {
+        try FileManager.default.removeItem(at: url)
 
-        super.tearDown()
+        try await super.tearDown()
     }
 
     func testAddEventGoal() throws {

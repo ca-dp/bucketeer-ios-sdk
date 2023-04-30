@@ -1,0 +1,41 @@
+name: Pull Request
+
+on:
+  pull_request:
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: norio-nomura/action-swiftlint@3.2.1
+
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup
+        run: make setup
+
+      - name: Build
+        run: make build
+
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup
+        run: make setup
+
+      - name: Build
+        run: make build-for-testing
+
+      - name: Unit Test
+        run: make test-without-building
+
+      - name: Build example
+        run: make build-example

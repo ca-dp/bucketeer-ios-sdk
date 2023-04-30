@@ -13,7 +13,7 @@ final class SQLite {
         sqlite3_shutdown()
         sqlite3_initialize()
 
-        var _pointer: OpaquePointer? = nil
+        var _pointer: OpaquePointer?
         let flags = SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX
         let result = sqlite3_open_v2(path, &_pointer, flags, nil)
         if result != SQLITE_OK {
@@ -35,7 +35,7 @@ final class SQLite {
 
 extension SQLite {
     func prepareStatement(sql: String) throws -> Statement {
-        var _pointer: OpaquePointer? = nil
+        var _pointer: OpaquePointer?
         let result = sqlite3_prepare_v2(pointer, sql, -1, &_pointer, nil)
         guard result == SQLITE_OK,
             let pointer = _pointer else {

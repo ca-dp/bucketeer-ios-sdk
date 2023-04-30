@@ -1,6 +1,7 @@
 import Foundation
 @testable import Bucketeer
 
+// swiftlint:disable large_tuple
 final class MockApiClient: ApiClient {
     typealias GetEvaluationsHandler = ((User, String, Int64?, ((GetEvaluationsResult) -> Void)?)) -> Void
     typealias RegisterEventsHandler = ([Event], ((Result<RegisterEventsResponse, BKTError>) -> Void)?) -> Void
@@ -23,3 +24,4 @@ final class MockApiClient: ApiClient {
         registerEventsHandler?(events, completion)
     }
 }
+// swiftlint:enable large_tuple

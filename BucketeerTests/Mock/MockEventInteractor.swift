@@ -29,13 +29,10 @@ final class MockEventInteractor: EventInteractor {
         self.eventUpdateListener = eventUpdateListener
     }
     func trackEvaluationEvent(featureTag: String, user: User, evaluation: Evaluation) throws {
-
     }
     func trackDefaultEvaluationEvent(featureTag: String, user: User, featureId: String) throws {
-
     }
     func trackGoalEvent(featureTag: String, user: User, goalId: String, value: Double) throws {
-
     }
     func trackFetchEvaluationsSuccess(featureTag: String, seconds: Double, sizeByte: Int64) throws {
         try trackEvaluationSuccessHandler?(featureTag, seconds, sizeByte)

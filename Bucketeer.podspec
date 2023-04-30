@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = "Bucketeer"
-  s.version  = "1.12.0" # replace this at CI
+  s.version  = "0.0.1" # x-release-please-version
   s.summary  = "Bucketeer Feature Flag & A/B Testing Service"
   s.homepage = "https://github.com/ca-dp/bucketeer-ios-sdk"
 
@@ -18,12 +18,10 @@ Pod::Spec.new do |s|
       :tag => "v#{s.version}",
   }
 
-  s.dependency "gRPC-Swift", "1.0.0-alpha.17"
-
   s.license = {
     :type => "Apache License, Version 2.0",
     :text => <<-LICENSE
-      Copyright (c) 2020 Bucketeer
+      Copyright (c) 2023 Bucketeer
 
       Licensed under the Apache License, Version 2.0 (the "License");
       you may not use this file except in compliance with the License.

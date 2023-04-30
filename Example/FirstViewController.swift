@@ -4,7 +4,7 @@ import Bucketeer
 class FirstViewController: UIViewController {
 
     @IBOutlet weak var messageLabel: UILabel!
-    
+
     override func viewWillAppear(_ animated: Bool) {
         messageLabel.text = BKTClient.shared.stringVariation(featureId: "ios_test_002", defaultValue: "not found...")
 

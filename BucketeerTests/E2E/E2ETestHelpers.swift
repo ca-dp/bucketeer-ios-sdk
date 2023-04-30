@@ -37,7 +37,7 @@ extension BKTClient {
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.main.async {
                 self.initialize(config: config, user: user) { error in
-                    if let error = error{
+                    if let error = error {
                         continuation.resume(throwing: error)
                     } else {
                         continuation.resume(returning: ())
@@ -49,7 +49,7 @@ extension BKTClient {
     func fetchEvaluations(timeoutMillis: Int64?) async throws {
         return try await withCheckedThrowingContinuation { continuation in
             self.fetchEvaluations(timeoutMillis: timeoutMillis) { error in
-                if let error = error{
+                if let error = error {
                     continuation.resume(throwing: error)
                 } else {
                     continuation.resume(returning: ())
@@ -61,7 +61,7 @@ extension BKTClient {
     func flush() async throws {
         return try await withCheckedThrowingContinuation({ continuation in
             self.flush { error in
-                if let error = error{
+                if let error = error {
                     continuation.resume(throwing: error)
                 } else {
                     continuation.resume(returning: ())
@@ -74,7 +74,6 @@ extension BKTClient {
         let component = self.component as? ComponentImpl
         let count = try? component?.dataModule.eventDao.getEvents().count
         XCTAssertEqual(expectedEventCount, count, file: file, line: line)
-
     }
 }
 
@@ -127,6 +126,7 @@ final class E2ELogger: BKTLogger {
     private var prefix: String {
         "Bucketeer E2E "
     }
+
     func debug(message: String) {
         print("\(prefix)[DEBUG] \(message)")
     }
@@ -142,8 +142,10 @@ final class E2ELogger: BKTLogger {
 
 extension URL {
     static var database: URL {
+        // swiftlint:disable force_try
         let directoryURL = try! FileManager.default
             .url(for: DatabaseOpenHelper.directory, in: .userDomainMask, appropriateFor: nil, create: true)
         return directoryURL.appendingPathComponent(Constant.DB.FILE_NAME)
+        // swiftlint:enable force_try
     }
 }
