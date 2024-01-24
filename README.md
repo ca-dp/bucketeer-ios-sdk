@@ -1,3 +1,11 @@
+# DEPRECATED
+This repository is no longer maintained. Please update to version V2 following the instructions in the repository below.
+
+https://github.com/bucketeer-io/ios-client-sdk
+
+<br><br>
+
+
 [![Build Status](https://app.bitrise.io/app/b2a26a787a314dad/status.svg?token=dbGgTCEurcQ8NoD64CekLA&branch=master)](https://app.bitrise.io/app/b2a26a787a314dad)
 
 # Bucketeer Client-side SDK for iOS
